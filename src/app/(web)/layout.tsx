@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Navbar from '@/components/ui/Navbar'
 
 export const metadata: Metadata = {
   title: "Questionist",
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Navbar/>
         {children}
       </body>
     </html>
