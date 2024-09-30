@@ -5,20 +5,18 @@ import { inter } from '@/data/fonts'
 
 export default function index() {
   return (
-    <div className={inter.className}>
-        <div className={styles.navbar}>
-            <div className={styles.logo}>Logo</div>
-            <div className={styles.links}>
-                <div className={styles.linksWrapper}>
-                    <Link href='/'>Landing page</Link>
-                    <Link href='/'>Explore</Link>
-                    <Link href='/'>Pricing</Link>
-                    <Link href='/'>Contact</Link>
-                </div>
-                <div className={styles.authButtons}>
-                    <Link className={styles.signInButton} href='/'>Sign in</Link>
-                    <Link className={styles.registerButton} href='/'>Register</Link>
-                </div>
+    <div className={styles.navbar}>
+        <div className={styles.logo}>Logo</div>
+        <div className={styles.links}>
+            <div className={styles.linksWrapper}>
+                <Link href='/'>Landing page</Link>
+                <Link href='/'>Explore</Link>
+                <Link href='/'>Pricing</Link>
+                <Link href='/'>Contact</Link>
+            </div>
+            <div className={styles.authButtons}>
+                <Link className={styles.signInButton} href='/'>Sign in</Link>
+                <Link className={styles.registerButton} href='/'>Register</Link>
             </div>
         </div>
     </div>
