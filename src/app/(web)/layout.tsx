@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from '@/components/ui/Navbar'
+import { inter } from '@/data/fonts'
 
 export const metadata: Metadata = {
   title: "Questionist",
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <Navbar/>
         {children}
       </body>
