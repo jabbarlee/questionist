@@ -1,7 +1,7 @@
 
 .header {
     position: relative;
-    height: auto;
+    height: 300px;
     padding: 100px 0;
     width: 100%;
     display: flex;
@@ -9,7 +9,6 @@
     align-items: center;
 }
 
-/* Responsive styles for mobile */
 @media (max-width: 768px) {
   .header {
     padding: 50px 0;
