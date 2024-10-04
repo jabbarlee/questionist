@@ -1,0 +1,36 @@
+.btnPrimary {
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.btnSecondary {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.btnLink {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+}
+
+.btnPrimary:hover {
+    background-color: #e0e0e0;
+}
+.btnSecondary:hover {
+    background-color: #474747;
+}
+
+@media (max-width: 768px) {
+    .btnLink {
+        font-size: 15px;
+    }
+}
