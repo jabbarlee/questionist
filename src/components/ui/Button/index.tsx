@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     fit?: boolean;
 }
   
-const Button = ({ children, buttonType, redirect, ...props } : ButtonProps) => {
+const Button = ({ children, buttonType, redirect, fit, ...props } : ButtonProps) => {
 
     const buttonClass = buttonType === 'primary' ? styles.btnPrimary : styles.btnSecondary;
 
@@ -18,8 +18,8 @@ const Button = ({ children, buttonType, redirect, ...props } : ButtonProps) => {
         <button 
             className={buttonClass} 
             style={{ 
-                width: props.fit ? 'calc(100% + 16px)' : 'auto',
-            }} 
+                width: fit ? 'calc(100% + 16px)' : 'auto',  // Use 'fit' here
+            }}
             {...props} 
         >            {redirect ? (
                 <Link 
