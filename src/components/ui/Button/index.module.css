@@ -4,7 +4,7 @@
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .btnSecondary {
@@ -13,20 +13,21 @@
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .btnLink {
     text-decoration: none;
-    font-size: 18px;
     color: black;
 }
 
 .btnPrimary:hover {
     background-color: #e0e0e0;
+    cursor: pointer;
 }
 .btnSecondary:hover {
     background-color: #474747;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
