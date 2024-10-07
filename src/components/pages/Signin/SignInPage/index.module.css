@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    height: 400px;
+    padding: 50px 100px;
+    align-items: center;
+    gap: 100px;
+    align-self: stretch;
+}
+
+.imageSide{
+    flex: 1 0 0;
+    align-self: stretch;
+}
