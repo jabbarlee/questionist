@@ -16,15 +16,23 @@
     font-size: 15px;
 }
 
+.btnFit{
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .btnLink {
     text-decoration: none;
-    color: black;
+    color: inherit;
+    display: block;
+    width: 100%;
 }
 
 .btnPrimary:hover {
     background-color: #e0e0e0;
     cursor: pointer;
 }
+
 .btnSecondary:hover {
     background-color: #474747;
     cursor: pointer;
