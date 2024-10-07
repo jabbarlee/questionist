@@ -5,9 +5,10 @@
     align-items: center;
     gap: 100px;
     align-self: stretch;
+    flex-grow: 1;
 }
 
 .imageSide{
     flex: 1 0 0;
-    align-self: stretch;
+    align-self: inherit;
 }
