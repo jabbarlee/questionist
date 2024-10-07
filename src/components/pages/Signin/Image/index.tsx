@@ -3,10 +3,12 @@ import styles from './index.module.css'
 import Image from 'next/image'
 import headerImage from '@/data/images/header.png';
 
-export default function index() {
+export default function index({ ...props }) {
   return (
-    <div className={styles.image}>
-      <Image alt="Image" src={headerImage} width={600} height={300}/>
+    <div {...props}>
+      <div className={styles.image}>
+        <Image alt="Image" src={headerImage} height={300} width={500}/>
+      </div>
     </div>
   )
 }

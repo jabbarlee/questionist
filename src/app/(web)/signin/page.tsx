@@ -1,10 +1,10 @@
 import React from 'react'
-import LoginForm from '@/components/pages/Signin/LoginForm'
+import SignInPage from '@/components/pages/Signin/SignInPage'
 
 export default function page() {
   return (
     <div>
-        <LoginForm />
+        <SignInPage />
     </div>
   )
 }

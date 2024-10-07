@@ -1,7 +1,7 @@
 .inputWrapper{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 250px;
+    gap: 15px;
+    width: 300px;
     
 }

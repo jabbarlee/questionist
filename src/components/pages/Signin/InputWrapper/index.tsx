@@ -5,10 +5,10 @@ import Button from '@/components/ui/Button'
 
 export default function index() {
   return (
-    <div className={styles.inputWrapper}>
+      <div className={styles.inputWrapper}>
         <Input placeholder='Email'/>
         <Input placeholder='Password'/>
         <Button buttonType='secondary' fit={true}>Sign in</Button>
-    </div>
+      </div>
   )
 }
