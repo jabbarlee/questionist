@@ -6,3 +6,10 @@
     gap: 10px;
     width: 350px;
 }
+
+@media (max-width: 768px) {
+    .loginForm {
+        width: 100%; /* Ensure the form takes full width on mobile */
+        max-width: none; /* Remove any width restrictions on mobile */
+    }
+}
