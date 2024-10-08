@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    height: 400px;
+    padding: 50px 100px;
+    align-items: center;
+    gap: 100px;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.imageSide {
+    flex: 1 0 0;
+    align-self: inherit;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack items vertically on mobile */
+        padding: 20px; /* Adjust padding for mobile */
+        gap: 20px; /* Reduce gap between elements */
+    }
+
+    .imageSide {
+        display: none; /* Hide image on mobile */
+    }
+
+    .formSide {
+        width: 100%; /* Make sure the form takes up full width */
+    }
+}

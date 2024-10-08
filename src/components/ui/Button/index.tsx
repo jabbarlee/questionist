@@ -7,26 +7,30 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     buttonType: 'primary' | 'secondary';
     redirect?: Url | '/';
+    fit?: boolean;
 }
   
-const Button = ({ children, buttonType, redirect, ...props } : ButtonProps) => {
-
-    const buttonClass = buttonType === 'primary' ? styles.btnPrimary : styles.btnSecondary;
+const Button = ({ children, buttonType, redirect, fit, ...props } : ButtonProps) => {
+    const buttonClass = `${buttonType === 'primary' ? styles.btnPrimary : styles.btnSecondary} ${fit ? styles.btnFit : ''}`;
 
     return (
-        <button className={buttonClass} {...props}>
-            {redirect ? (
-                <Link 
-                    href={redirect} 
-                    className={styles.btnLink} 
-                    style={{ color: buttonType === 'primary' ? 'black' : 'white' }}
+                <button 
+                    className={buttonClass} 
+                    {...props}
                 >
-                    {children}
-                </Link>
-            ) : (
-                <>{children}</>
-            )}
-        </button>
+                    {redirect ? (
+                        <Link 
+                            href={redirect} 
+                            className={styles.btnLink} 
+                            style={{ color: buttonType === 'primary' ? 'black' : 'white' }}
+                        >
+                            {children}
+                        </Link>
+                    ) : (
+                        <>{children}</>
+                    )}
+                </button>
     );
 };
+
 export default Button;
