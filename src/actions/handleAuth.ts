@@ -3,16 +3,15 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { storeUserInfoInFirestore } from "@/actions/storeUserInfoInFirestore";
-import Cookies from "js-cookie";
+import { cookies } from "next/headers";
 
 export async function handleSignIn({
     email,
     password,
-    router
+
 } : {
     email: string,
     password: string,
-    router: any
 }) {
     try{
         let userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -24,13 +23,22 @@ export async function handleSignIn({
 
             //store token in cookies
             const token = await user.getIdToken();
-            Cookies.set("token", token, { expires: 1 });
 
-            //redirect to home page
-            router.push("/dashboard");
+            cookies().set({
+                name: "token", 
+                value: token,
+                maxAge: 86400, 
+                path: "/", 
+                httpOnly: true, 
+                secure: process.env.NODE_ENV === "production", 
+                sameSite: "strict", 
+            });
+
+            // Return success response
+            return { success: true };
         }
     } catch (error) {
-        console.error("Error signing in user: ", error);   
+        console.error("Error signing in user: ", error); 
     }
 }
 

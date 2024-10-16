@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation'
 export default function index() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const router = useRouter()
 
   return (
       <div className={styles.inputWrapper}>
@@ -27,7 +26,7 @@ export default function index() {
         <Button 
           buttonType='secondary' 
           fit={true}
-          onClick={() => handleSignIn({ email, password, router })}
+          onClick={() => handleSignIn({ email, password })}
         >
           Sign in
         </Button>
