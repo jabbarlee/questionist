@@ -5,10 +5,12 @@ import Input from '@/components/ui/Input'
 import styles from './index.module.css'
 import Button from '@/components/ui/Button'
 import { handleSignIn, handleSignUp } from '@/actions/handleAuth'
+import { useRouter } from 'next/navigation'
 
 export default function index() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const router = useRouter()
 
   return (
       <div className={styles.inputWrapper}>
@@ -25,7 +27,7 @@ export default function index() {
         <Button 
           buttonType='secondary' 
           fit={true}
-          onClick={() => handleSignIn({ email, password })}
+          onClick={() => handleSignIn({ email, password, router })}
         >
           Sign in
         </Button>
