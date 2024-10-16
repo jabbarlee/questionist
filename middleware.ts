@@ -1,28 +1,33 @@
-// src/middleware.ts
 import { NextRequest, NextResponse } from "next/server";
-import { verifyIdToken } from "@/config/firebaseAdmin"; // Firebase admin for token verification
+import { verifyIdToken } from "@/config/firebaseAdmin"; 
+import { cookies } from "next/headers";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("token")?.value;
-  const url = req.nextUrl.clone();
 
-  if (!token) {
-    // If token is not present, redirect to login
-    if (url.pathname !== "/login") {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-  } else {
-    try {
-      // Verify the token
-      await verifyIdToken(token);
-    } catch (error) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-  }
+    console.log("Middleware executing...");
 
-  return NextResponse.next();
+    const token = cookies().get("token")?.value; 
+    console.log("Token:", token);
+    const url = req.nextUrl.clone();
+
+    console.log("Token from cookies:", token);
+
+    if (!token) {
+        if (url.pathname !== "/signin") {
+            return NextResponse.redirect(new URL("/signin", req.url)); // Redirect if not authenticated
+        }
+    } else {
+        try {
+            await verifyIdToken(token); // Verify token
+        } catch (error) {
+            console.error("Token verification failed:", error); // Log the error
+            return NextResponse.redirect(new URL("/signin", req.url)); // Redirect if token verification fails
+        }
+    }
+
+    return NextResponse.next(); // Proceed if authenticated
 }
 
 export const config = {
-  matcher: ["/(protected)/:path*"], // Protect routes that need authentication
+    matcher: ["/dashboard"], // Protect specific routes
 };
