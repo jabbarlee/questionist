@@ -22,19 +22,14 @@ export async function handleSignIn({
             console.log('User signed in successfully', user);
 
             //store token in cookies
-            const token = await user.getIdToken();
+            const idToken = await user.getIdToken();
 
-            cookies().set({
-                name: "token", 
-                value: token,
-                maxAge: 86400, 
-                path: "/", 
-                httpOnly: true, 
-                secure: process.env.NODE_ENV === "production", 
-                sameSite: "strict", 
+            await fetch('http://localhost:3000/api/firebase/session-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idToken }),
             });
 
-            // Return success response
             return { success: true };
         }
     } catch (error) {

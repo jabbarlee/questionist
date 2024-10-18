@@ -4,3 +4,5 @@ node_modules/
 .*.env
 
 .env.*
+
+.questionist-service-account.json
