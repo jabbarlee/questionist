@@ -12,7 +12,13 @@ export async function GET(req: NextRequest) {
   
     try{
       const response = await adminAuth.verifySessionCookie(session);
+
+      if(!response) {
+        return NextResponse.json({ isLogged: false }, { status: 401 });
+      }
+
       return NextResponse.json({ isLogged: true }, { status: 200 });
+
     } catch (error) {
       console.error("Error verifying session cookie: ", error);
       return NextResponse.json({ isLogged: false }, { status: 401 });
