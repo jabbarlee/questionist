@@ -11,8 +11,13 @@ export async function middleware(req: NextRequest) {
     }
 
     try {
-        // Verify the session cookie
-        await adminAuth.verifySessionCookie(sessionCookie);
+        const response = await fetch('http://localhost:3000/api/firebase/verify-session')
+
+        const { isLogged } = await response.json();
+        if (!isLogged) {
+            return NextResponse.redirect(new URL('/signin', req.url));
+        }
+        
     } catch (error) {
         console.error("Error verifying session cookie: ", error);
         return NextResponse.redirect(new URL('/signin', req.url));
