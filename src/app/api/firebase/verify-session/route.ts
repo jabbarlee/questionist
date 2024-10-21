@@ -2,25 +2,19 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { adminAuth } from "@/config/firebaseAdmin";
 import type { NextRequest } from "next/server";
-import { getCookie } from "@/utils/getCookie";
 
-export async function GET(request: NextRequest) {
-    // const cookieStore = cookies();
-
-    const session = await getCookie('session');
-    console.log('Cookie: ', session)
+export async function GET(req: NextRequest) {
+    const session = req.cookies.get('session')?.value;
   
     if (!session) {
       return NextResponse.json({ isLogged: false }, { status: 401 });
     }
   
-    // const decodedClaims = await adminAuth.verifySessionCookie(session, true);
-
-    // console.log(decodedClaims)
-  
-    // if (!decodedClaims) {
-    //   return NextResponse.json({ isLogged: false }, { status: 401 });
-    // }
-  
-    return NextResponse.json({ isLogged: true }, { status: 200 });
+    try{
+      const response = await adminAuth.verifySessionCookie(session);
+      return NextResponse.json({ isLogged: true }, { status: 200 });
+    } catch (error) {
+      console.error("Error verifying session cookie: ", error);
+      return NextResponse.json({ isLogged: false }, { status: 401 });
+    }
 }

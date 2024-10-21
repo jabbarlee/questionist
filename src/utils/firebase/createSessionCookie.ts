@@ -1,3 +1,5 @@
+"use server";
+
 import { cookies } from "next/headers";
 import { adminAuth } from "@/config/firebaseAdmin";
 import { verifyIdToken } from "@/utils/firebase/verifyIdToken";
@@ -18,7 +20,7 @@ export const createSessionCookie = async (idToken: string) => {
         path: '/',
         maxAge: expiresIn / 1000, 
         httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production',
+        secure: false,
         sameSite: 'strict',
     });
 
