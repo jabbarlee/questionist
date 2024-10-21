@@ -3,7 +3,7 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { storeUserInfoInFirestore } from "@/actions/storeUserInfoInFirestore";
-import { cookies } from "next/headers";
+import { createSessionCookie } from "@/utils/firebase/createSessionCookie";
 
 export async function handleSignIn({
     email,
@@ -19,16 +19,14 @@ export async function handleSignIn({
 
         if(user){
             await storeUserInfoInFirestore(user);
-            console.log('User signed in successfully', user);
-
-            //store token in cookies
             const idToken = await user.getIdToken();
 
-            await fetch('http://localhost:3000/api/firebase/session-login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ idToken }),
-            });
+            const { success } = await createSessionCookie(idToken);
+            
+            if(!success) {
+                console.error('Error creating session cookie');
+                return { success: false };
+            }
 
             return { success: true };
         }
