@@ -2,17 +2,16 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(req: NextRequest) {
-    const sessionCookie = req.cookies.get('session')?.value;
-    console.log('Cookie: ', sessionCookie)
-
-    if (!sessionCookie) {
-        return NextResponse.redirect(new URL('/signin', req.url));
-    }
-
     try {
+        const sessionCookie = req.cookies.get('session')?.value;
+
+        if (!sessionCookie) {
+            return NextResponse.redirect(new URL('/signin', req.url));
+        }
+        
         const response = await fetch(new URL('/api/firebase/verify-session', req.url), {
             headers: {
-                Cookie: `session=${sessionCookie}`, // Manually forwarding session cookie
+                Cookie: `session=${sessionCookie}`,
             },
         });
     
