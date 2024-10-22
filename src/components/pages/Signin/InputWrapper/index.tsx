@@ -31,7 +31,7 @@ export default function index() {
             const res = await handleSignIn({ email, password })
 
             if(res) {
-              router.push('/signin')
+              router.push('/dashboard')
             }
           }}
         >

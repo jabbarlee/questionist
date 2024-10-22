@@ -1,7 +1,12 @@
+import { getCookie } from '@/utils/getCookie'
 import React from 'react'
 
-export default function page() {
+export default async function page() {
+  const session = await getCookie('session');
   return (
-    <div>page</div>
+    <div>
+      <h1>Dashboard</h1>
+      <p>{session}</p>
+    </div>
   )
 }
