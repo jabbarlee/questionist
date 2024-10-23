@@ -28,14 +28,3 @@ export const storeUserInfoInFirestore = async (user: User, fullName?: string) =>
       return { success: false, error: 'We are having trouble signing you up' };
     }
   };
-
-export const fetchUser = async (uid: string) => {
-    const userDocRef = doc(db, 'users', uid);
-    const userDocSnap = await getDoc(userDocRef);
-    
-    if (userDocSnap.exists()) {
-        return { success: true, user: userDocSnap.data() };
-    } else {
-        return { success: false };
-    }
-}
