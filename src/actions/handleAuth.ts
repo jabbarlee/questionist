@@ -31,12 +31,13 @@ export async function handleSignIn({
         console.error("Full error object: ", error);
 
         const errorMessages: { [key: string]: string } = {
-            'auth/user-not-found': 'Email does not exist. Please sign up first.',
-            'auth/wrong-password': 'Incorrect password. Please try again.',
-            'auth/invalid-email': 'Invalid email format. Please check your input.',
+            'auth/user-not-found': 'Email does not exist.',
+            'auth/wrong-password': 'Incorrect password.',
+            'auth/missing-password': 'Please provide the password.',
+            'auth/invalid-email': 'Invalid email format.',
             'auth/user-disabled': 'This account has been disabled.',
-            'auth/too-many-requests': 'Too many login attempts. Please try again later.',
-            'auth/invalid-credential': 'Invalid credentials. Please try again.',
+            'auth/too-many-requests': 'Too many login attempts.',
+            'auth/invalid-credential': 'Invalid credentials.',
         };
 
         const errorMessage = errorMessages[error.code] || `Unexpected error: ${error.message || 'An unexpected error occurred'}`;
@@ -81,9 +82,15 @@ export async function handleSignUp({
                 return { success: true };
             }
         } catch (error: any) {
-            if (error.code === 'auth/email-already-in-use') {
-                return { success: false, error: 'A user with this email already exists' };
-              }
+            const errorMessages: { [key: string]: string } = {
+                'auth/email-already-in-use': 'This user already exists.',
+                'auth/invalid-email': 'Invalid email format.',
+                'auth/weak-password': 'Password should be at least 6 characters long.',
+            };
+    
+            const errorMessage = errorMessages[error.code] || `Unexpected error: ${error.message || 'An unexpected error occurred'}`;
+    
+            return { success: false, error: errorMessage };
         }
 
     } catch (error: any) {
