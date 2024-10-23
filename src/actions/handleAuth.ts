@@ -37,18 +37,34 @@ export async function handleSignIn({
 
 export async function handleSignUp({
     email,
-    password
+    password,
+    fullName
 } : {
     email: string,
-    password: string
+    password: string,
+    fullName: string
 }) {
     try{
-        //sign up a new user
-        let newUserCredential = await createUserWithEmailAndPassword(auth, email, password);
-        let newUser = newUserCredential.user;
-        
-        //store info in firestore
-        await storeUserInfoInFirestore(newUser);
+        try{
+            let newUserCredential = await createUserWithEmailAndPassword(auth, email, password);
+            let user = newUserCredential.user;
+    
+            if(user){
+                await storeUserInfoInFirestore(user, fullName);
+                const idToken = await user.getIdToken();
+    
+                const { success } = await createSessionCookie(idToken);
+                
+                if(!success) {
+                    console.error('Error creating session cookie');
+                    return { success: false };
+                }
+    
+                return { success: true };
+            }
+        } catch (error) {
+            console.error("Error signing up user: ", error); 
+        }
 
     } catch (error) {
         console.error("Error creating a new user: ", error);   

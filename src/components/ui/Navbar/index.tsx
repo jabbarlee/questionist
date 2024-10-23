@@ -35,7 +35,7 @@ export default function Navbar() {
 
           {/* <div className={styles.authButtons}> */}
             <Button buttonType='secondary' redirect='/signin'>Sign in</Button>
-            <Button buttonType='primary' redirect='/'>Register</Button>
+            <Button buttonType='primary' redirect='/signup'>Register</Button>
           {/* </div> */}
         </div>
 

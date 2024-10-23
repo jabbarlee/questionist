@@ -1,0 +1,15 @@
+.signupForm{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 10px;
+    width: 350px;
+}
+
+@media (max-width: 768px) {
+    .signupForm {
+        width: 100%;
+        padding: 0 20px;
+    }
+}

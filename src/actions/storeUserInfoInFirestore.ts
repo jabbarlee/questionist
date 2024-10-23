@@ -2,7 +2,7 @@ import { getAuth, User } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 
-export const storeUserInfoInFirestore = async (user: User) => {
+export const storeUserInfoInFirestore = async (user: User, fullName?: string) => {
     try {
       const userDocRef = doc(db, 'users', user.uid);
       const userDocSnap = await getDoc(userDocRef);
@@ -12,7 +12,7 @@ export const storeUserInfoInFirestore = async (user: User) => {
         await setDoc(userDocRef, {
           uid: user.uid,
           email: user.email,
-          name: user.displayName || "", 
+          name: user.displayName || fullName || '', 
           createdAt: new Date(),
           role: 'student' 
         });
