@@ -1,6 +1,6 @@
 import { adminAuth } from '@/config/firebaseAdmin';
 
-export const verifySessionCookie = async (sessionCookie: string) => {
+export const verifySession = async (sessionCookie: string) => {
     try {
         // Verify the session cookie and extract user claims
         const decodedClaims = await adminAuth.verifySessionCookie(sessionCookie);
