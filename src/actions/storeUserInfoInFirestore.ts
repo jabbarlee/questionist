@@ -16,11 +16,26 @@ export const storeUserInfoInFirestore = async (user: User, fullName?: string) =>
           createdAt: new Date(),
           role: 'student' 
         });
-        console.log('User info stored in Firestore');
+        
+        return { success: true, message: 'Successfully signed up' };
       } else {
         console.log('User already exists in Firestore');
+        return { success: false, error: 'User already exists with this email' };
       }
     } catch (error) {
       console.error("Error storing user info in Firestore: ", error);
+
+      return { success: false, error: 'We are having trouble signing you up' };
     }
   };
+
+export const fetchUser = async (uid: string) => {
+    const userDocRef = doc(db, 'users', uid);
+    const userDocSnap = await getDoc(userDocRef);
+    
+    if (userDocSnap.exists()) {
+        return { success: true, user: userDocSnap.data() };
+    } else {
+        return { success: false };
+    }
+}
