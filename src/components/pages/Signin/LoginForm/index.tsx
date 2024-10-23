@@ -1,16 +1,18 @@
 import React from 'react'
 import InputWrapper from '@/components/pages/Signin/InputWrapper'
 import styles from './index.module.css'
-import SubText from '@/components/pages/Signin/SubText'
-import HeadingText from '@/components/pages/Signin/HeadingText'
+import Text from '@/components/ui/Text'
 
 export default function index({ ...props }) {
   return (
     <div {...props}>
       <div className={styles.loginForm}>
-        <HeadingText />
+        <Text heading={true}>
+          Sign in
+        </Text>
         <InputWrapper />
-        <SubText />
+        <Text link='/' subheading={true}>Forgot password?</Text>
+        <Text link='/signup' subheading={true}>Create a new account</Text>
       </div>
     </div>
   )

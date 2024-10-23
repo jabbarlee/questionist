@@ -6,6 +6,7 @@ import styles from './index.module.css'
 import Button from '@/components/ui/Button'
 import { handleSignIn } from '@/actions/handleAuth'
 import { useRouter } from 'next/navigation'
+import Text from '@/components/ui/Text'
 
 export default function Index() {
   const [email, setEmail] = useState('')
@@ -25,8 +26,6 @@ export default function Index() {
 
   return (
     <div className={styles.inputWrapper}>
-      {error && <p className={styles.error}>{error}</p>}
-
       <Input 
         placeholder='Email' 
         value={email} 
@@ -44,6 +43,7 @@ export default function Index() {
       >
         Sign in
       </Button>
+      {<Text error={true}>{error}</Text>}
     </div>
   )
 }
