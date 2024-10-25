@@ -1,16 +1,23 @@
-import { verifySession } from '@/utils/firebase/verifySession';
-import { getCookie } from '@/utils/getCookie'
+import { getUser } from '@/utils/getUser'
 import React from 'react'
 
 export default async function page() {
-  const session = await getCookie('session');
-  const user = await verifySession(session);
+  const { success, user } = await getUser();
+  if (!success || !user) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false
+      }
+    }
+  }
+  const { decodedClaims } = user;
+
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>{user.decodedClaims?.uid}</p>
-      <p>{user.decodedClaims?.exp}</p>
-      <p>{user.decodedClaims?.email}</p>
+      <p>{decodedClaims?.uid}</p>
+      <p>{decodedClaims?.email}</p>
     </div>
   )
 }
