@@ -6,9 +6,8 @@ import NavbarLink from '../NavbarLink';
 import Button from '../Button';
 
 export default function Navbar() {
-
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -22,7 +21,6 @@ export default function Navbar() {
       )}
 
       <div className={`${styles.links}`}>
-
         <div className={`${isOpen ? styles.showLinks : styles.hideLinks}`}>
           <div className={styles.linksWrapper}>
             <NavbarLink redirect='/'>Landing page</NavbarLink>
