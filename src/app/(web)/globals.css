@@ -1,8 +1,10 @@
 /* Add this globally, e.g., in your main CSS file */
-body {
+body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    height: 100%; /* Ensure html and body take full height */
+    overflow: hidden;
   }
   
   /* Make sure images and containers are responsive */

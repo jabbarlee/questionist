@@ -1,0 +1,13 @@
+.pageWrapper {
+    display: flex;
+    height: 100vh; /* Take full viewport height */
+    width: 100%; /* Full width */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.layoutContainer {
+    flex: 1; /* Take remaining space after navbar */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    padding: 16px; /* Optional padding */
+    background-color: #f5f5f5; /* Optional: Layout background color */
+}
