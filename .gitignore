@@ -2,3 +2,7 @@ node_modules/
 .next/
 .swc/
 .*.env
+
+.env.*
+
+questionist-service-account.json

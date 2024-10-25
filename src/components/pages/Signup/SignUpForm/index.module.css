@@ -1,4 +1,4 @@
-.loginForm{
+.signupForm{
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 768px) {
-    .loginForm {
+    .signupForm {
         width: 100%;
         padding: 0 20px;
     }
