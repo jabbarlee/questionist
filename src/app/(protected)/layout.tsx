@@ -1,7 +1,10 @@
-export const metadata = {
-  title: 'Dashboard',
-  description: 'Created by Amil Jabarli',
-}
+import styles from './layout.module.css'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Questionist",
+  description: "Your personal knowledge manager",
+};
 
 export default function RootLayout({
   children,
@@ -10,7 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className={styles.layoutContainer}>
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
