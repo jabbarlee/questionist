@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react';
 import styles from './index.module.css';
-import Link from 'next/link';
+import NavbarLink from '../NavbarLink';
 import Button from '../Button';
 
 export default function Navbar() {
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // Function to toggle the hamburger menu
+  
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -26,18 +25,14 @@ export default function Navbar() {
 
         <div className={`${isOpen ? styles.showLinks : styles.hideLinks}`}>
           <div className={styles.linksWrapper}>
-            <Link className={styles.link} href='/'>Landing page</Link>
-            <Link href='/'>Explore</Link>
-            <Link href='/'>Pricing</Link>
-            <Link href='/'>Contact</Link>
+            <NavbarLink redirect='/'>Landing page</NavbarLink>
+            <NavbarLink redirect='/'>Explore</NavbarLink>
+            <NavbarLink redirect='/'>Pricing</NavbarLink>
+            <NavbarLink redirect='/'>Contact</NavbarLink>
           </div>
-          
-
-          {/* <div className={styles.authButtons}> */}
-            <Button buttonType='secondary' redirect='/signin'>Sign in</Button>
-            <Button buttonType='primary' redirect='/signup'>Register</Button>
-          {/* </div> */}
-        </div>
+          <Button buttonType='secondary' redirect='/signin'>Sign in</Button>
+          <Button buttonType='primary' redirect='/signup'>Register</Button>
+        </div> 
 
         <Button onClick={toggleMenu} buttonType='primary' className={styles.hamburger}>☰</Button>
       </div>
