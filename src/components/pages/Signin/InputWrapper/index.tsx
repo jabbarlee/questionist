@@ -15,6 +15,8 @@ export default function Index() {
   const router = useRouter()
 
   const handleSubmit = async () => {
+    setError(null);
+    
     const res = await handleSignIn({ email, password })
 
     if (res?.success) {
