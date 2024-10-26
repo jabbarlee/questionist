@@ -4,11 +4,11 @@
     align-items: flex-start;
     padding: 32px;
     gap: 32px;
-    width: 250px; /* Fixed width for the sidebar */
-    height: 100%; /* Take full height of parent container */
-    border-right: 0.5px solid #c8c8c8;
-    background-color: #fff; /* Optional background color */
+    width: 200px;
+    height: 100%;
+    background-color: #fff;
     box-sizing: border-box;
+    border-right: 1px solid #e0e0e0;
 }
 
 .linksWrapper {
@@ -17,5 +17,6 @@
     align-items: flex-start;
     gap: 16px;
     flex: 1;
-    overflow-y: auto; /* Scroll if the links overflow */
+    overflow-y: auto;
+    width: 100%;
 }

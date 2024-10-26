@@ -18,6 +18,9 @@ export default function index() {
             <NavbarLink redirect='/'>Profile</NavbarLink>
             <NavbarLink redirect='/'>Plans</NavbarLink>
         </div>
+        <div>
+            <NavbarLink underline={true} redirect='/'>Logout</NavbarLink>
+        </div>
     </div>
   )
 }
