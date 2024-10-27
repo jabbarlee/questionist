@@ -5,6 +5,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
+    transition-duration: 0.3s;
 }
 
 .btnSecondary {
@@ -14,6 +15,17 @@
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
+    transition-duration: 0.3s;
+}
+
+.btnError{
+    background-color: inherit;
+    color: #900B09;
+    border: 1px solid #900B09;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    transition-duration: 0.3s;
 }
 
 .btnFit{
@@ -35,6 +47,11 @@
 
 .btnSecondary:hover {
     background-color: #474747;
+    cursor: pointer;
+}
+
+.btnError:hover{
+    background-color: #eadddd;
     cursor: pointer;
 }
 
