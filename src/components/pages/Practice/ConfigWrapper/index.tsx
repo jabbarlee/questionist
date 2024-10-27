@@ -9,6 +9,8 @@ import Button from '@/components/ui/Button';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import Divider from '@mui/material/Divider';
+import Chip from '@/components/ui/Chip';
+import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 
 export default function ConfigWrapper() {
   const [selectedTopic, setSelectedTopic] = useState<string>(
@@ -53,6 +55,16 @@ export default function ConfigWrapper() {
             </Button>
         </div>
         <Divider />
+        <ChipWrapper>
+            {selectedSubtopics.map((subtopic) => (
+                <Chip
+                    key={subtopic}
+                    onClear={() => handleSubtopicToggle(subtopic)}
+                >
+                    {subtopic}
+                </Chip>
+            ))}
+        </ChipWrapper>
     </div>
   );
 }
