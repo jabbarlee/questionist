@@ -6,6 +6,8 @@ import ToggleButtonsWrapper from '@/components/pages/Practice/ToggleButtonsWrapp
 import styles from './index.module.css';
 import { topicsData } from '@/data/topics';
 import Button from '@/components/ui/Button';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 
 export default function ConfigWrapper() {
   const [selectedTopic, setSelectedTopic] = useState<string>(
@@ -36,8 +38,18 @@ export default function ConfigWrapper() {
             onSubtopicToggle={handleSubtopicToggle}
         />
         <div className={styles.buttonWrapper}>
-            <Button buttonType='error'>Clear topics</Button>
-            <Button buttonType='primary'>Randomize topics</Button>
+            <Button buttonType='error'>
+                <div className={styles.buttonTextWrapper}>
+                    <CancelOutlinedIcon fontSize='small'/> 
+                    Clear topics
+                </div>
+            </Button>
+            <Button buttonType='primary'>
+                <div className={styles.buttonTextWrapper}>
+                    <BoltOutlinedIcon/>
+                    Randomize topics
+                </div>
+            </Button>
         </div>
     </div>
   );

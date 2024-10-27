@@ -21,7 +21,7 @@
 .btnError{
     background-color: inherit;
     color: #900B09;
-    border: 1px solid #900B09;
+    border: 1px solid;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;

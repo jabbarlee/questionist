@@ -10,3 +10,9 @@
     gap: 10px;
     width: fit-content;
 }
+
+.buttonTextWrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
