@@ -8,6 +8,7 @@ import { topicsData } from '@/data/topics';
 import Button from '@/components/ui/Button';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
+import Divider from '@mui/material/Divider';
 
 export default function ConfigWrapper() {
   const [selectedTopic, setSelectedTopic] = useState<string>(
@@ -51,6 +52,7 @@ export default function ConfigWrapper() {
                 </div>
             </Button>
         </div>
+        <Divider />
     </div>
   );
 }
