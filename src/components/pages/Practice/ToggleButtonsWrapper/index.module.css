@@ -1,0 +1,11 @@
+.toggleButtonsWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+.toggleButtonContainer {
+    flex: 1;
+    display: flex; 
+}
