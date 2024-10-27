@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
+import Text from '@/components/ui/Text';
 
 interface TopicsSelectorProps {
   topics: string[];
@@ -21,8 +22,8 @@ export default function TopicsSelector({
             selectedTopic === topic ? styles.active : ''
           }`}
           onClick={() => onSelect(topic)}
-        >
-          {topic}
+        > 
+          <Text><span className={styles.topicText}>{topic}</span></Text>
         </div>
       ))}
     </div>

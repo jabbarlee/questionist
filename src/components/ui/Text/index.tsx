@@ -27,7 +27,7 @@ export default function index({
                 ${success ? styles.success : ''}
                 ${heading ? styles.heading : ''}
                 ${subheading ? styles.subheading : ''}
-                base-text
+                ${(!error && !success && !heading && !subheading) ? styles.baseText : ''}
             `}
         >
             {link ? (

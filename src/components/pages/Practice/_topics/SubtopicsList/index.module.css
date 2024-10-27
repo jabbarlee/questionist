@@ -1,0 +1,20 @@
+.subtopicsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+    flex: 1;
+  }
+  
+  .subtopicItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+  }
+  
+  .subtopicText{
+    font-size: 18px;
+  }
