@@ -1,25 +1,35 @@
 export const topicsData = {
-    'Heart of Algebra': [
-      'Linear equations and inequalities',
-      'Graphing linear equations and functions',
-      'Word problems require linear equations',
-      'Interpreting linear functions and slopes',
-    ],
-    'Problem Solving and Data Analysis': [
-      'Ratios, proportions, and percentages',
-      'Interpreting data from charts and graphs',
-      'Mean, median, mode, and standard deviation',
-      'Modeling relationships with two variables',
-    ],
-    'Passport to Advanced Math': [
-      'Quadratic equations and functions',
-      'Polynomials and rational expressions',
-      'Manipulating algebraic expressions',
-      'Non-linear systems of equations',
-    ],
-    'Additional Topics in Math': [
-      'Geometry: angles and triangles',
-      'Trigonometry and their applications',
-      'Coordinate geometry problems',
-    ],
-  };
+  'Heart of Algebra': [
+    'Linear equations and inequalities (single variable or system of equations)',
+    'Graphing linear equations and functions',
+    'Interpreting linear functions and slope',
+    'Solving systems of linear equations and inequalities',
+    'Word problems involving linear equations',
+  ],
+  'Problem Solving and Data Analysis': [
+    'Ratios, proportions, and percentages',
+    'Unit conversions',
+    'Interpreting tables, graphs, and charts',
+    'Mean, median, mode, and standard deviation',
+    'Probability and relative frequency',
+    'Modeling relationships with two variables (scatter plots)',
+    'Word problems involving rates and units (e.g., speed, distance)',
+  ],
+  'Passport to Advanced Math': [
+    'Quadratic equations and functions (factoring, completing the square, quadratic formula)',
+    'Polynomials and rational expressions (simplifying, multiplying, dividing)',
+    'Exponential functions (growth and decay problems)',
+    'Manipulating algebraic expressions with exponents and roots',
+    'Solving non-linear equations',
+    'Functions: notation, evaluation, and transformations',
+    'Systems of equations involving quadratics or other non-linear functions',
+  ],
+  'Additional Topics in Math': [
+    'Geometry: angles, triangles, circles, and polygons',
+    'Trigonometry: sine, cosine, tangent, and their applications',
+    'Volume and surface area of 3D shapes (cylinders, spheres, cones, etc.)',
+    'Coordinate geometry (distances, midpoints, equations of circles)',
+    'Complex numbers',
+    'Basic statistics and probability',
+  ],
+};
