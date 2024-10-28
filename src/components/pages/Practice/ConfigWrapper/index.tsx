@@ -5,18 +5,21 @@ import TopicsWrapper from '@/components/pages/Practice/_topics/TopicsWrapper';
 import ToggleButtonsWrapper from '@/components/pages/Practice/ToggleButtonsWrapper';
 import styles from './index.module.css';
 import { topicsData } from '@/data/topics';
-import Button from '@/components/ui/Button';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import Divider from '@mui/material/Divider';
+import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 export default function ConfigWrapper() {
   const [selectedTopic, setSelectedTopic] = useState<string>(
     Object.keys(topicsData)[0]
   );
   const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]);
+  const [calculatorOption, setCalculatorOption] = useState<string>('No Calculator');
+  const [difficultyOption, setDifficultyOption] = useState<string>('Easy');
 
   const handleTopicSelect = (topic: string) => {
     setSelectedTopic(topic);
@@ -30,9 +33,22 @@ export default function ConfigWrapper() {
     );
   };
 
+  const handleCalculatorChange = (selectedOption: string) => {
+    setCalculatorOption(selectedOption);
+  };
+
+  const handleDifficultyChange = (selectedOption: string) => {
+    setDifficultyOption(selectedOption);
+  };
+
   return (
     <div className={styles.configWrapper}>
-        <ToggleButtonsWrapper />
+        <ToggleButtonsWrapper 
+            calculatorOption={calculatorOption}
+            difficultyOption={difficultyOption}
+            onCalculatorChange={handleCalculatorChange}
+            onDifficultyChange={handleDifficultyChange}
+        />
         <TopicsWrapper
             topicsData={topicsData}
             selectedTopic={selectedTopic}
@@ -65,6 +81,20 @@ export default function ConfigWrapper() {
                 </Chip>
             ))}
         </ChipWrapper>
+        <div className={styles.buttonWrapper}>
+            <Button buttonType='primary' onClick={() => {
+                console.log('Start practicing');
+                console.log('Selected topic:', selectedTopic);
+                console.log('Selected subtopics:', selectedSubtopics);
+                console.log('Selected calculator:', calculatorOption);
+                console.log('Selected difficulty:', difficultyOption);
+            }}>
+                <div className={styles.buttonTextWrapper}>
+                    Start practicing
+                    <KeyboardDoubleArrowRightIcon/>
+                </div>
+            </Button>
+        </div>
     </div>
   );
 }
