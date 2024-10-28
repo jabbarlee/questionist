@@ -54,7 +54,7 @@ export default function ConfigWrapper() {
                 </Button>
                 <Button buttonType='primary'>
                     <div className={styles.buttonTextWrapper}>
-                        <BoltOutlinedIcon/>
+                        <BoltOutlinedIcon fontSize='small'/>
                         Randomize topics
                     </div>
                 </Button>
