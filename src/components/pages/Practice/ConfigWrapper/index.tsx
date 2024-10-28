@@ -41,7 +41,7 @@ export default function ConfigWrapper() {
             onSubtopicToggle={handleSubtopicToggle}
         />
         <div className={styles.buttonWrapper}>
-            <Button buttonType='error'>
+            <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
                 <div className={styles.buttonTextWrapper}>
                     <CancelOutlinedIcon fontSize='small'/> 
                     Clear topics
