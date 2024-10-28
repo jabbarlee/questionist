@@ -1,3 +1,10 @@
+.pageWrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
 .configWrapper {
     display: flex;
     flex-direction: column;

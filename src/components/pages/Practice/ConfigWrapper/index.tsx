@@ -21,79 +21,61 @@ export default function ConfigWrapper() {
   const [calculatorOption, setCalculatorOption] = useState<string>('No Calculator');
   const [difficultyOption, setDifficultyOption] = useState<string>('Easy');
 
-  const handleTopicSelect = (topic: string) => {
-    setSelectedTopic(topic);
-  };
-
-  const handleSubtopicToggle = (subtopic: string) => {
+  const handleTopicSelect = (topic: string) => setSelectedTopic(topic);
+  const handleSubtopicToggle = (subtopic: string) =>
     setSelectedSubtopics((prev) =>
-      prev.includes(subtopic)
-        ? prev.filter((item) => item !== subtopic)
-        : [...prev, subtopic]
+      prev.includes(subtopic) ? prev.filter((item) => item !== subtopic) : [...prev, subtopic]
     );
-  };
-
-  const handleCalculatorChange = (selectedOption: string) => {
-    setCalculatorOption(selectedOption);
-  };
-
-  const handleDifficultyChange = (selectedOption: string) => {
-    setDifficultyOption(selectedOption);
-  };
+  const handleCalculatorChange = (option: string) => setCalculatorOption(option);
+  const handleDifficultyChange = (option: string) => setDifficultyOption(option)
 
   return (
-    <div className={styles.configWrapper}>
-        <ToggleButtonsWrapper 
-            calculatorOption={calculatorOption}
-            difficultyOption={difficultyOption}
-            onCalculatorChange={handleCalculatorChange}
-            onDifficultyChange={handleDifficultyChange}
-        />
-        <TopicsWrapper
-            topicsData={topicsData}
-            selectedTopic={selectedTopic}
-            selectedSubtopics={selectedSubtopics}
-            onTopicSelect={handleTopicSelect}
-            onSubtopicToggle={handleSubtopicToggle}
-        />
-        <div className={styles.buttonWrapper}>
-            <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
-                <div className={styles.buttonTextWrapper}>
-                    <CancelOutlinedIcon fontSize='small'/> 
-                    Clear topics
-                </div>
-            </Button>
-            <Button buttonType='primary'>
-                <div className={styles.buttonTextWrapper}>
-                    <BoltOutlinedIcon/>
-                    Randomize topics
-                </div>
-            </Button>
-        </div>
-        <Divider />
-        <ChipWrapper>
-            {selectedSubtopics.map((subtopic) => (
-                <Chip
-                    key={subtopic}
-                    onClear={() => handleSubtopicToggle(subtopic)}
-                >
-                    {subtopic}
-                </Chip>
-            ))}
-        </ChipWrapper>
-        <div className={styles.buttonWrapper}>
-            <Button buttonType='primary' onClick={() => {
-                console.log('Start practicing');
-                console.log('Selected topic:', selectedTopic);
-                console.log('Selected subtopics:', selectedSubtopics);
-                console.log('Selected calculator:', calculatorOption);
-                console.log('Selected difficulty:', difficultyOption);
-            }}>
-                <div className={styles.buttonTextWrapper}>
-                    Start practicing
-                    <KeyboardDoubleArrowRightIcon/>
-                </div>
-            </Button>
+    <div className={styles.pageWrapper}>
+        <div className={styles.configWrapper}>
+            <ToggleButtonsWrapper 
+                calculatorOption={calculatorOption}
+                difficultyOption={difficultyOption}
+                onCalculatorChange={handleCalculatorChange}
+                onDifficultyChange={handleDifficultyChange}
+            />
+            <TopicsWrapper
+                topicsData={topicsData}
+                selectedTopic={selectedTopic}
+                selectedSubtopics={selectedSubtopics}
+                onTopicSelect={handleTopicSelect}
+                onSubtopicToggle={handleSubtopicToggle}
+            />
+            <div className={styles.buttonWrapper}>
+                <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
+                    <div className={styles.buttonTextWrapper}>
+                        <CancelOutlinedIcon fontSize='small'/> 
+                        Clear topics
+                    </div>
+                </Button>
+                <Button buttonType='primary'>
+                    <div className={styles.buttonTextWrapper}>
+                        <BoltOutlinedIcon/>
+                        Randomize topics
+                    </div>
+                </Button>
+                <Button buttonType='primary' onClick={() => {}}>
+                    <div className={styles.buttonTextWrapper}>
+                        <KeyboardDoubleArrowRightIcon fontSize='small'/> 
+                        Start practicing
+                    </div>
+                </Button>
+            </div>
+            <Divider />
+            <ChipWrapper>
+                {selectedSubtopics.map((subtopic) => (
+                    <Chip
+                        key={subtopic}
+                        onClear={() => handleSubtopicToggle(subtopic)}
+                    >
+                        {subtopic}
+                    </Chip>
+                ))}
+            </ChipWrapper>
         </div>
     </div>
   );
