@@ -20,7 +20,10 @@ export default function SubtopicsList({
           <input
             type="checkbox"
             checked={selectedSubtopics.includes(subtopic)}
-            onChange={() => onToggle(subtopic)}
+            onChange={() => {
+              onToggle(subtopic);
+              console.log({subtopic})
+            }}
           />
           <Text subheading={true}><span className={styles.subtopicText}>{subtopic}</span></Text>
         </label>

@@ -6,16 +6,16 @@ import SubtopicsList from '../SubtopicsList';
 import styles from './index.module.css';
 
 interface TopicsWrapperProps {
-  topicsData: { [key: string]: string[] };
-  selectedTopic: string;
+  topicsData: { topic: string; subtopics: string[] }[];
+  selectedTopicIndex: number;
   selectedSubtopics: string[];
-  onTopicSelect: (topic: string) => void;
+  onTopicSelect: (index: number) => void;
   onSubtopicToggle: (subtopic: string) => void;
 }
 
 export default function TopicsWrapper({
   topicsData,
-  selectedTopic,
+  selectedTopicIndex,
   selectedSubtopics,
   onTopicSelect,
   onSubtopicToggle,
@@ -23,12 +23,12 @@ export default function TopicsWrapper({
   return (
     <div className={styles.wrapper}>
       <TopicsSelector
-        topics={Object.keys(topicsData)}
-        selectedTopic={selectedTopic}
+        topics={topicsData.map((topic) => topic.topic)}
+        selectedTopicIndex={selectedTopicIndex}
         onSelect={onTopicSelect}
       />
       <SubtopicsList
-        subtopics={topicsData[selectedTopic]}
+        subtopics={topicsData[selectedTopicIndex].subtopics}
         selectedSubtopics={selectedSubtopics}
         onToggle={onSubtopicToggle}
       />

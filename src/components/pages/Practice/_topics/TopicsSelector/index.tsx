@@ -4,26 +4,30 @@ import Text from '@/components/ui/Text';
 
 interface TopicsSelectorProps {
   topics: string[];
-  selectedTopic: string;
-  onSelect: (topic: string) => void;
+  selectedTopicIndex: number;
+  onSelect: (index: number) => void;
 }
 
 export default function TopicsSelector({
   topics,
-  selectedTopic,
+  selectedTopicIndex,
   onSelect,
 }: TopicsSelectorProps) {
   return (
     <div className={styles.topicsSelector}>
-      {topics.map((topic) => (
+      {topics.map((topic, index) => (
         <div
           key={topic}
           className={`${styles.topicItem} ${
-            selectedTopic === topic ? styles.active : ''
+            selectedTopicIndex === index ? styles.active : ''
           }`}
-          onClick={() => onSelect(topic)}
-        > 
-          <Text><span className={styles.topicText}>{topic}</span></Text>
+          onClick={() => {
+            onSelect(index);
+          }}
+        >
+          <Text>
+            <span className={styles.topicText}>{topic}</span>
+          </Text>
         </div>
       ))}
     </div>

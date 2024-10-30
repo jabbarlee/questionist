@@ -14,20 +14,29 @@ import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 export default function ConfigWrapper() {
-  const [selectedTopic, setSelectedTopic] = useState<string>(
-    Object.keys(topicsData)[0]
-  );
-  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]);
   const [calculatorOption, setCalculatorOption] = useState<string>('No Calculator');
   const [difficultyOption, setDifficultyOption] = useState<string>('Easy');
+  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0); // Track selected topic by index
+  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]); // Track selected subtopics
+  const handleTopicSelect = (index: number) => {
+    setSelectedTopicIndex(index);
+  };
 
-  const handleTopicSelect = (topic: string) => setSelectedTopic(topic);
-  const handleSubtopicToggle = (subtopic: string) =>
+  // Handle toggling subtopics
+  const handleSubtopicToggle = (subtopic: string) => {
     setSelectedSubtopics((prev) =>
-      prev.includes(subtopic) ? prev.filter((item) => item !== subtopic) : [...prev, subtopic]
+      prev.includes(subtopic)
+        ? prev.filter((item) => item !== subtopic) // Remove if already selected
+        : [...prev, subtopic] // Add if not selected
     );
+  };
   const handleCalculatorChange = (option: string) => setCalculatorOption(option);
-  const handleDifficultyChange = (option: string) => setDifficultyOption(option)
+  const handleDifficultyChange = (option: string) => setDifficultyOption(option);
+
+  const handleRandomize = () => {
+    // setSelectedSubtopics();
+    // console.log(topicsData[]);
+  }
 
   return (
     <div className={styles.pageWrapper}>
@@ -40,11 +49,12 @@ export default function ConfigWrapper() {
             />
             <TopicsWrapper
                 topicsData={topicsData}
-                selectedTopic={selectedTopic}
+                selectedTopicIndex={selectedTopicIndex}
                 selectedSubtopics={selectedSubtopics}
                 onTopicSelect={handleTopicSelect}
                 onSubtopicToggle={handleSubtopicToggle}
             />
+
             <div className={styles.buttonWrapper}>
                 <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
                     <div className={styles.buttonTextWrapper}>
@@ -52,13 +62,17 @@ export default function ConfigWrapper() {
                         Clear topics
                     </div>
                 </Button>
-                <Button buttonType='primary'>
+                <Button buttonType='primary' onClick={handleRandomize}>
                     <div className={styles.buttonTextWrapper}>
                         <BoltOutlinedIcon fontSize='small'/>
                         Randomize topics
                     </div>
                 </Button>
-                <Button buttonType='primary' onClick={() => {}}>
+                <Button buttonType='primary' onClick={() => {console.log({
+                    subtopics: selectedSubtopics,
+                    calculator: calculatorOption,
+                    difficulty: difficultyOption
+                })}}>
                     <div className={styles.buttonTextWrapper}>
                         <KeyboardDoubleArrowRightIcon fontSize='small'/> 
                         Start practicing
