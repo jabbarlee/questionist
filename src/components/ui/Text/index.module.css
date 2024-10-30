@@ -27,11 +27,12 @@
     cursor: pointer;
 }
 
-.base-text{
+.baseText{
     margin: 0;
 }
 
 .textWrapper{
     width: fit-content;
     height: fit-content;
+    margin: 0;
 }

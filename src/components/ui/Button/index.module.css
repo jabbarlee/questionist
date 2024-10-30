@@ -1,19 +1,31 @@
 .btnPrimary {
-    background-color: #f0f0f0;
+    background-color: inherit;
     color: black;
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
+    transition-duration: 0.3s;
 }
 
 .btnSecondary {
-    background-color: black;
+    background-color: #2E2E2E;
     color: white;
-    border: 1px solid black;
+    border: 1px solid #2E2E2E;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
+    transition-duration: 0.3s;
+}
+
+.btnError{
+    background-color: inherit;
+    color: #900B09;
+    border: 1px solid;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    transition-duration: 0.3s;
 }
 
 .btnFit{
@@ -35,6 +47,11 @@
 
 .btnSecondary:hover {
     background-color: #474747;
+    cursor: pointer;
+}
+
+.btnError:hover{
+    background-color: #eadddd;
     cursor: pointer;
 }
 

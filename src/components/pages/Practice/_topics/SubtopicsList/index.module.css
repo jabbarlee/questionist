@@ -1,0 +1,38 @@
+.subtopicsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+  }
+  
+  .subtopicItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+  }
+  
+  .subtopicText{
+    font-size: 18px;
+  }
+
+  .subtopicItem input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .subtopicItem input[type="checkbox"]:checked {
+    background-color: #333333;
+    border-color: #333333;
+  }
+  
+  .subtopicItem input[type="checkbox"]:hover {
+    border-color: #666666;
+  }

@@ -1,0 +1,25 @@
+.pageWrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.configWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttonWrapper{
+    display: flex;
+    flex-direction: flex;
+    gap: 10px;
+    width: fit-content;
+}
+
+.buttonTextWrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

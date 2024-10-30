@@ -12,7 +12,7 @@ export default function index() {
         <div className={styles.linksWrapper}>
             <Text subheading={true}>Home</Text>
             <NavbarLink redirect='/'>Dashboard</NavbarLink>
-            <NavbarLink redirect='/'>Practice</NavbarLink>
+            <NavbarLink redirect='/practice'>Practice</NavbarLink>
             <NavbarLink redirect='/'>My Results</NavbarLink>
             <Text subheading={true}>Settings</Text>
             <NavbarLink redirect='/'>Profile</NavbarLink>
