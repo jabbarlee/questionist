@@ -12,12 +12,16 @@ import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import { useRouter } from 'next/navigation';
+import { handlePracticeStart } from '@/actions/handlePracticeStart';
 
 export default function ConfigWrapper() {
   const [calculatorOption, setCalculatorOption] = useState<string>('No Calculator');
   const [difficultyOption, setDifficultyOption] = useState<string>('Easy');
-  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0); // Track selected topic by index
-  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]); // Track selected subtopics
+  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0); 
+  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]);
+  const router = useRouter();
+  
   const handleTopicSelect = (index: number) => {
     setSelectedTopicIndex(index);
   };
@@ -68,11 +72,7 @@ export default function ConfigWrapper() {
                         Randomize topics
                     </div>
                 </Button>
-                <Button buttonType='primary' onClick={() => {console.log({
-                    subtopics: selectedSubtopics,
-                    calculator: calculatorOption,
-                    difficulty: difficultyOption
-                })}}>
+                <Button buttonType='primary' onClick={() => {handlePracticeStart({ selectedSubtopics, calculatorOption, difficultyOption, router})}}>
                     <div className={styles.buttonTextWrapper}>
                         <KeyboardDoubleArrowRightIcon fontSize='small'/> 
                         Start practicing
