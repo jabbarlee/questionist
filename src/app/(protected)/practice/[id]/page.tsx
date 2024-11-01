@@ -5,7 +5,7 @@ export default function page({ params } : { params: { id: string } }) {
     const { id } = params;
   return (
     <div>
-      <PracticeSessionPage sessionId={id} />
+      <PracticeSessionPage sessionId={id}/>
     </div>
   )
 }

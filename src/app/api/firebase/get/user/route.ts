@@ -4,6 +4,7 @@ import { adminAuth } from "@/config/firebaseAdmin";
 export async function GET(req: NextRequest) {
 
     const session = req.cookies.get('session')?.value;
+    console.log({session})
 
     if (!session) {
         return NextResponse.json({ isLogged: false }, { status: 401 });
