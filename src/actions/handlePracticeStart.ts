@@ -1,6 +1,6 @@
 import { generatePracticeSessionId } from "./generatePracticeSessionId"
 import { db } from "@/config/firebase";
-import { getDoc, doc } from 'firebase/firestore';
+import { setDoc,getDoc, doc } from 'firebase/firestore';
 
 export const handlePracticeStart = async ({
     selectedSubtopics,
@@ -17,16 +17,18 @@ export const handlePracticeStart = async ({
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
 
+    const sessionRef = doc(db, 'users', uid, 'practiceSessions', practiceSessionId);
+    const sessionSnap = await getDoc(sessionRef);
 
-    console.log({
-        'selectedSubtopics': selectedSubtopics,
-        'calculatorOption': calculatorOption,
+    const sessionData = {
+        practiceSessionId,
+        selectedSubtopics,
+        calculatorOption,
         difficultyOption,
-        uid,
-        practiceSessionId
-    })
-    // const sessionRef = doc(db, 'users', userId, 'practiceSessions', practiceSessionId);
-    // const sessionSnap = await getDoc(sessionRef);
+        createdAt: new Date().toISOString(),
+    };
 
-    // router.push(`/practice/${practiceSessionId}`);
+    await setDoc(sessionRef, sessionData);
+
+    router.push(`/practice/${practiceSessionId}`);
 }
