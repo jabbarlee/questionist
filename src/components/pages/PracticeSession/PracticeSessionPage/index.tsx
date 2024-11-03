@@ -1,6 +1,7 @@
 import React from 'react'
 import Text from '@/components/ui/Text'
 import styles from './index.module.css'
+import QuestionsWrapper from '../QuestionsWrapper'
 
 export default function index({
     sessionId
@@ -13,7 +14,7 @@ export default function index({
         <Text heading={true}>
             Practice <span className={styles.titleHighlight}>session</span>
         </Text>
-        
+        <QuestionsWrapper sessionId={sessionId}/>
     </div>
   )
 }

@@ -1,0 +1,10 @@
+.chipWrapper{
+    display: flex;
+    align-items: left;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    background-color: #2E2E2E;
+    width: fit-content;
+    color: white;
+}
