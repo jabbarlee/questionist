@@ -4,7 +4,6 @@ import { db } from "@/config/firebase";
 export const fetchPracticeSessionConfig = async (sessionId: string) => {
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
-    console.log({uid})
 
     try{
         const sessionRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
@@ -13,7 +12,6 @@ export const fetchPracticeSessionConfig = async (sessionId: string) => {
 
         if (sessionSnap.exists()) {
             const sessionData = sessionSnap.data();
-            console.log('Session Data:', sessionData);
             return sessionData;
         } else {
             console.error('No such document!');

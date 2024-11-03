@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Text from '@/components/ui/Text'
-import TestPracticeWrapper from '@/components/pages/PracticeSession/TestPracticeWrapper'
+import styles from './index.module.css'
 
 export default function index({
     sessionId
@@ -10,8 +10,9 @@ export default function index({
 
   return (
     <div>
-        <Text heading={true}>Practice</Text>
-        <TestPracticeWrapper sessionId={sessionId}/>
+        <Text heading={true}>
+            Practice <span className={styles.titleHighlight}>session</span>
+        </Text>
     </div>
   )
 }
