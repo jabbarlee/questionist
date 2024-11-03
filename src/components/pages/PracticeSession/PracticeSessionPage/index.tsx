@@ -13,6 +13,7 @@ export default function index({
         <Text heading={true}>
             Practice <span className={styles.titleHighlight}>session</span>
         </Text>
+        
     </div>
   )
 }
