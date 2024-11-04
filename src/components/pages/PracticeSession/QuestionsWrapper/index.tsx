@@ -32,7 +32,22 @@ export default function PracticeSession({
         {
           question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
           type: "open"
-        }
+        },
+        {
+          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+          type: "multiple-choice"
+        },
+        {
+          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+          type: "multiple-choice"
+        },
+        {
+          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+          type: "multiple-choice"
+        },
       ]);
 
     useEffect(() => {
@@ -62,7 +77,7 @@ export default function PracticeSession({
 
   return (
     <div className={styles.practiceSession}>
-      {questions.length === sessionData?.selectedSubtopics.length ? (
+      {questions ? (
         questions.map((questionData, index) => (
           <QuestionChip 
             key={index}

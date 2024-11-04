@@ -1,20 +1,23 @@
-import React from 'react'
-import Text from '@/components/ui/Text'
-import styles from './index.module.css'
-import QuestionsWrapper from '../QuestionsWrapper'
+import React from 'react';
+import Text from '@/components/ui/Text';
+import styles from './index.module.css';
+import QuestionsWrapper from '../QuestionsWrapper';
 
-export default function index({
+export default function PracticeSessionPage({
     sessionId
 } : {
     sessionId: string
 }) {
-
   return (
-    <div>
-        <Text heading={true}>
-            Practice <span className={styles.titleHighlight}>session</span>
-        </Text>
-        <QuestionsWrapper sessionId={sessionId}/>
+    <div className={styles.practiceSessionPage}>
+        <div className={styles.practiceSessionPageHeader}>
+          <Text heading={true}>
+              Practice <span className={styles.titleHighlight}>session</span>
+          </Text>
+        </div>
+        <div className={styles.questionsWrapperContainer}>
+            <QuestionsWrapper sessionId={sessionId}/>
+        </div>
     </div>
-  )
+  );
 }
