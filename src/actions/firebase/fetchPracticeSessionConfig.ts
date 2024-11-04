@@ -12,7 +12,6 @@ export const fetchPracticeSessionConfig = async (sessionId: string) => {
 
         if (sessionSnap.exists()) {
             const sessionData = sessionSnap.data();
-            console.log('Document data:', sessionData);
             return sessionData;
         } else {
             console.error('No such document!');
