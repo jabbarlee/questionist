@@ -12,10 +12,16 @@ export default function Question({
     type,
     question,
     choices,
+    selectedChoice,
+    onSelectChoice,
+    questionIndex,
 } : {
     type: 'multiple-choice' | 'open',
     question: string,
-    choices?: string[]
+    choices?: string[],
+    selectedChoice?: string | null;
+    onSelectChoice: (choice: string) => void; 
+    questionIndex: number;
 }) {
     if (!question) {
         return <p>No question data available.</p>;
@@ -27,12 +33,15 @@ export default function Question({
             {type === 'multiple-choice' && choices ? (
                 <div className={styles.choices}>
                     {choices.map((choice, index) => (
-                        <div key={index} className={styles.choice}>
+                        <div key={index} className={styles.choiceContainer}>
                             <input
                                 type="radio"
                                 id={`choice-${index}`}
-                                name="questionChoice"
+                                name={`question-${questionIndex}`}
                                 className={styles.radioInput}
+                                value={choice}
+                                checked={selectedChoice === choice}
+                                onChange={() => onSelectChoice(choice)}
                             />
                             <label htmlFor={`choice-${index}`} className={styles.choiceLabel}>
                                 {choice}

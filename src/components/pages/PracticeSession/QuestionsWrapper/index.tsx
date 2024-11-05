@@ -49,6 +49,7 @@ export default function PracticeSession({
           type: "multiple-choice"
         },
       ]);
+      const [selectedChoices, setSelectedChoices] = useState<(string | null)[]>([]);
 
     useEffect(() => {
         const fetchSessionConfig = async () => {
@@ -72,8 +73,16 @@ export default function PracticeSession({
     //     }
 
     // }, [sessionData])
-    
-    console.log(questions);
+
+    const handleChoiceSelect = (choice: string, questionIndex: number) => {
+        setSelectedChoices(prevChoices => {
+            const updatedChoices = [...prevChoices];
+            updatedChoices[questionIndex] = choice;
+            return updatedChoices;
+        });
+
+        console.log(selectedChoices);
+    };
 
   return (
     <div className={styles.practiceSession}>
@@ -84,16 +93,14 @@ export default function PracticeSession({
             type={questionData.type}
             question={questionData.question}
             choices={questionData.choices}
+            selectedChoice={selectedChoices[index]}
+            onSelectChoice={(choice: string) => handleChoiceSelect(choice, index)}
+            questionIndex={index}
           />
         ))
       ) : (
         <p>No questions available.</p>
       )}
-      {/* <QuestionChip 
-        type='open'
-        question='A linear equation in the form of ax + by + c = 0. Choose the correct answer.'
-        // choices={['x + by + c = 0', 'x + y + c = 0', 'x - y + c = 0', 'x - by + c = 0']}
-      /> */}
     </div>
   );
 }
