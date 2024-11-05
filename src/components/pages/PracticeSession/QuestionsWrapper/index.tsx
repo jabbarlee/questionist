@@ -9,7 +9,10 @@ import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 import Chip from '@/components/ui/Chip';
 import Text from '@/components/ui/Text';
 import Button from '@/components/ui/Button';
+import CheckIcon from '@mui/icons-material/Check';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { QuestionData, PracticeSessionProps } from './types';
+import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 
 export default function PracticeSession({
   sessionId
@@ -116,8 +119,18 @@ export default function PracticeSession({
       </main>
 
       <footer className={styles.footer}>
-        <Button buttonType='error'>Exit</Button>
-        <Button buttonType='secondary'>Submit</Button>
+        <Button buttonType='error'>
+          <ButtonTextWrapper>
+            <CancelOutlinedIcon fontSize='small'/>
+            Exit
+          </ButtonTextWrapper>
+        </Button>
+        <Button buttonType='secondary'>
+          <ButtonTextWrapper>
+            <CheckIcon fontSize='small'/>
+            Submit
+          </ButtonTextWrapper>
+        </Button>
       </footer>
     </div>
   );

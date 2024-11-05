@@ -13,6 +13,7 @@ import Chip from '@/components/ui/Chip';
 import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { handlePracticeStart } from '@/actions/handlePracticeStart';
+import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import styles from './index.module.css';
 
 export default function ConfigWrapper() {
@@ -60,22 +61,22 @@ export default function ConfigWrapper() {
 
         <div className={styles.buttonWrapper}>
           <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
-            <div className={styles.buttonTextWrapper}>
+            <ButtonTextWrapper>
               <CancelOutlinedIcon fontSize='small'/> 
               Clear topics
-            </div>
+            </ButtonTextWrapper>
           </Button>
           <Button buttonType='primary' onClick={handleRandomize}>
-            <div className={styles.buttonTextWrapper}>
+            <ButtonTextWrapper>
               <BoltOutlinedIcon fontSize='small'/>
               Randomize topics
-            </div>
+            </ButtonTextWrapper>
           </Button>
           <Button buttonType='primary' onClick={() => {handlePracticeStart({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
-            <div className={styles.buttonTextWrapper}>
+            <ButtonTextWrapper>
               <KeyboardDoubleArrowRightIcon fontSize='small'/> 
               Start practicing
-            </div>
+            </ButtonTextWrapper>
           </Button>
         </div>
         <Divider />
