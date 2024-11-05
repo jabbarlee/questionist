@@ -1,20 +1,14 @@
 import ToggleButton from '@/components/ui/ToggleButton';
 import React from 'react';
 import styles from './index.module.css';
+import { ToggleButtonsWrapperProps } from './types';
 
-interface IndexProps {
-  calculatorOption: string;
-  difficultyOption: string;
-  onCalculatorChange: (option: string) => void;
-  onDifficultyChange: (option: string) => void;
-}
-
-export default function Index({
+export default function index({
   calculatorOption,
   difficultyOption,
   onCalculatorChange,
   onDifficultyChange,
-}: IndexProps) {
+}: ToggleButtonsWrapperProps) {
   return (
     <div className={styles.toggleButtonsWrapper}>
       <div className={styles.toggleButtonContainer}>

@@ -1,12 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import Text from '@/components/ui/Text';
-
-interface SubtopicsListProps {
-  subtopics: string[];
-  selectedSubtopics: string[];
-  onToggle: (subtopic: string) => void;
-}
+import { SubtopicsListProps } from './types';
 
 export default function SubtopicsList({
   subtopics,

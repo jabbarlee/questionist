@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './index.module.css'
 import Link from 'next/link'
+import { TextProps } from './types'
 
 export default function index({ 
     children,
@@ -10,14 +11,7 @@ export default function index({
     subheading,
     link,
     ...props 
-} : {
-    children: React.ReactNode,
-    error?: boolean,
-    success?: boolean,
-    heading?: boolean,
-    subheading?: boolean,
-    link?: string
-}) {
+} : TextProps) {
   return (
     <div {...props} className={styles.textWrapper}>
         <p 

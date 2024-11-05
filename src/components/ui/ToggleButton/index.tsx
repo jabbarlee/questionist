@@ -1,11 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-
-interface ToggleButtonProps {
-  options: string[];
-  value: string;
-  onChange: (selectedOption: string) => void;
-}
+import { ToggleButtonProps } from './types';
 
 export default function ToggleButton({
   options,

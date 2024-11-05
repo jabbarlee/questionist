@@ -9,18 +9,11 @@ import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 import Chip from '@/components/ui/Chip';
 import Text from '@/components/ui/Text';
 import Button from '@/components/ui/Button';
-
-interface QuestionData {
-  type: 'multiple-choice' | 'open';
-  question: string;
-  choices?: string[];
-}  
+import { QuestionData, PracticeSessionProps } from './types';
 
 export default function PracticeSession({
   sessionId
-} : {
-  sessionId: string
-}) {
+} : PracticeSessionProps) {
     const [sessionData, setSessionData] = useState<any | null>(null);
     const [questions, setQuestions] = useState<QuestionData[]>([
         {

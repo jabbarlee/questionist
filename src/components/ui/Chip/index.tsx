@@ -2,11 +2,7 @@ import React from 'react'
 import styles from './index.module.css'
 import Text from '@/components/ui/Text'
 import ClearIcon from '@mui/icons-material/Clear';
-
-export interface ChipProps {
-    children: React.ReactNode;
-    onClear?: () => void;
-}
+import { ChipProps } from './types'
 
 export default function Chip({
     children,

@@ -1,18 +1,13 @@
 import React from 'react';
 import styles from './index.module.css';
 import Text from '@/components/ui/Text';
-
-interface TopicsSelectorProps {
-  topics: string[];
-  selectedTopicIndex: number;
-  onSelect: (index: number) => void;
-}
+import { TopicsSelectorProps } from './types';
 
 export default function TopicsSelector({
   topics,
   selectedTopicIndex,
   onSelect,
-}: TopicsSelectorProps) {
+} : TopicsSelectorProps) {
   return (
     <div className={styles.topicsSelector}>
       {topics.map((topic, index) => (

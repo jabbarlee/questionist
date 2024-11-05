@@ -1,12 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import Input from '../Input';
-
-interface QuestionData {
-    type: 'multiple-choice' | 'open';
-    question: string;
-    choices?: string[];
-}
+import { QuestionChip } from './types';
 
 export default function Question({
     type,
@@ -15,14 +10,7 @@ export default function Question({
     selectedChoice,
     onSelectChoice,
     questionIndex,
-} : {
-    type: 'multiple-choice' | 'open',
-    question: string,
-    choices?: string[],
-    selectedChoice?: string | null;
-    onSelectChoice: (choice: string) => void; 
-    questionIndex: number;
-}) {
+} : QuestionChip) {
     if (!question) {
         return <p>No question data available.</p>;
     }
