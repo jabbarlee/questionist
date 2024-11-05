@@ -4,14 +4,12 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignIn
 import { auth } from "@/config/firebase";
 import { storeUserInfoInFirestore } from "@/actions/firebase/storeUserInfoInFirestore";
 import { createSessionCookie } from "@/utils/firebase/createSessionCookie";
+import { SignInAuthProps, SignUpAuthProps } from "@/types";
 
 export async function handleSignIn({
     email,
     password
-}: {
-    email: string,
-    password: string
-}) {
+}: SignInAuthProps) {
     try {
         let userCredential = await signInWithEmailAndPassword(auth, email, password);
         let user = userCredential.user;
@@ -50,11 +48,7 @@ export async function handleSignUp({
     email,
     password,
     fullName
-} : {
-    email: string,
-    password: string,
-    fullName: string
-}) {
+} : SignUpAuthProps) {
     try{
         try{
             if (email?.length === 0 || password?.length === 0 || fullName?.length === 0) {

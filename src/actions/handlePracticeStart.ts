@@ -1,18 +1,14 @@
 import { generatePracticeSessionId } from "./generatePracticeSessionId"
 import { db } from "@/config/firebase";
 import { setDoc,getDoc, doc } from 'firebase/firestore';
+import { PracticeStartProps } from '@/types';
 
 export const handlePracticeStart = async ({
     selectedSubtopics,
     calculatorOption,
     difficultyOption,
     router
-} : {
-    selectedSubtopics: string[],
-    calculatorOption: string,
-    difficultyOption: string,
-    router: any
-}) => {
+} : PracticeStartProps) => {
     const practiceSessionId = generatePracticeSessionId();
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
