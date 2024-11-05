@@ -10,11 +10,6 @@ export default function PracticeSessionPage({
 }) {
   return (
     <div className={styles.practiceSessionPage}>
-        <div className={styles.practiceSessionPageHeader}>
-          <Text heading={true}>
-              Practice <span className={styles.titleHighlight}>session</span>
-          </Text>
-        </div>
         <div className={styles.questionsWrapperContainer}>
             <QuestionsWrapper sessionId={sessionId}/>
         </div>

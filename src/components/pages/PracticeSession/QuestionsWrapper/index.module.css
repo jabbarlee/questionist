@@ -1,11 +1,51 @@
-.practiceSession{
-    width: 100%;
+.pageContainer {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  .sessionText{
+    font-size: 24px;
+    font-weight: 100;
+    color: #757575;
+    margin: 0;
+  }
+  
+  .header {
+    flex: 0 0 auto;
+    padding: 32px 32px 20px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .questionContainer {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 0 32px 0 32px;
+    background-color: #f9f9f9;
+  }
+  
+  .footer {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: right;
     gap: 10px;
     align-items: center;
-    justify-content: center;
-    padding: 30px;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
+    padding: 20px 32px 20px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+  

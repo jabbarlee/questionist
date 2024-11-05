@@ -1,13 +1,30 @@
+/* layout.module.css */
+
 .pageWrapper {
-    display: flex;
-    height: 100%;
-    box-sizing: border-box;
-    width: 100%; 
-    overflow: hidden; 
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.layoutContainer {
-    flex: 1;
-    /* overflow-y: auto; */
-    padding: 32px;
+.sidebar {
+  flex-shrink: 0;
+  width: 200px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.contentWrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
 }

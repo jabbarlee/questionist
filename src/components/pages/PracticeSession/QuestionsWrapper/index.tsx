@@ -5,6 +5,10 @@ import styles from './index.module.css';
 import { fetchPracticeSessionConfig } from '@/actions/firebase/fetchPracticeSessionConfig';
 import QuestionChip from '@/components/ui/QuestionChip';
 import { fetchQuestion } from '@/utils/openai/fetchQuestion';
+import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
+import Chip from '@/components/ui/Chip';
+import Text from '@/components/ui/Text';
+import Button from '@/components/ui/Button';
 
 interface QuestionData {
   type: 'multiple-choice' | 'open';
@@ -85,22 +89,43 @@ export default function PracticeSession({
     };
 
   return (
-    <div className={styles.practiceSession}>
-      {questions ? (
-        questions.map((questionData, index) => (
-          <QuestionChip 
-            key={index}
-            type={questionData.type}
-            question={questionData.question}
-            choices={questionData.choices}
-            selectedChoice={selectedChoices[index]}
-            onSelectChoice={(choice: string) => handleChoiceSelect(choice, index)}
-            questionIndex={index}
-          />
-        ))
-      ) : (
-        <p>No questions available.</p>
-      )}
+    <div className={styles.pageContainer}>
+      <header className={styles.header}>
+        <Text heading={true}>Practice <span className={styles.sessionText}>session</span></Text>
+        <div className={styles.chipsContainer}>
+          <ChipWrapper>
+            <Chip>
+              {sessionData?.selectedSubtopics[0]}
+            </Chip>
+            <Chip>
+              {sessionData?.selectedSubtopics[1]}
+            </Chip>
+          </ChipWrapper>
+        </div>
+      </header>
+
+      <main className={styles.questionContainer}>
+        {questions ? (
+          questions.map((questionData, index) => (
+            <QuestionChip 
+              key={index}
+              type={questionData.type}
+              question={questionData.question}
+              choices={questionData.choices}
+              selectedChoice={selectedChoices[index]}
+              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index)}
+              questionIndex={index}
+            />
+          ))
+        ) : (
+          <p>No questions available.</p>
+        )}
+      </main>
+
+      <footer className={styles.footer}>
+        <Button buttonType='error'>Exit</Button>
+        <Button buttonType='secondary'>Submit</Button>
+      </footer>
     </div>
   );
 }

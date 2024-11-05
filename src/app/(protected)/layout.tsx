@@ -1,3 +1,5 @@
+// layout.tsx
+
 import styles from './layout.module.css';
 import '../(web)/globals.css';
 import type { Metadata } from 'next';
@@ -16,12 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} >
+      <body className={inter.className}>
         <div className={styles.pageWrapper}>
-          <ProtectedNavbar />
-          <div className={styles.layoutContainer}>
-            {children}
-          </div>
+          <aside className={styles.sidebar}>
+            <ProtectedNavbar /> {/* Fixed sidebar on the left */}
+          </aside>
+          <main className={styles.contentWrapper}>
+            {children} {/* Scrollable main content */}
+          </main>
         </div>
       </body>
     </html>

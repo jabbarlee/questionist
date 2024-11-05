@@ -1,10 +1,9 @@
-/* Question.module.css */
 
 .card {
     background-color: #f9f9f9;
     border-radius: 12px;
     padding: 24px;
-    max-width: 600px;
+    max-width: 60%;
     margin: 20px auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
     font-family: Arial, sans-serif; 
@@ -30,34 +29,33 @@
 }
 
 .radioInput {
-    appearance: none;          /* Remove default styling */
-    width: 18px;               /* Size of custom radio button */
+    appearance: none;
+    width: 18px;
     height: 18px;
-    margin-right: 12px;        /* Space between radio and label */
-    border: 2px solid #333;    /* Dark border to match design */
+    margin-right: 12px;
+    border: 2px solid #333;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
 }
 
 .radioInput:checked {
-    background-color: #333;    /* Fill color when checked */
+    background-color: #333;
 }
 
 .radioInput:checked::before {
-    content: "";               /* Inner dot for checked radio button */
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10px;               /* Size of inner dot */
+    width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #fff;    /* White inner dot */
 }
 
 .choiceLabel {
-    font-size: 16px;           /* Text size of the choice labels */
+    font-size: 16px;
     color: #333;
     cursor: pointer;
 }
