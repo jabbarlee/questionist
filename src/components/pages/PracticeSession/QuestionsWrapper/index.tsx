@@ -76,14 +76,14 @@ export default function PracticeSession({
     // }, [sessionData])
 
     const handleChoiceSelect = (choice: string, questionIndex: number) => {
-        setSelectedChoices(prevChoices => {
-            const updatedChoices = [...prevChoices];
-            updatedChoices[questionIndex] = choice;
-            return updatedChoices;
-        });
+      setSelectedChoices(prevChoices => {
+          const updatedChoices = [...prevChoices];
+          updatedChoices[questionIndex] = choice;
+          return updatedChoices;
+      });
 
-        console.log(selectedChoices);
-    };
+      console.log(selectedChoices);
+  };
 
   return (
     <div className={styles.pageContainer}>
@@ -120,6 +120,9 @@ export default function PracticeSession({
       </main>
 
       <Footer>
+        {selectedChoices.map((choice, index) => (
+          <Chip key={index}>{choice}</Chip>
+        ))}
         <Button buttonType='error'>
           <ButtonTextWrapper>
             <CancelOutlinedIcon fontSize='small'/>
