@@ -58,27 +58,28 @@ export default function ConfigWrapper() {
           onTopicSelect={handleTopicSelect}
           onSubtopicToggle={handleSubtopicToggle}
         />
-
+        
         <div className={styles.buttonWrapper}>
           <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
-            <ButtonTextWrapper>
-              <CancelOutlinedIcon fontSize='small'/> 
-              Clear topics
-            </ButtonTextWrapper>
-          </Button>
-          <Button buttonType='primary' onClick={handleRandomize}>
-            <ButtonTextWrapper>
-              <BoltOutlinedIcon fontSize='small'/>
-              Randomize topics
-            </ButtonTextWrapper>
-          </Button>
-          <Button buttonType='primary' onClick={() => {handlePracticeStart({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
-            <ButtonTextWrapper>
-              <KeyboardDoubleArrowRightIcon fontSize='small'/> 
-              Start practicing
-            </ButtonTextWrapper>
+              <ButtonTextWrapper>
+                <CancelOutlinedIcon fontSize='small'/> 
+                Clear topics
+              </ButtonTextWrapper>
+            </Button>
+            <Button buttonType='primary' onClick={handleRandomize}>
+              <ButtonTextWrapper>
+                <BoltOutlinedIcon fontSize='small'/>
+                Randomize topics
+              </ButtonTextWrapper>
+            </Button>
+            <Button buttonType='primary' onClick={() => {handlePracticeStart({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
+              <ButtonTextWrapper>
+                <KeyboardDoubleArrowRightIcon fontSize='small'/> 
+                Start practicing
+              </ButtonTextWrapper>
           </Button>
         </div>
+
         <Divider />
         <ChipWrapper>
           {selectedSubtopics.map((subtopic) => (

@@ -13,6 +13,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { QuestionData, PracticeSessionProps } from './types';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
+import Footer from '@/components/ui/_wrappers/Footer';
 
 export default function PracticeSession({
   sessionId
@@ -118,7 +119,7 @@ export default function PracticeSession({
         )}
       </main>
 
-      <footer className={styles.footer}>
+      <Footer>
         <Button buttonType='error'>
           <ButtonTextWrapper>
             <CancelOutlinedIcon fontSize='small'/>
@@ -131,7 +132,7 @@ export default function PracticeSession({
             Submit
           </ButtonTextWrapper>
         </Button>
-      </footer>
+      </Footer>
     </div>
   );
 }
