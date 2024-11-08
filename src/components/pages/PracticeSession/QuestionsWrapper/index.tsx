@@ -16,6 +16,9 @@ import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import Footer from '@/components/ui/_wrappers/Footer';
 import { updateQuestions } from '@/actions/firebase/updateDoc';
 import { handleChoiceSelect } from '@/actions/handleChoiceSelect';
+import Main from '@/components/ui/_wrappers/Main';
+import Header from '@/components/ui/_wrappers/Header';
+import ChipsContainer from '@/components/ui/_wrappers/ChipsContainer';
 
 export default function PracticeSession({
   sessionId
@@ -62,9 +65,9 @@ export default function PracticeSession({
 
   return (
     <div className={styles.pageContainer}>
-      <header className={styles.header}>
+      <Header>
         <Text heading={true}>Practice <span className={styles.sessionText}>session</span></Text>
-        <div className={styles.chipsContainer}>
+        <ChipsContainer>
           <ChipWrapper>
             <Chip>
               {sessionData?.selectedSubtopics[0]}
@@ -73,10 +76,9 @@ export default function PracticeSession({
               {sessionData?.selectedSubtopics[1]}
             </Chip>
           </ChipWrapper>
-        </div>
-      </header>
-
-      <main className={styles.questionContainer}>
+        </ChipsContainer>
+      </Header>
+      <Main>
         {questions ? (
           questions.map((questionData, index) => (
             <QuestionChip 
@@ -92,8 +94,7 @@ export default function PracticeSession({
         ) : (
           <p>No questions available.</p>
         )}
-      </main>
-
+      </Main>
       <Footer>
         {selectedChoices.map((choice, index) => (
           <Chip key={index}>{choice}</Chip>
