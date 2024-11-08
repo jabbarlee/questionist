@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import { handlePracticeStart } from '@/actions/handlePracticeStart';
+import { storePracticeSession } from '@/actions/firebase/setDoc';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import styles from './index.module.css';
 
@@ -72,7 +72,7 @@ export default function ConfigWrapper() {
                 Randomize topics
               </ButtonTextWrapper>
             </Button>
-            <Button buttonType='primary' onClick={() => {handlePracticeStart({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
+            <Button buttonType='primary' onClick={() => {storePracticeSession({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
               <ButtonTextWrapper>
                 <KeyboardDoubleArrowRightIcon fontSize='small'/> 
                 Start practicing

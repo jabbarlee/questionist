@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
-import { fetchPracticeSessionConfig } from '@/actions/firebase/fetchPracticeSessionConfig';
+import { fetchPracticeSessionConfig } from '@/actions/firebase/getDoc';
 import QuestionChip from '@/components/ui/QuestionChip';
 import { fetchQuestion } from '@/utils/openai/fetchQuestion';
 import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
