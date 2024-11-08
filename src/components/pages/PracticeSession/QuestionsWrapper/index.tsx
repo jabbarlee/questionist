@@ -15,26 +15,27 @@ import { QuestionData, PracticeSessionProps } from './types';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import Footer from '@/components/ui/_wrappers/Footer';
 import { updateQuestions } from '@/actions/firebase/updateDoc';
+import { handleChoiceSelect } from '@/actions/handleChoiceSelect';
 
 export default function PracticeSession({
   sessionId
 } : PracticeSessionProps) {
     const [sessionData, setSessionData] = useState<any | null>(null);
     const [questions, setQuestions] = useState<QuestionData[]>([
-        {
-          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice",
-          correctAnswer: "4,166.67 m/s"
-        },
-        {
-          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice",
-          correctAnswer: "4,166.67 m/s"
-        }
-      ]);
-      const [selectedChoices, setSelectedChoices] = useState<(string | null)[]>([]);
+      {
+        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+        type: "multiple-choice",
+        correctAnswer: "4,166.67 m/s"
+      },
+      {
+        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+        type: "multiple-choice",
+        correctAnswer: "4,166.67 m/s"
+      }
+    ]);
+    const [selectedChoices, setSelectedChoices] = useState<(string | null)[]>([]);
 
     useEffect(() => {
         const fetchSessionConfig = async () => {
@@ -58,16 +59,6 @@ export default function PracticeSession({
     //     }
 
     // }, [sessionData])
-
-    const handleChoiceSelect = (choice: string, questionIndex: number) => {
-      setSelectedChoices(prevChoices => {
-          const updatedChoices = [...prevChoices];
-          updatedChoices[questionIndex] = choice;
-          return updatedChoices;
-      });
-
-      console.log(selectedChoices);
-  };
 
   return (
     <div className={styles.pageContainer}>
@@ -94,7 +85,7 @@ export default function PracticeSession({
               question={questionData.question}
               choices={questionData.choices}
               selectedChoice={selectedChoices[index]}
-              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index)}
+              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index, setSelectedChoices, selectedChoices)}
               questionIndex={index}
             />
           ))
