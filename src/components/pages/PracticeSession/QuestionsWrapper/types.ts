@@ -1,7 +1,8 @@
 export interface QuestionData {
-    type: 'multiple-choice' | 'open';
     question: string;
     choices?: string[];
+    correctAnswer: string;
+    type: 'multiple-choice' | 'open';
 }  
 
 export type PracticeSessionProps = {

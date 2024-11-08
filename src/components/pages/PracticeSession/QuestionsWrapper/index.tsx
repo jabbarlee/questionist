@@ -14,6 +14,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { QuestionData, PracticeSessionProps } from './types';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import Footer from '@/components/ui/_wrappers/Footer';
+import { updateQuestions } from '@/actions/firebase/updateDoc';
 
 export default function PracticeSession({
   sessionId
@@ -23,32 +24,15 @@ export default function PracticeSession({
         {
           choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
           question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice"
+          type: "multiple-choice",
+          correctAnswer: "4,166.67 m/s"
         },
         {
           choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
           question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice"
-        },
-        {
-          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "open"
-        },
-        {
-          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice"
-        },
-        {
-          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice"
-        },
-        {
-          choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-          question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-          type: "multiple-choice"
-        },
+          type: "multiple-choice",
+          correctAnswer: "4,166.67 m/s"
+        }
       ]);
       const [selectedChoices, setSelectedChoices] = useState<(string | null)[]>([]);
 
@@ -129,7 +113,7 @@ export default function PracticeSession({
             Exit
           </ButtonTextWrapper>
         </Button>
-        <Button buttonType='secondary'>
+        <Button buttonType='secondary' onClick={() => updateQuestions(sessionId, questions)}>
           <ButtonTextWrapper>
             <CheckIcon fontSize='small'/>
             Submit
