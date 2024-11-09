@@ -6,4 +6,6 @@
     overflow: hidden;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
+    padding: 32px;
+    gap: 20px
 }

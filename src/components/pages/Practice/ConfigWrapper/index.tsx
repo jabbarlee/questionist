@@ -15,6 +15,10 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import { storePracticeSession } from '@/actions/firebase/setDoc';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import styles from './index.module.css';
+import Header from '@/components/ui/_wrappers/Header';
+import Main from '@/components/ui/_wrappers/Main';
+import Footer from '@/components/ui/_wrappers/Footer'
+import Heading from '@/components/pages/Practice/Heading';
 
 export default function ConfigWrapper() {
   const [calculatorOption, setCalculatorOption] = useState<string>('No Calculator');
@@ -22,10 +26,6 @@ export default function ConfigWrapper() {
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0); 
   const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]);
   const router = useRouter();
-
-  const handleTopicSelect = (index: number) => {
-    setSelectedTopicIndex(index);
-  };
 
   const handleSubtopicToggle = (subtopic: string) => {
     setSelectedSubtopics((prev) =>
@@ -35,63 +35,60 @@ export default function ConfigWrapper() {
     );
   };
 
-  const handleCalculatorChange = (option: string) => setCalculatorOption(option);
-  const handleDifficultyChange = (option: string) => setDifficultyOption(option);
-
   const handleRandomize = () => {
     // Placeholder for randomize logic
   }
 
   return (
     <div className={styles.pageWrapper}>
-      <div className={styles.configWrapper}>
+      <Header>
+        <Heading />
+      </Header>
+      <Main>
         <ToggleButtonsWrapper 
           calculatorOption={calculatorOption}
           difficultyOption={difficultyOption}
-          onCalculatorChange={handleCalculatorChange}
-          onDifficultyChange={handleDifficultyChange}
+          onCalculatorChange={(option: string) => setCalculatorOption(option)}
+          onDifficultyChange={(option: string) => setDifficultyOption(option)}
         />
         <TopicsWrapper
           topicsData={topicsData}
           selectedTopicIndex={selectedTopicIndex}
           selectedSubtopics={selectedSubtopics}
-          onTopicSelect={handleTopicSelect}
+          onTopicSelect={(index: number) => {setSelectedTopicIndex(index)}}
           onSubtopicToggle={handleSubtopicToggle}
         />
-        
-        <div className={styles.buttonWrapper}>
+          <ChipWrapper>
+            {selectedSubtopics.map((subtopic) => (
+              <Chip
+                key={subtopic}
+                onClear={() => handleSubtopicToggle(subtopic)}
+              >
+                {subtopic}
+              </Chip>
+            ))}
+          </ChipWrapper>
+        </Main>
+        <Footer>
           <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
-              <ButtonTextWrapper>
-                <CancelOutlinedIcon fontSize='small'/> 
-                Clear topics
-              </ButtonTextWrapper>
-            </Button>
-            <Button buttonType='primary' onClick={handleRandomize}>
-              <ButtonTextWrapper>
-                <BoltOutlinedIcon fontSize='small'/>
-                Randomize topics
-              </ButtonTextWrapper>
-            </Button>
-            <Button buttonType='primary' onClick={() => {storePracticeSession({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
-              <ButtonTextWrapper>
-                <KeyboardDoubleArrowRightIcon fontSize='small'/> 
-                Start practicing
-              </ButtonTextWrapper>
+            <ButtonTextWrapper>
+              <CancelOutlinedIcon fontSize='small'/> 
+              Clear topics
+            </ButtonTextWrapper>
           </Button>
-        </div>
-
-        <Divider />
-        <ChipWrapper>
-          {selectedSubtopics.map((subtopic) => (
-            <Chip
-              key={subtopic}
-              onClear={() => handleSubtopicToggle(subtopic)}
-            >
-              {subtopic}
-            </Chip>
-          ))}
-        </ChipWrapper>
+          <Button buttonType='primary' onClick={handleRandomize}>
+            <ButtonTextWrapper>
+              <BoltOutlinedIcon fontSize='small'/>
+              Randomize topics
+            </ButtonTextWrapper>
+          </Button>
+          <Button buttonType='primary' onClick={() => {storePracticeSession({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
+            <ButtonTextWrapper>
+              <KeyboardDoubleArrowRightIcon fontSize='small'/> 
+              Start practicing
+            </ButtonTextWrapper>
+          </Button>
+        </Footer>
       </div>
-    </div>
   );
 }

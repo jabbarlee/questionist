@@ -1,12 +1,6 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
-
-type Question = {
-  question: string;
-  choices?: string[];
-  correctAnswer: string;
-  type: string;
-};
+import { Question } from '@/types';
 
 export async function updateQuestions(sessionId: string, questions: Question[]) {
     const response = await fetch('/api/firebase/get/user');

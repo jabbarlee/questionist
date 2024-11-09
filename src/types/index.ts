@@ -16,3 +16,10 @@ export type PracticeStartProps = {
     difficultyOption: string,
     router: any
 }
+
+export type Question = {
+    question: string;
+    choices?: string[];
+    correctAnswer: string;
+    type: string;
+};
