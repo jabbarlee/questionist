@@ -11,6 +11,7 @@ import Text from '@/components/ui/Text';
 import Button from '@/components/ui/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { Skeleton } from '@mui/material';
 import { QuestionData, PracticeSessionProps } from './types';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
 import Footer from '@/components/ui/_wrappers/Footer';
@@ -38,7 +39,7 @@ export default function PracticeSession({
         correctAnswer: "4,166.67 m/s"
       }
     ]);
-    const [selectedChoices, setSelectedChoices] = useState<(string | null)[]>([]);
+    const [selectedChoices, setSelectedChoices] = useState<(string)[]>([]);
 
     useEffect(() => {
         const fetchSessionConfig = async () => {
@@ -64,18 +65,24 @@ export default function PracticeSession({
     // }, [sessionData])
 
   return (
-    <div className={styles.pageContainer}>
+    <div>
       <Header>
         <Text heading={true}>Practice <span className={styles.sessionText}>session</span></Text>
         <ChipsContainer>
-          <ChipWrapper>
-            <Chip>
-              {sessionData?.selectedSubtopics[0]}
-            </Chip>
-            <Chip>
-              {sessionData?.selectedSubtopics[1]}
-            </Chip>
-          </ChipWrapper>
+            {sessionData && sessionData.selectedSubtopics.length > 0 ? (
+              <ChipWrapper>
+                  <Chip>
+                  {sessionData?.selectedSubtopics[0]}
+                  </Chip>
+                  <Chip>
+                    {sessionData?.selectedSubtopics[1]}
+                  </Chip>
+              </ChipWrapper>
+            ) : (
+              <div>
+                <Skeleton variant="text"  />
+              </div>
+            )}
         </ChipsContainer>
       </Header>
       <Main>
@@ -105,7 +112,7 @@ export default function PracticeSession({
             Exit
           </ButtonTextWrapper>
         </Button>
-        <Button buttonType='secondary' onClick={() => updateQuestions(sessionId, questions)}>
+        <Button buttonType='secondary' onClick={() => updateQuestions(sessionId, questions, selectedChoices)}>
           <ButtonTextWrapper>
             <CheckIcon fontSize='small'/>
             Submit
