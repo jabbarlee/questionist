@@ -18,18 +18,18 @@ export default function PracticeSession({
 
     const [sessionData, setSessionData] = useState<any | null>(null);
     const [questions, setQuestions] = useState<QuestionData[]>([
-      {
-        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-        correctAnswer: "41,666.67 m/s",
-        type: "multiple-choice",
-      },
-      {
-        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-        correctAnswer: "41,666.67 m/s",
-        type: "multiple-choice",
-      },
+      // {
+      //   question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+      //   choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+      //   correctAnswer: "41,666.67 m/s",
+      //   type: "multiple-choice",
+      // },
+      // {
+      //   question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+      //   choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+      //   correctAnswer: "41,666.67 m/s",
+      //   type: "multiple-choice",
+      // },
       // {
       //   question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
       //   choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
@@ -57,19 +57,19 @@ export default function PracticeSession({
         fetchSessionConfig();
     }, [])
     
-    // useEffect(() => {
-    //     if (sessionData) {
-    //         sessionData.selectedSubtopics.forEach((subtopic: string) => {
-    //             fetchQuestion({
-    //               subtopic,
-    //               difficulty: sessionData.difficultyOption,
-    //               calculatorOption: sessionData.calculatorOption,
-    //               setQuestions: setQuestions
-    //             });
-    //           });
-    //     }
+    useEffect(() => {
+        if (sessionData) {
+            sessionData.selectedSubtopics.forEach((subtopic: string) => {
+                fetchQuestion({
+                  subtopic,
+                  difficulty: sessionData.difficultyOption,
+                  calculatorOption: sessionData.calculatorOption,
+                  setQuestions: setQuestions
+                });
+              });
+        }
 
-    // }, [sessionData])
+    }, [sessionData])
 
     const handleNavigate = (url: string) => {
       router.push(url);
