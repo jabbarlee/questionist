@@ -30,12 +30,12 @@ export default function PracticeSession({
         correctAnswer: "41,666.67 m/s",
         type: "multiple-choice",
       },
-      {
-        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
-        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
-        correctAnswer: "41,666.67 m/s",
-        type: "multiple-choice",
-      },
+      // {
+      //   question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+      //   choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+      //   correctAnswer: "41,666.67 m/s",
+      //   type: "multiple-choice",
+      // },
       // {
       //   question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
       //   choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],

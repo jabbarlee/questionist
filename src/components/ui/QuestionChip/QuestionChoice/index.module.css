@@ -1,0 +1,76 @@
+.choiceContainer {
+    display: flex;
+    align-items: center;
+}
+
+.radioInput {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.correctChoice {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.correctChoice:checked {
+    border: 2px solid #199d47;
+    background-color: #199d47;
+}
+
+.correctChoiceLabel{
+    color: #199d47;
+}
+
+.incorrectChoice {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.incorrectChoice:checked {
+    border: 2px solid #900B09;
+    background-color: #900B09;
+}
+
+.incorrectChoice{
+    color: #900B09;
+}
+
+.radioInput:checked {
+    background-color: #333;
+}
+
+.radioInput:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.choiceLabel {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+.choiceResultsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.correctChoice{
+    background-color: #199d47;
+    color: white;
+    border: 1px solid #199d47;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: fit-content;
+    transition-duration: 0.3s;
+}
+
+.incorrectChoice{
+    background-color: #900B09;
+    color: white;
+    border: 1px solid #900B09;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: fit-content;
+    transition-duration: 0.3s;
+}
