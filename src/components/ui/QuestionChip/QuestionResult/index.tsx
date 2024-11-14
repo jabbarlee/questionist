@@ -1,13 +1,11 @@
 import React from 'react'
 import styles from './index.module.css'
+import { QuestionResultProps } from '../types'
 
 export default function index({
     correctChoice,
     question
-} : {
-    correctChoice?: boolean | null,
-    question: string
-}) {
+} : QuestionResultProps) {
   return (
     <div className={styles.choiceResultsWrapper}>
         <div className={correctChoice ? styles.correctChoice : styles.incorrectChoice}>

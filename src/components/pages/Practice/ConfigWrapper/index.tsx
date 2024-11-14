@@ -44,7 +44,7 @@ export default function ConfigWrapper() {
       <Header>
         <Heading />
       </Header>
-      <Main>
+      <div className={styles.contentWrapper}>
         <ToggleButtonsWrapper 
           calculatorOption={calculatorOption}
           difficultyOption={difficultyOption}
@@ -68,7 +68,7 @@ export default function ConfigWrapper() {
               </Chip>
             ))}
           </ChipWrapper>
-        </Main>
+        </div>
         <Footer>
           <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
             <ButtonTextWrapper>

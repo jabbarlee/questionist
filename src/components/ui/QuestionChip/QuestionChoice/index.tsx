@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './index.module.css'
+import { QuestionChoiceProps } from '../types'
 
 export default function index({
     choice,
@@ -7,13 +8,7 @@ export default function index({
     onSelectChoice,
     questionIndex,
     correctChoice
-} : {
-    choice: string,
-    selectedChoice?: string | null,
-    onSelectChoice?: (choice: string) => void,
-    questionIndex: number,
-    correctChoice?: boolean | null
-}) {
+} : QuestionChoiceProps) {
   return (
     <div className={styles.choiceContainer}>
         {onSelectChoice ? (

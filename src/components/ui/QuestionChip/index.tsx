@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import Input from '../Input';
-import { QuestionChip } from './types';
+import { QuestionChipProps } from './types';
 import QuestionChoice from './QuestionChoice';
 import QuestionResult from './QuestionResult';
 
@@ -13,7 +13,7 @@ export default function Question({
     onSelectChoice,
     questionIndex,
     correctChoice
-} : QuestionChip) {
+} : QuestionChipProps) {
     if (!question) {
         return <p>No question data available.</p>;
     }
