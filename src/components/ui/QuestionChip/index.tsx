@@ -31,7 +31,7 @@ export default function Question({
                                 checked={selectedChoice === choice}
                                 onChange={() => onSelectChoice(choice)}
                             />
-                            <label htmlFor={`choice-${index}`} className={styles.choiceLabel}>
+                            <label className={styles.choiceLabel}>
                                 {choice}
                             </label>
                         </div>

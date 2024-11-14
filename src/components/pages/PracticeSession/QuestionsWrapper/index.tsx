@@ -9,10 +9,13 @@ import ChipContainer from '@/components/pages/PracticeSession/containers/ChipCon
 import QuestionsContainer from '@/components/pages/PracticeSession/containers/QuestionsContainer';
 import ButtonsContainer from '@/components/pages/PracticeSession/containers/ButtonsContainer';
 import AlertContainer from '@/components/pages/PracticeSession/containers/AlertContainer';
+import { useRouter } from 'next/navigation';
 
 export default function PracticeSession({
   sessionId
 } : PracticeSessionProps) {
+    const router = useRouter()
+
     const [sessionData, setSessionData] = useState<any | null>(null);
     const [questions, setQuestions] = useState<QuestionData[]>([
       {
@@ -68,6 +71,10 @@ export default function PracticeSession({
 
     // }, [sessionData])
 
+    const handleNavigate = (url: string) => {
+      router.push(url);
+    };
+
   return (
     <div className={styles.questionsWrapper}>
       {(error || message) && (
@@ -94,6 +101,7 @@ export default function PracticeSession({
         selectedChoices={selectedChoices} 
         setError={setError}
         setMessage={setMessage}
+        handleNavigate={handleNavigate}
       />
     </div>
   );

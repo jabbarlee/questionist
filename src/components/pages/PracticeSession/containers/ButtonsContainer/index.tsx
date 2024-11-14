@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Footer from '@/components/ui/_wrappers/Footer';
 import Button from '@/components/ui/Button';
 import ButtonTextWrapper from '@/components/ui/_wrappers/ButtonTextWrapper';
@@ -6,23 +6,25 @@ import CheckIcon from '@mui/icons-material/Check';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { handleSessionSubmit } from '@/actions/handleSessionSubmit';
 import LinearProgress from '@mui/material/LinearProgress';
-import styles from './index.module.css'
+import styles from './index.module.css';
 import Text from '@/components/ui/Text';
 
-export default function index({
+export default function Index({
     sessionId,
     questions,
     selectedChoices,
     setError,
     progress,
-    setMessage
+    setMessage,
+    handleNavigate
 } : {
     sessionId: string,
     questions: any[],
     selectedChoices: string[],
     setError: React.Dispatch<React.SetStateAction<string | null>>,
     progress: number,
-    setMessage: React.Dispatch<React.SetStateAction<string | null>>
+    setMessage: React.Dispatch<React.SetStateAction<string | null>>,
+    handleNavigate: (url: string) => void
 }) {
   return (
     <Footer>
@@ -47,6 +49,7 @@ export default function index({
                             selectedChoices,
                             setError,
                             setMessage,
+                            handleNavigate
                         })
                     }
                 >
@@ -58,5 +61,5 @@ export default function index({
             </div>
         </div>
     </Footer>
-  )
+  );
 }
