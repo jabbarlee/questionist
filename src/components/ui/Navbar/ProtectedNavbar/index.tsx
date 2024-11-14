@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.module.css'
-import NavbarLink from '@/components/ui/NavbarLink';
+import ProtectedNavbarLink from '@/components/ui/NavbarLink/ProtectedNavbarLink';
 import Text from '@/components/ui/Text';
 
 export default function index() {
@@ -10,16 +10,16 @@ export default function index() {
             Logo
         </div>
         <div className={styles.linksWrapper}>
-            <Text subheading={true}>Home</Text>
-            <NavbarLink redirect='/'>Dashboard</NavbarLink>
-            <NavbarLink redirect='/practice'>Practice</NavbarLink>
-            <NavbarLink redirect='/'>My Results</NavbarLink>
-            <Text subheading={true}>Settings</Text>
-            <NavbarLink redirect='/'>Profile</NavbarLink>
-            <NavbarLink redirect='/'>Plans</NavbarLink>
+          {/* <Text subheading={true}>Home</Text> */}
+          <ProtectedNavbarLink redirect='/'>Dashboard</ProtectedNavbarLink>
+          <ProtectedNavbarLink redirect='/practice'>Practice</ProtectedNavbarLink>
+          <ProtectedNavbarLink redirect='/'>My Results</ProtectedNavbarLink>
+          {/* <Text subheading={true}>Settings</Text> */}
+          <ProtectedNavbarLink redirect='/'>Profile</ProtectedNavbarLink>
+          <ProtectedNavbarLink redirect='/'>Plans</ProtectedNavbarLink>
         </div>
         <div>
-            <NavbarLink underline={true} redirect='/'>Logout</NavbarLink>
+          <ProtectedNavbarLink underline={true} redirect='/'>Logout</ProtectedNavbarLink>
         </div>
     </div>
   )

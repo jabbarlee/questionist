@@ -1,0 +1,23 @@
+.link {
+    text-decoration: none;
+    color: #757575;
+    font-weight: normal;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+    margin: 0;
+}
+
+.link:hover {
+    background-color: #f0f0f0;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.underline:hover{
+    text-decoration: none;
+    background-color: inherit;
+}

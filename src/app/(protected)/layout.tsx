@@ -21,10 +21,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className={styles.pageWrapper}>
           <aside className={styles.sidebar}>
-            <ProtectedNavbar /> {/* Fixed sidebar on the left */}
+            <ProtectedNavbar />
           </aside>
           <main className={styles.contentWrapper}>
-            {children} {/* Scrollable main content */}
+            {children}
           </main>
         </div>
       </body>
