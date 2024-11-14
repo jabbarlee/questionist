@@ -1,11 +1,12 @@
-.main{
+.main {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    overflow-y: auto;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
     padding: 32px;
-    gap: 20px
+    gap: 20px;
 }

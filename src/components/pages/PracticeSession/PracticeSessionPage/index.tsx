@@ -9,9 +9,9 @@ export default function PracticeSessionPage({
 } : PracticeSessionProps) {
   return (
     <div className={styles.practiceSessionPage}>
-        <div className={styles.questionsWrapperContainer}>
-            <QuestionsWrapper sessionId={sessionId}/>
-        </div>
+      <div className={styles.questionsWrapperContainer}>
+        <QuestionsWrapper sessionId={sessionId}/>
+      </div>
     </div>
   );
 }

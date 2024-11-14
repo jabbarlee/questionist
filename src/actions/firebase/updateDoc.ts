@@ -19,6 +19,7 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
 
         await updateDoc(sessionDocRef, { questions: questionsToUpdate });
 
+        return { success: true, message: 'Session finished!' };
         console.log('Questions array added or updated successfully');
     } catch (error) {
         console.error('Error adding or updating questions:', error);

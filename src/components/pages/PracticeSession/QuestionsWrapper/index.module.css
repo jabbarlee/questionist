@@ -1,21 +1,12 @@
-
-  .sessionText{
-    font-size: 24px;
-    font-weight: 100;
-    color: #757575;
-    margin: 0;
-  }
-  
   .questionContainer {
     flex: 1 1 auto;
     overflow-y: auto;
     padding: 0 32px 0 32px;
     background-color: #f9f9f9;
   }
-  
-  .alertContainer {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Ensures the alert is above other content */
+
+.questionsWrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
