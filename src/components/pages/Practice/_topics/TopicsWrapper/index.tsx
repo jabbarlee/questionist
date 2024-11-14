@@ -4,14 +4,7 @@ import React from 'react';
 import TopicsSelector from '../TopicsSelector';
 import SubtopicsList from '../SubtopicsList';
 import styles from './index.module.css';
-
-interface TopicsWrapperProps {
-  topicsData: { topic: string; subtopics: string[] }[];
-  selectedTopicIndex: number;
-  selectedSubtopics: string[];
-  onTopicSelect: (index: number) => void;
-  onSubtopicToggle: (subtopic: string) => void;
-}
+import { TopicsWrapperProps } from './types';
 
 export default function TopicsWrapper({
   topicsData,

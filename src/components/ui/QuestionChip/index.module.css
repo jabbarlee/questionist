@@ -1,0 +1,73 @@
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 60%;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+    font-family: Arial, sans-serif; 
+}
+
+.questionText {
+    font-weight: bold;
+    font-size: 20px;  
+    margin-bottom: 18px;  
+    margin-top: 0px;     
+    color: #333;              
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.choiceContainer {
+    display: flex;
+    align-items: center;
+}
+
+.radioInput {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.radioInput:checked {
+    background-color: #333;
+}
+
+.radioInput:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.choiceLabel {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.openEnded {
+    margin-top: 16px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}

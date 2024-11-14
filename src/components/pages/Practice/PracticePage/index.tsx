@@ -6,7 +6,7 @@ import ConfigWrapper from '../ConfigWrapper'
 export default function index() {
   return (
     <div className={styles.practicePage}> 
-      <Heading/>
+      {/* <Heading/> */}
       <ConfigWrapper/>
     </div>
   )

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Input from '@/components/ui/Input';
 import styles from './index.module.css';
 import Button from '@/components/ui/Button';
-import { handleSignUp } from '@/actions/handleAuth';
+import { handleSignUp } from '@/actions/firebase/auth';
 import { useRouter } from 'next/navigation';
 
 export default function SignUp() {

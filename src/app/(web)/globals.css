@@ -1,26 +1,43 @@
-/* Add this globally, e.g., in your main CSS file */
-body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100%; /* Ensure html and body take full height */
-    overflow: hidden;
+/* globals.css */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden; /* Prevents overall page overflow */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box; /* Ensures padding and borders are within element dimensions */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#root, #__next {
+  height: 100%;
+  width: 100%;
+}
+
+/* Responsive settings */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
   }
-  
-  /* Make sure images and containers are responsive */
-  img, video {
-    max-width: 100%;
-    height: auto;
+
+  /* Prevent horizontal scrolling */
+  html, body {
+    overflow-x: hidden;
   }
-  
-  @media (max-width: 768px) {
-    body {
-      font-size: 16px;
-    }
-  
-    /* Ensure no horizontal scroll */
-    html, body {
-      overflow-x: hidden;
-    }
-  }
-  
+}
+
+/* Ensure images and video are responsive */
+img, video {
+  max-width: 100%;
+  height: auto;
+}

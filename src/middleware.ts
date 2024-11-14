@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
             return NextResponse.redirect(new URL('/signin', req.url));
         }
         
-        const response = await fetch(new URL('/api/firebase/verify-session', req.url), {
+        const response = await fetch(new URL('/api/firebase/verify/session', req.url), {
             headers: {
                 Cookie: `session=${sessionCookie}`,
             },

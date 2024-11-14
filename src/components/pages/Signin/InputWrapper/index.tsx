@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Input from '@/components/ui/Input'
 import styles from './index.module.css'
 import Button from '@/components/ui/Button'
-import { handleSignIn } from '@/actions/handleAuth'
+import { handleSignIn } from '@/actions/firebase/auth'
 import { useRouter } from 'next/navigation'
 import Text from '@/components/ui/Text'
 

@@ -24,6 +24,9 @@
       "@/data/*": ["./src/data/*"],
       "@/root/*": ["./*"],
       "@/utils/*": ["./src/utils/*"],
+      "@/actions/*": ["./src/actions/*"],
+      "@/config/*": ["./src/config/*"],
+      "@/types/*": ["./src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

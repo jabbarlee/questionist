@@ -2,13 +2,7 @@ import React from 'react';
 import styles from './index.module.css'; 
 import Link from 'next/link';
 import { Url } from 'next/dist/shared/lib/router/router';
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
-    buttonType: 'primary' | 'secondary' | 'error';
-    redirect?: Url | '/';
-    fit?: boolean;
-}
+import { ButtonProps } from './types';
   
 const Button = ({ children, buttonType, redirect, fit, ...props } : ButtonProps) => {
     const buttonClass = `${buttonType === 'primary' ? styles.btnPrimary : buttonType === 'secondary' ? styles.btnSecondary : buttonType === 'error' ? styles.btnError : ''} ${fit ? styles.btnFit : ''}`;
