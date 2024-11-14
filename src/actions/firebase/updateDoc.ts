@@ -14,8 +14,6 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
         selectedChoice: selectedChoices[index],
     }));
 
-    console.log(typeof questionsToUpdate);
-
     try {
         const sessionDocRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
 
@@ -24,6 +22,8 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
         console.log('Questions array added or updated successfully');
     } catch (error) {
         console.error('Error adding or updating questions:', error);
+
+        return { success: false, error: 'Select your choices before submitting' };
     }
 }
 

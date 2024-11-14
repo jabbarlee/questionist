@@ -1,4 +1,12 @@
-export const handleChoiceSelect = (choice: string, questionIndex: number, setSelectedChoices: React.Dispatch<React.SetStateAction<(string)[]>>, selectedChoices: (string | null)[]) => {
+export const handleChoiceSelect = (
+    choice: string, 
+    questionIndex: number, 
+    setSelectedChoices: React.Dispatch<React.SetStateAction<(string)[]>>, 
+    selectedChoices: (string | null)[], 
+    setError: React.Dispatch<React.SetStateAction<string | null>>
+) => {
+    setError(null);
+
     setSelectedChoices(prevChoices => {
         const updatedChoices = [...prevChoices];
         updatedChoices[questionIndex] = choice;

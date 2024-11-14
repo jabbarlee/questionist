@@ -18,6 +18,7 @@ import Footer from '@/components/ui/_wrappers/Footer';
 import { updateQuestions } from '@/actions/firebase/updateDoc';
 import { handleChoiceSelect } from '@/actions/handleChoiceSelect';
 import Main from '@/components/ui/_wrappers/Main';
+import Alert from '@mui/material/Alert';
 import Header from '@/components/ui/_wrappers/Header';
 import ChipsContainer from '@/components/ui/_wrappers/ChipsContainer';
 
@@ -27,19 +28,32 @@ export default function PracticeSession({
     const [sessionData, setSessionData] = useState<any | null>(null);
     const [questions, setQuestions] = useState<QuestionData[]>([
       {
-        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
         question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+        correctAnswer: "41,666.67 m/s",
         type: "multiple-choice",
-        correctAnswer: "4,166.67 m/s"
       },
       {
-        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
         question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+        correctAnswer: "41,666.67 m/s",
         type: "multiple-choice",
-        correctAnswer: "4,166.67 m/s"
+      },
+      {
+        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+        correctAnswer: "41,666.67 m/s",
+        type: "multiple-choice",
+      },
+      {
+        question: "A rocket travels at a speed of 15,000 kilometers per hour. A scientist is measuring the speed of the rocket in meters per second. Which o…",
+        choices: ["4,166.67 m/s", "25,000 m/s", "41,666.67 m/s", "250,000 m/s"],
+        correctAnswer: "41,666.67 m/s",
+        type: "multiple-choice",
       }
     ]);
     const [selectedChoices, setSelectedChoices] = useState<(string)[]>([]);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchSessionConfig = async () => {
@@ -66,17 +80,19 @@ export default function PracticeSession({
 
   return (
     <div>
+      {error && (
+        <div className={styles.alertContainer}>
+          <Alert severity="warning">{error}</Alert>
+        </div>
+      )}
       <Header>
         <Text heading={true}>Practice <span className={styles.sessionText}>session</span></Text>
         <ChipsContainer>
             {sessionData && sessionData.selectedSubtopics.length > 0 ? (
               <ChipWrapper>
-                  <Chip>
-                  {sessionData?.selectedSubtopics[0]}
-                  </Chip>
-                  <Chip>
-                    {sessionData?.selectedSubtopics[1]}
-                  </Chip>
+                  {sessionData.selectedSubtopics.map((subtopic: string, index: number) => (
+                    <Chip key={index}>{subtopic}</Chip>
+                  ))}
               </ChipWrapper>
             ) : (
               <div>
@@ -94,7 +110,7 @@ export default function PracticeSession({
               question={questionData.question}
               choices={questionData.choices}
               selectedChoice={selectedChoices[index]}
-              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index, setSelectedChoices, selectedChoices)}
+              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index, setSelectedChoices, selectedChoices, setError)}
               questionIndex={index}
             />
           ))
@@ -112,7 +128,16 @@ export default function PracticeSession({
             Exit
           </ButtonTextWrapper>
         </Button>
-        <Button buttonType='secondary' onClick={() => updateQuestions(sessionId, questions, selectedChoices)}>
+        <Button buttonType='secondary' onClick={async() => {
+          setError(null);
+          const res = await updateQuestions(sessionId, questions, selectedChoices);
+          
+          if (res?.success) {
+            setError(null);
+          } else {
+            setError(res?.error || 'Something went wrong');
+          }
+        }}>
           <ButtonTextWrapper>
             <CheckIcon fontSize='small'/>
             Submit

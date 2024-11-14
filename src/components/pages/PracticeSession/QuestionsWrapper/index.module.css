@@ -13,3 +13,9 @@
     background-color: #f9f9f9;
   }
   
+  .alertContainer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the alert is above other content */
+}
