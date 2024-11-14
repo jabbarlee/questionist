@@ -43,6 +43,7 @@ export default function PracticeSession({
     const [selectedChoices, setSelectedChoices] = useState<(string)[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
+    const [progress, setProgress] = useState<number>(0);
 
     useEffect(() => {
         const fetchSessionConfig = async () => {
@@ -83,11 +84,13 @@ export default function PracticeSession({
         selectedChoices={selectedChoices} 
         setSelectedChoices={setSelectedChoices} 
         setError={setError} 
+        setProgress={setProgress}
         sessionData={sessionData}
       />
       <ButtonsContainer 
         sessionId={sessionId} 
-        questions={questions} 
+        questions={questions}
+        progress={progress} 
         selectedChoices={selectedChoices} 
         setError={setError}
         setMessage={setMessage}

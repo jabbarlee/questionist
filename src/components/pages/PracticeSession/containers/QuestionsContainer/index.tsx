@@ -10,12 +10,14 @@ export default function index({
     selectedChoices,
     setSelectedChoices,
     setError,
+    setProgress,
     sessionData
 } : {
     questions: QuestionData[],
     selectedChoices: (string | null)[],
     setSelectedChoices: React.Dispatch<React.SetStateAction<string[]>>,
     setError: React.Dispatch<React.SetStateAction<string | null>>,
+    setProgress: React.Dispatch<React.SetStateAction<number>>,
     sessionData: any
 }) {
   return (
@@ -28,7 +30,7 @@ export default function index({
               question={questionData.question}
               choices={questionData.choices}
               selectedChoice={selectedChoices[index]}
-              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index, setSelectedChoices, selectedChoices, setError)}
+              onSelectChoice={(choice: string) => handleChoiceSelect(choice, index, setSelectedChoices, selectedChoices, setError, setProgress, questions)}
               questionIndex={index}
             />
           ))
