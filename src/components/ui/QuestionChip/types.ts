@@ -3,6 +3,7 @@ export interface QuestionChip {
     question: string,
     choices?: string[],
     selectedChoice?: string | null;
-    onSelectChoice: (choice: string) => void; 
+    onSelectChoice?: (choice: string) => void; 
     questionIndex: number;
+    correctChoice?: boolean | null;
 }
