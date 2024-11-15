@@ -4,6 +4,7 @@ import React, { useState, useEffect} from 'react'
 import styles from './index.module.css'
 import Header from '@/components/ui/_wrappers/Header'
 import Main from '@/components/ui/_wrappers/Main'
+import Footer from '@/components/ui/_wrappers/Footer'
 import Text from '@/components/ui/Text'
 import QuestionChip from '@/components/ui/QuestionChip'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -45,6 +46,15 @@ export default function index({ id }: { id: string }) {
           <CircularProgress/>
         )}
       </Main>
+      {/* <ButtonsContainer 
+        sessionId={sessionId} 
+        questions={questions}
+        progress={progress} 
+        selectedChoices={selectedChoices} 
+        setError={setError}
+        setMessage={setMessage}
+        handleNavigate={handleNavigate}
+      /> */}
     </div>
   )
 }
