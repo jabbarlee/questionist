@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import styles from './index.module.css';
+import PageWrapper from '@/components/ui/_wrappers/Page/PageWrapper'
+import Page from '@/components/ui/_wrappers/Page'
 import { fetchPracticeSessionConfig } from '@/actions/firebase/getDoc';
 import { fetchQuestion } from '@/utils/openai/fetchQuestion';
 import { QuestionData, PracticeSessionProps } from './types';
@@ -76,33 +77,35 @@ export default function PracticeSession({
     };
 
   return (
-    <div className={styles.questionsWrapper}>
-      {(error || message) && (
-        <AlertContainer 
-          error={error}
-          message={message}
-        />
-      )}
-      <ChipContainer 
-        sessionData={sessionData}
-      />
-      <QuestionsContainer 
-        questions={questions} 
-        selectedChoices={selectedChoices} 
-        setSelectedChoices={setSelectedChoices} 
-        setError={setError} 
-        setProgress={setProgress}
-        sessionData={sessionData}
-      />
-      <ButtonsContainer 
-        sessionId={sessionId} 
-        questions={questions}
-        progress={progress} 
-        selectedChoices={selectedChoices} 
-        setError={setError}
-        setMessage={setMessage}
-        handleNavigate={handleNavigate}
-      />
-    </div>
+    <PageWrapper>
+        <Page>
+            {(error || message) && (
+                <AlertContainer
+                    error={error}
+                    message={message}
+                />
+            )}
+            <ChipContainer
+                sessionData={sessionData}
+            />
+            <QuestionsContainer
+                questions={questions}
+                selectedChoices={selectedChoices}
+                setSelectedChoices={setSelectedChoices}
+                setError={setError}
+                setProgress={setProgress}
+                sessionData={sessionData}
+            />
+            <ButtonsContainer
+                sessionId={sessionId}
+                questions={questions}
+                progress={progress}
+                selectedChoices={selectedChoices}
+                setError={setError}
+                setMessage={setMessage}
+                handleNavigate={handleNavigate}
+            />
+        </Page>
+    </PageWrapper>
   );
 }

@@ -7,7 +7,8 @@ import ToggleButtonsWrapper from '@/components/pages/Practice/ToggleButtonsWrapp
 import { topicsData } from '@/data/topics';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
-import Divider from '@mui/material/Divider';
+import PageWrapper from '@/components/ui/_wrappers/Page/PageWrapper'
+import Page from '@/components/ui/_wrappers/Page'
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import ChipWrapper from '@/components/ui/_wrappers/ChipWrapper';
@@ -40,12 +41,13 @@ export default function ConfigWrapper() {
   }
 
   return (
-    <div className={styles.pageWrapper}>
+    <PageWrapper>
+      <Page>
       <Header>
         <Heading />
       </Header>
-      <div className={styles.contentWrapper}>
-        <ToggleButtonsWrapper 
+      <Main>
+        <ToggleButtonsWrapper
           calculatorOption={calculatorOption}
           difficultyOption={difficultyOption}
           onCalculatorChange={(option: string) => setCalculatorOption(option)}
@@ -68,11 +70,11 @@ export default function ConfigWrapper() {
               </Chip>
             ))}
           </ChipWrapper>
-        </div>
+        </Main>
         <Footer>
           <Button buttonType='error' onClick={() => setSelectedSubtopics([])}>
             <ButtonTextWrapper>
-              <CancelOutlinedIcon fontSize='small'/> 
+              <CancelOutlinedIcon fontSize='small'/>
               Clear topics
             </ButtonTextWrapper>
           </Button>
@@ -84,11 +86,12 @@ export default function ConfigWrapper() {
           </Button>
           <Button buttonType='primary' onClick={() => {storePracticeSession({ selectedSubtopics, calculatorOption, difficultyOption, router })}}>
             <ButtonTextWrapper>
-              <KeyboardDoubleArrowRightIcon fontSize='small'/> 
+              <KeyboardDoubleArrowRightIcon fontSize='small'/>
               Start practicing
             </ButtonTextWrapper>
           </Button>
         </Footer>
-      </div>
+      </Page>
+    </PageWrapper>
   );
 }
