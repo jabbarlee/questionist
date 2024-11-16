@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import styles from './index.module.css';
+import PageWrapper from '@/components/ui/_wrappers/Page/PageWrapper'
+import Page from '@/components/ui/_wrappers/Page'
 import Header from '@/components/ui/_wrappers/Header';
 import Main from '@/components/ui/_wrappers/Main';
 import ButtonsContainer from '@/components/pages/Results/containers/ButtonsContainer'
@@ -30,31 +31,33 @@ export default function Index({ id }: { id: string }) {
     }, [id]);
 
     return (
-        <div>
-            <Header>
-                <Text heading={true}>Results</Text>
-            </Header>
-            <Main>
-                {sessionData?.questions ? (
-                    sessionData.questions.map((questionData: any, index: number) => (
-                        <QuestionChip
-                            key={index}
-                            type={questionData.type}
-                            question={questionData.question}
-                            choices={questionData.choices}
-                            selectedChoice={questionData.selectedChoice}
-                            correctChoice={sessionData.questions[index]} // Access the boolean directly
-                            questionIndex={index}
-                        />
-                    ))
-                ) : (
-                    <CircularProgress/>
-                )}
+        <PageWrapper>
+            <Page>
+                <Header>
+                    <Text heading={true}>Results</Text>
+                </Header>
+                <Main>
+                    {sessionData?.questions ? (
+                        sessionData.questions.map((questionData: any, index: number) => (
+                            <QuestionChip
+                                key={index}
+                                type={questionData.type}
+                                question={questionData.question}
+                                choices={questionData.choices}
+                                selectedChoice={questionData.selectedChoice}
+                                correctChoice={sessionData.questions[index]} // Access the boolean directly
+                                questionIndex={index}
+                            />
+                        ))
+                    ) : (
+                        <CircularProgress/>
+                    )}
 
-            </Main>
-            <ButtonsContainer
-                progress={sessionData?.results?.overallScore}
-            />
-        </div>
+                </Main>
+                <ButtonsContainer
+                    progress={sessionData?.results?.overallScore}
+                />
+            </Page>
+        </PageWrapper>
     );
 }
