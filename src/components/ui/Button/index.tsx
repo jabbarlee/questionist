@@ -14,7 +14,7 @@ const Button = ({ children, buttonType, redirect, fit, ...props } : ButtonProps)
         >
             {redirect ? (
                 <Link 
-                    href={redirect} 
+                    href={redirect}
                     className={styles.btnLink} 
                     style={{ color: buttonType === 'primary' ? 'black' : 'white' }}
                 >

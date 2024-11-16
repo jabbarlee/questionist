@@ -22,7 +22,7 @@ export default function index({
     sessionData: any
 }) {
   return (
-    <Main className={styles.contentWrapper}>
+    <Main>
         {questions.length == sessionData?.selectedSubtopics.length ? (
           questions.map((questionData, index) => (
             <QuestionChip 

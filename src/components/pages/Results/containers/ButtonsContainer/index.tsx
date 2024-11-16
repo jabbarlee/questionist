@@ -31,6 +31,7 @@ export default function Index({
                 </Button>
                 <Button
                     buttonType="secondary"
+                    redirect='/results'
                 >
                     <ButtonTextWrapper>
                         {/*<CheckIcon fontSize="small" />*/}
