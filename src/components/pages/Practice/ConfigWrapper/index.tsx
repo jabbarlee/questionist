@@ -82,7 +82,7 @@ export default function ConfigWrapper() {
               Randomize topics
             </ButtonTextWrapper>
           </Button>
-          <Button buttonType='primary' onClick={() => {storePracticeSession({ selectedSubtopics, calculatorOption, difficultyOption, router });}}>
+          <Button buttonType='primary' onClick={() => {storePracticeSession({ selectedSubtopics, calculatorOption, difficultyOption, router })}}>
             <ButtonTextWrapper>
               <KeyboardDoubleArrowRightIcon fontSize='small'/> 
               Start practicing

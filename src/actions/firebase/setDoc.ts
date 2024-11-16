@@ -18,7 +18,7 @@ export const storeUserInfoInFirestore = async (user: User, fullName?: string) =>
           createdAt: new Date(),
           role: 'student' 
         });
-        
+
         return { success: true, message: 'Successfully signed up' };
       } else {
         console.log('User already exists in Firestore');

@@ -8,10 +8,8 @@ export default function PracticeSessionPage({
     sessionId
 } : PracticeSessionProps) {
   return (
-    <div className={styles.practiceSessionPage}>
-      <div className={styles.questionsWrapperContainer}>
+    <div className={styles.pageWrapper}>
         <QuestionsWrapper sessionId={sessionId}/>
-      </div>
     </div>
   );
 }

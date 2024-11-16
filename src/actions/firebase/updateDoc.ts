@@ -20,7 +20,6 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
         await updateDoc(sessionDocRef, { questions: questionsToUpdate });
 
         return { success: true, message: 'Session finished!' };
-        console.log('Questions array added or updated successfully');
     } catch (error) {
         console.error('Error adding or updating questions:', error);
 
@@ -28,3 +27,34 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
     }
 }
 
+export async function updateResults(sessionId: string, results: boolean[]){
+    const response = await fetch('/api/firebase/get/user');
+    const { uid } = await response.json();
+
+    function returnResults(results: boolean[]) {
+        if (results.length === 0) {
+            return { overallScore: 0, correctAnswers: 0, incorrectAnswers: 0, numOfQuestions: 0 };
+        }
+
+        const correctAnswers = results.filter((isCorrect) => isCorrect).length;
+        const incorrectAnswers = results.length - correctAnswers;
+        const score = Math.round((correctAnswers / results.length) * 100);
+        const numOfQuestions = results.length
+
+        return { overallScore: score, correctAnswers, incorrectAnswers, numOfQuestions };
+    }
+
+
+    try{
+        const sessionDocRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
+        const overallScore = returnResults(results)
+
+        await updateDoc(sessionDocRef, { results: overallScore });
+
+        return { success: true, message: 'Results added to Firestore successfully' }
+    } catch(error){
+        console.error(error)
+
+        return { success: false, message: 'Something went wrong' }
+    }
+}

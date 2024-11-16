@@ -1,5 +1,6 @@
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import {updateResults} from "@/actions/firebase/updateDoc";
 
 export const fetchPracticeSessionConfig = async (sessionId: string) => {
     const response = await fetch('/api/firebase/get/user');
@@ -40,8 +41,6 @@ export const getResults = async (sessionId: string) => {
 
             // Main logic
             sessionData.questions.forEach((element: any, index: number) => {
-                console.log('Selected:', element.selectedChoice, 'Correct:', element.correctAnswer, 'Index:', index, 'Type:', element.type);
-
                 if (element.selectedChoice === element.correctAnswer) {
                     results.push(true);
                 } else {
@@ -49,13 +48,23 @@ export const getResults = async (sessionId: string) => {
                 }
             });
 
-            return { results, sessionData, success: true };
+            //TODO: add correctQuestions(num), overallScore (num), numberOfQuestions(num)
+            const { success, message } = await updateResults(sessionId, results)
+
+            if(success){
+                const sessionData = sessionSnap.data()
+
+                //TODO: only send sessionData
+                return { sessionData: sessionData, success: true };
+            }else{
+                return { sessionData: null, success: true}
+            }
         } else {
             console.error('No such document!');
-            return { results: [], sessionData: null, success: false };
+            return { sessionData: null, success: false };
         }
     } catch (error) {
         console.error("Error fetching practice session config:", error);
-        return { results: [], sessionData: null, success: false };
+        return { sessionData: null, success: false };
     }
 };

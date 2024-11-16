@@ -59,18 +59,14 @@ export default function PracticeSession({
     
     useEffect(() => {
         if (sessionData) {
-          if (sessionData.questions.length > 0) {
-            setQuestions(sessionData.questions);
-          }else{
             sessionData.selectedSubtopics.forEach((subtopic: string) => {
-              fetchQuestion({
-                subtopic,
-                difficulty: sessionData.difficultyOption,
-                calculatorOption: sessionData.calculatorOption,
-                setQuestions: setQuestions
-              });
+                fetchQuestion({
+                    subtopic,
+                    difficulty: sessionData.difficultyOption,
+                    calculatorOption: sessionData.calculatorOption,
+                    setQuestions: setQuestions
+                });
             });
-          }
         }
 
     }, [sessionData])

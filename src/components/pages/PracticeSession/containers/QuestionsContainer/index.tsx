@@ -1,5 +1,6 @@
 import React from 'react'
 import Main from '@/components/ui/_wrappers/Main';
+import styles from './index.module.css'
 import { handleChoiceSelect } from '@/actions/handleChoiceSelect';
 import { QuestionData } from '../../QuestionsWrapper/types';
 import QuestionChip from '@/components/ui/QuestionChip';
@@ -21,7 +22,7 @@ export default function index({
     sessionData: any
 }) {
   return (
-    <Main>
+    <Main className={styles.contentWrapper}>
         {questions.length == sessionData?.selectedSubtopics.length ? (
           questions.map((questionData, index) => (
             <QuestionChip 
