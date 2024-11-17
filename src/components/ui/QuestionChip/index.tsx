@@ -12,21 +12,11 @@ export default function Question({
     selectedChoice,
     onSelectChoice,
     questionIndex,
-    correctChoice
+    correctAnswer
 } : QuestionChipProps) {
     if (!question) {
         return <p>No question data available.</p>;
     }
-
-    console.log({
-        // 'Type: ': type,
-        // 'Question: ': question,
-        // 'Choices: ': choices,
-        'Selected choice: ': selectedChoice,
-        'Question index: ': questionIndex,
-        'Correct choice: ': correctChoice,
-
-    })
 
     return (
         <div className={styles.card}>            
@@ -34,7 +24,8 @@ export default function Question({
                 <p className={styles.questionText}>{question}</p>
             ) : (
                 <QuestionResult 
-                    correctChoice={correctChoice}
+                    correctChoice={correctAnswer}
+                    selectedChoice={selectedChoice}
                     question={question}
                 />
             )}
@@ -47,7 +38,7 @@ export default function Question({
                             selectedChoice={selectedChoice}
                             onSelectChoice={onSelectChoice}
                             questionIndex={questionIndex}
-                            correctChoice={correctChoice}
+                            correctChoice={correctAnswer}
                         />
                     ))}
                 </div>

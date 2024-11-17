@@ -5,11 +5,12 @@ export interface QuestionChipProps {
     selectedChoice?: string | null;
     onSelectChoice?: (choice: string) => void; 
     questionIndex: number;
-    correctChoice?: boolean | null;
+    correctAnswer?: string | null;
 }
 
 export type QuestionResultProps = {
-    correctChoice?: boolean | null,
+    correctChoice?: string | null,
+    selectedChoice?: string | null,
     question: string
 }
 
@@ -18,5 +19,5 @@ export type QuestionChoiceProps = {
     selectedChoice?: string | null,
     onSelectChoice?: (choice: string) => void,
     questionIndex: number,
-    correctChoice?: boolean | null
+    correctChoice?: string | null
 }

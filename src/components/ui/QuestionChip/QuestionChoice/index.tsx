@@ -32,7 +32,7 @@ export default function index({
                     type="radio"
                     id={`choice-${index}`}
                     name={`question-${questionIndex}`}
-                    className={correctChoice ? styles.correctChoice : styles.incorrectChoice}
+                    className={selectedChoice === correctChoice ? styles.correctChoice : styles.incorrectChoice}
                     value={choice}
                     checked={selectedChoice === choice}
                     readOnly

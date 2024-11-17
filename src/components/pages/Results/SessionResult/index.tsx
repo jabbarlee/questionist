@@ -40,7 +40,7 @@ export default function Index({ id }: { id: string }) {
                     <Text heading={true}>Results</Text>
                 </Header>
                 <Main>
-                    {sessionData?.questions ? (
+                    {sessionData?.results ? (
                         sessionData.questions.map((questionData: any, index: number) => (
                             <QuestionChip
                                 key={index}
@@ -48,7 +48,7 @@ export default function Index({ id }: { id: string }) {
                                 question={questionData.question}
                                 choices={questionData.choices}
                                 selectedChoice={questionData.selectedChoice}
-                                correctChoice={sessionData.questions[index]}
+                                correctAnswer={questionData.correctAnswer}
                                 questionIndex={index}
                             />
                         ))
