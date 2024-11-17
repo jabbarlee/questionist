@@ -18,6 +18,16 @@ export default function Question({
         return <p>No question data available.</p>;
     }
 
+    console.log({
+        // 'Type: ': type,
+        // 'Question: ': question,
+        // 'Choices: ': choices,
+        'Selected choice: ': selectedChoice,
+        'Question index: ': questionIndex,
+        'Correct choice: ': correctChoice,
+
+    })
+
     return (
         <div className={styles.card}>            
             {onSelectChoice ? (

@@ -30,6 +30,9 @@ export default function Index({ id }: { id: string }) {
         fetchResults();
     }, [id]);
 
+
+    console.log("Current sessionData: ", sessionData)
+
     return (
         <PageWrapper>
             <Page>
@@ -45,7 +48,7 @@ export default function Index({ id }: { id: string }) {
                                 question={questionData.question}
                                 choices={questionData.choices}
                                 selectedChoice={questionData.selectedChoice}
-                                correctChoice={sessionData.questions[index]} // Access the boolean directly
+                                correctChoice={sessionData.questions[index]}
                                 questionIndex={index}
                             />
                         ))
