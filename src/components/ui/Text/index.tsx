@@ -10,17 +10,20 @@ export default function index({
     heading,
     subheading,
     link,
+    smaller,
+    italic,
     ...props 
 } : TextProps) {
   return (
-    <div {...props} className={styles.textWrapper}>
-        <p 
+        <p
             {...props}
             className={`
                 ${error ? styles.error : ''}
                 ${success ? styles.success : ''}
                 ${heading ? styles.heading : ''}
                 ${subheading ? styles.subheading : ''}
+                ${smaller ? styles.smaller : ''}
+                ${italic ? styles.italic : ''}
                 ${(!error && !success && !heading && !subheading) ? styles.baseText : ''}
             `}
         >
@@ -30,6 +33,5 @@ export default function index({
                 <>{children}</>
             ) }
         </p>
-    </div>
   )
 }

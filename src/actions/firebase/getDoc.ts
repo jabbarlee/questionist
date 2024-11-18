@@ -1,4 +1,4 @@
-import { getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import {updateResults} from "@/actions/firebase/updateDoc";
 
@@ -66,5 +66,28 @@ export const getResults = async (sessionId: string) => {
     } catch (error) {
         console.error("Error fetching practice session config:", error);
         return { sessionData: null, success: false };
+    }
+};
+
+export const fetchAllPracticeSessions = async () => {
+    const response = await fetch('/api/firebase/get/user');
+    const { uid } = await response.json();
+
+    try {
+        // Get a reference to the `practiceSessions` collection
+        const sessionCollectionRef = collection(db, 'users', uid, 'practiceSessions');
+
+        // Fetch all documents in the collection
+        const sessionSnap = await getDocs(sessionCollectionRef);
+
+        const sessions: any[] = [];
+        sessionSnap.forEach((doc) => {
+            sessions.push({ id: doc.id, ...doc.data() });
+        });
+
+        return sessions
+    } catch (error) {
+        console.error('Error fetching practice sessions:', error);
+        return [];
     }
 };

@@ -1,0 +1,49 @@
+/* Wrapper for the card */
+.sessionResultCardWrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width for responsiveness */
+    max-width: 800px;
+}
+
+/* Header Section: Session ID and Delete Button */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sessionIdText{
+    font-size: 30px;
+}
+
+.date {
+    color: #757575; /* Grey color for date text */
+    font-size: 14px;
+}
+
+/* Progress Section */
+.progressWrapper {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    gap: 8px;
+}
+
+.progressBar {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.progressText {
+    font-size: 14px;
+    color: #424242;
+    min-width: 50px; /* Ensures the text does not collapse */
+    text-align: right;
+}

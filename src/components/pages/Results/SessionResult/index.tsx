@@ -9,7 +9,7 @@ import ButtonsContainer from '@/components/pages/Results/containers/ButtonsConta
 import Text from '@/components/ui/Text';
 import QuestionChip from '@/components/ui/QuestionChip';
 import CircularProgress from '@mui/material/CircularProgress';
-import { getResults } from '@/actions/firebase/getDoc';
+import {fetchAllPracticeSessions, getResults} from '@/actions/firebase/getDoc';
 
 export default function Index({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<any | null>(null);
@@ -28,10 +28,9 @@ export default function Index({ id }: { id: string }) {
         };
 
         fetchResults();
-    }, [id]);
+    }, []);
 
 
-    console.log("Current sessionData: ", sessionData)
 
     return (
         <PageWrapper>
