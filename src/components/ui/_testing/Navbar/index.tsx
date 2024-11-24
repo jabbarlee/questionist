@@ -2,7 +2,13 @@ import React from 'react';
 import styles from './index.module.css';
 import NavbarLink from '@/components/ui/NavbarLink';
 import { Typography } from '@mui/material';
-import { Divider } from "antd";
+import Link from './Link'
+import {
+    HomeOutlined,
+    FunctionOutlined,
+    StockOutlined,
+    SettingOutlined
+} from '@ant-design/icons';
 
 export default function Index() {
     return (
@@ -11,15 +17,27 @@ export default function Index() {
                 <div className={styles.profile}>
                     <p className={styles.logo}>Logo</p>
                 </div>
-                <div>
-                    <Typography className={styles.navLink}>Dashboard</Typography>
-                    <Typography className={styles.navLink}>Practice</Typography>
-                    <Typography className={styles.navLink}>Results</Typography>
-                    <Typography className={styles.navLink}>Settings</Typography>
+                <div className={styles.linksWrapper}>
+                    <Link redirect={'/test/dashboard'}>
+                        <HomeOutlined style={{ fontSize: '25px' }}/>
+                        Home
+                    </Link>
+                    <Link redirect={'/test/practice'}>
+                        <FunctionOutlined style={{ fontSize: '25px' }}/>
+                        Practice
+                    </Link>
+                    <Link redirect={'/test/results'}>
+                        <StockOutlined style={{ fontSize: '25px' }}/>
+                        Results
+                    </Link>
+                    <Link redirect={'/test/settings'}>
+                        <SettingOutlined style={{ fontSize: '25px' }}/>
+                        Settings
+                    </Link>
                 </div>
             </div>
             <div className={styles.footer}>
-                <p>Logout</p>
+                <Link redirect={'/'} underline={true}>Logout</Link>
             </div>
         </nav>
     );
