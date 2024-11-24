@@ -1,0 +1,12 @@
+.explanationWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.explanationText{
+    color: #141414;
+    font-size: 20px;
+}

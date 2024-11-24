@@ -8,6 +8,7 @@ import { SmileOutlined } from '@ant-design/icons';
 import Typography from "@mui/material/Typography";
 import { Checkbox } from "antd";
 import WelcomeBanner from '@/components/ui/_testing/WelcomeBanner'
+import SloganBanner from '@/components/ui/_testing/SloganBanner'
 
 export default function index() {
     const [calculatorOption, setCalculatorOption] = useState<string>('No Calculator');
@@ -20,13 +21,7 @@ export default function index() {
             </HeaderText>
             <Main>
                 <WelcomeBanner fullName={'Amil Jabarli'} email={'amiljabbarlee@gmail.com'}/>
-                <div className={styles.explanationWrapper}>
-                    <div className={styles.explanationTextWrapper}>
-                        <Typography className={styles.explanationText}>
-                            Start your journey with a custom set of questions. Understand your mistakes, with an advanced AI
-                        </Typography>
-                    </div>
-                </div>
+                <SloganBanner/>
                 {/*<div>*/}
                 {/*    <Typography variant={'h5'}>Question Type</Typography>*/}
                 {/*    <div className={styles.checkboxWrapper}>*/}
