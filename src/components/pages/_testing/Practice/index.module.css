@@ -1,0 +1,27 @@
+.page{
+    height: 100vh;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.subtitleText{
+    color: #757575;
+    font-weight: lighter;
+}
+
+.checkboxWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}

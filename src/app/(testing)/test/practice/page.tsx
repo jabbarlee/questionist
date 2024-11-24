@@ -1,5 +1,5 @@
 import React from 'react'
-import PracticePage from '@/components/pages/Practice/PracticePage'
+import PracticePage from '@/components/pages/_testing/Practice'
 
 export default function page() {
     return (

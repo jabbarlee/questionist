@@ -1,5 +1,3 @@
-/* layout.module.css */
-
 .pageWrapper {
     display: flex;
     height: 100vh;
@@ -15,16 +13,10 @@
     overflow: hidden;
 }
 
-.mainContainer {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    height: 100vh;
-    overflow: hidden;
-}
-
 .contentWrapper {
     flex-grow: 1;
     overflow-y: auto;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }

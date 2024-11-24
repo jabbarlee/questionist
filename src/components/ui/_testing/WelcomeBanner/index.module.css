@@ -1,0 +1,25 @@
+
+.welcomeWrapper{
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    width: 100%;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.welcomeText{
+    font-size: 22px;
+}
+
+.welcomeTextWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.welcomeSubText{
+    font-size: 16px;
+    color: #757575;
+}
