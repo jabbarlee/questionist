@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@iconscout/react-unicons": "^2.0.2",
     "@mui/icons-material": "^6.1.5",
-    "@mui/material": "^6.1.5",
+    "@mui/material": "^6.1.8",
+    "antd": "^5.22.2",
     "cookies": "^0.9.1",
     "firebase": "^10.14.0",
     "firebase-admin": "^12.6.0",
