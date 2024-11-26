@@ -6,7 +6,8 @@ import {
     HomeOutlined,
     FunctionOutlined,
     StockOutlined,
-    SettingOutlined
+    SettingOutlined,
+    StarOutlined
 } from '@ant-design/icons';
 
 export default function Index() {
@@ -28,6 +29,10 @@ export default function Index() {
                     <Link redirect={'/test/results'}>
                         <StockOutlined style={{ fontSize: '25px' }}/>
                         Results
+                    </Link>
+                    <Link redirect={'/test/plann'}>
+                        <StarOutlined style={{ fontSize: '25px' }}/>
+                        My Plan
                     </Link>
                     <Link redirect={'/test/settings'}>
                         <SettingOutlined style={{ fontSize: '25px' }}/>

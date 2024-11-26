@@ -7,6 +7,15 @@
 }
 
 .explanationText{
-    color: #141414;
-    font-size: 20px;
+    color: #434343;
+    font-size: 16px;
+}
+
+.plansLink{
+    color: #061178;
+    font-size: 16px;
+}
+
+.plansLink:hover{
+    text-decoration: none;
 }

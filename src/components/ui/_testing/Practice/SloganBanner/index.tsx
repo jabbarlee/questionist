@@ -7,11 +7,11 @@ export default function Index() {
     return (
         <div className={styles.explanationWrapper}>
             <Typography className={styles.explanationText}>
-                Start your journey with a custom set of questions.
+                Get the most out of your study sessions, with unlimited practice sets, real-time feedback and more!
             </Typography>
-            <Typography className={styles.explanationText}>
-                Understand your mistakes, and elevate!
-            </Typography>
+            <Link href={'/explore'} className={styles.plansLink}>
+                Explore plans
+            </Link>
         </div>
     );
 }
