@@ -40,6 +40,10 @@ export default function Page() {
         }
     ]
 
+    //TODO: Export difficultyLevels and categories to a separate file
+
+    //TODO: UI | Button disabled on elements that are not selected
+
     const collapseItems = categories.map((category, index) => ({
         key: index.toString(),
         label: (
@@ -146,12 +150,18 @@ export default function Page() {
                                     <Typography className={styles.radioText}>
                                         Classic
                                     </Typography>
+                                    <Typography className={styles.radioSubText}>
+                                        10 questions
+                                    </Typography>
                                 </Radio>
                             </div>
                             <div className={styles.radioWrapper}>
                                 <Radio value={'5 questions'} className={styles.radio}>
                                     <Typography className={styles.radioText}>
                                         Miniset
+                                    </Typography>
+                                    <Typography className={styles.radioSubText}>
+                                        5 questions
                                     </Typography>
                                 </Radio>
                             </div>
@@ -169,7 +179,15 @@ export default function Page() {
                         />
                     </div>
                     <div>
-                        <Button color={'primary'} variant={'solid'} size={'large'}>Create!</Button>
+                        <Button
+                            color={'primary'}
+                            variant={'solid'}
+                            size={'large'}
+                            style={{ textDecoration: 'none' }}
+                            href={'/test/practice/PTG-12345'}
+                        >
+                            Create!
+                        </Button>
                     </div>
                 </div>
             </Main>

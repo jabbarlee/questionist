@@ -1,0 +1,23 @@
+.practicePageWrapper {
+    height: 100vh;
+    padding: 40px 60px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.headerText {
+    font-size: 28px;
+    color: #002766;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.questionsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    width: 100%;
+}

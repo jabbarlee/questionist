@@ -1,0 +1,59 @@
+
+.questionNumberText {
+    font-size: 24px;
+    font-weight: 600;
+    /*margin: 5px 0;*/
+    color: #1f1f1f;
+}
+
+.questionText {
+    font-size: 18px;
+    color: #1f1f1f;
+    margin: 20px 0;
+}
+
+.questionOptionsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.questionsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.optionWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.optionFirst {
+    border-top: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.optionNotFirst {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.radioOptionWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.option {
+    font-size: 18px;
+    color: #1f1f1f;
+    padding: 15px 5px;
+}
+
+.clearIcon{
+    cursor: pointer;
+    margin-right: 10px;
+}
