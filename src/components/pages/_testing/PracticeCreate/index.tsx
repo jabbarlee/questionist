@@ -71,23 +71,6 @@ export default function Page() {
             </div>
             <Main>
                 <div className={styles.configWrapper}>
-                    {/*<div className={styles.configSection}>*/}
-                    {/*    <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">*/}
-                    {/*        <Typography className={styles.titleText}>Section</Typography>*/}
-                    {/*    </Divider>*/}
-                    {/*    <div className={styles.radioButtonsWrapper}>*/}
-                    {/*        <div className={styles.radioWrapper}>*/}
-                    {/*            <Radio value={'no-calculator'} className={styles.radio}>*/}
-                    {/*                <Typography className={styles.radioText}>No Calculator</Typography>*/}
-                    {/*            </Radio>*/}
-                    {/*        </div>*/}
-                    {/*        <div className={styles.radioWrapper}>*/}
-                    {/*            <Radio value={'calculator'} className={styles.radio}>*/}
-                    {/*                <Typography className={styles.radioText}>Calculator</Typography>*/}
-                    {/*            </Radio>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                     <div className={styles.configDifficulty}>
                         <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
                             <Typography className={styles.titleText}>Difficulty</Typography>
@@ -184,7 +167,7 @@ export default function Page() {
                             variant={'solid'}
                             size={'large'}
                             style={{ textDecoration: 'none' }}
-                            href={'/test/practice/PTG-12345'}
+                            href={'/practice/session/PTG-12345'}
                         >
                             Create!
                         </Button>

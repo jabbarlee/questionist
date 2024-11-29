@@ -1,12 +1,12 @@
 .main {
+    flex-grow: 1; /* Take up the remaining space */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* Allow scrolling only inside Main if needed */
     font-family: Arial, sans-serif;
     box-sizing: border-box;
-    padding: 20px;
     gap: 30px;
+    width: 100%; /* Ensure Main takes the full width */
 }
