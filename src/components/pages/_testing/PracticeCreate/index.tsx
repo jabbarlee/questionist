@@ -54,7 +54,7 @@ export default function Page() {
         children: (
             <div className={styles.categoriesContainer}>
                 {category.topics.map((topic, topicIndex) => (
-                    <Checkbox key={topicIndex} className={styles.categoryWrapper} defaultChecked={true}>
+                    <Checkbox key={topicIndex} className={styles.categoryWrapper}>
                         <Typography className={styles.radioText}>{topic}</Typography>
                     </Checkbox>
                 ))}

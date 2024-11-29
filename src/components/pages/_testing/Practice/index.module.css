@@ -3,16 +3,16 @@
     padding: 40px 60px;
 }
 
-.header{
+.header {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
-.headerText{
+.headerText {
     font-size: 30px;
     color: #002766;
     text-align: center;
-    padding: 0 20px;
 }
 
 .subtitleText{
