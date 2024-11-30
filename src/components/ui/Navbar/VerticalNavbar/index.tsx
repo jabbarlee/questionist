@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
-import HeaderText from '../HeaderText';
-import Link from './Link'
+import NavbarHeader from '@/components/ui/Header/NavbarHeader';
+import Link from '../Link'
 import {
     HomeOutlined,
     FunctionOutlined,
@@ -14,27 +14,27 @@ export default function Index() {
     return (
         <nav className={styles.navbar}>
             <div className={styles.sectionWrapper}>
-                <HeaderText>
+                <NavbarHeader>
                     Questionist
-                </HeaderText>
+                </NavbarHeader>
                 <div className={styles.linksWrapper}>
-                    <Link redirect={'/test/dashboard'}>
+                    <Link redirect={'/dashboard'}>
                         <HomeOutlined style={{ fontSize: '25px' }}/>
                         Home
                     </Link>
-                    <Link redirect={'/test/practice'}>
+                    <Link redirect={'/practice'}>
                         <FunctionOutlined style={{ fontSize: '25px' }}/>
                         Practice
                     </Link>
-                    <Link redirect={'/test/results'}>
+                    <Link redirect={'/results'}>
                         <StockOutlined style={{ fontSize: '25px' }}/>
                         Results
                     </Link>
-                    <Link redirect={'/test/plann'}>
+                    <Link redirect={'/plan'}>
                         <StarOutlined style={{ fontSize: '25px' }}/>
                         My Plan
                     </Link>
-                    <Link redirect={'/test/settings'}>
+                    <Link redirect={'/settings'}>
                         <SettingOutlined style={{ fontSize: '25px' }}/>
                         Settings
                     </Link>

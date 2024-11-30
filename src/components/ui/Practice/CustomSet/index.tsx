@@ -19,7 +19,7 @@ export default function index() {
                     size={'large'}
                     variant='solid'
                     color={'primary'}
-                    href={'/test/practice/create'}
+                    href={'/practice/create'}
                     style={{ textDecoration: 'none' }}
                 >
                     Create one!

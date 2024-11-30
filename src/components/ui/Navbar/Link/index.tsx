@@ -13,9 +13,9 @@ export default function NavbarLink({ redirect, underline, children }: NavbarLink
         <Link href={redirect}
               className={underline ? styles.underline : styles.link}
         >
-                <>
-                    {children}
-                </>
+            <>
+                {children}
+            </>
         </Link>
     );
 }

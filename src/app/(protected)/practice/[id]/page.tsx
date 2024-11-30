@@ -1,11 +1,12 @@
 import React from 'react'
-import PracticeSessionPage from '@/components/pages/PracticeSession/PracticeSessionPage'
+import PracticeSession from '@/components/pages/_testing/PracticeSession'
 
-export default function page({ params } : { params: { id: string } }) {
+export default function index({ params } : { params: { id: string } }) {
     const { id } = params;
-  return (
-    <div>
-      <PracticeSessionPage sessionId={id}/>
-    </div>
-  )
+
+    return (
+        <div>
+            <PracticeSession sessionId={id}/>
+        </div>
+    )
 }

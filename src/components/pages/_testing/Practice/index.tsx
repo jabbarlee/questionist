@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './index.module.css'
-import HeaderText from '@/components/ui/_testing/HeaderText'
+import HeaderText from '../../../ui/HeaderText'
 import Main from "@/components/ui/_wrappers/Main";
-import WelcomeBanner from '@/components//ui/_testing/Practice/WelcomeBanner'
-import SloganBanner from '@/components/ui/_testing/Practice/SloganBanner'
-import CustomSet from '@/components/ui/_testing/Practice/CustomSet'
+import WelcomeBanner from '@/components/ui/Practice/WelcomeBanner'
+import SloganBanner from '@/components/ui/Practice/SloganBanner'
+import CustomSet from '@/components/ui/Practice/CustomSet'
 import Typography from "@mui/material/Typography";
 
 export default function index() {

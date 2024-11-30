@@ -7,7 +7,7 @@ import { Pagination, Divider, Button } from "antd";
 import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
 import Main from '@/components/ui/_wrappers/Main';
 import Footer from '@/components/ui/_wrappers/Footer';
-import Question from '@/components/ui/_testing/PracticeSession/Question';
+import Question from '@/components/ui/PracticeSession/Question';
 
 export default function index({ sessionId }: { sessionId: string }) {
     const [currentPage, setCurrentPage] = useState(1);
