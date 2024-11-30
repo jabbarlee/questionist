@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './index.module.css';
 import Typography from "@mui/material/Typography";
 import Main from "@/components/ui/_wrappers/Main";
+import Page from "@/components/ui/_wrappers/Page";
 import {Input, Radio, Checkbox, Collapse, Divider, Button} from "antd";
+import Header from "@/components/ui/_wrappers/Header";
 
-export default function Page() {
+export default function index() {
 
     const categories = [
         {
@@ -63,12 +65,10 @@ export default function Page() {
     }));
 
     return (
-        <div className={styles.practicePageWrapper}>
-            <div className={styles.header}>
-                <Typography className={styles.headerText}>
-                    Customize a <span className={styles.subtitleText}>set</span>
-                </Typography>
-            </div>
+        <Page>
+            <Header>
+                Customize a set
+            </Header>
             <Main>
                 <div className={styles.configWrapper}>
                     <div className={styles.configDifficulty}>
@@ -166,7 +166,7 @@ export default function Page() {
                             color={'primary'}
                             variant={'solid'}
                             size={'large'}
-                            style={{ textDecoration: 'none' }}
+                            style={{textDecoration: 'none'}}
                             href={'/practice/session/PTG-12345'}
                         >
                             Create!
@@ -174,6 +174,6 @@ export default function Page() {
                     </div>
                 </div>
             </Main>
-        </div>
-);
+        </Page>
+    );
 }

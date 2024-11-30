@@ -1,9 +1,3 @@
-.practicePageWrapper{
-    height: 100vh;
-    padding: 40px 80px;
-    box-sizing: border-box;
-}
-
 .header {
     display: flex;
     align-items: center;
