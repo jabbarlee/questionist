@@ -24,7 +24,7 @@ export default function RootLayout({
             <ProtectedNavbar /> {/* Fixed sidebar on the left */}
           </aside>
           <main className={styles.contentWrapper}>
-            {children} {/* Scrollable main content */}
+            {children}
           </main>
         </div>
       </body>

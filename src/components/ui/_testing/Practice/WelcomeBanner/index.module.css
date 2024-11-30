@@ -1,0 +1,36 @@
+
+.welcomeWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px 20px;
+    width: 100%;
+    align-items: flex-start;
+    background-color: #fafafa;
+    border: 0.5px solid #002766;
+    border-radius: 10px;
+}
+
+.welcomeText{
+    font-size: 22px;
+}
+
+.welcomeTextWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.welcomeSubText{
+    font-size: 16px;
+    color: #757575;
+}
+
+.editButton{
+    color: #002766;
+    font-size: 16px;
+}
+
+.editButton:hover{
+    text-decoration: none;
+}
