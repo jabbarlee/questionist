@@ -2,21 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
-import Typography from "@mui/material/Typography";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
-import {Input, Divider, Button} from "antd";
+import { Button } from "antd";
 import Header from "@/components/ui/_wrappers/Header";
 import DifficultySelect from "@/components/ui/PracticeCreate/DifficultySelect";
 import QuestionTypeSelect from "@/components/ui/PracticeCreate/QuestionTypeSelect";
 import TopicsSelect from "@/components/ui/PracticeCreate/TopicsSelect";
 import QuestionNumSelect from "@/components/ui/PracticeCreate/QuestionNumSelect";
+import TestName from "@/components/ui/PracticeCreate/TestName";
 
 export default function index() {
     const [difficulty, setDifficulty] = useState<string[] | null>([]);
     const [questionType, setQuestionType] = useState<string[] | null>([]);
     const [topics, setTopics] = useState<string[] | null>([]);
     const [numberOfQuestions, setNumberOfQuestions] = useState<number | null>(null);
+    const [testName, setTestName] = useState<string | null>(null);
 
     useEffect(() => {
         console.log(numberOfQuestions);
@@ -47,17 +48,10 @@ export default function index() {
                         numberOfQuestions={numberOfQuestions}
                         setNumberOfQuestions={setNumberOfQuestions}
                     />
-                    <div className={styles.configName}>
-                        <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
-                            <Typography className={styles.titleText}>Name</Typography>
-                        </Divider>
-                        <Input
-                            showCount
-                            maxLength={20}
-                            placeholder={'12345-TEST'}
-                            size="large"
-                        />
-                    </div>
+                    <TestName
+                        testName={testName}
+                        setTestName={setTestName}
+                    />
                     <div>
                         <Button
                             color={'primary'}
