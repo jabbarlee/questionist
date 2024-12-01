@@ -65,6 +65,7 @@ export default function index() {
                             size={'large'}
                             style={{textDecoration: 'none'}}
                             href={'/practice/session/PTG-12345'}
+                            disabled={!(difficulty?.length && questionType?.length && topics?.length && numberOfQuestions)}
                         >
                             Create!
                         </Button>
