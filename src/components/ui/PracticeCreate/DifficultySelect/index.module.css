@@ -1,0 +1,29 @@
+.titleText{
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.radioButtonsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.radioText{
+    font-size: 15px;
+    font-weight: 420;
+}
+
+.radioSubText{
+    font-size: 12px;
+    font-weight: 300;
+    color: #757575;
+}
+
+.radioWrapper{
+    background-color: #f5f5f5;
+    border: 0.5px solid #002766;
+    border-radius: 7px;
+    padding: 10px 20px;
+}
