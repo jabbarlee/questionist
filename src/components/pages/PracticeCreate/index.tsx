@@ -23,8 +23,6 @@ export default function index() {
         console.log(numberOfQuestions);
     }, [numberOfQuestions])
 
-    //TODO: UI | Button disabled on elements that are not selected
-
     return (
         <Page>
             <Header>
@@ -60,6 +58,7 @@ export default function index() {
                             style={{textDecoration: 'none'}}
                             href={'/practice/session/PTG-12345'}
                             disabled={!(difficulty?.length && questionType?.length && topics?.length && numberOfQuestions)}
+
                         >
                             Create!
                         </Button>
