@@ -1,5 +1,5 @@
 import React from 'react'
-import PracticeSession from '@/components/pages/_testing/PracticeSession'
+import PracticeSession from '../../../../components/pages/PracticeSession'
 
 export default function index({ params } : { params: { id: string } }) {
     const { id } = params;
