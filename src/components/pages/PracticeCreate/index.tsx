@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.css';
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
@@ -11,6 +11,8 @@ import QuestionTypeSelect from "@/components/ui/PracticeCreate/QuestionTypeSelec
 import TopicsSelect from "@/components/ui/PracticeCreate/TopicsSelect";
 import QuestionNumSelect from "@/components/ui/PracticeCreate/QuestionNumSelect";
 import TestName from "@/components/ui/PracticeCreate/TestName";
+import {storePracticeSession} from "@/actions/firebase/setDoc";
+import { useRouter } from 'next/navigation';
 
 export default function index() {
     const [difficulty, setDifficulty] = useState<string[] | null>([]);
@@ -18,11 +20,35 @@ export default function index() {
     const [topics, setTopics] = useState<string[] | null>([]);
     const [numberOfQuestions, setNumberOfQuestions] = useState<number | null>(null);
     const [testName, setTestName] = useState<string | null>(null);
+    const [resMessage, setResMessage] = useState<string | null>(null);
+    const [buttonColor, setButtonColor] = useState<string>('primary');
+    const router = useRouter();
 
-    useEffect(() => {
-        console.log(numberOfQuestions);
-    }, [numberOfQuestions])
 
+    const handleCreate = async () => {
+        try {
+            setResMessage('Creating...');
+
+            const res = await storePracticeSession({
+                topics: topics || [],
+                difficulty: difficulty || [],
+                sessionName: testName || '',
+            });
+
+            if (res.success) {
+                setResMessage('Success!');
+                setButtonColor('default');
+
+                router.push(`/practice/session/${res.sessionId}`);
+            } else {
+                setResMessage('Error');
+                console.log(res?.error);
+                setButtonColor('danger');
+            }
+        } catch (error) {
+            console.error('Error creating practice session', error);
+        }
+    }
     return (
         <Page>
             <Header>
@@ -56,11 +82,10 @@ export default function index() {
                             variant={'solid'}
                             size={'large'}
                             style={{textDecoration: 'none'}}
-                            href={'/practice/session/PTG-12345'}
                             disabled={!(difficulty?.length && questionType?.length && topics?.length && numberOfQuestions)}
-
+                            onClick={handleCreate}
                         >
-                            Create!
+                            {resMessage ? resMessage : 'Create!'}
                         </Button>
                     </div>
                 </div>
