@@ -14,6 +14,7 @@ export type PracticeStartProps = {
     topics: string[],
     difficulty: string[],
     sessionName: string,
+    numberOfQuestions: number
 }
 
 export type Question = {

@@ -33,6 +33,7 @@ export default function index() {
                 topics: topics || [],
                 difficulty: difficulty || [],
                 sessionName: testName || '',
+                numberOfQuestions: numberOfQuestions || 0,
             });
 
             if (res.success) {

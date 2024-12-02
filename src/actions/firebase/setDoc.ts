@@ -35,6 +35,7 @@ export const storePracticeSession = async ({
     topics,
     difficulty,
     sessionName,
+    numberOfQuestions
 } : PracticeStartProps) => {
     try{
         const sessionId = generatePracticeSessionId();
@@ -48,6 +49,7 @@ export const storePracticeSession = async ({
             sessionName,
             difficulty,
             topics,
+            numberOfQuestions,
             createdAt: new Date().toISOString(),
         };
 
