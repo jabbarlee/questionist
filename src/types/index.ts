@@ -11,10 +11,10 @@ export type SignUpAuthProps = {
 }
 
 export type PracticeStartProps = {
-    selectedSubtopics: string[],
-    calculatorOption: string,
-    difficultyOption: string,
-    router: any
+    topics: string[],
+    difficulty: string[],
+    sessionName: string,
+    numberOfQuestions: number
 }
 
 export type Question = {

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styles from './index.module.css';
 import NavbarLink from '../NavbarLink';
-import Button from '../Button';
+import { Button } from 'antd'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,11 +28,9 @@ export default function Navbar() {
             <NavbarLink redirect='/'>Pricing</NavbarLink>
             <NavbarLink redirect='/'>Contact</NavbarLink>
           </div>
-          <Button buttonType='secondary' redirect='/signin'>Sign in</Button>
-          <Button buttonType='primary' redirect='/signup'>Register</Button>
-        </div> 
-
-        <Button onClick={toggleMenu} buttonType='primary' className={styles.hamburger}>☰</Button>
+          <Button variant='outlined' color={'default'} href={'/signin'}>Sign in</Button>
+          <Button variant='solid' color={'default'} href={'/signin'}>Sign up</Button>
+        </div>
       </div>
     </div>
   );

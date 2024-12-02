@@ -1,10 +1,10 @@
 import React from 'react'
-import PracticePage from '../../../components/pages/Practice'
+import PracticeCreate from "../../../../components/pages/PracticeCreate"
 
 export default function page() {
     return (
         <div>
-            <PracticePage />
+            <PracticeCreate/>
         </div>
     )
 }

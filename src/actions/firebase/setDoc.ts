@@ -32,27 +32,31 @@ export const storeUserInfoInFirestore = async (user: User, fullName?: string) =>
   };
 
 export const storePracticeSession = async ({
-    selectedSubtopics,
-    calculatorOption,
-    difficultyOption,
-    router
+    topics,
+    difficulty,
+    sessionName,
+    numberOfQuestions
 } : PracticeStartProps) => {
-    const practiceSessionId = generatePracticeSessionId();
-    const response = await fetch('/api/firebase/get/user');
-    const { uid } = await response.json();
+    try{
+        const sessionId = generatePracticeSessionId();
+        const response = await fetch('/api/firebase/get/user');
+        const { uid } = await response.json();
 
-    const sessionRef = doc(db, 'users', uid, 'practiceSessions', practiceSessionId);
-    const sessionSnap = await getDoc(sessionRef);
+        const sessionRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
 
-    const sessionData = {
-        practiceSessionId,
-        selectedSubtopics,
-        calculatorOption,
-        difficultyOption,
-        createdAt: new Date().toISOString(),
-    };
+        const sessionData = {
+            sessionId,
+            sessionName,
+            difficulty,
+            topics,
+            numberOfQuestions,
+            createdAt: new Date().toISOString(),
+        };
 
-    await setDoc(sessionRef, sessionData);
+        await setDoc(sessionRef, sessionData);
 
-    router.push(`/practice/${practiceSessionId}`);
+        return { success: true, sessionId };
+    }catch (error) {
+        return { success: false, sessionId: null, error: error };
+    }
 }
