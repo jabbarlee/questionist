@@ -17,9 +17,22 @@ export type PracticeStartProps = {
     numberOfQuestions: number
 }
 
-export type Question = {
-    question: string;
-    choices?: string[];
+interface Option {
+    id: string;
+    text: string;
+}
+
+export interface QuestionProps {
+    questionText: string;
+    options: Option[];
     correctAnswer: string;
-    type: string;
+}
+
+export type SessionData = {
+    createdAt: string;
+    difficulty: string[];
+    numberOfQuestions: number;
+    sessionId: string;
+    sessionName: string;
+    topics: string[];
 };

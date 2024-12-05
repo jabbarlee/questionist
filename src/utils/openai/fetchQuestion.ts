@@ -1,42 +1,45 @@
-interface QuestionData {
-  type: 'multiple-choice' | 'open';
-  question: string;
-  choices?: string[];
-}
+import { generateQuestion } from './generateQuestion';
 
-export const fetchQuestion = async ({ 
-    subtopic, 
-    difficulty, 
-    calculatorOption,
-    setQuestions
-}: { 
-    subtopic: string, 
-    difficulty: string, 
-    calculatorOption: string,
-    setQuestions: React.Dispatch<any>
+export const fetchGeneratedQuestions = async ({
+    topics,
+    difficulty,
+    numberOfQuestions,
+}: {
+    topics: string[];
+    difficulty: string;
+    numberOfQuestions: number;
 }) => {
+    const mockQuestions: any[] = [];
 
-    try {
-      const response = await fetch('/api/questions/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ subtopic, difficulty, calculatorOption }),
-      });
+    // Randomly select topics and generate the required number of questions
+    while (mockQuestions.length < numberOfQuestions) {
+        const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+        const questionsFromTopic = await generateQuestion({ topic: randomTopic, difficulty });
 
-      if (!response.ok) {
-        throw new Error('Failed to generate question');
-      }
+        // Add the questions to the mockQuestions array
+        questionsFromTopic.forEach((questionData) => {
+            const { type, question, choices, correctAnswer } = questionData;
 
-      const data = await response.json();
-      const questionData: QuestionData = data.question; 
+            // Format the question object
+            const formattedQuestion = {
+                questionText: question,
+                correctAnswer,
+                options: type === "multiple-choice"
+                    ? choices.map((choice: string, index: number) => ({
+                        id: String.fromCharCode(97 + index), // 'a', 'b', 'c', 'd'
+                        text: choice,
+                    }))
+                    : [], // If not multiple-choice, no options are needed
+            };
 
-      setQuestions((prevQuestions: QuestionData[]) => [...prevQuestions, questionData]);
-    } catch (error) {
-      console.error("Error fetching question:", error);
-    //   setError("Error generating question");
-    } finally {
-    //   setLoading(false);
+            mockQuestions.push(formattedQuestion);
+
+            // If we have reached the required number of questions, stop
+            if (mockQuestions.length >= numberOfQuestions) {
+                return;
+            }
+        });
     }
-  };
+
+    return mockQuestions;
+};
