@@ -11,10 +11,33 @@ import Question from '@/components/ui/PracticeSession/Question';
 import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
 import { SessionData, QuestionProps } from "@/types";
 
+interface SelectedOption {
+    questionText: string;
+    selectedOptionText: string;
+}
+
 export default function Index({ sessionId }: { sessionId: string }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
     const [questions, setQuestions] = useState<QuestionProps[]>([]);
+    const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([]);
+
+    const handleOptionChange = (questionIndex: number, optionId: string, selectedOptionText: string) => {
+        setSelectedOptions((prev) => {
+            const updatedOptions = [...prev];
+            const questionText = questions[questionIndex].questionText;
+
+            // Update or insert the selected option for this question
+            const existingIndex = updatedOptions.findIndex((opt) => opt.questionText === questionText);
+            if (existingIndex > -1) {
+                updatedOptions[existingIndex] = { questionText, selectedOptionText };
+            } else {
+                updatedOptions.push({ questionText, selectedOptionText });
+            }
+
+            return updatedOptions;
+        });
+    };
 
     // Handle page change
     const handlePageChange = (page: number) => {
@@ -69,7 +92,10 @@ export default function Index({ sessionId }: { sessionId: string }) {
         fetchQuestions();
     }, [sessionData]);
 
-    console.log(questions)
+    const handleFinish = () => {
+        console.log('Questions: ', questions);
+        console.log('Selected options: ', selectedOptions);
+    };
 
     return (
         <div className={styles.practicePageWrapper}>
@@ -82,7 +108,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
                         <PauseOutlined />
                         Pause
                     </Button>
-                    <Button variant={'solid'} color={'primary'}>
+                    <Button variant={'solid'} color={'primary'} onClick={handleFinish}>
                         <CheckOutlined />
                         Finish
                     </Button>
@@ -96,7 +122,18 @@ export default function Index({ sessionId }: { sessionId: string }) {
                             index={currentPage - 1}
                             questionText={questions[currentPage - 1]?.questionText}
                             options={questions[currentPage - 1]?.options}
+                            selectedOption={
+                                selectedOptions.find(
+                                    (opt) => opt.questionText === questions[currentPage - 1].questionText
+                                )?.selectedOptionText || null
+                            }
+                            onOptionChange={(questionIndex, optionId) => {
+                                const selectedOptionText =
+                                    questions[questionIndex].options.find((opt) => opt.id === optionId)?.text || '';
+                                handleOptionChange(questionIndex, optionId, selectedOptionText);
+                            }}
                         />
+
                     ) : (
                         <div className={styles.loadingText}>Loading...</div>
                     )}
@@ -105,7 +142,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
             <Footer>
                 <div className={styles.paginationContainer}>
                     <Pagination
-                        simple
+                        simple={{ readOnly: true }}
                         current={currentPage}
                         onChange={handlePageChange}
                         total={questions?.length}
