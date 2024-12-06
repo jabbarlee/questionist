@@ -2,22 +2,24 @@ import React from 'react';
 import styles from "./index.module.css";
 import { Typography } from "@mui/material";
 import { Radio } from "antd";
-import Main from '@/components/ui/_wrappers/Main';
-import { CloseOutlined } from '@ant-design/icons';
 
 type Option = {
     id: string;
     text: string;
 };
 
-export default function index({
-  index,
-  questionText,
-  options,
-} : {
-    index: number,
-    questionText: string,
-    options: Option[]
+export default function Question({
+                                     index,
+                                     questionText,
+                                     options,
+                                     selectedOption,
+                                     onOptionChange,
+                                 }: {
+    index: number;
+    questionText: string;
+    options: Option[];
+    selectedOption: string | null; // The currently selected option for this question
+    onOptionChange: (questionIndex: number, optionId: string) => void; // Callback to update the selected option
 }) {
     return (
         <div className={styles.questionContainer}>
@@ -33,23 +35,16 @@ export default function index({
                     </Typography>
                 </div>
                 <div className={styles.questionOptionsWrapper}>
-                    {options.map((option: Option, index: number) => (
-                        <div
-                            key={option.id}
-                            className={`${styles.optionWrapper} ${
-                                index === 0
-                                    ? styles.optionFirst
-                                    : styles.optionNotFirst
-                            }`}
-                        >
+                    {options.map((option) => (
+                        <div key={option.id} className={styles.optionWrapper}>
                             <div className={styles.radioOptionWrapper}>
-                                <Radio/>
+                                <Radio
+                                    checked={selectedOption === option.text} // Checked if selected option matches this option's text
+                                    onChange={() => onOptionChange(index, option.id)} // Trigger state update
+                                />
                                 <Typography className={styles.option}>
-                                    {option.id}) {option.text}
+                                    {option.text}
                                 </Typography>
-                            </div>
-                            <div className={styles.clearIcon}>
-                                <CloseOutlined/>
                             </div>
                         </div>
                     ))}
