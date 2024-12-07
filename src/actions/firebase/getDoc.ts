@@ -1,25 +1,24 @@
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import { SessionData } from "@/types"; // Import SessionData type
 
-export const fetchPracticeSessionConfig = async (sessionId: string) => {
+export const fetchPracticeSessionConfig = async (sessionId: string): Promise<SessionData | null> => {
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
 
-    try{
+    try {
         const sessionRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
-
         const sessionSnap = await getDoc(sessionRef);
 
         if (sessionSnap.exists()) {
-            const sessionData = sessionSnap.data();
-            console.log({sessionData})
+            const sessionData = sessionSnap.data() as SessionData; // Cast to SessionData type
+            console.log({ sessionData });
             return sessionData;
-
         } else {
             console.error('No such document!');
-            return null; 
+            return null;
         }
-    }catch(error){
+    } catch (error) {
         console.error("Error fetching practice session config: ", error);
         return null;
     }
