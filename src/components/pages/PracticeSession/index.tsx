@@ -97,6 +97,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
         console.log('Selected options: ', selectedOptions);
     };
 
+
     return (
         <div className={styles.practicePageWrapper}>
             <div className={styles.header}>
