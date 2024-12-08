@@ -1,5 +1,5 @@
 import { updateQuestions } from "@/actions/firebase/updateDoc";
-import { Question } from "@/types";
+import { Question, SelectedOption } from "@/types";
 
 export async function handleSessionSubmit({
     sessionId,
@@ -11,7 +11,7 @@ export async function handleSessionSubmit({
 } : {
     sessionId: string,
     questions: Question[],
-    selectedChoices: string[],
+    selectedChoices: SelectedOption[],
     setError: React.Dispatch<React.SetStateAction<string | null>>,
     setMessage: React.Dispatch<React.SetStateAction<string | null>>,
     handleNavigate: (url: string) => void

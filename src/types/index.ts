@@ -36,3 +36,16 @@ export type SessionData = {
     sessionName: string;
     topics: string[];
 };
+
+export type Question = {
+    question: string;
+    choices: string[];
+    correctAnswer: string;
+    type: string;
+    selectedChoice: string;
+}
+
+export interface SelectedOption {
+    questionText: string;
+    selectedOptionText: string;
+}

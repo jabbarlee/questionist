@@ -1,11 +1,11 @@
 import React from 'react'
-import ResultPage from '@/components/pages/PracticeSessionResult/ResultPage'
+import ResultsSession from '@/components/pages/ResultsSession';
 
 export default function page({ params } : { params: { id: string } }) {
     const { id } = params;
   return (
     <div>
-      <ResultPage id={id}/>
+      <ResultsSession id={id}/>
     </div>
   )
 }

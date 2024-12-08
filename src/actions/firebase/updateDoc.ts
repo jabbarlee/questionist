@@ -1,8 +1,8 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
-import { Question } from '@/types';
+import { Question, SelectedOption } from '@/types';
 
-export async function updateQuestions(sessionId: string, questions: Question[], selectedChoices: string[]) {
+export async function updateQuestions(sessionId: string, questions: Question[], selectedChoices: SelectedOption[]) {
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
 
@@ -11,7 +11,7 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
         choices: question.choices,
         correctAnswer: question.correctAnswer,
         type: question.type,
-        selectedChoice: selectedChoices[index],
+        selectedChoice: selectedChoices[index].selectedOptionText,
     }));
 
     try {
@@ -20,7 +20,6 @@ export async function updateQuestions(sessionId: string, questions: Question[], 
         await updateDoc(sessionDocRef, { questions: questionsToUpdate });
 
         return { success: true, message: 'Session finished!' };
-        console.log('Questions array added or updated successfully');
     } catch (error) {
         console.error('Error adding or updating questions:', error);
 
