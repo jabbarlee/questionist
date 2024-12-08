@@ -10,11 +10,7 @@ import Footer from '@/components/ui/_wrappers/Footer';
 import Question from '@/components/ui/PracticeSession/Question';
 import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
 import { SessionData, QuestionProps } from "@/types";
-
-interface SelectedOption {
-    questionText: string;
-    selectedOptionText: string;
-}
+import { SelectedOption } from "@/types";
 
 export default function Index({ sessionId }: { sessionId: string }) {
     const [currentPage, setCurrentPage] = useState(1);
