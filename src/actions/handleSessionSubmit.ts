@@ -1,5 +1,5 @@
 import { updateQuestions } from "@/actions/firebase/updateDoc";
-import { Question, SelectedOption } from "@/types";
+import { QuestionProps, SelectedOption } from "@/types";
 
 export async function handleSessionSubmit({
     sessionId,
@@ -10,7 +10,7 @@ export async function handleSessionSubmit({
     handleNavigate
 } : {
     sessionId: string,
-    questions: Question[],
+    questions: QuestionProps[],
     selectedChoices: SelectedOption[],
     setError: React.Dispatch<React.SetStateAction<string | null>>,
     setMessage: React.Dispatch<React.SetStateAction<string | null>>,
@@ -22,6 +22,8 @@ export async function handleSessionSubmit({
     if (res?.success) {
       setError(null);
       setMessage('Session submitted successfully');
+
+      //TODO: Implement results score update
 
       handleNavigate('/results/' + sessionId);
     } else {
