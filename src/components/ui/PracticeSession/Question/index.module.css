@@ -1,59 +1,95 @@
+/* Question Chip Container */
+.questionChip {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.questionChip:hover {
+    transform: translateY(-5px); /* Subtle lift effect on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Question Number */
 .questionNumberText {
-    font-size: 24px;
-    font-weight: 600;
-    /*margin: 5px 0;*/
-    color: #1f1f1f;
-}
-
-.questionText {
     font-size: 18px;
-    color: #1f1f1f;
-    margin: 20px 0;
+    font-weight: bold;
+    color: #3b3b3b;
+    margin-bottom: 10px;
 }
 
+/* Question Text */
+.questionText {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Options Wrapper */
 .questionOptionsWrapper {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
-.questionsWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 70px;
-}
-
+/* Option Container */
 .optionWrapper {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 5px 0;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, border 0.2s ease;
 }
 
-.optionFirst {
-    border-top: 1px solid #d6d6d6;
-    border-bottom: 1px solid #d6d6d6;
+/* Correct Option */
+.correctOption {
+    background-color: #d4edda; /* Light green background */
+    border: 2px solid #28a745; /* Green border */
+    color: #155724; /* Dark green text */
 }
 
-.optionNotFirst {
-    border-bottom: 1px solid #d6d6d6;
+/* Incorrect Option */
+.incorrectOption {
+    background-color: #fdecea; /* Light red background */
+    border: 2px solid #d9534f; /* Red border */
+    color: #721c24; /* Dark red text */
 }
 
-.radioOptionWrapper {
+/* Radio Indicator */
+.radioIndicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-right: 10px;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    margin-left: 10px;
+    justify-content: center;
 }
 
-.option {
-    font-size: 18px;
-    color: #1f1f1f;
-    padding: 15px 5px;
+/* Selected Indicators */
+.radioIndicator.selected {
+    border-color: #28a745; /* Green for correct */
+    background-color: #28a745;
 }
 
-.clearIcon{
-    cursor: pointer;
-    margin-right: 10px;
+.radioIndicator.incorrect {
+    border-color: #d9534f; /* Red for incorrect */
+    background-color: #d9534f;
+}
+
+.radioIndicator.correct {
+    border-color: #28a745;
+    background-color: #28a745;
+}
+
+/* Option Text */
+.optionText {
+    font-size: 16px;
+    color: #3b3b3b;
 }
