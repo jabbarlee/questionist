@@ -4,14 +4,13 @@ import React, { useState, useEffect } from "react";
 import Page from "@/components/ui/_wrappers/Page";
 import Header from "@/components/ui/_wrappers/Header";
 import { QuestionResult } from "@/components/ui/PracticeSession/Question";
-import { Pagination } from "antd";
 import { getResults } from "@/actions/firebase/getDoc";
 import { SessionData } from "@/types";
 import CircularProgress from "@mui/material/CircularProgress";
+import ScoreBoard from "@/components/ui/Results/Session/ScoreBoard";
 
 export default function ResultsPage({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
-    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -29,15 +28,17 @@ export default function ResultsPage({ id }: { id: string }) {
         fetchResults();
     }, [id]);
 
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-    };
-
     return (
         <Page>
             <Header>
                 Results for session {sessionData?.sessionName || id}
             </Header>
+            <ScoreBoard
+                correctAnswers={sessionData?.results?.correctAnswers || 0}
+                incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
+                numOfQuestions={sessionData?.results?.numOfQuestions || 0}
+                overallScore={sessionData?.results?.overallScore || 0}
+            />
             <div>
                 {sessionData?.questions ? (
                     sessionData.questions.map((questionData: any, index: number) => (

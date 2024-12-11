@@ -27,6 +27,12 @@ export type SessionData = {
     difficulty: string[];
     numberOfQuestions: number;
     questions?: QuestionProps[];
+    results?: {
+        correctAnswers: number;
+        incorrectAnswers: number;
+        numOfQuestions: number;
+        overallScore: number;
+    }
     sessionId: string;
     sessionName: string;
     topics: string[];

@@ -15,15 +15,15 @@
 
 /* Question Number */
 .questionNumberText {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: #3b3b3b;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 /* Question Text */
 .questionText {
-    font-size: 16px;
+    font-size: 18px;
     color: #4a4a4a;
     margin-bottom: 15px;
     line-height: 1.5;
