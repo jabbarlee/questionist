@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import styles from './index.module.css'
 import Page from "@/components/ui/_wrappers/Page";
 import Header from "@/components/ui/_wrappers/Header";
 import { QuestionResult } from "@/components/ui/PracticeSession/Question";
@@ -8,6 +9,7 @@ import { getResults } from "@/actions/firebase/getDoc";
 import { SessionData } from "@/types";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScoreBoard from "@/components/ui/Results/Session/ScoreBoard";
+import Analysis from "@/components/ui/Results/Session/Analysis";
 
 export default function ResultsPage({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
@@ -33,13 +35,16 @@ export default function ResultsPage({ id }: { id: string }) {
             <Header>
                 Results for session {sessionData?.sessionName || id}
             </Header>
-            <ScoreBoard
-                correctAnswers={sessionData?.results?.correctAnswers || 0}
-                incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
-                numOfQuestions={sessionData?.results?.numOfQuestions || 0}
-                overallScore={sessionData?.results?.overallScore || 0}
-            />
-            <div>
+            <div className={styles.scoreCharts}>
+                <ScoreBoard
+                    correctAnswers={sessionData?.results?.correctAnswers || 0}
+                    incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
+                    numOfQuestions={sessionData?.results?.numOfQuestions || 0}
+                    overallScore={sessionData?.results?.overallScore || 0}
+                />
+                <Analysis/>
+            </div>
+            <div className={styles.questionsContainer}>
                 {sessionData?.questions ? (
                     sessionData.questions.map((questionData: any, index: number) => (
                         <QuestionResult

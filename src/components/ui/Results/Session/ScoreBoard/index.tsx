@@ -20,11 +20,11 @@ export default function ScoreBoard({
             <div className={styles.scoreBoardWrapper}>
                 <div className={styles.statsContainer}>
                     <div className={`${styles.statBox} ${styles.correctStat}`}>
-                        <p className={styles.statLabel}>Correct Answers</p>
+                        <p className={styles.statLabel}>Correct</p>
                         <p className={`${styles.statValue} ${styles.correctLabel}`}>{correctAnswers}</p>
                     </div>
                     <div className={`${styles.statBox} ${styles.incorrectStat}`}>
-                        <p className={styles.statLabel}>Incorrect Answers</p>
+                        <p className={styles.statLabel}>Incorrect</p>
                         <p className={`${styles.statValue} ${styles.incorrectLabel}`}>{incorrectAnswers}</p>
                     </div>
                     <div className={styles.statBox}>
