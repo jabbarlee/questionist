@@ -9,7 +9,6 @@ import { getResults } from "@/actions/firebase/getDoc";
 import { SessionData } from "@/types";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScoreBoard from "@/components/ui/Results/Session/ScoreBoard";
-import Analysis from "@/components/ui/Results/Session/Analysis";
 
 export default function ResultsPage({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
@@ -42,7 +41,6 @@ export default function ResultsPage({ id }: { id: string }) {
                     numOfQuestions={sessionData?.results?.numOfQuestions || 0}
                     overallScore={sessionData?.results?.overallScore || 0}
                 />
-                <Analysis/>
             </div>
             <div className={styles.questionsContainer}>
                 {sessionData?.questions ? (
