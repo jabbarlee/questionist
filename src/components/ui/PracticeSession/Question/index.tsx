@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./index.module.css";
 import { Typography } from "@mui/material";
+import { Header } from './Header'
 
 type Option = {
     id: string;
@@ -22,17 +23,12 @@ export const Question = ({
 }) => {
     return (
         <div className={styles.questionChip}>
-            {/* Question Header */}
-            <div className={styles.questionNumberText}>
-                Question {index + 1}
-            </div>
+            <Header index={index}/>
 
-            {/* Question Text */}
             <div className={styles.questionText}>
                 {questionText}
             </div>
 
-            {/* Options */}
             <div className={styles.questionOptionsWrapper}>
                 {options.map((option) => (
                     <div
@@ -72,12 +68,8 @@ export const QuestionResult = ({
 }) => {
     return (
         <div className={styles.questionChip}>
-            {/* Question Header */}
-            <div className={styles.questionNumberText}>
-                Question {index + 1}
-            </div>
+            <Header index={index}/>
 
-            {/* Question Text */}
             <div className={styles.questionText}>
                 {questionText}
             </div>

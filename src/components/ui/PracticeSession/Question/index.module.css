@@ -1,27 +1,15 @@
-/* Question Chip Container */
 .questionChip {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .questionChip:hover {
-    transform: translateY(-5px); /* Subtle lift effect on hover */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Question Number */
-.questionNumberText {
-    font-size: 20px;
-    font-weight: bold;
-    color: #3b3b3b;
-    margin-bottom: 15px;
-}
-
-/* Question Text */
 .questionText {
     font-size: 18px;
     color: #4a4a4a;
@@ -44,48 +32,55 @@
     padding: 10px 15px;
     border-radius: 8px;
     transition: background-color 0.2s ease, border 0.2s ease;
+    cursor: pointer;
 }
 
-/* Correct Option */
-.correctOption {
-    background-color: #d4edda; /* Light green background */
-    border: 2px solid #28a745; /* Green border */
-    color: #155724; /* Dark green text */
+.optionWrapper.selected {
+    background-color: #e5e5e5;
+}
+
+.optionWrapper.correctOption {
+    background-color: #E4FFF4; /* Light green background */
+    border: 0.5px solid #166534;
 }
 
 /* Incorrect Option */
-.incorrectOption {
+.optionWrapper.incorrectOption {
     background-color: #fdecea; /* Light red background */
-    border: 2px solid #d9534f; /* Red border */
+    border: 0.5px solid #d9534f; /* Red border */
     color: #721c24; /* Dark red text */
 }
 
-/* Radio Indicator */
 .radioIndicator {
     width: 18px;
     height: 18px;
-    border: 2px solid #ccc;
+    border: 2px solid #ccc; /* Default border color */
     border-radius: 50%;
     margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    background-color: transparent; /* Default background */
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* Selected Indicators */
-.radioIndicator.selected {
-    border-color: #28a745; /* Green for correct */
-    background-color: #28a745;
-}
-
-.radioIndicator.incorrect {
-    border-color: #d9534f; /* Red for incorrect */
-    background-color: #d9534f;
-}
-
+/* Style for Correct Option */
 .radioIndicator.correct {
-    border-color: #28a745;
-    background-color: #28a745;
+    border-color: #166534; /* Green border for correct */
+    background-color: #166534; /* Green background */
+}
+
+/* Style for Incorrect Option */
+.radioIndicator.incorrect {
+    border-color: #d9534f; /* Red border for incorrect */
+    background-color: #d9534f; /* Red background */
+}
+
+/* Style for Selected Option */
+.radioIndicator.selected {
+    border-color: #8e8e8e; /* Gray border for selected */
+    background-color: #8e8e8e; /* Gray background */
 }
 
 /* Option Text */
