@@ -1,0 +1,10 @@
+.buttonContainer{
+    margin-top: 40px;
+    display: flex;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import { Typography } from "@mui/material";
 import { Header } from './Header'
 import { merriweather} from "@/data/fonts";
-import { ResultChip } from "@/components/ui/PracticeSession/Question/ResultChip";
+import { ButtonContainer } from '@/components/ui/PracticeSession/Question/ButtonContainer'
 
 type Option = {
     id: string;
@@ -71,7 +71,6 @@ export const QuestionResult = ({
     return (
         <div className={styles.questionChip}>
             <Header index={index}/>
-            <ResultChip result={selectedOption === correctOption}/>
 
             <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
@@ -109,6 +108,8 @@ export const QuestionResult = ({
                     </div>
                 ))}
             </div>
+
+            <ButtonContainer result={selectedOption === correctOption}/>
         </div>
     );
 };
