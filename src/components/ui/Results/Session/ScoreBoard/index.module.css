@@ -6,7 +6,7 @@
     padding: 20px;
     margin-bottom: 20px;
     display: flex;
-    width: 100%;
+    width: 50%;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
@@ -50,14 +50,14 @@
 
 .statLabel {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #4a4a4a;
     margin: 0;
 }
 
 .statValue {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     color: #3b3b3b;
     margin: 5px 0 0;
 }

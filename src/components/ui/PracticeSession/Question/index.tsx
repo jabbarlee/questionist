@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import { Typography } from "@mui/material";
 import { Header } from './Header'
+import { merriweather} from "@/data/fonts";
 
 type Option = {
     id: string;
@@ -25,7 +26,7 @@ export const Question = ({
         <div className={styles.questionChip}>
             <Header index={index}/>
 
-            <div className={styles.questionText}>
+            <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
             </div>
 
@@ -70,7 +71,7 @@ export const QuestionResult = ({
         <div className={styles.questionChip}>
             <Header index={index}/>
 
-            <div className={styles.questionText}>
+            <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
             </div>
 
