@@ -3,7 +3,6 @@ import styles from "./index.module.css";
 import { Typography } from "@mui/material";
 import { Header } from './Header'
 import { merriweather} from "@/data/fonts";
-import { ButtonContainer } from '@/components/ui/PracticeSession/Question/ButtonContainer'
 
 type Option = {
     id: string;
@@ -108,8 +107,6 @@ export const QuestionResult = ({
                     </div>
                 ))}
             </div>
-
-            <ButtonContainer result={selectedOption === correctOption}/>
         </div>
     );
 };
