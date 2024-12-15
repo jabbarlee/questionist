@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./index.module.css";
+import { ScoreChip } from "./ScoreChip";
 
 export default function ScoreBoard({
     correctAnswers,
@@ -19,18 +20,9 @@ export default function ScoreBoard({
             <h2 className={styles.title}>Stats</h2>
             <div className={styles.scoreBoardWrapper}>
                 <div className={styles.statsContainer}>
-                    <div className={`${styles.statBox} ${styles.correctStat}`}>
-                        <p className={styles.statLabel}>Correct</p>
-                        <p className={`${styles.statValue} ${styles.correctLabel}`}>{correctAnswers}</p>
-                    </div>
-                    <div className={`${styles.statBox} ${styles.incorrectStat}`}>
-                        <p className={styles.statLabel}>Incorrect</p>
-                        <p className={`${styles.statValue} ${styles.incorrectLabel}`}>{incorrectAnswers}</p>
-                    </div>
-                    <div className={styles.statBox}>
-                        <p className={styles.statLabel}>Total Questions</p>
-                        <p className={styles.statValue}>{numOfQuestions}</p>
-                    </div>
+                    <ScoreChip success>{correctAnswers}</ScoreChip>
+                    <ScoreChip error>{incorrectAnswers}</ScoreChip>
+
                     <div className={styles.statBox}>
                         <p className={styles.statLabel}>Timer</p>
                         <p className={styles.statValue}>{timerStat || '21:20'}</p>

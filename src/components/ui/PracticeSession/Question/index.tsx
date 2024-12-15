@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import { Typography } from "@mui/material";
 import { Header } from './Header'
 import { merriweather} from "@/data/fonts";
+import { ResultChip } from "@/components/ui/PracticeSession/Question/ResultChip";
 
 type Option = {
     id: string;
@@ -70,12 +71,12 @@ export const QuestionResult = ({
     return (
         <div className={styles.questionChip}>
             <Header index={index}/>
+            <ResultChip result={selectedOption === correctOption}/>
 
             <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
             </div>
 
-            {/* Options */}
             <div className={styles.questionOptionsWrapper}>
                 {options.map((option) => (
                     <div
@@ -94,7 +95,7 @@ export const QuestionResult = ({
                         <div
                             className={`${styles.radioIndicator} ${
                                 selectedOption === option.text && correctOption === option.text
-                                    ? styles.selected
+                                    ? styles.correct
                                     : selectedOption === option.text
                                         ? styles.incorrect
                                         : correctOption === option.text
