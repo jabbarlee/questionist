@@ -14,11 +14,6 @@ import { SelectedOption } from "@/types";
 import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
 import { useRouter } from "next/navigation";
 
-interface SelectedOption {
-    questionText: string;
-    selectedOptionText: string;
-}
-
 export default function Index({ sessionId }: { sessionId: string }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
@@ -53,7 +48,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const handleOptionChange = (questionIndex: number, optionId: string, selectedOptionText: string) => {
         setSelectedOptions((prev) => {
             const updatedOptions = [...prev];
-            const questionText = questions[questionIndex].questionText;
+            const questionText = questions[questionIndex].question;
 
             // Update or insert the selected option for this question
             const existingIndex = updatedOptions.findIndex((opt) => opt.questionText === questionText);
@@ -173,11 +168,11 @@ export default function Index({ sessionId }: { sessionId: string }) {
                         <Question
                             key={currentPage - 1}
                             index={currentPage - 1}
-                            questionText={questions[currentPage - 1]?.questionText}
+                            questionText={questions[currentPage - 1]?.question}
                             options={questions[currentPage - 1]?.choices}
                             selectedOption={
                                 selectedOptions.find(
-                                    (opt) => opt.questionText === questions[currentPage - 1].questionText
+                                    (opt) => opt.questionText === questions[currentPage - 1].question
                                 )?.selectedOptionText || null
                             }
                             onOptionChange={(questionIndex, optionId) => {
