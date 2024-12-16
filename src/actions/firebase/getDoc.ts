@@ -47,13 +47,11 @@ export const getResults = async (sessionId: string) => {
                 }
             });
 
-            //TODO: add correctQuestions(num), overallScore (num), numberOfQuestions(num)
             const { success, message } = await updateResults(sessionId, results)
 
             if(success){
                 const sessionData = sessionSnap.data() as SessionData;
 
-                //TODO: only send sessionData
                 return { sessionData: sessionData, success: true };
             }else{
                 return { sessionData: null, success: true}
