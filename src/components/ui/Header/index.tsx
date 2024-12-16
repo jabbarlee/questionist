@@ -11,14 +11,14 @@ const Header = () => {
         <p className={styles.subtitle}>Ask your questions, in a style.</p>
         <div className={styles.buttonGroup}>
           <Button 
-            redirect="/explore" 
+            // redirect="/explore"
             buttonType="primary" 
           >
             How it works
           </Button>
 
           <Button 
-            redirect="/explore" 
+            // redirect="/explore"
             buttonType="secondary" 
           >
             Explore

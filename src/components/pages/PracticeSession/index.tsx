@@ -7,16 +7,48 @@ import { Pagination, Button } from "antd";
 import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
 import Main from '@/components/ui/_wrappers/Main';
 import Footer from '@/components/ui/_wrappers/Footer';
-import Question from '@/components/ui/PracticeSession/Question';
+import {Question} from '@/components/ui/PracticeSession/Question';
 import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
 import { SessionData, QuestionProps } from "@/types";
 import { SelectedOption } from "@/types";
+import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
+import { useRouter } from "next/navigation";
+
+interface SelectedOption {
+    questionText: string;
+    selectedOptionText: string;
+}
 
 export default function Index({ sessionId }: { sessionId: string }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
-    const [questions, setQuestions] = useState<QuestionProps[]>([]);
+    const [questions, setQuestions] = useState<QuestionProps[]>([
+        {
+            question: 'Another question',
+            choices: [
+                { id: 'a', text: 'a + b' },
+                { id: 'b', text: '2a + b + 3c' },
+                { id: 'c', text: '2b + 1' },
+                { id: 'd', text: '4a + c' },
+            ],
+            correctAnswer: 'a + b'
+        },
+        {
+            question: 'Another question',
+            choices: [
+                { id: 'a', text: 'a + b' },
+                { id: 'b', text: '2a + b + 3c' },
+                { id: 'c', text: '2b + 1' },
+                { id: 'd', text: '4a + c' },
+            ],
+            correctAnswer: 'a + b'
+        }
+    ]);
     const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [message, setMessage] = useState<string | null>(null);
+
+    const router = useRouter()
 
     const handleOptionChange = (questionIndex: number, optionId: string, selectedOptionText: string) => {
         setSelectedOptions((prev) => {
@@ -60,6 +92,11 @@ export default function Index({ sessionId }: { sessionId: string }) {
         if (!sessionData) return;
 
         const fetchQuestions = async () => {
+
+            if(sessionData?.questions?.length === 0) {
+                setQuestions(sessionData?.questions);
+            }
+
             try {
                 const response = await fetch('/api/questions/generate', {
                     method: 'POST',
@@ -88,11 +125,23 @@ export default function Index({ sessionId }: { sessionId: string }) {
         fetchQuestions();
     }, [sessionData]);
 
-    const handleFinish = () => {
-        console.log('Questions: ', questions);
-        console.log('Selected options: ', selectedOptions);
+    const handleNavigate = (url: string) => {
+        router.push(url);
     };
 
+    const handleSubmit = async () => {
+        await handleSessionSubmit({
+            sessionId,
+            questions,
+            selectedChoices: selectedOptions,
+            setError,
+            setMessage,
+            handleNavigate,
+        });
+
+        console.log(selectedOptions)
+        console.log(questions)
+    };
 
     return (
         <div className={styles.practicePageWrapper}>
@@ -100,12 +149,19 @@ export default function Index({ sessionId }: { sessionId: string }) {
                 <div>
                     <Typography className={styles.headerText}>{sessionData?.sessionName}</Typography>
                 </div>
+                <div>
+                    <p>TIMER PLACEHOLDER</p>
+                </div>
+                <div>
+                    {error && <div className={styles.errorText}>{error}</div>}
+                    {message && <div className={styles.successText}>{message}</div>}
+                </div>
                 <div className={styles.buttonsContainer}>
                     <Button variant={'outlined'} color={'default'}>
                         <PauseOutlined />
                         Pause
                     </Button>
-                    <Button variant={'solid'} color={'primary'} onClick={handleFinish}>
+                    <Button variant={'solid'} color={'primary'} onClick={handleSubmit}>
                         <CheckOutlined />
                         Finish
                     </Button>
@@ -118,7 +174,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
                             key={currentPage - 1}
                             index={currentPage - 1}
                             questionText={questions[currentPage - 1]?.questionText}
-                            options={questions[currentPage - 1]?.options}
+                            options={questions[currentPage - 1]?.choices}
                             selectedOption={
                                 selectedOptions.find(
                                     (opt) => opt.questionText === questions[currentPage - 1].questionText
@@ -126,11 +182,10 @@ export default function Index({ sessionId }: { sessionId: string }) {
                             }
                             onOptionChange={(questionIndex, optionId) => {
                                 const selectedOptionText =
-                                    questions[questionIndex].options.find((opt) => opt.id === optionId)?.text || '';
+                                    questions[questionIndex]?.choices?.find((opt) => opt.id === optionId)?.text || '';
                                 handleOptionChange(questionIndex, optionId, selectedOptionText);
                             }}
                         />
-
                     ) : (
                         <div className={styles.loadingText}>Loading...</div>
                     )}

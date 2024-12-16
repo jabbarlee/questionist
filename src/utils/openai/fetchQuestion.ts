@@ -22,9 +22,9 @@ export const fetchGeneratedQuestions = async ({
 
             // Format the question object
             const formattedQuestion = {
-                questionText: question,
+                question: question,
                 correctAnswer,
-                options: type === "multiple-choice"
+                choices: type === "multiple-choice"
                     ? choices.map((choice: string, index: number) => ({
                         id: String.fromCharCode(97 + index), // 'a', 'b', 'c', 'd'
                         text: choice,

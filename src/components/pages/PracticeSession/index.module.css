@@ -48,3 +48,16 @@
     box-sizing: border-box;
 }
 
+.errorText{
+    color: red;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.successText{
+    color: green;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 20px;
+}

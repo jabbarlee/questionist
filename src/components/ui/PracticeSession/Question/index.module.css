@@ -1,59 +1,90 @@
+.questionChip {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
 
-.questionNumberText {
-    font-size: 24px;
-    font-weight: 600;
-    /*margin: 5px 0;*/
-    color: #1f1f1f;
+.questionChip:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .questionText {
-    font-size: 18px;
+    font-size: 22px;
     color: #1f1f1f;
-    margin: 20px 0;
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
+/* Options Wrapper */
 .questionOptionsWrapper {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
-.questionsWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 70px;
-}
-
+/* Option Container */
 .optionWrapper {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 5px 0;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, border 0.2s ease;
+    cursor: pointer;
 }
 
-.optionFirst {
-    border-top: 1px solid #d6d6d6;
-    border-bottom: 1px solid #d6d6d6;
+.optionWrapper.selectedOption {
+    border: 0.5px solid #1f1f1f;
 }
 
-.optionNotFirst {
-    border-bottom: 1px solid #d6d6d6;
+.optionWrapper.correctOption {
+    background-color: #E4FFF4; /* Light green background */
+    border: 0.5px solid #166534;
 }
 
-.radioOptionWrapper {
+/* Incorrect Option */
+.optionWrapper.incorrectOption {
+    background-color: #fdecea; /* Light red background */
+    border: 0.5px solid #d9534f; /* Red border */
+    color: #721c24; /* Dark red text */
+}
+
+.radioIndicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc; /* Default border color */
+    border-radius: 50%;
+    margin-right: 10px;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    margin-left: 10px;
-}
-
-.option {
-    font-size: 18px;
-    color: #1f1f1f;
-    padding: 15px 5px;
-}
-
-.clearIcon{
+    justify-content: center;
     cursor: pointer;
-    margin-right: 10px;
+    background-color: transparent; /* Default background */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Style for Correct Option */
+.radioIndicator.correct {
+    border-color: #166534; /* Green border for correct */
+    background-color: #166534; /* Green background */
+}
+
+/* Style for Incorrect Option */
+.radioIndicator.incorrect {
+    border-color: #d9534f; /* Red border for incorrect */
+    background-color: #d9534f; /* Red background */
+}
+
+/* Style for Selected Option */
+.radioIndicator.selected {
+    border-color: #8e8e8e; /* Gray border for selected */
+    background-color: #8e8e8e; /* Gray background */
+}
+
+/* Option Text */
+.optionText {
+    font-size: 16px;
+    color: #3b3b3b;
 }

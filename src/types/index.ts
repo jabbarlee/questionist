@@ -22,27 +22,28 @@ interface Option {
     text: string;
 }
 
-export interface QuestionProps {
-    questionText: string;
-    options: Option[];
-    correctAnswer: string;
-}
-
 export type SessionData = {
     createdAt: string;
     difficulty: string[];
     numberOfQuestions: number;
+    questions?: QuestionProps[];
+    results?: {
+        correctAnswers: number;
+        incorrectAnswers: number;
+        numOfQuestions: number;
+        overallScore: number;
+    }
     sessionId: string;
     sessionName: string;
     topics: string[];
 };
 
-export type Question = {
+export type QuestionProps = {
     question: string;
-    choices: string[];
+    choices: Option[];
     correctAnswer: string;
-    type: string;
-    selectedChoice: string;
+    type?: string;
+    selectedChoice?: string;
 }
 
 export interface SelectedOption {
