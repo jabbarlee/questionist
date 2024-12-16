@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
             return NextResponse.json({ error: 'No session data found' }, { status: 404 });
         }
 
-        return NextResponse.json(sessionData);
+        return NextResponse.json(sessionData, { status: 200 });
     }catch(error){
         return NextResponse.json({ error: error }, { status: 500 });
     }
