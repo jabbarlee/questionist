@@ -17,28 +17,7 @@ import { useRouter } from "next/navigation";
 export default function Index({ sessionId }: { sessionId: string }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
-    const [questions, setQuestions] = useState<QuestionProps[]>([
-        {
-            question: 'Another question',
-            choices: [
-                { id: 'a', text: 'a + b' },
-                { id: 'b', text: '2a + b + 3c' },
-                { id: 'c', text: '2b + 1' },
-                { id: 'd', text: '4a + c' },
-            ],
-            correctAnswer: 'a + b'
-        },
-        {
-            question: 'Another question',
-            choices: [
-                { id: 'a', text: 'a + b' },
-                { id: 'b', text: '2a + b + 3c' },
-                { id: 'c', text: '2b + 1' },
-                { id: 'd', text: '4a + c' },
-            ],
-            correctAnswer: 'a + b'
-        }
-    ]);
+    const [questions, setQuestions] = useState<QuestionProps[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
@@ -88,8 +67,8 @@ export default function Index({ sessionId }: { sessionId: string }) {
 
         const fetchQuestions = async () => {
 
-            if(sessionData?.questions?.length === 0) {
-                setQuestions(sessionData?.questions);
+            if (sessionData?.questions) {
+                setQuestions(sessionData.questions);
             }
 
             try {
