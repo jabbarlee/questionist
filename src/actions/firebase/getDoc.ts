@@ -12,9 +12,23 @@ export const fetchPracticeSessionConfig = async (sessionId: string): Promise<Ses
         const sessionSnap = await getDoc(sessionRef);
 
         if (sessionSnap.exists()) {
-            const sessionData = sessionSnap.data() as SessionData; // Cast to SessionData type
-            console.log({ sessionData });
-            return sessionData;
+            const sessionData = sessionSnap.data();
+
+            // Validate the structure of sessionData
+            if (
+                sessionData &&
+                typeof sessionData.createdAt === "string" &&
+                Array.isArray(sessionData.difficulty) &&
+                typeof sessionData.numberOfQuestions === "number" &&
+                typeof sessionData.sessionId === "string" &&
+                typeof sessionData.sessionName === "string" &&
+                Array.isArray(sessionData.topics)
+            ) {
+                return sessionData as SessionData;
+            } else {
+                console.error("Session data does not match expected structure.");
+                return null;
+            }
         } else {
             console.error('No such document!');
             return null;
@@ -23,7 +37,7 @@ export const fetchPracticeSessionConfig = async (sessionId: string): Promise<Ses
         console.error("Error fetching practice session config: ", error);
         return null;
     }
-}
+};
 
 export const getResults = async (sessionId: string) => {
     const response = await fetch('/api/firebase/get/user');

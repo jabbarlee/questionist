@@ -10,6 +10,8 @@ export async function handleSessionSubmit({
     handleNavigate
 } : {
     sessionId: string,
+    questions: Question[],
+    selectedChoices: SelectedOption[],
     questions: QuestionProps[],
     selectedChoices: SelectedOption[],
     setError: React.Dispatch<React.SetStateAction<string | null>>,

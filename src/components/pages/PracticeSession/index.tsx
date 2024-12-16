@@ -10,6 +10,7 @@ import Footer from '@/components/ui/_wrappers/Footer';
 import {Question} from '@/components/ui/PracticeSession/Question';
 import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
 import { SessionData, QuestionProps } from "@/types";
+import { SelectedOption } from "@/types";
 import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
 import { useRouter } from "next/navigation";
 
@@ -52,7 +53,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const handleOptionChange = (questionIndex: number, optionId: string, selectedOptionText: string) => {
         setSelectedOptions((prev) => {
             const updatedOptions = [...prev];
-            const questionText = questions[questionIndex].question;
+            const questionText = questions[questionIndex].questionText;
 
             // Update or insert the selected option for this question
             const existingIndex = updatedOptions.findIndex((opt) => opt.questionText === questionText);
@@ -172,11 +173,11 @@ export default function Index({ sessionId }: { sessionId: string }) {
                         <Question
                             key={currentPage - 1}
                             index={currentPage - 1}
-                            questionText={questions[currentPage - 1]?.question || "Question not available"}
-                            options={questions[currentPage - 1]?.choices || []} // Fallback to an empty array
+                            questionText={questions[currentPage - 1]?.questionText}
+                            options={questions[currentPage - 1]?.choices}
                             selectedOption={
                                 selectedOptions.find(
-                                    (opt) => opt.questionText === questions[currentPage - 1]?.question
+                                    (opt) => opt.questionText === questions[currentPage - 1].questionText
                                 )?.selectedOptionText || null
                             }
                             onOptionChange={(questionIndex, optionId) => {
