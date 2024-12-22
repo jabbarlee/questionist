@@ -1,10 +1,8 @@
 .scoreCharts{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    padding: 5px;
+    width: 100%;
 }
 
 .questionsContainer{
-    border-top: 1px solid #e6e6e6;
-    padding-top: 20px;
+    padding: 5px;
 }

@@ -1,135 +1,40 @@
 /* ScoreBoard Wrapper */
 .scoreBoard {
     background-color: #fbfbfb;
-    border-radius: 12px;
     border: 1px solid #e6e6e6;
+    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
     display: flex;
-    width: 50%;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
-.scoreBoardWrapper {
+.chipWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.chipContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
     width: 100%;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #3b3b3b;
-    margin: 0;
-}
-
-.statsContainer {
+.passedTextContainer{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    width: 50%;
-}
-
-.statBox {
-    background-color: #efefef;
-    padding: 15px 20px;
-    border-radius: 8px;
-    text-align: center;
-    display: flex;
-    align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    gap: 20px;
-}
-
-.statLabel {
-    font-size: 16px;
-    font-weight: 500;
-    color: #4a4a4a;
-    margin: 0;
-}
-
-.statValue {
-    font-size: 18px;
-    font-weight: 500;
-    color: #3b3b3b;
-    margin: 5px 0 0;
-}
-
-.overallScoreWrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    height: fit-content;
-    width: 50%;
-}
-
-.arcWrapper {
-    position: relative;
     width: 100%;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.arc {
-    transform: rotate(-90deg); /* Rotates arc upwards */
-    width: 100%;
-    height: 100%;
-}
-
-.arcBackground {
-    fill: none;
-    stroke: #e6e6e6;
-    stroke-width: 2.5;
-}
-
-.arcProgress {
-    fill: none;
-    stroke: #28a745; /* Green fill */
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-dasharray: 0 100; /* Dynamically adjusted */
-    transition: stroke-dasharray 0.5s ease-in-out;
-}
-
-.arcText {
-    position: absolute;
-    font-size: 24px;
-    font-weight: 600;
-    color: #3b3b3b;
-}
-
-.correctLabel{
-    color: #28a745;
-}
-
-.correctStat{
-    border: 0.3px solid #28a745;
-    background-color: #f0fff4;
-}
-
-.incorrectLabel{
-    color: #dc3545;
-}
-
-.incorrectStat{
-    border: 0.3px solid #dc3545;
-    background-color: #fff0f3;
-}
-
-.overallScoreLabel{
-    font-size: 18px;
-    font-weight: 600;
-    color: #4a4a4a;
-    margin: 0;
+.passedText{
+    color: #141414;
+    font-size: 20px;
+    font-weight: 500;
 }

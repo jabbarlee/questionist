@@ -6,10 +6,6 @@
     margin-bottom: 20px;
 }
 
-.questionChip:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
 .questionText {
     font-size: 22px;
     color: #1f1f1f;

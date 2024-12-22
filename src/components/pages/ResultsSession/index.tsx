@@ -9,6 +9,9 @@ import { getResults } from "@/actions/firebase/getDoc";
 import { SessionData } from "@/types";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScoreBoard from "@/components/ui/Results/Session/ScoreBoard";
+import Main from "@/components/ui/_wrappers/Main";
+import {Typography} from "@mui/material";
+import { Button } from "antd"
 
 export default function ResultsPage({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
@@ -34,35 +37,43 @@ export default function ResultsPage({ id }: { id: string }) {
             <Header>
                 Results for session {sessionData?.sessionName || id}
             </Header>
-            <div className={styles.scoreCharts}>
-                <ScoreBoard
-                    correctAnswers={sessionData?.results?.correctAnswers || 0}
-                    incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
-                    numOfQuestions={sessionData?.results?.numOfQuestions || 0}
-                    overallScore={sessionData?.results?.overallScore || 0}
-                />
-            </div>
-            <div className={styles.questionsContainer}>
-                {sessionData?.questions ? (
-                    sessionData.questions.map((questionData: any, index: number) => (
-                        <QuestionResult
-                            key={index}
-                            index={index}
-                            questionText={questionData.questionText}
-                            options={questionData.choices.map((choice: string, idx: number) => ({
-                                id: `option-${idx}`,
-                                text: choice,
-                            }))}
-                            selectedOption={questionData.selectedChoice}
-                            correctOption={questionData.correctAnswer}
+            <Main marginLess={true}>
+                <div className={styles.scoreCharts}>
+                    {sessionData?.results?.overallScore ? (
+                        <ScoreBoard
+                            correctAnswers={sessionData?.results?.correctAnswers || 0}
+                            incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
+                            numOfQuestions={sessionData?.results?.numOfQuestions || 0}
+                            overallScore={sessionData?.results?.overallScore || 0}
                         />
-                    ))
-                ) : (
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-                        <CircularProgress />
-                    </div>
-                )}
-            </div>
+                    ) : (
+                        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+                            <CircularProgress/>
+                        </div>
+                    )}
+                </div>
+                <div className={styles.questionsContainer}>
+                    {sessionData?.questions ? (
+                        sessionData.questions.map((questionData: any, index: number) => (
+                            <QuestionResult
+                                key={index}
+                                index={index}
+                                questionText={questionData.questionText}
+                                options={questionData.choices.map((choice: string, idx: number) => ({
+                                    id: `option-${idx}`,
+                                    text: choice,
+                                }))}
+                                selectedOption={questionData.selectedChoice}
+                                correctOption={questionData.correctAnswer}
+                            />
+                        ))
+                    ) : (
+                        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+                            <CircularProgress/>
+                        </div>
+                    )}
+                </div>
+            </Main>
         </Page>
     );
 }

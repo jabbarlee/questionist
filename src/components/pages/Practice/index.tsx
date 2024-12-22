@@ -5,10 +5,11 @@ import WelcomeBanner from '@/components/ui/Practice/WelcomeBanner'
 import SloganBanner from '@/components/ui/Practice/SloganBanner'
 import CustomSet from '@/components/ui/Practice/CustomSet'
 import Header from "@/components/ui/_wrappers/Header";
+import Page from "@/components/ui/_wrappers/Page";
 
 export default function index() {
     return (
-        <div className={styles.page}>
+        <Page>
             <Header>
                 Practice makes it perfect
             </Header>
@@ -17,6 +18,6 @@ export default function index() {
                 <CustomSet/>
                 <SloganBanner/>
             </Main>
-        </div>
+        </Page>
     )
 }

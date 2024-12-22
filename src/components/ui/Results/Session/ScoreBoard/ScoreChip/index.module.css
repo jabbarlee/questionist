@@ -1,6 +1,6 @@
 .statBox {
     background-color: #efefef;
-    padding: 10px 15px;
+    padding: 6px 15px;
     border-radius: 8px;
     text-align: center;
     display: flex;
@@ -35,4 +35,44 @@
 .incorrectStat{
     border: 0.3px solid #dc3545;
     background-color: #fff0f3;
+}
+
+.progressWrapper {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.progressContainer {
+    width: 100px;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    width: 100px;
+    transition: width 0.3s ease;
+}
+
+.greenProgress {
+    background-color: #28a745;
+}
+
+.purpleProgress {
+    background-color: #6f42c1;
+}
+
+.redProgress {
+    background-color: #dc3545;
+}
+
+.progress {
+    margin-top: 5px;
+    font-size: 18px;
+    color: #4a4a4a;
 }
