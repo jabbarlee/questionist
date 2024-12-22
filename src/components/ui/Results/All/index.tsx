@@ -10,9 +10,10 @@ import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
 interface PracticeSessionProps {
     session: SessionData;
     refreshSessions: () => Promise<void>;
+    showModal: (message: string) => void;
 }
 
-const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessions }) => {
+const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessions, showModal }) => {
     const { createdAt, sessionName, topics, results, sessionId } = session;
 
     // Format the date
@@ -35,7 +36,9 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessi
     const handleDelete = async () => {
         const { success } = await deletePracticeSession(sessionId);
         if (success) {
-            // Call the refresh function to update the list
+            // Show success modal
+            showModal(`The session "${sessionName}" is no longer available.`);
+            // Refresh the session list
             await refreshSessions();
         }
     };
@@ -44,27 +47,22 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessi
         <div className={styles.card}>
             <div className={styles.header}>
                 <div className={styles.headerTextContainer}>
-                    <Link href={`/results/${sessionId}`} style={{textDecoration: 'none'}}>
+                    <Link href={`/results/${sessionId}`} style={{ textDecoration: 'none' }}>
                         <p className={styles.sessionName}>
-                            <div style={{display: "flex", gap: "8px"}}>
+                            <div style={{ display: "flex", gap: "8px" }}>
                                 {sessionName}
-                                <RightOutlined style={{fontSize: '16px'}}/>
+                                <RightOutlined style={{ fontSize: '16px' }} />
                             </div>
                         </p>
                     </Link>
-                    <p className={styles.sessionId}>{sessionId}</p>
                     <p className={styles.date}>{formattedDate}</p>
                 </div>
-                <div style={{display: "flex", gap: "8px" }}>
-                    <Button
-                        variant={'outlined'}
-                        color={'danger'}
-                        onClick={handleDelete}
-                    >
+                <div style={{ display: "flex", gap: "8px" }}>
+                    <Button variant="outlined" danger onClick={handleDelete}>
                         Delete
                     </Button>
-                    <Button variant={'outlined'} color={'default'}>
-                        <StarOutlined style={{ fontSize: '16px' }}/>
+                    <Button>
+                        <StarOutlined style={{ fontSize: '16px' }} />
                     </Button>
                 </div>
             </div>
