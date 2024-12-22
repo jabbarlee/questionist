@@ -9,11 +9,13 @@ import SessionsWrapper from "@/components/ui/_wrappers/SessionsWrapper";
 import Main from "@/components/ui/_wrappers/Main";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Modal, Button, Result } from "antd";
+import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
 
 export default function Index() {
     const [sessions, setSessions] = useState<object[] | null>(null);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
+    const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
 
     const fetchResults = async () => {
         try {
@@ -32,13 +34,14 @@ export default function Index() {
         await fetchResults();
     };
 
-    const showModal = (message: string) => {
-        setModalMessage(message);
+    const showModal = (sessionId: string) => {
+        setCurrentSessionId(sessionId); // Set the sessionId to delete
         setModalVisible(true);
     };
 
     const handleModalClose = () => {
         setModalVisible(false);
+        setCurrentSessionId(null); // Clear the sessionId
     };
 
     return (
@@ -71,9 +74,33 @@ export default function Index() {
                 centered
             >
                 <Result
-                    status="success"
-                    title="Deleted session successfully!"
-                    subTitle={modalMessage}
+                    status="warning"
+                    title="Are you sure you want to delete this session?"
+                    subTitle="This action cannot be undone."
+                    extra={[
+                        <Button
+                            key="cancel"
+                            onClick={handleModalClose}
+                        >
+                            Cancel
+                        </Button>,
+                        <Button
+                            key="delete"
+                            variant="outlined"
+                            color={"danger"}
+                            onClick={async () => {
+                                if (currentSessionId) {
+                                    const { success } = await deletePracticeSession(currentSessionId);
+                                    if (success) {
+                                        await refreshSessions();
+                                        handleModalClose();
+                                    }
+                                }
+                            }}
+                        >
+                            Delete
+                        </Button>,
+                    ]}
                 />
             </Modal>
         </Page>

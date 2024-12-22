@@ -33,16 +33,6 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessi
                 ? styles.redProgress
                 : styles.purpleProgress;
 
-    const handleDelete = async () => {
-        const { success } = await deletePracticeSession(sessionId);
-        if (success) {
-            // Show success modal
-            showModal(`The session "${sessionName}" is no longer available.`);
-            // Refresh the session list
-            await refreshSessions();
-        }
-    };
-
     return (
         <div className={styles.card}>
             <div className={styles.header}>
@@ -58,7 +48,7 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessi
                     <p className={styles.date}>{formattedDate}</p>
                 </div>
                 <div style={{ display: "flex", gap: "8px" }}>
-                    <Button variant="outlined" danger onClick={handleDelete}>
+                    <Button variant="outlined" danger onClick={() => showModal(sessionId)}>
                         Delete
                     </Button>
                     <Button>
