@@ -4,10 +4,12 @@ import styles from './index.module.css';
 import { SessionData } from '@/types';
 import Chip from "@/components/ui/Chip";
 import { Button } from "antd";
+import { RightOutlined } from "@ant-design/icons";
 
 interface PracticeSessionProps {
     session: SessionData;
 }
+
 const PracticeSession: React.FC<PracticeSessionProps> = ({ session }) => {
     const { createdAt, sessionName, topics, results, sessionId } = session;
 
@@ -33,7 +35,12 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session }) => {
             <div className={styles.header}>
                 <div className={styles.headerTextContainer}>
                     <Link href={`/results/${sessionId}`} style={{ textDecoration: 'none' }}>
-                        <p className={styles.sessionName}>{sessionName}</p>
+                        <p className={styles.sessionName}>
+                            <div style={{ display: "flex", gap: "8px" }}>
+                                {sessionName}
+                                <RightOutlined style={{ fontSize: '16px' }}/>
+                            </div>
+                        </p>
                     </Link>
                     <p className={styles.sessionId}>{sessionId}</p>
                 </div>

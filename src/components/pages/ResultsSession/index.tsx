@@ -35,7 +35,7 @@ export default function ResultsPage({ id }: { id: string }) {
     return (
         <Page>
             <Header>
-                Results for session {sessionData?.sessionName || id}
+                Results - {sessionData?.sessionName || id}
             </Header>
             <Main marginLess={true}>
                 <div className={styles.scoreCharts}>
