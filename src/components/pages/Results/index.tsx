@@ -12,19 +12,23 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function index() {
     const [sessions, setSessions] = useState<object[] | null>(null);
 
+    const fetchResults = async () => {
+        try {
+            const allSessions = await getAllResults();
+
+            setSessions(allSessions);
+        } catch (error) {
+            console.error("Error fetching results:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchResults = async () => {
-            try {
-                const allSessions = await getAllResults();
-
-                setSessions(allSessions);
-            } catch (error) {
-                console.error("Error fetching results:", error);
-            }
-        };
-
         fetchResults();
     }, []);
+
+    const refreshSessions = async () => {
+        await fetchResults();
+    };
 
     console.log(sessions);
 
@@ -35,7 +39,7 @@ export default function index() {
                 {sessions ? (
                     <SessionsWrapper>
                         {sessions.map((session: any) => (
-                            <PracticeSession session={session} />
+                            <PracticeSession session={session}  refreshSessions={refreshSessions}/>
                         ))}
                     </SessionsWrapper>
                 ) : (

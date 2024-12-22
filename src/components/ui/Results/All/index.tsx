@@ -4,13 +4,15 @@ import styles from './index.module.css';
 import { SessionData } from '@/types';
 import Chip from "@/components/ui/Chip";
 import { Button } from "antd";
-import { RightOutlined } from "@ant-design/icons";
+import { RightOutlined, StarOutlined } from "@ant-design/icons";
+import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
 
 interface PracticeSessionProps {
     session: SessionData;
+    refreshSessions: () => Promise<void>;
 }
 
-const PracticeSession: React.FC<PracticeSessionProps> = ({ session }) => {
+const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessions }) => {
     const { createdAt, sessionName, topics, results, sessionId } = session;
 
     // Format the date
@@ -30,28 +32,48 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session }) => {
                 ? styles.redProgress
                 : styles.purpleProgress;
 
+    const handleDelete = async () => {
+        const { success } = await deletePracticeSession(sessionId);
+        if (success) {
+            // Call the refresh function to update the list
+            await refreshSessions();
+        }
+    };
+
     return (
         <div className={styles.card}>
             <div className={styles.header}>
                 <div className={styles.headerTextContainer}>
-                    <Link href={`/results/${sessionId}`} style={{ textDecoration: 'none' }}>
+                    <Link href={`/results/${sessionId}`} style={{textDecoration: 'none'}}>
                         <p className={styles.sessionName}>
-                            <div style={{ display: "flex", gap: "8px" }}>
+                            <div style={{display: "flex", gap: "8px"}}>
                                 {sessionName}
-                                <RightOutlined style={{ fontSize: '16px' }}/>
+                                <RightOutlined style={{fontSize: '16px'}}/>
                             </div>
                         </p>
                     </Link>
                     <p className={styles.sessionId}>{sessionId}</p>
+                    <p className={styles.date}>{formattedDate}</p>
                 </div>
-                <Button variant={'outlined'} color={'danger'}>
-                    Delete
-                </Button>
+                <div style={{display: "flex", gap: "8px" }}>
+                    <Button
+                        variant={'outlined'}
+                        color={'danger'}
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </Button>
+                    <Button variant={'outlined'} color={'default'}>
+                        <StarOutlined style={{ fontSize: '16px' }}/>
+                    </Button>
+                </div>
             </div>
-            <p className={styles.date}>{formattedDate}</p>
             {results && (
                 <div className={styles.progressBarContainer}>
-                    <div className={`${styles.progressBar} ${progressColor}`} style={{width: `${results?.overallScore}%`}}/>
+                    <div
+                        className={`${styles.progressBar} ${progressColor}`}
+                        style={{ width: `${results?.overallScore}%` }}
+                    />
                 </div>
             )}
             {results && <p className={styles.score}>{results.overallScore}/100</p>}
