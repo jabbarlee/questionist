@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./index.module.css";
 import { Typography } from "@mui/material";
-import { Pagination, Button } from "antd";
+import {Pagination, Button, Alert} from "antd";
 import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
 import Main from '@/components/ui/_wrappers/Main';
 import Footer from '@/components/ui/_wrappers/Footer';
@@ -19,6 +19,8 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
     const [questions, setQuestions] = useState<QuestionProps[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([]);
+    const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
+    const [alertType, setAlertType] = useState<"error" | "info" | "success" | "warning" | undefined>('info');
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
@@ -104,31 +106,47 @@ export default function Index({ sessionId }: { sessionId: string }) {
     };
 
     const handleSubmit = async () => {
-        await handleSessionSubmit({
+        const { success } = await handleSessionSubmit({
             sessionId,
             questions,
             selectedChoices: selectedOptions,
-            setError,
-            setMessage,
-            handleNavigate,
         });
 
-        console.log(selectedOptions)
-        console.log(questions)
+        if (success) {
+            setSuccessAlertVisible(true);
+            setAlertType('success');
+            setMessage('Session submitted successfully!');
+
+            router.push("/results/" + sessionId);
+        } else {
+            setSuccessAlertVisible(true);
+            setAlertType('error');
+            setMessage('Error submitting session');
+        }
     };
 
     return (
         <div className={styles.practicePageWrapper}>
+            {successAlertVisible && (
+                <Alert
+                    message={message}
+                    type={alertType}
+                    banner
+                    showIcon
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        right: "20px",
+                        zIndex: 1000,
+                    }}
+                />
+            )}
             <div className={styles.header}>
                 <div>
                     <Typography className={styles.headerText}>{sessionData?.sessionName}</Typography>
                 </div>
                 <div>
                     <p>TIMER PLACEHOLDER</p>
-                </div>
-                <div>
-                    {error && <div className={styles.errorText}>{error}</div>}
-                    {message && <div className={styles.successText}>{message}</div>}
                 </div>
                 <div className={styles.buttonsContainer}>
                     <Button variant={'outlined'} color={'default'}>

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styles from './index.module.css';
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
-import { Button } from "antd";
+import {Alert, Button} from "antd";
 import Header from "@/components/ui/_wrappers/Header";
 import DifficultySelect from "@/components/ui/PracticeCreate/DifficultySelect";
 import QuestionTypeSelect from "@/components/ui/PracticeCreate/QuestionTypeSelect";
@@ -22,6 +22,8 @@ export default function index() {
     const [testName, setTestName] = useState<string | null>(null);
     const [resMessage, setResMessage] = useState<string | null>(null);
     const [buttonColor, setButtonColor] = useState<string>('primary');
+    const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
+    const [alertType, setAlertType] = useState<"error" | "info" | "success" | "warning" | undefined>('info');
     const router = useRouter();
 
 
@@ -37,13 +39,13 @@ export default function index() {
             });
 
             if (res.success) {
-                setResMessage('Success!');
-                setButtonColor('default');
-
+                setSuccessAlertVisible(true);
+                setAlertType('success');
                 router.push(`/practice/session/${res.sessionId}`);
             } else {
+                setSuccessAlertVisible(true);
+                setAlertType('error');
                 setResMessage('Error');
-                console.log(res?.error);
                 setButtonColor('danger');
             }
         } catch (error) {
@@ -52,6 +54,20 @@ export default function index() {
     }
     return (
         <Page>
+            {successAlertVisible && (
+                <Alert
+                    message="Session created successfully!"
+                    type={alertType}
+                    banner
+                    showIcon
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        right: "20px",
+                        zIndex: 1000,
+                    }}
+                />
+            )}
             <Header>
                 Customize a set
             </Header>

@@ -36,7 +36,7 @@ export default function ScoreBoard({
                     <ScoreChip text={"Omitted"}>{1}</ScoreChip>
                 </div>
                 <div className={styles.chipWrapper}>
-                    <ScoreProgress progress={80}/>
+                    <ScoreProgress progress={overallScore}/>
                 </div>
             </div>
         </div>

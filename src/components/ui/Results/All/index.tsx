@@ -29,7 +29,7 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessi
     const progressColor =
         results?.overallScore === 100
             ? styles.greenProgress
-            : results?.overallScore !== undefined && results?.overallScore < 50
+            : results?.overallScore !== undefined && results?.overallScore < 30
                 ? styles.redProgress
                 : styles.purpleProgress;
 

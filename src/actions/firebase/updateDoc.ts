@@ -1,6 +1,7 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { QuestionProps, SelectedOption } from '@/types';
+import { getResults } from './getDoc';
 
 export async function updateQuestions(
     sessionId: string,
@@ -35,6 +36,8 @@ export async function updateQuestions(
             questions: questionsToUpdate,
             updatedAt: new Date().toISOString(),
         });
+
+        const { success } = await getResults(sessionId);
 
         return { success: true, message: 'Session finished!' };
     } catch (error) {
