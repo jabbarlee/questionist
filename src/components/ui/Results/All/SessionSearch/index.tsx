@@ -1,13 +1,29 @@
 import React from 'react';
 import styles from './index.module.css';
-import { SessionData } from '@/types';
+import { SettingOutlined } from '@ant-design/icons';
+import { Cascader, Input, Select, Space } from 'antd';
+
+const { Option } = Select;
+
+const selectAfter = (
+    <Select defaultValue="Sort by">
+        <Option value="latest">Latest first</Option>
+        <Option value="highest-score">Highest score</Option>
+        <Option value="lowest-score">Lowest score</Option>
+    </Select>
+);
+
 
 const SessionSearch = () => {
 
     return (
-        <div className={styles.card}>
-
-        </div>
+        <Input
+            addonAfter={selectAfter}
+            placeholder="Search a session"
+            size={"large"}
+            allowClear
+            style={{ width: "100%" }}
+        />
     );
 };
 

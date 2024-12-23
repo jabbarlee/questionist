@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { getAllResults } from "@/actions/firebase/getDoc";
-import PracticeSession from "@/components/ui/Results/All";
+import SessionCard from "@/components/ui/Results/All/SessionCard";
 import Page from "@/components/ui/_wrappers/Page";
 import Header from "@/components/ui/_wrappers/Header";
 import SessionsWrapper from "@/components/ui/_wrappers/SessionsWrapper";
@@ -10,6 +10,7 @@ import Main from "@/components/ui/_wrappers/Main";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Modal, Button, Result, Alert } from "antd";
 import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
+import SessionSearch from "@/components/ui/Results/All/SessionSearch";
 
 export default function Index() {
     const [sessions, setSessions] = useState<object[] | null>(null);
@@ -68,10 +69,11 @@ export default function Index() {
             )}
             <Header>Results</Header>
             <Main>
+                <SessionSearch />
                 {sessions ? (
                     <SessionsWrapper>
                         {sessions.map((session: any) => (
-                            <PracticeSession
+                            <SessionCard
                                 key={session.sessionId}
                                 session={session}
                                 refreshSessions={refreshSessions}

@@ -13,7 +13,7 @@ interface PracticeSessionProps {
     showModal: (message: string) => void;
 }
 
-const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessions, showModal }) => {
+const SessionCard: React.FC<PracticeSessionProps> = ({ session, refreshSessions, showModal }) => {
     const { createdAt, sessionName, topics, results, sessionId } = session;
 
     // Format the date
@@ -74,4 +74,4 @@ const PracticeSession: React.FC<PracticeSessionProps> = ({ session, refreshSessi
     );
 };
 
-export default PracticeSession;
+export default SessionCard;
