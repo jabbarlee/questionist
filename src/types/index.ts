@@ -36,6 +36,7 @@ export type SessionData = {
     sessionId: string;
     sessionName: string;
     topics: string[];
+    favorite: boolean;
 };
 
 export type QuestionProps = {

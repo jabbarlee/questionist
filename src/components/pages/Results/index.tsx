@@ -78,6 +78,7 @@ export default function Index() {
                                 session={session}
                                 refreshSessions={refreshSessions}
                                 showModal={showModal}
+                                favorite={session.favorite || false}
                             />
                         ))}
                     </SessionsWrapper>

@@ -4,16 +4,17 @@ import styles from './index.module.css';
 import { SessionData } from '@/types';
 import Chip from "@/components/ui/Chip";
 import { Button } from "antd";
-import { RightOutlined, StarOutlined } from "@ant-design/icons";
-import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
+import { RightOutlined, StarOutlined, StarFilled } from "@ant-design/icons";
+import { favoriteSession } from "@/actions/firebase/updateDoc";
 
 interface PracticeSessionProps {
     session: SessionData;
     refreshSessions: () => Promise<void>;
     showModal: (message: string) => void;
+    favorite: boolean;
 }
 
-const SessionCard: React.FC<PracticeSessionProps> = ({ session, refreshSessions, showModal }) => {
+const SessionCard: React.FC<PracticeSessionProps> = ({ session, refreshSessions, showModal, favorite }) => {
     const { createdAt, sessionName, topics, results, sessionId } = session;
 
     // Format the date
@@ -51,8 +52,18 @@ const SessionCard: React.FC<PracticeSessionProps> = ({ session, refreshSessions,
                     <Button variant="outlined" danger onClick={() => showModal(sessionId)}>
                         Delete
                     </Button>
-                    <Button>
-                        <StarOutlined style={{ fontSize: '16px' }} />
+                    <Button onClick={async () => {
+                        const { success } = await favoriteSession(sessionId);
+
+                        if (success) {
+                            await refreshSessions();
+                        }
+                    }}>
+                        {session?.favorite ?
+                            <StarFilled style={{ color: "gold" }}/>
+                                :
+                            <StarOutlined />
+                        }
                     </Button>
                 </div>
             </div>

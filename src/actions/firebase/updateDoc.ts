@@ -1,4 +1,4 @@
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { QuestionProps, SelectedOption } from '@/types';
 import { getResults } from './getDoc';
@@ -75,5 +75,30 @@ export async function updateResults(sessionId: string, results: boolean[]){
         console.error(error)
 
         return { success: false, message: 'Something went wrong' }
+    }
+}
+
+export async function favoriteSession(sessionId: string) {
+    const response = await fetch('/api/firebase/get/user');
+    const { uid } = await response.json();
+
+    try {
+        const sessionDocRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
+        const sessionDoc = await getDoc(sessionDocRef);
+
+        if (!sessionDoc.exists()) {
+            return { success: false, message: 'Session not found' };
+        }
+
+        const currentFavoriteStatus = sessionDoc.data()?.favorite || false;
+        const newFavoriteStatus = !currentFavoriteStatus;
+
+        await updateDoc(sessionDocRef, { favorite: newFavoriteStatus });
+
+        return { success: true, message: `Session ${newFavoriteStatus ? 'added to' : 'removed from'} favorites` };
+    } catch (error) {
+        console.error(error);
+
+        return { success: false, message: 'Something went wrong' };
     }
 }
