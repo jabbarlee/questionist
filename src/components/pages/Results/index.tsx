@@ -65,6 +65,12 @@ export default function Index() {
                     type="success"
                     banner
                     showIcon
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        right: "20px",
+                        zIndex: 1000,
+                    }}
                 />
             )}
             <Header>Results</Header>
