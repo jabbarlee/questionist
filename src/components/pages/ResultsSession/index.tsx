@@ -10,32 +10,29 @@ import { SessionData } from "@/types";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScoreBoard from "@/components/ui/Results/Session/ScoreBoard";
 import Main from "@/components/ui/_wrappers/Main";
-import {Typography} from "@mui/material";
-import { Button } from "antd"
+import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
 
 export default function ResultsPage({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
 
     useEffect(() => {
-        const fetchResults = async () => {
-            try {
-                const { sessionData: fetchedSessionData, success } = await getResults(id);
+        const getSessionData = async () => {
+            const fetchedSessionData = await fetchPracticeSessionConfig(id);
 
-                if (success) {
-                    setSessionData(fetchedSessionData);
-                }
-            } catch (error) {
-                console.error("Error fetching results:", error);
+            if (fetchedSessionData) {
+                setSessionData(fetchedSessionData);
+            } else {
+                console.error("No session data found.");
             }
         };
 
-        fetchResults();
+        getSessionData()
     }, [id]);
 
     return (
         <Page>
             <Header>
-                Results for session {sessionData?.sessionName || id}
+                Results - {sessionData?.sessionName || id}
             </Header>
             <Main marginLess={true}>
                 <div className={styles.scoreCharts}>

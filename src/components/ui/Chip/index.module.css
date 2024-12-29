@@ -1,0 +1,20 @@
+.chipWrapper{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    border: 0.5px solid #e6e6e6;
+    width: fit-content;
+    color: white;
+}
+
+.text{
+    margin: 0;
+    font-size: 14px;
+    color: #2E2E2E;
+}
+
+.clearIcon{
+    cursor: pointer;
+}

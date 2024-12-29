@@ -1,0 +1,90 @@
+.card {
+    background-color: #fbfbfb;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.headerTextContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sessionName {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0;
+    color: #1f1f1f;
+    text-decoration: underline;
+    transition: 0.2s ease;
+}
+
+.sessionId{
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.sessionName:hover {
+    color: #6b7280;
+    text-decoration: none;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.progressBarContainer {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.progressBar {
+    height: 100%;
+    width: 100px;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.greenProgress {
+    background-color: #28a745;
+}
+
+.purpleProgress {
+    background-color: #6f42c1;
+}
+
+.redProgress {
+    background-color: #FF9900;
+}
+
+.score {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}

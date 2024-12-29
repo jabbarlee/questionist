@@ -23,9 +23,14 @@ export default function ScoreBoard({
                 <Typography className={styles.passedText}>
                     {overallScore >= 80 ? "You passed the test!" : "You need more practice!"}
                 </Typography>
-                <Button type={"link"} color={"primary"} size={"large"}>
-                    Practice again
-                </Button>
+                <div>
+                    <Button type={"link"} color={"primary"} size={"large"}>
+                        Back to dashboard
+                    </Button>
+                    <Button type={"link"} color={"primary"} size={"large"}>
+                        Practice again
+                    </Button>
+                </div>
             </div>
 
             <div className={styles.chipContainer}>
@@ -36,7 +41,7 @@ export default function ScoreBoard({
                     <ScoreChip text={"Omitted"}>{1}</ScoreChip>
                 </div>
                 <div className={styles.chipWrapper}>
-                    <ScoreProgress progress={80}/>
+                    <ScoreProgress progress={overallScore}/>
                 </div>
             </div>
         </div>
