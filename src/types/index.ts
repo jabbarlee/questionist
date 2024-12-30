@@ -32,6 +32,8 @@ export type SessionData = {
         incorrectAnswers: number;
         numOfQuestions: number;
         overallScore: number;
+        axpGained: number;
+        brilliantsGained: number;
     }
     sessionId: string;
     sessionName: string;

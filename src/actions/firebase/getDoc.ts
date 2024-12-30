@@ -53,7 +53,7 @@ export const getResults = async (sessionId: string) => {
             const sessionData = sessionSnap.data() as SessionData;
 
             // Main logic
-            sessionData?.questions?.forEach((element: any, index: number) => {
+            sessionData?.questions?.forEach((element: any) => {
                 if (element.selectedChoice === element.correctAnswer) {
                     results.push(true);
                 } else {
@@ -61,14 +61,14 @@ export const getResults = async (sessionId: string) => {
                 }
             });
 
-            const { success, message } = await updateResults(sessionId, results)
+            const { success, message } = await updateResults(sessionId, results);
 
-            if(success){
-                const sessionData = sessionSnap.data() as SessionData;
+            if (success) {
+                const updatedSessionData = (await getDoc(sessionRef)).data() as SessionData;
 
-                return { sessionData: sessionData, success: true };
-            }else{
-                return { sessionData: null, success: true}
+                return { sessionData: updatedSessionData, success: true };
+            } else {
+                return { sessionData: null, success: true };
             }
         } else {
             console.error('No such document!');
@@ -79,6 +79,7 @@ export const getResults = async (sessionId: string) => {
         return { sessionData: null, success: false };
     }
 };
+
 
 export const getAllResults = async () => {
     try {

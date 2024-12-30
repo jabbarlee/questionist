@@ -3,12 +3,15 @@ import styles from "./index.module.css";
 import { ScoreChip, ScoreProgress } from "./ScoreChip";
 import {Typography} from "@mui/material";
 import {Button} from "antd";
+import { SessionData } from "@/types";
 
 export default function ScoreBoard({
     correctAnswers,
     incorrectAnswers,
     numOfQuestions,
     overallScore,
+    axpGained,
+    brilliantsGained,
     timerStat
 }: {
     correctAnswers: number;
@@ -16,6 +19,8 @@ export default function ScoreBoard({
     numOfQuestions: number;
     overallScore: number;
     timerStat?: string;
+    axpGained: number
+    brilliantsGained: number
 }) {
     return (
         <div className={styles.scoreBoard}>
@@ -37,8 +42,8 @@ export default function ScoreBoard({
                 <div className={styles.chipWrapper}>
                     <ScoreChip success text={"Correct"}>{correctAnswers}</ScoreChip>
                     <ScoreChip error text={"Incorrect"}>{incorrectAnswers}</ScoreChip>
-                    <ScoreChip text={"Total"}>{numOfQuestions}</ScoreChip>
-                    <ScoreChip text={"Omitted"}>{1}</ScoreChip>
+                     <ScoreChip text={"AXP"}>+ {axpGained}</ScoreChip>
+                    <ScoreChip text={"Brilliants"}>+ {brilliantsGained}</ScoreChip>
                 </div>
                 <div className={styles.chipWrapper}>
                     <ScoreProgress progress={overallScore}/>

@@ -46,35 +46,42 @@ export async function updateQuestions(
     }
 }
 
+function returnResults(results: boolean[]) {
+    if (results.length === 0) {
+        return { overallScore: 0, correctAnswers: 0, incorrectAnswers: 0, numOfQuestions: 0, axpGained: 0, brilliantsGained: 0 };
+    }
+
+    const correctAnswers = results.filter((isCorrect) => isCorrect).length;
+    const incorrectAnswers = results.length - correctAnswers;
+    const score = Math.round((correctAnswers / results.length) * 100);
+    const numOfQuestions = results.length;
+    let axpGained = correctAnswers * 20;
+    let brilliantsGained = 0;
+
+    // Check if all answers are correct
+    if (correctAnswers === numOfQuestions) {
+        axpGained += 50; // Add bonus 50 AXP
+        brilliantsGained = 5; // Add 5 Brilliants
+    }
+
+    return { overallScore: score, correctAnswers, incorrectAnswers, numOfQuestions, axpGained, brilliantsGained };
+}
+
 export async function updateResults(sessionId: string, results: boolean[]){
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
 
-    function returnResults(results: boolean[]) {
-        if (results.length === 0) {
-            return { overallScore: 0, correctAnswers: 0, incorrectAnswers: 0, numOfQuestions: 0 };
-        }
-
-        const correctAnswers = results.filter((isCorrect) => isCorrect).length;
-        const incorrectAnswers = results.length - correctAnswers;
-        const score = Math.round((correctAnswers / results.length) * 100);
-        const numOfQuestions = results.length
-
-        return { overallScore: score, correctAnswers, incorrectAnswers, numOfQuestions };
-    }
-
-
-    try{
+    try {
         const sessionDocRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
-        const overallScore = returnResults(results)
+        const overallScore = returnResults(results);
 
         await updateDoc(sessionDocRef, { results: overallScore });
 
-        return { success: true, message: 'Results added to Firestore successfully' }
-    } catch(error){
-        console.error(error)
+        return { success: true, message: 'Results added to Firestore successfully' };
+    } catch (error) {
+        console.error(error);
 
-        return { success: false, message: 'Something went wrong' }
+        return { success: false, message: 'Something went wrong' };
     }
 }
 

@@ -42,6 +42,8 @@ export default function ResultsPage({ id }: { id: string }) {
                             incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
                             numOfQuestions={sessionData?.results?.numOfQuestions || 0}
                             overallScore={sessionData?.results?.overallScore || 0}
+                            axpGained={sessionData?.results?.axpGained || 0}
+                            brilliantsGained={sessionData?.results?.brilliantsGained || 0}
                         />
                     ) : (
                         <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
