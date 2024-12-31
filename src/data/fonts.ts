@@ -1,6 +1,6 @@
 import {
     Inter,
-    EB_Garamond
+    EB_Garamond,
 } from "next/font/google";
 
 export const merriweather = EB_Garamond({

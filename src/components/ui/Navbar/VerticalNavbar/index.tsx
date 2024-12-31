@@ -1,47 +1,62 @@
-import React from 'react';
-import styles from './index.module.css';
-import NavbarHeader from '@/components/ui/Header/NavbarHeader';
-import Link from '../Link'
-import {
-    HomeOutlined,
-    FunctionOutlined,
-    StockOutlined,
-    SettingOutlined,
-    StarOutlined
-} from '@ant-design/icons';
+'use client';
 
-export default function Index() {
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import styles from './index.module.css';
+import { Dashboard, Function, Report, Arrow, Reward } from '@/data/icons/navbar';
+
+export default function Navbar() {
+    const pathname = usePathname();
+
     return (
         <nav className={styles.navbar}>
-            <div className={styles.sectionWrapper}>
-                <NavbarHeader>
-                    Questionist
-                </NavbarHeader>
-                <div className={styles.linksWrapper}>
-                    <Link redirect={'/dashboard'}>
-                        <HomeOutlined style={{ fontSize: '25px' }}/>
-                        Home
-                    </Link>
-                    <Link redirect={'/practice'}>
-                        <FunctionOutlined style={{ fontSize: '25px' }}/>
-                        Practice
-                    </Link>
-                    <Link redirect={'/results'}>
-                        <StockOutlined style={{ fontSize: '25px' }}/>
-                        Results
-                    </Link>
-                    <Link redirect={'/plan'}>
-                        <StarOutlined style={{ fontSize: '25px' }}/>
-                        My Plan
-                    </Link>
-                    <Link redirect={'/settings'}>
-                        <SettingOutlined style={{ fontSize: '25px' }}/>
-                        Settings
-                    </Link>
-                </div>
+            <div className={styles.navHeader}>
+                <p className={styles.navText}>Questionist</p>
             </div>
-            <div className={styles.footer}>
-                <Link redirect={'/'} underline={true}>Logout</Link>
+            <div className={styles.sectionWrapper}>
+                <div className={styles.linksWrapper}>
+                    <div className={styles.linkWrapper}>
+                        <Link href="/dashboard" style={{ textDecoration: "none" }}>
+                            <div className={`${styles.textWrapper} ${pathname === '/dashboard' ? styles.active : ''}`}>
+                                <Dashboard className={pathname === '/dashboard' ? styles.iconActive : styles.icon} />
+                                <p className={`${styles.linkText} ${pathname === '/dashboard' ? styles.activeText : ''}`}>Dashboard</p>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className={styles.linkWrapper}>
+                        <Link href="/practice" style={{ textDecoration: "none" }}>
+                            <div className={`${styles.textWrapper} ${pathname === '/practice' ? styles.active : ''}`}>
+                                <Function className={pathname === '/practice' ? styles.iconActive : styles.icon} />
+                                <p className={`${styles.linkText} ${pathname === '/practice' ? styles.activeText : ''}`}>Practice</p>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className={styles.linkWrapper}>
+                        <Link href="/results" style={{ textDecoration: "none" }}>
+                            <div className={`${styles.textWrapper} ${pathname === '/results' ? styles.active : ''}`}>
+                                <Report className={pathname === '/results' ? styles.iconActive : styles.icon} />
+                                <p className={`${styles.linkText} ${pathname === '/results' ? styles.activeText : ''}`}>Results</p>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className={styles.linkWrapper}>
+                        <Link href="/challenges" style={{ textDecoration: "none" }}>
+                            <div className={`${styles.textWrapper} ${pathname === '/challenges' ? styles.active : ''}`}>
+                                <Arrow className={pathname === '/challenges' ? styles.iconActive : styles.icon} />
+                                <p className={`${styles.linkText} ${pathname === '/challenges' ? styles.activeText : ''}`}>Challenges</p>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className={styles.linkWrapper}>
+                        <Link href="/rewards" style={{ textDecoration: "none" }}>
+                            <div className={`${styles.textWrapper} ${pathname === '/rewards' ? styles.active : ''}`}>
+                                <Reward className={pathname === '/rewards' ? styles.iconActive : styles.icon} />
+                                <p className={`${styles.linkText} ${pathname === '/rewards' ? styles.activeText : ''}`}>Rewards</p>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </nav>
     );

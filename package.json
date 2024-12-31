@@ -11,9 +11,6 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.13.5",
-    "@iconscout/react-unicons": "^2.2.1",
-    "@iconscout/react-unicons-solid": "^1.1.2",
     "@mui/icons-material": "^6.1.5",
     "@mui/material": "^6.1.8",
     "antd": "^5.22.2",
