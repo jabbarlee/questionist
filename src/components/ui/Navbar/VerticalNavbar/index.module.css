@@ -34,8 +34,10 @@
 }
 
 .navHeader{
+    display: flex;
+    align-items: center;
     padding: 24px;
-    height: auto;
+    height: 60px;
     border-bottom: 1px solid #e5e5e5;
     color: #1f1f1f;
 }
