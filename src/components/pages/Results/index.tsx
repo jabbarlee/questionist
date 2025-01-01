@@ -11,6 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Modal, Button, Result, Alert } from "antd";
 import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
 import SessionSearch from "@/components/ui/Results/All/SessionSearch";
+import Table from "@/components/ui/Results/All/Table";
 
 export default function Index() {
     const [sessions, setSessions] = useState<object[] | null>(null);
@@ -76,23 +77,7 @@ export default function Index() {
             <Header>Results</Header>
             <Main>
                 <SessionSearch />
-                {sessions ? (
-                    <SessionsWrapper>
-                        {sessions.map((session: any) => (
-                            <SessionCard
-                                key={session.sessionId}
-                                session={session}
-                                refreshSessions={refreshSessions}
-                                showModal={showModal}
-                                favorite={session.favorite || false}
-                            />
-                        ))}
-                    </SessionsWrapper>
-                ) : (
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <CircularProgress />
-                    </div>
-                )}
+                <Table/>
             </Main>
             <Modal
                 open={modalVisible}
