@@ -9,9 +9,13 @@
 }
 
 .headerText {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 450;
     color: #000000;
     text-align: center;
     margin: 20px 0;
+}
+
+.link{
+    color: #000000;
 }
