@@ -8,7 +8,7 @@
 
 .sidebar {
   flex-shrink: 0;
-  width: 350px;
+  width: 280px;
   height: 100vh;
   overflow: hidden;
 }

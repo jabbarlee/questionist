@@ -1,14 +1,21 @@
 .header {
     display: flex;
     align-items: center;
-    border-bottom: 0.5px solid #e6e6e6;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    height: 60px;
+    padding: 10px 15px;
+    background-color: #fbfbfb;
+    border-bottom: 1px solid #e6e6e6;
 }
 
 .headerText {
-    font-size: 25px;
-    font-weight: 500;
-    color: #525252;
+    font-size: 1.2rem;
+    font-weight: 450;
+    color: #000000;
     text-align: center;
     margin: 20px 0;
+}
+
+.link{
+    color: #000000;
 }

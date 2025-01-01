@@ -5,27 +5,132 @@
     justify-content: space-between;
     height: 100%;
     width: 100%;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-right: 1px solid #e6e6e6;
-    font-family: Arial, sans-serif;
+    background-color: #fbfbfb;
+    border-right: 1px solid #e5e5e5;
 }
 
-/* Links Wrapper */
+.linkText{
+    font-size: 1rem;
+    color: #737373;
+    transition: 0.2s ease;
+    margin: 0;
+}
+
+.linkText:hover{
+    color: #1f1f1f;
+}
+
+.textWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    transition: 0.2s ease;
+}
+
+.linkWrapper:hover .linkText {
+    color: #1f1f1f;
+}
+
+.navHeader{
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+    color: #1f1f1f;
+}
+
+.navText{
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
 .sectionWrapper {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    flex-grow: 1;
 }
 
 .linksWrapper{
     display: flex;
     flex-direction: column;
+    /*align-items: flex-start;*/
+    margin-top: 0;
+    flex-grow: 1;
     gap: 5px;
+    padding: 10px 15px;
 }
 
-/* Footer Section */
-.footer {
-    border-top: 1px solid #e6e6e6;
-    padding-top: 20px;
+.active {
+    background-color: #f5f5f5;
+    border-radius: 7px;
+}
+
+.activeText{
+    color: #1f1f1f;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.footerWrapper{
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    background-color: #ffffff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footerTextWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.footerHeading{
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.footerSubheading{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #737373;
+    margin: 0;
+}
+
+.buttonTrial{
+    background-color: #389e0d;
+    color: #ffffff;
+    border: 0.5px solid #389e0d;
+}
+
+.icon {
+    stroke: #737373; /* Default color */
+    transition: 0.2s ease;
+}
+
+.textWrapper .icon {
+    transition: 0.2s ease;
+}
+
+.textWrapper:hover .icon {
+    stroke: #1f1f1f;
+}
+
+/* Active State */
+.iconActive {
+    stroke: #1f1f1f;
 }
