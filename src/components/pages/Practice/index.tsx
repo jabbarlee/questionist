@@ -12,7 +12,7 @@ export default function index() {
     return (
         <Page>
             <Header>
-                Practice makes it perfect
+                Practice
             </Header>
             <Main>
                 <div className={styles.wrapper}>
