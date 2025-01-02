@@ -11,6 +11,7 @@ import TestName from "@/components/ui/PracticeCreate/TestName";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
+import { Potion, Bolt } from "@/data/icons/practice";
 
 export default function PracticeCreate() {
     const [difficulty, setDifficulty] = useState<string[] | null>([]);
@@ -78,10 +79,7 @@ export default function PracticeCreate() {
                                 <Progress
                                     type="circle"
                                     percent={progress}
-                                    strokeColor={{
-                                        "0%": "#108ee9",
-                                        "100%": "#87d068",
-                                    }}
+                                    strokeColor={progress === 100 ? "#52c41a" : "#1890ff"}
                                 />
                                 <div className={styles.subHeadingTextWrapper}>
                                     <p className={styles.subHeading}>
@@ -98,7 +96,10 @@ export default function PracticeCreate() {
                                     onClick={handleCreate}
                                     {...(progress !== 100 && { disabled: true })}
                                 >
-                                    Create Practice Set
+                                    <div className={styles.buttonTextWrapper}>
+                                        <Bolt className={styles.iconBolt}/>
+                                        Create
+                                    </div>
                                 </Button>
                                 <Button
                                     variant="filled"
@@ -107,7 +108,10 @@ export default function PracticeCreate() {
                                     className={styles.createButton}
                                     onClick={handleCreate}
                                 >
-                                    Randomize set
+                                    <div className={styles.buttonTextWrapper}>
+                                        <Potion className={styles.iconPotion}/>
+                                        Randomize
+                                    </div>
                                 </Button>
                             </div>
                         </div>
