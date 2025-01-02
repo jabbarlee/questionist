@@ -1,41 +1,64 @@
-.customSetWrapper{
+.customSetWrapper {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    padding: 30px;
     align-items: center;
-    height: 100%;
+    padding: 30px;
     width: 100%;
+    height: fit-content;
     border: 1px solid #e5e5e5;
     background-color: #fbfbfb;
-    border-radius: 7px;
-    gap: 10px;
+    border-radius: 12px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.textWrapper{
+.contentWrapper {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 5px;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
 }
 
-.buttonsWrapper{
+.textWrapper {
     display: flex;
-    gap: 5px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
 }
 
-.heading{
-    font-size: 24px;
-    font-weight: 400;
+.heading {
+    font-size: 28px;
+    font-weight: 500;
+    color: #1f1f1f;
+    margin: 0;
 }
 
-.subHeading{
+.subHeading {
     font-size: 16px;
     font-weight: 300;
+    color: #757575;
+    margin: 0;
 }
 
-.image{
+.buttonsWrapper {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; /* Adjust for smaller screens */
+}
+
+.imageWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
     border-radius: 12px;
-    width: 30%;
-    height: 30%;
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
 }

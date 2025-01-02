@@ -7,6 +7,7 @@ import CustomSet from '@/components/ui/Practice/CustomSet'
 import Header from "@/components/ui/_wrappers/Header";
 import Page from "@/components/ui/_wrappers/Page";
 import Typography from "@mui/material/Typography";
+import { Button } from 'antd';
 
 export default function index() {
     return (
@@ -16,19 +17,58 @@ export default function index() {
             </Header>
             <Main>
                 <div className={styles.wrapper}>
-                    <div className={styles.widthWrapper}>
+                    <div className={styles.customSetWrapper}>
                         <CustomSet/>
+                        <div className={styles.popularSetsWrapper}>
+                            <Typography className={styles.stepHeadingText}>Popular Practice Sets</Typography>
+                            <div className={styles.popularSets}>
+                                <div className={styles.setCard}>
+                                    <Typography className={styles.setTitle}>Algebra Essentials</Typography>
+                                    <Typography className={styles.setDetails}>
+                                        <Tag color={'magenta'}>Medium</Tag>
+                                        <Tag>10 questions</Tag>
+                                    </Typography>
+                                    <Button
+                                        color="primary"
+                                        size="large"
+                                        variant='filled'
+                                        style={{ textDecoration: 'none' }}
+                                        href="/practice/create"
+                                    >
+                                        Start Now
+                                    </Button>
+                                </div>
+                                <div className={styles.setCard}>
+                                    <Typography className={styles.setTitle}>Geometry Basics</Typography>
+                                    <Typography className={styles.setDetails}>
+                                        <Tag color={'green'}>Easy</Tag>
+                                        <Tag>15 questions</Tag>
+                                    </Typography>
+                                    <Button
+                                        color="primary"
+                                        variant='filled'
+                                        style={{ textDecoration: 'none' }}
+                                        size="large"
+                                        href="/practice/create"
+                                    >
+                                        Start Now
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div className={styles.widthWrapper}>
+                    <div className={styles.howToUseWrapper}>
                         <div className={styles.stepsWrapper}>
-                            <Typography className={styles.stepHeadingText}>How It Works</Typography>
+                            <Typography className={styles.stepHeadingText}>Learn. Practice. Excel.</Typography>
                             <div className={styles.stepsContainer}>
                                 <div className={styles.step}>
                                     <Tag color="blue" className={styles.stepTag}>
                                         Earn rewards
                                     </Tag>
                                     <div className={styles.stepContent}>
-                                        <p className={styles.stepSubText}>As you progress you will gain more points which you can use later</p>
+                                        <p className={styles.stepSubText}>As you progress you will gain more points
+                                            which you can use later</p>
                                     </div>
                                 </div>
                                 <div className={styles.step}>
