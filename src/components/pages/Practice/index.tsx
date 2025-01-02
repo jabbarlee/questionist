@@ -22,7 +22,7 @@ export default function index() {
             const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
 
             if(success && sessionId){
-                router.push(`/practice/${sessionId}`)
+                router.push(`/practice/session/${sessionId}`)
             }
         }catch(error){
             console.error('Error starting popular set: ', error)
