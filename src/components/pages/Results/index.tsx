@@ -2,18 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import { getAllResults } from "@/actions/firebase/getDoc";
-import SessionCard from "@/components/ui/Results/All/SessionCard";
 import Page from "@/components/ui/_wrappers/Page";
 import Header from "@/components/ui/_wrappers/Header";
-import SessionsWrapper from "@/components/ui/_wrappers/SessionsWrapper";
 import Main from "@/components/ui/_wrappers/Main";
-import CircularProgress from "@mui/material/CircularProgress";
-import { Modal, Button, Result, Alert } from "antd";
+import ResultsTable from "@/components/ui/Results/All/Table";
+import { Modal, Button, Alert, Result } from "antd";
 import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
-import SessionSearch from "@/components/ui/Results/All/SessionSearch";
+import { SessionData } from "@/types";
 
-export default function Index() {
-    const [sessions, setSessions] = useState<object[] | null>(null);
+export default function Results() {
+    const [sessions, setSessions] = useState<SessionData[]>([]); // Initialized to empty array
     const [modalVisible, setModalVisible] = useState(false);
     const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
     const [successAlertVisible, setSuccessAlertVisible] = useState(false);
@@ -21,7 +19,28 @@ export default function Index() {
     const fetchResults = async () => {
         try {
             const allSessions = await getAllResults();
-            setSessions(allSessions);
+
+            // Transform the data to match the updated `SessionData` type
+            const transformedSessions = allSessions?.map((session: any): SessionData => ({
+                createdAt: session.createdAt || new Date().toISOString(),
+                difficulty: session.difficulty || ["unknown"], // Default to "unknown" if not provided
+                numberOfQuestions: session.numberOfQuestions || 0,
+                questions: session.questions || [], // Default to an empty array
+                results: session.results || {
+                    correctAnswers: 0,
+                    incorrectAnswers: 0,
+                    numOfQuestions: 0,
+                    overallScore: 0,
+                    axpGained: 0,
+                    brilliantsGained: 0,
+                },
+                sessionId: session.sessionId || "unknown",
+                sessionName: session.sessionName || "Unnamed Session",
+                topics: session.topics || ["General"], // Default to "General" topic
+                favorite: session.favorite || false,
+            }));
+
+            setSessions(transformedSessions || []);
         } catch (error) {
             console.error("Error fetching results:", error);
         }
@@ -36,23 +55,23 @@ export default function Index() {
     };
 
     const showModal = (sessionId: string) => {
-        setCurrentSessionId(sessionId); // Set the sessionId to delete
+        setCurrentSessionId(sessionId);
         setModalVisible(true);
     };
 
     const handleModalClose = () => {
         setModalVisible(false);
-        setCurrentSessionId(null); // Clear the sessionId
+        setCurrentSessionId(null);
     };
 
     const handleDelete = async () => {
         if (currentSessionId) {
             const { success } = await deletePracticeSession(currentSessionId);
             if (success) {
-                setSuccessAlertVisible(true); // Show the alert on success
+                setSuccessAlertVisible(true);
                 await refreshSessions();
                 handleModalClose();
-                setTimeout(() => setSuccessAlertVisible(false), 3000); // Auto-hide alert after 3 seconds
+                setTimeout(() => setSuccessAlertVisible(false), 3000);
             }
         }
     };
@@ -75,31 +94,16 @@ export default function Index() {
             )}
             <Header>Results</Header>
             <Main>
-                <SessionSearch />
-                {sessions ? (
-                    <SessionsWrapper>
-                        {sessions.map((session: any) => (
-                            <SessionCard
-                                key={session.sessionId}
-                                session={session}
-                                refreshSessions={refreshSessions}
-                                showModal={showModal}
-                                favorite={session.favorite || false}
-                            />
-                        ))}
-                    </SessionsWrapper>
-                ) : (
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <CircularProgress />
-                    </div>
-                )}
+                <ResultsTable
+                    sessions={sessions} // Transformed data passed to ResultsTable
+                    showModal={showModal}
+                />
             </Main>
             <Modal
                 open={modalVisible}
                 onCancel={handleModalClose}
                 footer={null}
                 centered
-                style={{ padding: "0px" }}
             >
                 <Result
                     status="warning"

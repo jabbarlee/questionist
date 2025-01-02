@@ -75,7 +75,7 @@ const SessionCard: React.FC<PracticeSessionProps> = ({ session, refreshSessions,
                     />
                 </div>
             )}
-            {results && <p className={styles.score}>{results.overallScore}/100</p>}
+            {results && <p className={styles.score}>{results.overallScore}%</p>}
             <div className={styles.topics}>
                 {topics.map((topic, index) => (
                     <Chip key={index}>{topic}</Chip>

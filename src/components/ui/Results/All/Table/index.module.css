@@ -1,0 +1,47 @@
+
+.progressBarContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.progressWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 7px;
+}
+
+.scoreText{
+    margin: 0;
+    color: #757575;
+}
+
+.progressBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100px;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.greenProgress {
+    background-color: #28a745;
+}
+
+.purpleProgress {
+    background-color: #6f42c1;
+}
+
+.redProgress {
+    background-color: #FF9900;
+}
