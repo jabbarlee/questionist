@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import { Button, Progress, Alert } from "antd";
+import {Button, Progress, Alert, Tag} from "antd";
 import DifficultySelect from "@/components/ui/PracticeCreate/DifficultySelect";
 import QuestionTypeSelect from "@/components/ui/PracticeCreate/QuestionTypeSelect";
 import TopicsSelect from "@/components/ui/PracticeCreate/TopicsSelect";
@@ -11,9 +11,11 @@ import TestName from "@/components/ui/PracticeCreate/TestName";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
-import { Potion, Bolt } from "@/data/icons/practice";
+import { Potion, Bolt, Fire } from "@/data/icons/practice";
 import { storePracticeSession } from "@/actions/firebase/setDoc";
 import { useRouter } from "next/navigation";
+import Typography from "@mui/material/Typography";
+import {PracticeStartProps} from "@/types";
 
 export default function PracticeCreate() {
     const [difficulty, setDifficulty] = useState<string[] | null>([]);
@@ -24,7 +26,7 @@ export default function PracticeCreate() {
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
     const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
     const [alertMessage, setAlertMessage] = useState<string>('');
-    const [alertType, setAlertType] = useState<"info" | "error" | "success" | "warning" | undefined>('info');
+    const [alertType, setAlertType] = useState<"info" | "error" | "success" | "warning" | undefined>();
 
     const router = useRouter();
 
@@ -64,6 +66,24 @@ export default function PracticeCreate() {
             topics?.length,
             numberOfQuestions,
         ].filter(Boolean).length * 20;
+
+
+    const handleDefinedSetStart = async({
+                                            topics,
+                                            difficulty,
+                                            sessionName,
+                                            numberOfQuestions
+                                        }: PracticeStartProps) => {
+        try{
+            const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
+
+            if(success && sessionId){
+                router.push(`/practice/session/${sessionId}`)
+            }
+        }catch(error){
+            console.error('Error starting popular set: ', error)
+        }
+    }
 
     return (
         <Page>
@@ -133,7 +153,7 @@ export default function PracticeCreate() {
                                     size="large"
                                     className={styles.createButton}
                                     onClick={handleCreate}
-                                    {...(progress !== 100 && { disabled: true })}
+                                    {...(progress !== 100 && {disabled: true})}
                                 >
                                     <div className={styles.buttonTextWrapper}>
                                         <Bolt className={styles.iconBolt}/>
@@ -152,6 +172,60 @@ export default function PracticeCreate() {
                                         Randomize
                                     </div>
                                 </Button>
+                            </div>
+                        </div>
+                        <div className={styles.definedSetsContainer}>
+                            <div>
+                                <Typography className={styles.setHeading}>
+                                    <div className={styles.buttonTextWrapper}>
+                                        <Fire/>
+                                        Popular Sets
+                                    </div>
+                                </Typography>
+                            </div>
+                            <div className={styles.definedSetsWrapper}>
+                                <div className={styles.card}>
+                                    <Typography className={styles.setTitle}>Geometry Guru</Typography>
+                                    <Typography className={styles.setDetails}>
+                                        <Tag color={'volcano'}>Hard</Tag>
+                                        <Tag>15 questions</Tag>
+                                    </Typography>
+                                    <Button
+                                        color="primary"
+                                        variant='filled'
+                                        style={{textDecoration: 'none', width: '100%'}}
+                                        size="large"
+                                        onClick={() => handleDefinedSetStart({
+                                            topics: ['geometry'],
+                                            difficulty: ['hard'],
+                                            sessionName: 'Geometry Guru',
+                                            numberOfQuestions: 15
+                                        })}
+                                    >
+                                        Start Now
+                                    </Button>
+                                </div>
+                                <div className={styles.card}>
+                                    <Typography className={styles.setTitle}>Triggster</Typography>
+                                    <Typography className={styles.setDetails}>
+                                        <Tag color={'magenta'}>Medium</Tag>
+                                        <Tag>10 questions</Tag>
+                                    </Typography>
+                                    <Button
+                                        color="primary"
+                                        variant='filled'
+                                        style={{textDecoration: 'none', width: '100%'}}
+                                        size="large"
+                                        onClick={() => handleDefinedSetStart({
+                                            topics: ['trigonometry'],
+                                            difficulty: ['medium'],
+                                            sessionName: 'Triggster',
+                                            numberOfQuestions: 10
+                                        })}
+                                    >
+                                        Start Now
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
