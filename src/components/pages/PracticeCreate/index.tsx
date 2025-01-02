@@ -12,6 +12,8 @@ import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
 import { Potion, Bolt } from "@/data/icons/practice";
+import { storePracticeSession } from "@/actions/firebase/setDoc";
+import { useRouter } from "next/navigation";
 
 export default function PracticeCreate() {
     const [difficulty, setDifficulty] = useState<string[] | null>([]);
@@ -20,14 +22,39 @@ export default function PracticeCreate() {
     const [numberOfQuestions, setNumberOfQuestions] = useState<number | null>(null);
     const [testName, setTestName] = useState<string | null>(null);
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
+    const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
+    const [alertMessage, setAlertMessage] = useState<string>('');
+    const [alertType, setAlertType] = useState<"info" | "error" | "success" | "warning" | undefined>('info');
 
-    const handleCreate = () => {
-        if (difficulty && questionType && topics && numberOfQuestions && testName) {
-            console.log("Creating practice session...");
-        } else {
-            setAlertVisible(true);
+    const router = useRouter();
+
+    const handleCreate = async () => {
+        try {
+            setAlertType('info');
+            setSuccessAlertVisible(true);
+            setAlertMessage('Creating session...');
+
+            const res = await storePracticeSession({
+                topics: topics || [],
+                difficulty: difficulty || [],
+                sessionName: testName || '',
+                numberOfQuestions: numberOfQuestions || 0,
+            });
+
+            if (res.success) {
+                setSuccessAlertVisible(true);
+                setAlertType('success');
+                setAlertMessage('Session created successfully! Redirecting...');
+                router.push(`/practice/session/${res.sessionId}`);
+            } else {
+                setSuccessAlertVisible(true);
+                setAlertType('error');
+
+            }
+        } catch (error) {
+            console.error('Error creating practice session', error);
         }
-    };
+    }
 
     const progress =
         [
@@ -40,12 +67,25 @@ export default function PracticeCreate() {
 
     return (
         <Page>
+            {successAlertVisible && (
+                <Alert
+                    message={alertMessage}
+                    type={alertType}
+                    banner
+                    showIcon
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        right: "20px",
+                        zIndex: 1000,
+                    }}
+                />
+            )}
             <Header>
                 Create Practice Set
             </Header>
             <Main>
                 <div className={styles.container}>
-                    {/* Left: Configuration Section */}
                     <div className={styles.left}>
                         <div className={styles.card}>
                             <TestName testName={testName} setTestName={setTestName} />
@@ -72,7 +112,6 @@ export default function PracticeCreate() {
                         )}
                     </div>
 
-                    {/* Right: Progress Section */}
                     <div className={styles.right}>
                         <div className={styles.card}>
                             <div className={styles.progressCardTextWrapper}>
