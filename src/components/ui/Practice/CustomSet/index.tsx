@@ -21,11 +21,17 @@ export default function CustomSet() {
                         size="large"
                         type="primary"
                         href="/practice/create"
-                        style={{ textDecoration: 'none' }}
+                        style={{ textDecoration: 'none', width: '50%' }}
                     >
                         Create one!
                     </Button>
-                    <Button size="large" type="default">How does it work?</Button>
+                    <Button
+                        size="large"
+                        type="default"
+                        style={{ width: '50%' }}
+                    >
+                        How does it work?
+                    </Button>
                 </div>
             </div>
             <div className={styles.imageWrapper}>
