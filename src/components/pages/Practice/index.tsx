@@ -18,11 +18,11 @@ export default function index() {
     const router = useRouter()
 
     const handlePopularSetStart = async({
-        topics,
-        difficulty,
-        sessionName,
-        numberOfQuestions
-    }: PracticeStartProps) => {
+                                            topics,
+                                            difficulty,
+                                            sessionName,
+                                            numberOfQuestions
+                                        }: PracticeStartProps) => {
         try{
             const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
 
