@@ -1,111 +1,144 @@
-import { Space, Table, Tag, TableProps } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { getAllResults } from '@/actions/firebase/getDoc';
-import Link from 'next/link';
+import { Table, Tag, Button, Space } from "antd";
+import { StarOutlined } from "@ant-design/icons";
+import Link from "next/link";
+import React from "react";
+import styles from "./index.module.css";
+import { SessionData } from "@/types";
 
-const { Column, ColumnGroup } = Table;
-
-interface DataType {
-    key: React.Key;
-    name: string;
-    duration: string;
-    date: string;
-    axpPoints: number;
-    brilliantPoints: number;
-    difficulty: string[];
+interface TableProps {
+    sessions: SessionData[];
+    showModal: (sessionId: string) => void;
 }
 
-const columns: TableProps<DataType>['columns'] = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <p>{text}</p>,
-    },
-    {
-        title: 'Duration',
-        dataIndex: 'duration',
-        key: 'age',
-    },
-    {
-        title: 'Date',
-        dataIndex: 'date',
-        key: 'address',
-    },
-    {
-        title: 'AXP',
-        dataIndex: 'axpPoints',
-        key: 'axpPoints',
-    },
-    {
-        title: 'Brilliants',
-        dataIndex: 'brilliantPoints',
-        key: 'brilliantPoints',
-    },
-    {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: (_, { difficulty }) => (
-            <>
-                {difficulty.map((tag) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'Hard') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
+export default function ResultsTable({ sessions, showModal }: TableProps) {
+    const columns = [
+        {
+            title: "Name",
+            dataIndex: "sessionName",
+            key: "sessionName",
+        },
+        {
+            title: "Date",
+            dataIndex: "createdAt",
+            key: "createdAt",
+            render: (date: string) => new Date(date).toLocaleDateString(), // Format date
+        },
+        {
+            title: "AXP",
+            dataIndex: "results.axpGained",
+            key: "axpGained",
+            render: (_: any, record: SessionData) => (
+                <>
+                    {record.results?.axpGained == 0 ? (
+                        <Tag color='cyan'>
+                            0
                         </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: (_, record) => (
-            <Space size="middle">
-                <Link href={'/results/' + record.name}>View</Link>
-            </Space>
-        ),
-    },
-];
-
-const data: DataType[] = [
-    {
-        key: '1',
-        name: 'Session 1',
-        duration: '30 mins',
-        date: '2023-10-01',
-        axpPoints: 50,
-        brilliantPoints: 20,
-        difficulty: ['Easy'],
-    },
-    {
-        key: '2',
-        name: 'Session 2',
-        duration: '45 mins',
-        date: '2023-10-02',
-        axpPoints: 70,
-        brilliantPoints: 30,
-        difficulty: ['Medium', 'Hard'],
-    },
-    {
-        key: '3',
-        name: 'Session 3',
-        duration: '60 mins',
-        date: '2023-10-03',
-        axpPoints: 100,
-        brilliantPoints: 50,
-        difficulty: ['Hard'],
-    },
-];
-
-export default function Index() {
+                    ) : (
+                        <Tag color='cyan-inverse'>
+                            + {record?.results?.axpGained}
+                        </Tag>
+                    )}
+                </>
+            )
+        },
+        {
+            title: "Brilliants",
+            dataIndex: "results.brilliantsGained",
+            key: "brilliantsGained",
+            render: (_: any, record: SessionData) =>
+                <>
+                    {record.results?.brilliantsGained == 0 ? (
+                        <Tag color='gold'>
+                            0
+                        </Tag>
+                    ) : (
+                        <Tag color='gold-inverse'>
+                            + {record?.results?.brilliantsGained}
+                        </Tag>
+                    )}
+                </>
+        },
+        {
+            title: "Difficulty",
+            dataIndex: "difficulty",
+            key: "difficulty",
+            render: (difficulty: string[]) => (
+                <>
+                    {difficulty.map((level) => (
+                        <Tag color="blue" key={level}>
+                            {level.toUpperCase()}
+                        </Tag>
+                    ))}
+                </>
+            ),
+        },
+        {
+            title: "Type",
+            key: "type",
+            render: (_: any, record: SessionData) => {
+                const type = record.numberOfQuestions === 5 ? "miniset" : "classic";
+                const color = type === "classic" ? "purple" : "green";
+                return (
+                    <Tag color={color} key={type}>
+                        {type.toUpperCase()}
+                    </Tag>
+                );
+            },
+        },
+        {
+            title: "Overall Score",
+            dataIndex: "results.overallScore",
+            key: "overallScore",
+            render: (_: any, record: SessionData) => {
+                const overallScore = record.results?.overallScore || 0;
+                return (
+                    <div className={styles.progressWrapper}>
+                        <div>
+                            <p className={styles.scoreText}>{record.results?.overallScore}%</p>
+                        </div>
+                        <div className={styles.progressBarContainer}>
+                            <div
+                                className={`${styles.progressBar} ${
+                                    overallScore === 100
+                                        ? styles.greenProgress
+                                        : styles.purpleProgress
+                                }`}
+                                style={{width: `${overallScore}%`}}
+                            />
+                        </div>
+                    </div>
+                );
+            },
+        },
+        {
+            title: "Actions",
+            key: "action",
+            render: (_: any, record: SessionData) => (
+                <Space size="middle">
+                    <Button type="default" style={{borderColor: "#ccc"}}>
+                        <Link href={`/results/${record.sessionId}`}>
+                            <span>View</span>
+                        </Link>
+                    </Button>
+                    <Button
+                        type="default"
+                        danger
+                        onClick={() => showModal(record.sessionId)}
+                    >
+                        Delete
+                    </Button>
+                </Space>
+            ),
+        },
+    ];
 
     return (
-        <Table<DataType> columns={columns} dataSource={data} style={{ width: '100%' }} bordered={true}/>
-    )
+        <Table
+            columns={columns}
+            dataSource={sessions}
+            rowKey="sessionId"
+            bordered
+            style={{ width: "100%" }}
+        />
+    );
 }
