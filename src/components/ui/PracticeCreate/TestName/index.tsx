@@ -13,9 +13,7 @@ export default function index({
 }) {
     return (
         <div className={styles.configName}>
-            <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
-                <Typography className={styles.titleText}>Name</Typography>
-            </Divider>
+            <Typography className={styles.titleText}>Name</Typography>
             <Input
                 showCount
                 maxLength={20}

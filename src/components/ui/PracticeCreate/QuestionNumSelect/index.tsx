@@ -13,9 +13,7 @@ export default function index({
 
     return (
         <>
-            <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
-                <Typography className={styles.titleText}>Number of Questions</Typography>
-            </Divider>
+            <Typography className={styles.titleText}>Number of Questions</Typography>
             <div className={styles.radioButtonsWrapper}>
                 <div className={styles.radioWrapper}>
                     <Radio

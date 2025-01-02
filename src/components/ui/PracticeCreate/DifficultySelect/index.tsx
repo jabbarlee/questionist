@@ -13,9 +13,7 @@ export default function index({
 }) {
     return (
         <div className={styles.configDifficulty}>
-            <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
-                <Typography className={styles.titleText}>Difficulty</Typography>
-            </Divider>
+            <Typography className={styles.titleText}>Difficulty</Typography>
             <div className={styles.radioButtonsWrapper}>
                 {difficultyLevels.map((level, index) => (
                     <div className={styles.radioWrapper} key={index}>
