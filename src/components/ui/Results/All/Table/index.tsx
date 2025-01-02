@@ -106,6 +106,7 @@ export default function ResultsTable({ sessions, showModal }: TableProps) {
                                 style={{width: `${overallScore}%`}}
                             />
                         </div>
+
                     </div>
                 );
             },
