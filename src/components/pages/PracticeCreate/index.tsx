@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import { Button, Card, Progress, Alert } from "antd";
+import { Button, Progress, Alert } from "antd";
 import DifficultySelect from "@/components/ui/PracticeCreate/DifficultySelect";
 import QuestionTypeSelect from "@/components/ui/PracticeCreate/QuestionTypeSelect";
 import TopicsSelect from "@/components/ui/PracticeCreate/TopicsSelect";
@@ -83,21 +83,33 @@ export default function PracticeCreate() {
                                         "100%": "#87d068",
                                     }}
                                 />
-                                <div>
+                                <div className={styles.subHeadingTextWrapper}>
                                     <p className={styles.subHeading}>
                                         {progress === 100 ? "Ready to create practice set" : "Complete all fields to create practice set"}
                                     </p>
                                 </div>
                             </div>
-                            <Button
-                                type="primary"
-                                size="large"
-                                className={styles.createButton}
-                                onClick={handleCreate}
-                                {...(progress !== 100 && { disabled: true })}
-                            >
-                                Create Practice Set
-                            </Button>
+                            <div className={styles.buttonsContainer}>
+                                <Button
+                                    variant="solid"
+                                    color="primary"
+                                    size="large"
+                                    className={styles.createButton}
+                                    onClick={handleCreate}
+                                    {...(progress !== 100 && { disabled: true })}
+                                >
+                                    Create Practice Set
+                                </Button>
+                                <Button
+                                    variant="filled"
+                                    color="primary"
+                                    size="large"
+                                    className={styles.createButton}
+                                    onClick={handleCreate}
+                                >
+                                    Randomize set
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
