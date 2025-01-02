@@ -43,9 +43,7 @@ export default function index({
 
     return (
         <>
-            <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
-                <Typography className={styles.titleText}>Categories</Typography>
-            </Divider>
+            <Typography className={styles.titleText}>Categories</Typography>
             <Collapse
                 size="large"
                 defaultActiveKey={['0', '1', '2', '3']}
