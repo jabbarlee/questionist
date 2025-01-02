@@ -108,8 +108,14 @@ export default function PracticeCreate() {
                 <div className={styles.container}>
                     <div className={styles.left}>
                         <div className={styles.card}>
-                            <TestName testName={testName} setTestName={setTestName} />
-                            <DifficultySelect difficulty={difficulty} setDifficulty={setDifficulty} />
+                            <TestName
+                                testName={testName}
+                                setTestName={setTestName}
+                            />
+                            <DifficultySelect
+                                difficulty={difficulty}
+                                setDifficulty={setDifficulty}
+                            />
                             <QuestionTypeSelect
                                 questionType={questionType}
                                 setQuestionType={setQuestionType}
@@ -142,7 +148,11 @@ export default function PracticeCreate() {
                                 />
                                 <div className={styles.subHeadingTextWrapper}>
                                     <p className={styles.subHeading}>
-                                        {progress === 100 ? "Ready to create practice set" : "Complete all fields to create practice set"}
+                                        {progress === 100 ?
+                                            "Ready to create practice set"
+                                            :
+                                            "Complete all fields to create practice set"
+                                        }
                                     </p>
                                 </div>
                             </div>
