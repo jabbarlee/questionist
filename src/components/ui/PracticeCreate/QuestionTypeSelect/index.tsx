@@ -13,9 +13,7 @@ export default function index({
 }) {
     return (
         <div className={styles.configQuestionType}>
-            <Divider orientation="left" style={{margin: '0'}} orientationMargin="0">
-                <Typography className={styles.titleText}>Question Type</Typography>
-            </Divider>
+            <Typography className={styles.titleText}>Question Type</Typography>
             <div className={styles.questionTypeWrapper}>
                 <div>
                     {questionTypes.map((question, index) => (
