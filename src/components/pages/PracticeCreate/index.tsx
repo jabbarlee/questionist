@@ -24,12 +24,15 @@ export default function index() {
     const [buttonColor, setButtonColor] = useState<string>('primary');
     const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
     const [alertType, setAlertType] = useState<"error" | "info" | "success" | "warning" | undefined>('info');
+    const [alertMessage, setAlertMessage] = useState<string | null>(null);
     const router = useRouter();
 
 
     const handleCreate = async () => {
         try {
-            setResMessage('Creating...');
+            setAlertType('info');
+            setSuccessAlertVisible(true);
+            setAlertMessage('Creating session...');
 
             const res = await storePracticeSession({
                 topics: topics || [],
@@ -41,6 +44,7 @@ export default function index() {
             if (res.success) {
                 setSuccessAlertVisible(true);
                 setAlertType('success');
+                setAlertMessage('Session created successfully! Redirecting...');
                 router.push(`/practice/session/${res.sessionId}`);
             } else {
                 setSuccessAlertVisible(true);
@@ -56,7 +60,7 @@ export default function index() {
         <Page>
             {successAlertVisible && (
                 <Alert
-                    message="Session created successfully!"
+                    message={alertMessage}
                     type={alertType}
                     banner
                     showIcon
