@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import styles from './index.module.css'
 import Main from "@/components/ui/_wrappers/Main";
@@ -8,8 +10,25 @@ import Header from "@/components/ui/_wrappers/Header";
 import Page from "@/components/ui/_wrappers/Page";
 import Typography from "@mui/material/Typography";
 import { Button } from 'antd';
+import { useRouter } from 'next/navigation'
+import { PracticeStartProps } from '@/types';
+import { storePracticeSession } from '@/actions/firebase/setDoc';
 
 export default function index() {
+    const router = useRouter()
+
+    const handlePopularSetStart = async({ topics, difficulty, sessionName, numberOfQuestions}: PracticeStartProps) => {
+        try{
+            const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
+
+            if(success && sessionId){
+                router.push(`/practice/${sessionId}`)
+            }
+        }catch(error){
+            console.error('Error starting popular set: ', error)
+        }
+    }
+
     return (
         <Page>
             <Header>
@@ -32,8 +51,13 @@ export default function index() {
                                         color="primary"
                                         size="large"
                                         variant='filled'
-                                        style={{ textDecoration: 'none' }}
-                                        href="/practice/create"
+                                        style={{ textDecoration: 'none', width: '100%' }}
+                                        onClick={() => handlePopularSetStart({
+                                            topics: ['algebra'],
+                                            difficulty: ['medium'],
+                                            sessionName: 'Algebra Essentials',
+                                            numberOfQuestions: 10
+                                        })}
                                     >
                                         Start Now
                                     </Button>
@@ -47,9 +71,14 @@ export default function index() {
                                     <Button
                                         color="primary"
                                         variant='filled'
-                                        style={{ textDecoration: 'none' }}
+                                        style={{ textDecoration: 'none', width: '100%' }}
                                         size="large"
-                                        href="/practice/create"
+                                        onClick={() => handlePopularSetStart({
+                                            topics: ['geometry'],
+                                            difficulty: ['easy'],
+                                            sessionName: 'Geometry Basic',
+                                            numberOfQuestions: 15
+                                        })}
                                     >
                                         Start Now
                                     </Button>
