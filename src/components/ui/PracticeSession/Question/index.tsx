@@ -26,8 +26,7 @@ export const Question = ({
         <div className={styles.questionChip}>
             <Header index={index}/>
 
-            {/* Question Text */}
-            <div className={`${styles.questionText}`}>
+            <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
             </div>
 
@@ -62,50 +61,40 @@ export const QuestionResult = ({
                                }: {
     index: number;
     questionText: string;
-    options: Option[];
+    options: { id: string; text: string }[];
     selectedOption: string | null;
     correctOption: string | null;
 }) => {
     return (
         <div className={styles.questionChip}>
-            <Header index={index}/>
+            <Header index={1}/>
 
             <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
             </div>
 
-            <div className={styles.questionOptionsWrapper}>
+            {/* Options */}
+            <Radio.Group className={styles.questionOptionsWrapper} value={selectedOption}>
                 {options.map((option) => (
-                    <div
+                    <Radio
                         key={option.id}
+                        value={option.text}
                         className={`${styles.optionWrapper} ${
                             selectedOption === option.text && correctOption === option.text
-                                ? styles.correctOption // Green if selected and correct
+                                ? styles.correctOption // Green for selected and correct
                                 : selectedOption === option.text
-                                    ? styles.incorrectOption // Red if selected and incorrect
+                                    ? styles.incorrectOption // Red for selected and incorrect
                                     : correctOption === option.text
                                         ? styles.correctOption // Green for correct answer
                                         : ""
                         }`}
                     >
-                        {/* Read-only Radio Indicator */}
-                        <div
-                            className={`${styles.radioIndicator} ${
-                                selectedOption === option.text && correctOption === option.text
-                                    ? styles.correct
-                                    : selectedOption === option.text
-                                        ? styles.incorrect
-                                        : correctOption === option.text
-                                            ? styles.correct
-                                            : ""
-                            }`}
-                        ></div>
                         <Typography className={styles.optionText}>
                             {option.text}
                         </Typography>
-                    </div>
+                    </Radio>
                 ))}
-            </div>
+            </Radio.Group>
         </div>
     );
 };
