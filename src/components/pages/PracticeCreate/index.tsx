@@ -164,11 +164,9 @@ export default function PracticeCreate() {
                                     className={styles.createButton}
                                     onClick={handleCreate}
                                     {...(progress !== 100 && {disabled: true})}
+                                    icon={<Bolt/>}
                                 >
-                                    <div className={styles.buttonTextWrapper}>
-                                        <Bolt className={styles.iconBolt}/>
-                                        Create
-                                    </div>
+                                    Create
                                 </Button>
                                 <Button
                                     variant="filled"
@@ -176,11 +174,9 @@ export default function PracticeCreate() {
                                     size="large"
                                     className={styles.createButton}
                                     onClick={handleCreate}
+                                    icon={<Potion/>}
                                 >
-                                    <div className={styles.buttonTextWrapper}>
-                                        <Potion className={styles.iconPotion}/>
-                                        Randomize
-                                    </div>
+                                    Randomize
                                 </Button>
                             </div>
                         </div>
