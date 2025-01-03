@@ -3,10 +3,6 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
-    position: fixed; /* Makes the header fixed at the top */
-    top: 0;
-    width: 100%; /* Ensures the header spans the entire width */
-    z-index: 1000;
     padding: 10px 15px;
     background-color: #fbfbfb;
     border-bottom: 1px solid #e6e6e6;

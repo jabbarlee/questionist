@@ -28,12 +28,12 @@
     background-color: #f9f9f9;
     padding: 10px 15px;
     border-radius: 8px;
-    transition: background-color 0.2s ease, border 0.2s ease;
+    transition: 0.2s ease;
     cursor: pointer;
 }
 
 .optionWrapper.selectedOption {
-    border: 0.5px solid #1f1f1f;
+    border: 0.5px solid #e6e6e6;
 }
 
 .optionWrapper.correctOption {
@@ -51,15 +51,11 @@
 .radioIndicator {
     width: 18px;
     height: 18px;
-    border: 2px solid #ccc; /* Default border color */
-    border-radius: 50%;
-    margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: transparent; /* Default background */
-    transition: background-color 0.2s, border-color 0.2s;
+    transition: 0.2s ease;
 }
 
 /* Style for Correct Option */
@@ -74,10 +70,12 @@
     background-color: #d9534f; /* Red background */
 }
 
-/* Style for Selected Option */
-.radioIndicator.selected {
-    border-color: #8e8e8e; /* Gray border for selected */
-    background-color: #8e8e8e; /* Gray background */
+.radioIndicatorWrapper.selected {
+    border-color: #8e8e8e;
+}
+
+.radioIndicator.selectedRadio{
+    background-color: #8e8e8e;
 }
 
 /* Option Text */
