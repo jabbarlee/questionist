@@ -1,4 +1,5 @@
-import { updateQuestions, updateResults } from "@/actions/firebase/updateDoc";
+import { updateResults } from "@/actions/firebase/update/updateResults";
+import { updateQuestions } from "@/actions/firebase/update/updateQuestions"
 import { QuestionProps, SelectedOption } from "@/types";
 
 export async function handleSessionSubmit({

@@ -1,7 +1,7 @@
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "@/config/firebase";
 import {SessionData} from "@/types";
-import {updateResults} from "@/actions/firebase/updateDoc";
+import {updateResults} from "@/actions/firebase/update/updateResults";
 
 export const getResults = async (sessionId: string) => {
     const response = await fetch('/api/firebase/get/user');
