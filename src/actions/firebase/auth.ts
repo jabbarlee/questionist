@@ -2,7 +2,7 @@
 
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
 import { auth } from "@/config/firebase";
-import { storeUserInfoInFirestore } from "@/actions/firebase/setDoc";
+import { storeUserInfoInFirestore } from "@/actions/firebase/set/storeUserInfoInFirestore";
 import { createSessionCookie } from "@/utils/firebase/createSessionCookie";
 import { SignInAuthProps, SignUpAuthProps } from "@/types";
 
