@@ -67,7 +67,7 @@ export const QuestionResult = ({
 }) => {
     return (
         <div className={styles.questionChip}>
-            <Header index={1}/>
+            <Header index={index}/>
 
             <div className={`${styles.questionText} ${merriweather.className}`}>
                 {questionText}
