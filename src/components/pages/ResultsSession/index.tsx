@@ -36,20 +36,14 @@ export default function ResultsPage({ id }: { id: string }) {
             </Header>
             <Main marginLess={true}>
                 <div className={styles.scoreCharts}>
-                    {sessionData?.results?.overallScore ? (
-                        <ScoreBoard
-                            correctAnswers={sessionData?.results?.correctAnswers || 0}
-                            incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
-                            numOfQuestions={sessionData?.results?.numOfQuestions || 0}
-                            overallScore={sessionData?.results?.overallScore || 0}
-                            axpGained={sessionData?.results?.axpGained || 0}
-                            brilliantsGained={sessionData?.results?.brilliantsGained || 0}
-                        />
-                    ) : (
-                        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
-                            <CircularProgress/>
-                        </div>
-                    )}
+                    <ScoreBoard
+                        correctAnswers={sessionData?.results?.correctAnswers || 0}
+                        incorrectAnswers={sessionData?.results?.incorrectAnswers || 0}
+                        numOfQuestions={sessionData?.results?.numOfQuestions || 0}
+                        overallScore={sessionData?.results?.overallScore || 0}
+                        axpGained={sessionData?.results?.axpGained || 0}
+                        brilliantsGained={sessionData?.results?.brilliantsGained || 0}
+                    />
                 </div>
                 <div className={styles.questionsContainer}>
                     {sessionData?.questions ? (

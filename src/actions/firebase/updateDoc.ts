@@ -1,6 +1,6 @@
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
-import { QuestionProps, SelectedOption } from '@/types';
+import { QuestionProps, SelectedOption, SessionData } from '@/types';
 import { getResults } from './getDoc';
 
 export async function updateQuestions(
@@ -37,11 +37,12 @@ export async function updateQuestions(
             updatedAt: new Date().toISOString(),
         });
 
-        const { success } = await getResults(sessionId);
+        // const { success } = await getResults(sessionId);
 
-        return { success: true, message: 'Session finished!' };
+        return { success: true, message: 'Session finished' };
+
     } catch (error) {
-        console.error('Error adding or updating questions:', error);
+        console.error('Error updating questions in Firestore:', error);
         return { success: false, error: 'Failed to submit your session.' };
     }
 }
@@ -67,23 +68,45 @@ function returnResults(results: boolean[]) {
     return { overallScore: score, correctAnswers, incorrectAnswers, numOfQuestions, axpGained, brilliantsGained };
 }
 
-export async function updateResults(sessionId: string, results: boolean[]){
+export const updateResults = async (sessionId: string) => {
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
 
     try {
         const sessionDocRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
-        const overallScore = returnResults(results);
+        const sessionSnap = await getDoc(sessionDocRef);
 
-        await updateDoc(sessionDocRef, { results: overallScore });
+        if (!sessionSnap.exists()) {
+            return { success: false, error: 'Session not found' };
+        }
 
-        return { success: true, message: 'Results added to Firestore successfully' };
+        const sessionData = sessionSnap.data() as SessionData;
+
+        const results = sessionData?.questions?.map((question: any) => {
+            return question.selectedChoice === question.correctAnswer;
+        }) || [];
+
+        // Calculate scores
+        const correctAnswers = results.filter(Boolean).length;
+        const totalQuestions = results.length;
+        const overallScore = Math.round((correctAnswers / totalQuestions) * 100);
+
+        await updateDoc(sessionDocRef, {
+            results: {
+                correctAnswers,
+                incorrectAnswers: totalQuestions - correctAnswers,
+                numOfQuestions: totalQuestions,
+                overallScore,
+                updatedAt: new Date().toISOString(),
+            },
+        });
+
+        return { success: true, message: 'Results updated successfully.' };
     } catch (error) {
-        console.error(error);
-
-        return { success: false, message: 'Something went wrong' };
+        console.error('Error updating results in Firestore:', error);
+        return { success: false, error: 'Failed to update results in Firestore.' };
     }
-}
+};
 
 export async function favoriteSession(sessionId: string) {
     const response = await fetch('/api/firebase/get/user');

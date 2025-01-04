@@ -43,8 +43,6 @@ export const getResults = async (sessionId: string) => {
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
 
-    const results: boolean[] = [];
-
     try {
         const sessionRef = doc(db, 'users', uid, 'practiceSessions', sessionId);
         const sessionSnap = await getDoc(sessionRef);
@@ -52,30 +50,28 @@ export const getResults = async (sessionId: string) => {
         if (sessionSnap.exists()) {
             const sessionData = sessionSnap.data() as SessionData;
 
-            // Main logic
-            sessionData?.questions?.forEach((element: any) => {
-                if (element.selectedChoice === element.correctAnswer) {
-                    results.push(true);
-                } else {
-                    results.push(false);
-                }
-            });
+            // Calculate results
+            const results = sessionData?.questions?.map((question: any) => {
+                return question.selectedChoice === question.correctAnswer;
+            }) || [];
 
-            const { success, message } = await updateResults(sessionId, results);
+            const { success } = await updateResults(sessionId, results);
 
             if (success) {
+                console.log(`Results for session ${sessionId} updated successfully.`);
                 const updatedSessionData = (await getDoc(sessionRef)).data() as SessionData;
 
                 return { sessionData: updatedSessionData, success: true };
             } else {
-                return { sessionData: null, success: true };
+                console.error('Failed to update session results.');
+                return { sessionData: null, success: false };
             }
         } else {
-            console.error('No such document!');
+            console.error('No such session document in Firestore!');
             return { sessionData: null, success: false };
         }
     } catch (error) {
-        console.error("Error fetching practice session config:", error);
+        console.error("Error fetching session data or updating results:", error);
         return { sessionData: null, success: false };
     }
 };

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import { ScoreChip, ScoreProgress } from "./ScoreChip";
 import {Typography} from "@mui/material";
-import {Button} from "antd";
+import {Button, Tag} from "antd";
 import { SessionData } from "@/types";
 
 export default function ScoreBoard({
@@ -26,7 +26,7 @@ export default function ScoreBoard({
         <div className={styles.scoreBoard}>
             <div className={styles.passedTextContainer}>
                 <Typography className={styles.passedText}>
-                    {overallScore >= 80 ? "You passed the test!" : "You need more practice!"}
+                    {'You scored ' + overallScore + '%'}
                 </Typography>
                 <div>
                     <Button type={"link"} color={"primary"} size={"large"}>
@@ -40,10 +40,30 @@ export default function ScoreBoard({
 
             <div className={styles.chipContainer}>
                 <div className={styles.chipWrapper}>
-                    <ScoreChip success text={"Correct"}>{correctAnswers}</ScoreChip>
-                    <ScoreChip error text={"Incorrect"}>{incorrectAnswers}</ScoreChip>
-                     <ScoreChip text={"AXP"}>+ {axpGained}</ScoreChip>
-                    <ScoreChip text={"Brilliants"}>+ {brilliantsGained}</ScoreChip>
+                    <Tag
+                        color={'success'}
+                        className={styles.tag}
+                    >
+                        {correctAnswers}
+                    </Tag>
+                    <Tag
+                        color={"error"}
+                        className={styles.tag}
+                    >
+                        {incorrectAnswers}
+                    </Tag>
+                    <Tag
+                        color={axpGained == 0 ? 'cyan' : 'cyan-inverse'}
+                        className={styles.tag}
+                    >
+                        + {axpGained}
+                    </Tag>
+                    <Tag
+                        color={brilliantsGained == 0 ? 'gold' : 'gold-inverse'}
+                        className={styles.tag}
+                    >
+                        + {brilliantsGained}
+                    </Tag>
                 </div>
                 <div className={styles.chipWrapper}>
                     <ScoreProgress progress={overallScore}/>

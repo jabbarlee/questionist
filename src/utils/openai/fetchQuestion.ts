@@ -1,10 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
 import { generateQuestion } from './generateQuestion';
 
 export const fetchGeneratedQuestions = async ({
-    topics,
-    difficulty,
-    numberOfQuestions,
-}: {
+                                                  topics,
+                                                  difficulty,
+                                                  numberOfQuestions,
+                                              }: {
     topics: string[];
     difficulty: string;
     numberOfQuestions: number;
@@ -20,8 +21,9 @@ export const fetchGeneratedQuestions = async ({
         questionsFromTopic.forEach((questionData) => {
             const { type, question, choices, correctAnswer } = questionData;
 
-            // Format the question object
+            // Format the question object and assign a unique ID
             const formattedQuestion = {
+                id: uuidv4(), // Generate a unique ID for the question
                 question: question,
                 correctAnswer,
                 choices: type === "multiple-choice"

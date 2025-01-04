@@ -25,7 +25,8 @@ export async function generateQuestion({
         {
           role: "system",
           content:
-              "You are an expert SAT math question generator. Only generate the question based on the criteria provided, without answers or explanations.",
+              "You are an expert SAT math question generator. Only generate the question based on the criteria provided, without answers or explanations. The question should be unique and not copied from any existing source. " +
+              "Do not repeat the same question. " ,
         },
         {
           role: "user",

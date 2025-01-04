@@ -42,6 +42,7 @@ export type SessionData = {
 };
 
 export type QuestionProps = {
+    id: string;
     question: string;
     choices: Option[];
     correctAnswer: string;
