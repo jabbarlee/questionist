@@ -12,7 +12,7 @@ import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
 import { Potion, Bolt, Fire } from "@/data/icons/practice";
-import { storePracticeSession } from "@/actions/firebase/setDoc";
+import { storePracticeSession } from "@/actions/firebase/set/storePracticeSession";
 import { useRouter } from "next/navigation";
 import Typography from "@mui/material/Typography";
 import {PracticeStartProps} from "@/types";

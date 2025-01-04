@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getAllResults } from "@/actions/firebase/getDoc";
+import { getAllResults } from "@/actions/firebase/get/getAllResults";
 import Page from "@/components/ui/_wrappers/Page";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import ResultsTable from "@/components/ui/Results/All/Table";
 import { Modal, Button, Alert, Result } from "antd";
-import { deletePracticeSession } from "@/actions/firebase/deleteDoc";
+import { deletePracticeSession } from "@/actions/firebase/delete/deletePracticeSession";
 import { SessionData } from "@/types";
 
 export default function Results() {
