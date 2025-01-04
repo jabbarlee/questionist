@@ -8,7 +8,7 @@ import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
 import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
 import { Question } from "@/components/ui/PracticeSession/Question";
-import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
+import { fetchPracticeSessionConfig } from "@/actions/firebase/get/fetchPracticeSessionConfig";
 import { SessionData, QuestionProps } from "@/types";
 import { SelectedOption } from "@/types";
 import { handleSessionSubmit } from "@/actions/handleSessionSubmit";

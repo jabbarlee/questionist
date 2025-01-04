@@ -5,12 +5,12 @@ import styles from './index.module.css'
 import Page from "@/components/ui/_wrappers/Page";
 import Header from "@/components/ui/_wrappers/Header";
 import { QuestionResult } from "@/components/ui/PracticeSession/Question";
-import { getResults } from "@/actions/firebase/getDoc";
+import { getResults } from "@/actions/firebase/get/getResults";
 import { SessionData } from "@/types";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScoreBoard from "@/components/ui/Results/Session/ScoreBoard";
 import Main from "@/components/ui/_wrappers/Main";
-import { fetchPracticeSessionConfig } from "@/actions/firebase/getDoc";
+import { fetchPracticeSessionConfig } from "@/actions/firebase/get/fetchPracticeSessionConfig";
 
 export default function ResultsPage({ id }: { id: string }) {
     const [sessionData, setSessionData] = useState<SessionData | null>(null);
