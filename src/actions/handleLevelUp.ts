@@ -37,11 +37,14 @@ export const handleLevelUp = async (userId: string, earnedAXP: number) => {
         newLevel = levelThresholds.length;
     }
 
-    // Calculate progress to the next level
     const progressToNextLevel = newLevel < levelThresholds.length
         ? Math.round(((axp - levelThresholds[newLevel - 1]?.reward.axp) /
             (levelThresholds[newLevel]?.reward.axp - levelThresholds[newLevel - 1]?.reward.axp)) * 100)
-        : 100;
+        : 100; // Max progress for highest level
+
+    const axpToNextLevel = newLevel < levelThresholds.length
+        ? levelThresholds[newLevel]?.reward.axp - axp
+        : 0;
 
     // Update Firestore
     await updateDoc(userRef, {
@@ -49,6 +52,7 @@ export const handleLevelUp = async (userId: string, earnedAXP: number) => {
         axp,
         brilliants: brilliants + brilliantsEarned,
         progressToNextLevel,
+        axpToNextLevel,
     });
 
     return { newLevel, axp, brilliants: brilliants + brilliantsEarned, progressToNextLevel };
