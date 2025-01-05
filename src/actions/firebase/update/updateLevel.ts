@@ -21,3 +21,12 @@ export const updateLevel = async({ sessionId } : { sessionId: string }) => {
 
     return { success: true, message: 'Level updated' };
 }
+
+export const updatePointsManual = async({ points } : { points: number }) => {
+    const response = await fetch('/api/firebase/get/user');
+    const {uid} = await response.json();
+
+    await handleLevelUp(uid, points);
+
+    return { success: true, message: 'Level updated' };
+}
