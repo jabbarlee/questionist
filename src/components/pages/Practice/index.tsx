@@ -45,11 +45,6 @@ export default function index() {
                     <div className={styles.customSetWrapper}>
                         <CustomSet/>
                         <div className={styles.popularSetsWrapper}>
-                            <Button onClick={async() => {
-                                const { success, error } = await insertLevelBadges();
-
-                                console.log(error)
-                            }}>Insert data</Button>
                             <Typography className={styles.stepHeadingText}>Popular Practice Sets</Typography>
                             <div className={styles.popularSets}>
                                 <div className={styles.setCard}>
