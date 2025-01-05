@@ -1,6 +1,7 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { SessionData } from "@/types";
+import { updateLevel } from "./updateLevel"
 
 // Function to calculate results and rewards
 function returnResults(results: boolean[]) {
@@ -74,6 +75,12 @@ export const updateResults = async (sessionId: string) => {
                 updatedAt: new Date().toISOString(),
             },
         });
+
+        const { success } = await updateLevel({ sessionId });
+
+        if(!success) {
+            return { success: false, error: 'Failed to update level.' };
+        }
 
         return { success: true, message: 'Results updated successfully.' };
     } catch (error) {

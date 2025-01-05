@@ -96,11 +96,13 @@ export default function Index({ sessionId }: { sessionId: string }) {
             };
         });
 
-        const { success } = await handleSessionSubmit({
+        const { success, errorMessage } = await handleSessionSubmit({
             sessionId,
             questions,
             selectedChoices,
         });
+
+        setMessage(errorMessage || "Error submitting session");
 
         if (success) {
             setSuccessAlertVisible(true);

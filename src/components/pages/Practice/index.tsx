@@ -12,7 +12,8 @@ import Typography from "@mui/material/Typography";
 import { Button } from 'antd';
 import { useRouter } from 'next/navigation'
 import { PracticeStartProps } from '@/types';
-import { storePracticeSession } from '@/actions/firebase/setDoc';
+import { storePracticeSession } from '@/actions/firebase/set/storePracticeSession';
+import { insertLevelBadges } from "@/utils/insertLevelBadges";
 
 export default function index() {
     const router = useRouter()
@@ -44,6 +45,11 @@ export default function index() {
                     <div className={styles.customSetWrapper}>
                         <CustomSet/>
                         <div className={styles.popularSetsWrapper}>
+                            <Button onClick={async() => {
+                                const { success, error } = await insertLevelBadges();
+
+                                console.log(error)
+                            }}>Insert data</Button>
                             <Typography className={styles.stepHeadingText}>Popular Practice Sets</Typography>
                             <div className={styles.popularSets}>
                                 <div className={styles.setCard}>
