@@ -12,6 +12,7 @@ import {
     Arrow,
     Reward
 } from '@/data/icons/navbar';
+import { AccountCard } from "@/components/ui/AccountCard"
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -22,46 +23,53 @@ export default function Navbar() {
                 <p className={styles.navText}>Questionist</p>
             </div>
             <div className={styles.sectionWrapper}>
-                <div className={styles.linksWrapper}>
-                    <div className={styles.linkWrapper}>
-                        <Link href="/dashboard" style={{textDecoration: "none"}}>
-                            <div className={`${styles.textWrapper} ${pathname === '/dashboard' ? styles.active : ''}`}>
-                                <Dashboard className={pathname === '/dashboard' ? styles.iconActive : styles.icon}/>
-                                <p className={`${styles.linkText} ${pathname === '/dashboard' ? styles.activeText : ''}`}>Dashboard</p>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={styles.linkWrapper}>
-                        <Link href="/practice" style={{textDecoration: "none"}}>
-                            <div className={`${styles.textWrapper} ${pathname === '/practice' ? styles.active : ''}`}>
-                                <Function className={pathname === '/practice' ? styles.iconActive : styles.icon}/>
-                                <p className={`${styles.linkText} ${pathname === '/practice' ? styles.activeText : ''}`}>Practice</p>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={styles.linkWrapper}>
-                        <Link href="/results" style={{textDecoration: "none"}}>
-                            <div className={`${styles.textWrapper} ${pathname === '/results' ? styles.active : ''}`}>
-                                <Report className={pathname === '/results' ? styles.iconActive : styles.icon}/>
-                                <p className={`${styles.linkText} ${pathname === '/results' ? styles.activeText : ''}`}>Results</p>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={styles.linkWrapper}>
-                        <Link href="/challenges" style={{textDecoration: "none"}}>
-                            <div className={`${styles.textWrapper} ${pathname === '/challenges' ? styles.active : ''}`}>
-                                <Arrow className={pathname === '/challenges' ? styles.iconActive : styles.icon}/>
-                                <p className={`${styles.linkText} ${pathname === '/challenges' ? styles.activeText : ''}`}>Challenges</p>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className={styles.linkWrapper}>
-                        <Link href="/rewards" style={{textDecoration: "none"}}>
-                            <div className={`${styles.textWrapper} ${pathname === '/rewards' ? styles.active : ''}`}>
-                                <Reward className={pathname === '/rewards' ? styles.iconActive : styles.icon}/>
-                                <p className={`${styles.linkText} ${pathname === '/rewards' ? styles.activeText : ''}`}>Rewards</p>
-                            </div>
-                        </Link>
+                <div className={styles.sectionTopWrapper}>
+                    <div className={styles.linksWrapper}>
+                        <div className={styles.linkWrapper}>
+                            <Link href="/dashboard" style={{textDecoration: "none"}}>
+                                <div
+                                    className={`${styles.textWrapper} ${pathname === '/dashboard' ? styles.active : ''}`}>
+                                    <Dashboard className={pathname === '/dashboard' ? styles.iconActive : styles.icon}/>
+                                    <p className={`${styles.linkText} ${pathname === '/dashboard' ? styles.activeText : ''}`}>Dashboard</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className={styles.linkWrapper}>
+                            <Link href="/practice" style={{textDecoration: "none"}}>
+                                <div
+                                    className={`${styles.textWrapper} ${pathname === '/practice' ? styles.active : ''}`}>
+                                    <Function className={pathname === '/practice' ? styles.iconActive : styles.icon}/>
+                                    <p className={`${styles.linkText} ${pathname === '/practice' ? styles.activeText : ''}`}>Practice</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className={styles.linkWrapper}>
+                            <Link href="/results" style={{textDecoration: "none"}}>
+                                <div
+                                    className={`${styles.textWrapper} ${pathname === '/results' ? styles.active : ''}`}>
+                                    <Report className={pathname === '/results' ? styles.iconActive : styles.icon}/>
+                                    <p className={`${styles.linkText} ${pathname === '/results' ? styles.activeText : ''}`}>Results</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className={styles.linkWrapper}>
+                            <Link href="/challenges" style={{textDecoration: "none"}}>
+                                <div
+                                    className={`${styles.textWrapper} ${pathname === '/challenges' ? styles.active : ''}`}>
+                                    <Arrow className={pathname === '/challenges' ? styles.iconActive : styles.icon}/>
+                                    <p className={`${styles.linkText} ${pathname === '/challenges' ? styles.activeText : ''}`}>Challenges</p>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className={styles.linkWrapper}>
+                            <Link href="/rewards" style={{textDecoration: "none"}}>
+                                <div
+                                    className={`${styles.textWrapper} ${pathname === '/rewards' ? styles.active : ''}`}>
+                                    <Reward className={pathname === '/rewards' ? styles.iconActive : styles.icon}/>
+                                    <p className={`${styles.linkText} ${pathname === '/rewards' ? styles.activeText : ''}`}>Rewards</p>
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,6 +87,9 @@ export default function Navbar() {
                             Start 30 day trial
                         </Button>
                     </div>
+                </div>
+                <div className={styles.accountCard}>
+                    <AccountCard/>
                 </div>
             </div>
         </nav>
