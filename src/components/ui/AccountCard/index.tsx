@@ -6,9 +6,10 @@ import {Typography} from "@mui/material"
 import { LevelProgress } from './LevelProgress'
 import { getUser } from '@/actions/firebase/get/getUser'
 import { UserData } from '@/types'
+import Link from 'next/link'
 
 export function AccountCard() {
-    const [userData, setUserData] = React.useState<UserData | null>(null);
+    const [userData, setUserData] = useState<UserData | null>(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -19,16 +20,14 @@ export function AccountCard() {
         fetchUserData();
     }, []);
 
-    const progress = userData && userData.axp && userData.axpToNextLevel
-        ? (userData.axp / userData.axpToNextLevel) * 100
-        : 0;
-
     return (
         <div className={styles.container}>
             <div className={styles.accountInfoWrapper}>
                 <div className={styles.accountInfo}>
                     <div className={styles.fullName}>
-                        <Typography className={styles.fullNameText}>{userData?.name}</Typography>
+                        <Typography className={styles.fullNameText}>
+                            <Link href={'/account'} style={{ textDecoration: 'none', color: 'inherit' }}>{userData?.name}</Link>
+                        </Typography>
                     </div>
                 </div>
                 <div className={styles.levelNum}>
@@ -40,7 +39,6 @@ export function AccountCard() {
                     <LevelProgress
                         axpToNextLevel={userData?.axpToNextLevel || 0}
                         currentAxp={userData?.axp || 0}
-                        progress={progress}
                     />
                 </div>
             </div>
