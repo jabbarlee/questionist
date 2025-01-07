@@ -1,0 +1,33 @@
+.progressWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.progressContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    height: 7px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    width: 100px;
+    transition: width 0.3s ease;
+    background-color: #0050b3;
+}
+
+.progressAxpText {
+    font-size: 15px;
+    color: #757575;
+    margin: 0;
+}

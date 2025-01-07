@@ -12,7 +12,8 @@ import Typography from "@mui/material/Typography";
 import { Button } from 'antd';
 import { useRouter } from 'next/navigation'
 import { PracticeStartProps } from '@/types';
-import { storePracticeSession } from '@/actions/firebase/setDoc';
+import { storePracticeSession } from '@/actions/firebase/set/storePracticeSession';
+import { insertLevelBadges } from "@/utils/insertLevelBadges";
 
 export default function index() {
     const router = useRouter()

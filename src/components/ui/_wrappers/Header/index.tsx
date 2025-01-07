@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './index.module.css'
 import { Dropdown } from 'antd'
 import { MenuProps } from 'antd/lib/menu'
-import { getUser } from '@/actions/firebase/getDoc'
+import { getUser } from '@/actions/firebase/get/getUser'
 import { useRouter } from "next/navigation"
 import { Button } from "antd"
 import Link from "next/link"

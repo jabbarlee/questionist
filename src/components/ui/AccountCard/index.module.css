@@ -1,0 +1,54 @@
+.container{
+    padding: 10px 20px;
+    border: 1px solid #e6e6e6;
+    background-color: #ffffff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.accountInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.accountInfoWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.levelInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.progressInfo{
+    width: 100%;
+}
+
+/* TEXT STYLING */
+
+.fullNameText{
+    color: #1f1f1f;
+    font-weight: 450;
+    font-size: 16px;
+    text-decoration: underline;
+    transition: 0.2s ease;
+}
+
+.fullNameText:hover{
+    text-decoration: none;
+    color: #757575;
+}
+
+.levelNumText{
+    color: #757575;
+    font-weight: 300;
+    font-size: 15px;
+}
