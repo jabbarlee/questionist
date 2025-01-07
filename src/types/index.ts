@@ -54,3 +54,16 @@ export interface SelectedOption {
     questionText: string;
     selectedOptionText: string;
 }
+
+export type UserData = {
+    axp?: number;
+    axpToNextLevel?: number;
+    brilliants?: number;
+    createdAt: string;
+    email: string;
+    level?: number;
+    name: string;
+    progressToNextLevel?: number;
+    role: "student" | "admin" | "teacher";
+    uid: string;
+};

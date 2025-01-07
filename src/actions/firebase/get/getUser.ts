@@ -1,5 +1,6 @@
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "@/config/firebase";
+import {UserData} from "@/types";
 
 export const getUser = async () => {
     try {
@@ -15,7 +16,7 @@ export const getUser = async () => {
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-            return userSnap.data();
+            return userSnap.data() as UserData;
         } else {
             console.error('No such document!');
             return null;

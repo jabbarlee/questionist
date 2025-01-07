@@ -9,8 +9,11 @@
 }
 
 .progressContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     flex-grow: 1;
-    height: 5px;
+    height: 7px;
     background-color: #e0e0e0;
     border-radius: 5px;
     overflow: hidden;
@@ -20,11 +23,11 @@
     height: 100%;
     width: 100px;
     transition: width 0.3s ease;
-    background-color: #4a4a4a;
+    background-color: #0050b3;
 }
 
-.progress {
-    margin-top: 5px;
-    font-size: 16px;
-    color: #4a4a4a;
+.progressAxpText {
+    font-size: 15px;
+    color: #757575;
+    margin: 0;
 }

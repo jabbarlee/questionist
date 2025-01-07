@@ -1,5 +1,6 @@
-import styles from "@/components/ui/Results/Session/ScoreBoard/ScoreChip/index.module.css";
+import styles from "./index.module.css";
 import React from "react";
+import { Typography } from "@mui/material";
 
 export const LevelProgress = (
     {
@@ -17,7 +18,11 @@ export const LevelProgress = (
             <div className={styles.progressContainer}>
                 <div className={styles.progressBar} style={{ width: `${100 - progress}%` }} />
             </div>
-            <div className={styles.progress}>{currentAxp}/{axpToNextLevel + currentAxp}</div>
+            <div className={styles.progress}>
+                <Typography className={styles.progressAxpText}>
+                    {currentAxp} / {axpToNextLevel + currentAxp}
+                </Typography>
+            </div>
         </div>
     );
 }
