@@ -28,6 +28,7 @@ export default function SignUp() {
 
   return (
     <div className={styles.inputWrapper}>
+        {error && <div className={styles.error}>{error}</div>}
       <Input 
         placeholder="Full name" 
         value={fullName} 
