@@ -3,17 +3,24 @@ import React from "react";
 import { Typography } from "@mui/material";
 
 export const LevelProgress = ({
-    axpToNextLevel,
-    currentAxp,
-}: {
-    axpToNextLevel: number;
+                                  currentAxp,
+                                  axpToNextLevel,
+                                  currentLevelThreshold,
+                              }: {
     currentAxp: number;
+    axpToNextLevel: number;
+    currentLevelThreshold: { lowerBound: number; upperBound: number };
 }) => {
-    // Calculate total experience required
-    const totalAxp = axpToNextLevel + currentAxp;
+    const { lowerBound, upperBound } = currentLevelThreshold;
 
-    // Calculate the percentage completed
-    const completedPercentage = (currentAxp / totalAxp) * 100;
+    // Calculate total AXP for the current level
+    const totalLevelAxp = upperBound - lowerBound;
+
+    // Calculate the current AXP progress within the current level's bounds
+    const levelAxp = currentAxp - lowerBound;
+
+    // Calculate the percentage completed for the progress bar
+    const completedPercentage = (levelAxp / totalLevelAxp) * 100;
 
     return (
         <div className={styles.progressWrapper}>
@@ -25,7 +32,7 @@ export const LevelProgress = ({
             </div>
             <div className={styles.progress}>
                 <Typography className={styles.progressAxpText}>
-                    {currentAxp} / {totalAxp}
+                    {currentAxp} / {upperBound}
                 </Typography>
             </div>
         </div>
