@@ -8,7 +8,7 @@ export default function index({ ...props }) {
     <div {...props}>
       <div className={styles.signupForm}>
         <Typography fontSize={'24px'}>
-          Sign up
+          Create an account
         </Typography>
         <InputWrapper />
         <Typography>Already have an account?</Typography>
