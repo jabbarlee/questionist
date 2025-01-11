@@ -1,17 +1,18 @@
 import React from 'react'
 import styles from './index.module.css'
-import Text from '@/components/ui/Text'
+import { Typography } from '@mui/material'
 import InputWrapper from '@/components/pages/Signup/InputWrapper'
+import Link from 'next/link'
 
 export default function index({ ...props }) {
   return (
     <div {...props}>
       <div className={styles.signupForm}>
-        <Text heading={true}>
-          Sign up
-        </Text>
+        <Typography fontSize={'24px'}>
+          Create an account
+        </Typography>
         <InputWrapper />
-        <Text subheading={true} link='/signin'>Already have an account?</Text>
+        <Link href={'/signin'} style={{ textDecoration: 'none', color: '#757575' }}>Already have an account?</Link>
       </div>
     </div>
   )

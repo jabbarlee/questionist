@@ -2,9 +2,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 100px 200px;
+}
+
+.pageWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 100%;
-    padding: 50px 100px;
 }
 
 .imageSide{
@@ -12,7 +21,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    flex: 1;
+}
+
+.formSide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
     height: 100%;
 }
 

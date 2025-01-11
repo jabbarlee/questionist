@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import styles from './index.module.css';
-import NavbarLink from '../NavbarLink';
 import { Button } from 'antd'
 
 export default function Navbar() {
@@ -23,13 +22,41 @@ export default function Navbar() {
       <div className={`${styles.links}`}>
         <div className={`${isOpen ? styles.showLinks : styles.hideLinks}`}>
           <div className={styles.linksWrapper}>
-            <NavbarLink redirect='/'>Landing page</NavbarLink>
-            <NavbarLink redirect='/'>Explore</NavbarLink>
-            <NavbarLink redirect='/'>Pricing</NavbarLink>
-            <NavbarLink redirect='/'>Contact</NavbarLink>
+            <Button
+                href='/'
+                variant={'text'}
+                color={'default'}
+                style={{ textDecoration: 'none' }}
+            >
+              Home
+            </Button>
+            <Button
+                href='/'
+                variant={'text'}
+                color={'default'}
+                style={{ textDecoration: 'none' }}
+            >
+              Explore
+            </Button>
+            <Button
+                href='/'
+                variant={'text'}
+                color={'default'}
+                style={{ textDecoration: 'none' }}
+            >
+              Pricing
+            </Button>
+            <Button
+                href='/'
+                variant={'text'}
+                color={'default'}
+                style={{ textDecoration: 'none' }}
+            >
+              Contact
+            </Button>
           </div>
-          <Button variant='outlined' color={'default'} href={'/signin'}>Sign in</Button>
-          <Button variant='solid' color={'default'} href={'/signin'}>Sign up</Button>
+          <Button variant='outlined' color={'default'} href={'/signin'} style={{ textDecoration: 'none' }}>Sign in</Button>
+          <Button variant='solid' color={'default'} href={'/signup'} style={{ textDecoration: 'none' }}>Sign up</Button>
         </div>
       </div>
     </div>

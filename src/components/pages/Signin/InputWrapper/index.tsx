@@ -1,51 +1,59 @@
 "use client"
 
 import React, { useState } from 'react'
-import Input from '@/components/ui/Input'
 import styles from './index.module.css'
-import Button from '@/components/ui/Button'
+import { Button, Input, Alert } from 'antd'
 import { handleSignIn } from '@/actions/firebase/auth'
 import { useRouter } from 'next/navigation'
-import Text from '@/components/ui/Text'
 
 export default function Index() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
+    const [alertMessage, setAlertMessage] = useState('')
+    const [alertType, setAlertType] = useState<"info" | "error" | "success" | "warning" | undefined>('info')
+    const [passwordVisible, setPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handleSubmit = async () => {
-    setError(null);
-    
+    setAlertMessage('')
+    setLoading(true);
     const res = await handleSignIn({ email, password })
 
     if (res?.success) {
+      setLoading(false)
+      setAlertMessage('Logged in successfully')
+      setAlertType('success')
       router.push('/dashboard')
     } else {
-      setError(res?.error || 'Something went wrong')
+        setLoading(false)
+      setAlertMessage(res?.error || 'Something went wrong')
+        setAlertType('error')
     }
   }
 
   return (
     <div className={styles.inputWrapper}>
+      {alertMessage && <Alert message={alertMessage} type={alertType} />}
       <Input 
         placeholder='Email' 
         value={email} 
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
       />
-      <Input 
+      <Input.Password
         placeholder='Password' 
         value={password} 
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+        visibilityToggle={{ visible: passwordVisible, onVisibleChange: setPasswordVisible }}
       />
-      <Button 
-        buttonType='secondary' 
-        fit={true}
+      <Button
+        color='primary'
+        variant='solid'
         onClick={handleSubmit}
+        loading={loading}
       >
-        Sign in
+        Log in
       </Button>
-      {<Text error={true}>{error}</Text>}
     </div>
   )
 }
