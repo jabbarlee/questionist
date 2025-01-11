@@ -8,7 +8,7 @@ export default function index({ ...props }) {
     <div {...props}>
       <div className={styles.loginForm}>
         <Text heading={true}>
-          Sign in
+          Welcome back 👋
         </Text>
         <InputWrapper />
         <Text link='/' subheading={true}>Forgot password?</Text>

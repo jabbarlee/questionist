@@ -5,8 +5,8 @@ import headerImage from '@/data/images/signin_header.png';
 
 export default function index({ ...props }) {
   return (
-    <div {...props}>
+    <>
       <Image alt="Image" src={headerImage} className={styles.image}/>
-    </div>
+    </>
   )
 }
