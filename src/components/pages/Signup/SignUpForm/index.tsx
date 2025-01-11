@@ -1,17 +1,17 @@
 import React from 'react'
 import styles from './index.module.css'
-import Text from '@/components/ui/Text'
+import { Typography } from '@mui/material'
 import InputWrapper from '@/components/pages/Signup/InputWrapper'
 
 export default function index({ ...props }) {
   return (
     <div {...props}>
       <div className={styles.signupForm}>
-        <Text heading={true}>
+        <Typography fontSize={'24px'}>
           Sign up
-        </Text>
+        </Typography>
         <InputWrapper />
-        <Text subheading={true} link='/signin'>Already have an account?</Text>
+        <Typography>Already have an account?</Typography>
       </div>
     </div>
   )

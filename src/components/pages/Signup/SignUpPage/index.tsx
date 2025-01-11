@@ -10,7 +10,7 @@ export default function index() {
           <div className={styles.container}>
               <SignUpForm className={styles.formSide}/>
               <div className={styles.imageSide}>
-                  <Image/>
+                  <Image signup={true}/>
               </div>
           </div>
       </div>

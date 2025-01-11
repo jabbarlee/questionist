@@ -1,18 +1,18 @@
 import React from 'react'
 import InputWrapper from '@/components/pages/Signin/InputWrapper'
 import styles from './index.module.css'
-import Text from '@/components/ui/Text'
+import { Typography } from '@mui/material'
 
 export default function index({ ...props }) {
   return (
     <div {...props}>
       <div className={styles.loginForm}>
-        <Text heading={true}>
+        <Typography fontSize={'24px'}>
           Welcome back 👋
-        </Text>
+        </Typography>
         <InputWrapper />
-        <Text link='/' subheading={true}>Forgot password?</Text>
-        <Text link='/signup' subheading={true}>Create a new account</Text>
+        <Typography>Forgot password?</Typography>
+        <Typography>Create a new account</Typography>
       </div>
     </div>
   )
