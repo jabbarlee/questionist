@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import Input from '@/components/ui/Input';
+import { Input, Button, Alert } from 'antd';
 import styles from './index.module.css';
-import Button from '@/components/ui/Button';
 import { handleSignUp } from '@/actions/firebase/auth';
 import { useRouter } from 'next/navigation';
 
@@ -12,10 +11,12 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async () => {
     setError(null);
+    setLoading(true);
 
     const res = await handleSignUp({ email, password, fullName });
 
@@ -28,7 +29,7 @@ export default function SignUp() {
 
   return (
     <div className={styles.inputWrapper}>
-        {error && <div className={styles.error}>{error}</div>}
+      {error && <Alert message={error} type='error' />}
       <Input 
         placeholder="Full name" 
         value={fullName} 
@@ -44,13 +45,14 @@ export default function SignUp() {
         value={password} 
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
       />
-      <Button 
-        buttonType="secondary" 
-        fit={true}
-        onClick={handleSubmit}
-      >
-        Sign up
-      </Button>
+        <Button
+            color='primary'
+            variant='solid'
+            onClick={handleSubmit}
+            loading={loading}
+        >
+            Sign up
+        </Button>
     </div>
   );
 }
