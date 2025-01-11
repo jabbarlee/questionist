@@ -28,8 +28,8 @@ export default function Navbar() {
             <NavbarLink redirect='/'>Pricing</NavbarLink>
             <NavbarLink redirect='/'>Contact</NavbarLink>
           </div>
-          <Button variant='outlined' color={'default'} href={'/signin'}>Sign in</Button>
-          <Button variant='solid' color={'default'} href={'/signin'}>Sign up</Button>
+          <Button variant='outlined' color={'default'} href={'/signin'} style={{ textDecoration: 'none' }}>Sign in</Button>
+          <Button variant='solid' color={'default'} href={'/signup'} style={{ textDecoration: 'none' }}>Sign up</Button>
         </div>
       </div>
     </div>
