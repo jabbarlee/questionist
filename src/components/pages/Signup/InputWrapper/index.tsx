@@ -49,10 +49,11 @@ export default function SignUp() {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
         visibilityToggle={{ visible: passwordVisible, onVisibleChange: setPasswordVisible }}
       />
-      <Input 
+      <Input.Password
         placeholder="Password" 
         value={password} 
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+        visibilityToggle={{ visible: passwordVisible, onVisibleChange: setPasswordVisible }}
       />
         <Button
             color='primary'
