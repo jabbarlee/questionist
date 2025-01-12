@@ -10,8 +10,8 @@ export default function CustomSet() {
         <div className={styles.customSetWrapper}>
             <div className={styles.contentWrapper}>
                 <div className={styles.textWrapper}>
-                    <Typography className={styles.heading}>Experience the power of crafting</Typography>
-                    <Typography className={styles.subHeading}>
+                    <Typography className={styles.heading} fontSize={'28px'}>Experience the power of crafting</Typography>
+                    <Typography className={styles.subHeading} fontSize={'16px'}>
                         Everything is easy with Questionist, so is the customization.
                         Build the perfect practice set to boost your skills.
                     </Typography>

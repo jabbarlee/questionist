@@ -45,11 +45,11 @@ export default function index() {
                     <div className={styles.customSetWrapper}>
                         <CustomSet/>
                         <div className={styles.popularSetsWrapper}>
-                            <Typography className={styles.stepHeadingText}>Popular Practice Sets</Typography>
+                            <Typography className={styles.stepHeadingText} fontSize={'24px'}>Popular Practice Sets</Typography>
                             <div className={styles.popularSets}>
                                 <div className={styles.setCard}>
-                                    <Typography className={styles.setTitle}>Algebra Essentials</Typography>
-                                    <Typography className={styles.setDetails}>
+                                    <Typography className={styles.setTitle} fontSize={'18px'}>Algebra Essentials</Typography>
+                                    <Typography className={styles.setDetails} fontSize={'14px'}>
                                         <Tag color={'magenta'}>Medium</Tag>
                                         <Tag>10 questions</Tag>
                                     </Typography>
@@ -69,8 +69,8 @@ export default function index() {
                                     </Button>
                                 </div>
                                 <div className={styles.setCard}>
-                                    <Typography className={styles.setTitle}>Geometry Basics</Typography>
-                                    <Typography className={styles.setDetails}>
+                                    <Typography className={styles.setTitle} fontSize={'18px'}>Geometry Basics</Typography>
+                                    <Typography className={styles.setDetails} fontSize={'14px'}>
                                         <Tag color={'green'}>Easy</Tag>
                                         <Tag>15 questions</Tag>
                                     </Typography>
@@ -95,15 +95,16 @@ export default function index() {
                     </div>
                     <div className={styles.howToUseWrapper}>
                         <div className={styles.stepsWrapper}>
-                            <Typography className={styles.stepHeadingText}>Learn. Practice. Excel.</Typography>
+                            <Typography className={styles.stepHeadingText} fontSize={'24px'}>Learn. Practice. Excel.</Typography>
                             <div className={styles.stepsContainer}>
                                 <div className={styles.step}>
                                     <Tag color="blue" className={styles.stepTag}>
                                         Earn rewards
                                     </Tag>
                                     <div className={styles.stepContent}>
-                                        <p className={styles.stepSubText}>As you progress you will gain more points
-                                            which you can use later</p>
+                                        <Typography className={styles.subHeading} fontSize={'16px'}>
+                                            As you progress you will gain more points which you can use later
+                                        </Typography>
                                     </div>
                                 </div>
                                 <div className={styles.step}>
@@ -111,7 +112,7 @@ export default function index() {
                                         AI-Powered Questions
                                     </Tag>
                                     <div className={styles.stepContent}>
-                                        <p className={styles.stepSubText}>Each set is customized for your own needs</p>
+                                        <Typography className={styles.subHeading} fontSize={'16px'}>Each set is customized for your own needs</Typography>
                                     </div>
                                 </div>
                                 <div className={styles.step}>
@@ -119,7 +120,7 @@ export default function index() {
                                         Track Progress
                                     </Tag>
                                     <div className={styles.stepContent}>
-                                        <p className={styles.stepSubText}>See detailed analytics and performance trends over time.</p>
+                                        <Typography className={styles.subHeading} fontSize={'16px'}>See detailed analytics and performance trends over time.</Typography>
                                     </div>
                                 </div>
                             </div>
