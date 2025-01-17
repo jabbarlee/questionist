@@ -39,3 +39,4 @@ export const getResults = async (sessionId: string) => {
         return { sessionData: null, success: false };
     }
 };
+
