@@ -8,7 +8,8 @@ import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
 import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
 import { Question } from "@/components/ui/PracticeSession/Question";
-import { fetchPracticeSessionConfig } from "@/actions/firebase/get/fetchPracticeSessionConfig";
+import { getSessionData } from '@/actions/firebase/get/getSessionData'
+import { fetchQuestions } from "@/actions/firebase/get/fetchGeneratedQuestions";
 import { SessionData, QuestionProps } from "@/types";
 import { SelectedOption } from "@/types";
 import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
@@ -21,7 +22,6 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
     const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
     const [alertType, setAlertType] = useState<"error" | "info" | "success" | "warning" | undefined>("info");
-    const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
     const router = useRouter();
@@ -38,51 +38,13 @@ export default function Index({ sessionId }: { sessionId: string }) {
     };
 
     useEffect(() => {
-        const getSessionData = async () => {
-            const fetchedSessionData = await fetchPracticeSessionConfig(sessionId);
-            if (fetchedSessionData) {
-                setSessionData(fetchedSessionData);
-            } else {
-                console.error("No session data found.");
-            }
-        };
-        getSessionData();
+        getSessionData({ sessionId, setSessionData });
     }, [sessionId]);
 
     useEffect(() => {
         if (!sessionData) return;
 
-        const fetchQuestions = async () => {
-            if (sessionData?.questions) {
-                setQuestions(sessionData.questions);
-            }
-
-            try {
-                const response = await fetch("/api/questions/generate", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        topics: sessionData.topics,
-                        difficulty: sessionData.difficulty,
-                        numberOfQuestions: sessionData.numberOfQuestions,
-                    }),
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setQuestions(data.generatedQuestions);
-                } else {
-                    const errorData = await response.json();
-                    console.error("Error:", errorData.error);
-                }
-            } catch (error) {
-                console.error("Request failed:", error);
-            }
-        };
-
-        fetchQuestions();
+        fetchQuestions({ sessionData, setQuestions });
     }, [sessionData]);
 
     const handleSubmit = async () => {
