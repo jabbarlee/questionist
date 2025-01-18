@@ -9,6 +9,7 @@ import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
 import { Question } from "@/components/ui/PracticeSession/Question";
 import { getSessionData } from '@/actions/firebase/get/getSessionData'
+import { fetchQuestions } from "@/actions/firebase/get/fetchGeneratedQuestions";
 import { SessionData, QuestionProps } from "@/types";
 import { SelectedOption } from "@/types";
 import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
@@ -43,37 +44,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
     useEffect(() => {
         if (!sessionData) return;
 
-        const fetchQuestions = async () => {
-            if (sessionData?.questions) {
-                setQuestions(sessionData.questions);
-            }
-
-            try {
-                const response = await fetch("/api/questions/generate", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        topics: sessionData.topics,
-                        difficulty: sessionData.difficulty,
-                        numberOfQuestions: sessionData.numberOfQuestions,
-                    }),
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setQuestions(data.generatedQuestions);
-                } else {
-                    const errorData = await response.json();
-                    console.error("Error:", errorData.error);
-                }
-            } catch (error) {
-                console.error("Request failed:", error);
-            }
-        };
-
-        fetchQuestions();
+        fetchQuestions({ sessionData, setQuestions });
     }, [sessionData]);
 
     const handleSubmit = async () => {
