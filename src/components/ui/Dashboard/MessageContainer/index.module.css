@@ -1,32 +1,32 @@
-.pageWrapper{
-    width: 100%;
+.container {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    gap: 15px;
     align-items: center;
-}
-
-.chartContainer{
-    display: flex;
-    flex-direction: column;
+    padding: 30px;
+    width: 100%;
+    height: fit-content;
     border: 1px solid #e5e5e5;
     background-color: #fbfbfb;
     border-radius: 12px;
-    gap: 10px;
-    width: 50%;
-    padding: 20px;
-    height: auto;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.messageContainer{
+.textWrapper{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    gap: 8px;
+    width: 100%;
 }
 
-.heading{
+.heading {
     font-weight: 500;
     color: #1f1f1f;
+    margin: 0;
+}
+
+.subHeading {
+    color: #1f1f1f;
+    font-weight: 300;
     margin: 0;
 }
