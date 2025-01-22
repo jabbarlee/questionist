@@ -17,7 +17,7 @@ const StreakProgress: React.FC = () => {
                 className={styles.heading}
                 fontSize={'24px'}
             >
-                Streak Progress
+                Streak
             </Typography>
             <Steps current={currentStreak - 1} size="small">
                 {Array.from({ length: streakGoal }).map((_, index) => (
@@ -28,7 +28,7 @@ const StreakProgress: React.FC = () => {
                                 style={{
                                     fontSize: "12px",
                                     margin: '0',
-                                    color: index < currentStreak ? "#166534" : "gray",
+                                    color: index < currentStreak ? "#1890FF" : "gray",
                                 }}
                             >
                                 Day {index + 1}
