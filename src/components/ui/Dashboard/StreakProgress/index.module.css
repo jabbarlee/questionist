@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid #e5e5e5;
+    background-color: #fbfbfb;
+    border-radius: 12px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.heading{
+    font-weight: 400;
+}
