@@ -17,7 +17,7 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className={styles.chartContainer}>
-                <Typography className={styles.heading} fontSize={'22px'}>Progress</Typography>
+                <Typography className={styles.heading} fontSize={'22px'}>Scores</Typography>
                 <ScoreChart/>
             </div>
         </div>
