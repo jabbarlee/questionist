@@ -1,22 +1,21 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Steps } from "antd";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/config/firebase";
 import styles from "./index.module.css";
 
 const { Step } = Steps;
 
-const StreakProgress: React.FC = () => {
-    const currentStreak: number = 5; // Current streak
-    const streakGoal: number = 7; // Streak goal for a reward
+const StreakProgress: React.FC<{ userId: string }> = ({ userId }) => {
+    const [currentStreak, setCurrentStreak] = useState(5);
+    const streakGoal = 7;
 
     return (
         <div className={styles.container}>
-            <Typography
-                className={styles.heading}
-                fontSize={'24px'}
-            >
+            <Typography className={styles.heading} fontSize="24px">
                 Streak
             </Typography>
             <Steps current={currentStreak - 1} size="small">
@@ -27,7 +26,7 @@ const StreakProgress: React.FC = () => {
                             <p
                                 style={{
                                     fontSize: "12px",
-                                    margin: '0',
+                                    margin: "0",
                                     color: index < currentStreak ? "#1890FF" : "gray",
                                 }}
                             >
@@ -35,22 +34,16 @@ const StreakProgress: React.FC = () => {
                             </p>
                         }
                         status={index < currentStreak ? "finish" : "wait"}
-                        style={{ padding: '0' }}
+                        style={{ padding: "0" }}
                     />
                 ))}
             </Steps>
             {currentStreak === streakGoal ? (
-                <Typography
-                    fontSize="14px"
-                    color="success.main"
-                >
+                <Typography fontSize="14px" color="success.main">
                     🎉 Goal Achieved! Fantastic work!
                 </Typography>
             ) : (
-                <Typography
-                    fontSize="14px"
-                    color="text.secondary"
-                >
+                <Typography fontSize="14px" color="text.secondary">
                     Keep it up! Almost there!
                 </Typography>
             )}
