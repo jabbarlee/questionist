@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { Typography } from "@mui/material";
-import { Pagination, Button, Alert } from "antd";
+import { Pagination, Button, Alert, notification } from "antd";
 import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
 import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
@@ -23,6 +23,8 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
     const [alertType, setAlertType] = useState<"error" | "info" | "success" | "warning" | undefined>("info");
     const [message, setMessage] = useState<string | null>(null);
+    const [popUp, setPopUp] = useState<boolean>(false);
+    const [popUpMessage, setPopUpMessage] = useState<string | null>(null);
 
     const router = useRouter();
 
@@ -58,11 +60,13 @@ export default function Index({ sessionId }: { sessionId: string }) {
             };
         });
 
-        const { success, errorMessage } = await handleSessionSubmit({
+        const { success, errorMessage, leveledUp } = await handleSessionSubmit({
             sessionId,
             questions,
             selectedChoices,
         });
+
+
 
         setMessage(errorMessage || "Error submitting session");
 

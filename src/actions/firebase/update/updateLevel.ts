@@ -2,7 +2,7 @@ import {doc, getDoc} from "firebase/firestore";
 import {db} from "@/config/firebase";
 import {SessionData} from "@/types";
 import {handleLevelUp} from "@/actions/handleLevelUp";
-
+import {notification} from "antd";
 
 export const updateLevel = async({ sessionId } : { sessionId: string }) => {
     const response = await fetch('/api/firebase/get/user');
@@ -17,9 +17,9 @@ export const updateLevel = async({ sessionId } : { sessionId: string }) => {
 
     const sessionData = sessionSnap.data() as SessionData;
 
-    await handleLevelUp(uid, sessionData?.results?.axpGained || 0);
+    const { leveledUp } = await handleLevelUp(uid, sessionData?.results?.axpGained || 0);
 
-    return { success: true, message: 'Level updated' };
+    return { success: true, message: 'Level updated', leveledUp: leveledUp };
 }
 
 export const updatePointsManual = async({ points } : { points: number }) => {

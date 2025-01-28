@@ -22,6 +22,7 @@ export const handleLevelUp = async (userId: string, earnedAXP: number) => {
 
     let newLevel = level;
     let brilliantsEarned = 0;
+    let leveledUp = false; // To track if the user leveled up
 
     // Process level progression
     while (
@@ -30,6 +31,7 @@ export const handleLevelUp = async (userId: string, earnedAXP: number) => {
         ) {
         brilliantsEarned += levelThresholds[newLevel]?.reward?.brilliants || 0;
         newLevel++;
+        leveledUp = true; // Indicate level-up occurred
     }
 
     // Cap level to the maximum defined in thresholds
@@ -55,5 +57,11 @@ export const handleLevelUp = async (userId: string, earnedAXP: number) => {
         axpToNextLevel,
     });
 
-    return { newLevel, axp, brilliants: brilliants + brilliantsEarned, progressToNextLevel };
+    return {
+        newLevel,
+        axp,
+        brilliants: brilliants + brilliantsEarned,
+        progressToNextLevel,
+        leveledUp, // Include the level-up flag in the return
+    };
 };

@@ -15,13 +15,13 @@ export async function handleSessionSubmit({
     const res = await updateQuestions(sessionId, questions, selectedChoices);
 
     if (res?.success) {
-        const { success, message } = await updateResults(sessionId);
+        const { success, message, leveledUp } = await updateResults(sessionId);
 
         if(!success) {
             return { success: false, errorMessage: message };
         }
 
-        return { success: true, message: "Session submitted successfully" };
+        return { success: true, message: "Session submitted successfully", leveledUp: leveledUp };
     }
 
     return { success: false, errorMessage: "Failed to update questions" };

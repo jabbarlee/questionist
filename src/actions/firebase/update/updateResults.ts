@@ -76,13 +76,13 @@ export const updateResults = async (sessionId: string) => {
             },
         });
 
-        const { success } = await updateLevel({ sessionId });
+        const { success, leveledUp } = await updateLevel({ sessionId });
 
         if(!success) {
             return { success: false, error: 'Failed to update level.' };
         }
 
-        return { success: true, message: 'Results updated successfully.' };
+        return { success: true, message: 'Results updated successfully.', leveledUp: leveledUp };
     } catch (error) {
         console.error('Error updating results in Firestore:', error);
         return { success: false, error: 'Failed to update results in Firestore.' };
