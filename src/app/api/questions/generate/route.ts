@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchGeneratedQuestions } from '@/utils/openai/fetchQuestion';
+import { fetchAllGeneratedQuestions } from '@/utils/openai/fetchQuestion';
 
 export async function POST(req: NextRequest) {
   const { topics, difficulty, numberOfQuestions } = await req.json();
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const generatedQuestions = await fetchGeneratedQuestions({ topics, difficulty, numberOfQuestions });
+    const generatedQuestions = await fetchAllGeneratedQuestions({ topics, difficulty, numberOfQuestions });
     return NextResponse.json({ generatedQuestions });
   } catch (error) {
     console.error("Error generating question: ", error);

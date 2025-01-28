@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { generateQuestion } from './generateQuestion';
 
-export const fetchGeneratedQuestions = async ({
+export const fetchAllGeneratedQuestions = async ({
                                                   topics,
                                                   difficulty,
                                                   numberOfQuestions,
@@ -16,6 +16,8 @@ export const fetchGeneratedQuestions = async ({
     while (mockQuestions.length < numberOfQuestions) {
         const randomTopic = topics[Math.floor(Math.random() * topics.length)];
         const questionsFromTopic = await generateQuestion({ topic: randomTopic, difficulty });
+
+        console.log("Questions from topic: ", questionsFromTopic);
 
         // Add the questions to the mockQuestions array
         questionsFromTopic.forEach((questionData) => {
@@ -36,8 +38,11 @@ export const fetchGeneratedQuestions = async ({
 
             mockQuestions.push(formattedQuestion);
 
+            console.log(formattedQuestion.choices)
+
             // If we have reached the required number of questions, stop
             if (mockQuestions.length >= numberOfQuestions) {
+                console.log("Questions generated: ", mockQuestions);
                 return;
             }
         });
