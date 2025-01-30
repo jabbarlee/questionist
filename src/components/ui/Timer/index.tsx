@@ -3,6 +3,7 @@
 import React from 'react'
 import { useTimer } from 'react-timer-hook';
 import { Button } from 'antd';
+import Typography from "@mui/material/Typography";
 
 export const Timer = ({ expiryTimestamp }: { expiryTimestamp: Date }) => {
 
@@ -15,14 +16,18 @@ export const Timer = ({ expiryTimestamp }: { expiryTimestamp: Date }) => {
         start,
         pause,
         resume,
-        restart,
+        restart,    
     } = useTimer({ expiryTimestamp, onExpire: () => alert('onExpire called') });
 
     return (
-        <div>
+        <div> 
             <p>Timer Demo</p>
             <div style={{fontSize: '100px'}}>
-                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+                <Typography>
+                    {minutes < 10 ? '0' : null}{minutes}
+                    :
+                    {seconds < 10 ? '0' : ''}{seconds}
+                </Typography>
             </div>
             <p>{isRunning ? 'Running' : 'Not running'}</p>
             <Button onClick={start}>Start</Button>
