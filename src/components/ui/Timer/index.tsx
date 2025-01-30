@@ -1,44 +1,49 @@
-"use client"
-
 import React from 'react'
-import { useTimer } from 'react-timer-hook';
-import { Button } from 'antd';
-import Typography from "@mui/material/Typography";
+import {Typography} from '@mui/material'
+import { useTimer } from 'react-timer-hook'
 
-export const Timer = ({ expiryTimestamp }: { expiryTimestamp: Date }) => {
+interface TimerProps {
+    expiryTimestamp: Date;
+    onExpire?: () => void;
+    onStart?: () => void;
+    onPause?: () => void;
+    onResume?: () => void;
+    onRestart?: (newExpiryTimestamp: Date) => void;
+    onRunningChange?: (isRunning: boolean) => void;
+}
+
+export const Timer = ({ expiryTimestamp, onExpire, onStart, onPause, onResume, onRestart, onRunningChange }: TimerProps) => {
 
     const {
         seconds,
         minutes,
-        hours,
-        days,
         isRunning,
         start,
         pause,
         resume,
         restart,    
-    } = useTimer({ expiryTimestamp, onExpire: () => alert('onExpire called') });
+    } = useTimer({ expiryTimestamp, onExpire: onExpire || (() => alert('onExpire called')) });
+
+    React.useEffect(() => {
+        if (onStart) onStart();
+        if (onPause) onPause();
+        if (onResume) onResume();
+        if (onRestart) onRestart(expiryTimestamp);
+    }, [start, pause, resume, restart, onStart, onPause, onResume, onRestart]);
+
+    React.useEffect(() => {
+        if (onRunningChange) onRunningChange(isRunning);
+    }, [isRunning, onRunningChange]);
 
     return (
-        <div> 
-            <p>Timer Demo</p>
-            <div style={{fontSize: '100px'}}>
+        <div>
+            <div>
                 <Typography>
                     {minutes < 10 ? '0' : null}{minutes}
                     :
                     {seconds < 10 ? '0' : ''}{seconds}
                 </Typography>
             </div>
-            <p>{isRunning ? 'Running' : 'Not running'}</p>
-            <Button onClick={start}>Start</Button>
-            <Button onClick={pause}>Pause</Button>
-            <Button onClick={resume}>Resume</Button>
-            <Button onClick={() => {
-                // Restarts to 5 minutes timer
-                const time = new Date();
-                time.setSeconds(time.getSeconds() + 300);
-                restart(time)
-            }}>Restart</Button>
         </div>
     )
 }
