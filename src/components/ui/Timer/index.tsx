@@ -36,14 +36,12 @@ export const Timer = ({ expiryTimestamp, onExpire, onStart, onPause, onResume, o
     }, [isRunning, onRunningChange]);
 
     return (
-        <div>
-            <div>
-                <Typography>
-                    {minutes < 10 ? '0' : null}{minutes}
-                    :
-                    {seconds < 10 ? '0' : ''}{seconds}
-                </Typography>
-            </div>
-        </div>
+        <>
+            <Typography fontSize={20}>
+                {minutes < 10 ? '0' : null}{minutes}
+                :
+                {seconds < 10 ? '0' : ''}{seconds}
+            </Typography>
+        </>
     )
 }
