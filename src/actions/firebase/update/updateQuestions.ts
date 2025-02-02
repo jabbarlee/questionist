@@ -3,10 +3,24 @@ import { db } from '@/config/firebase';
 import { QuestionProps, SelectedOption, SessionData } from '@/types';
 import { getResults } from '@/actions/firebase/get/getResults';
 
+type SessionTimingInfo = {
+    sessionStartTime: string,
+    sessionFinishedTime: string,
+    sessionDuration: {
+        minutes: number,
+        seconds: number
+    },
+    sessionRemainingTime: {
+        minutes: number,
+        seconds: number
+    }
+}
+
 export async function updateQuestions(
     sessionId: string,
     questions: QuestionProps[],
-    selectedChoices: SelectedOption[]
+    selectedChoices: SelectedOption[],
+    sessionTimingInfo: SessionTimingInfo,
 ) {
     const response = await fetch('/api/firebase/get/user');
     const { uid } = await response.json();
@@ -35,6 +49,7 @@ export async function updateQuestions(
         await updateDoc(sessionDocRef, {
             questions: questionsToUpdate,
             updatedAt: new Date().toISOString(),
+            sessionTimingInfo: sessionTimingInfo,
         });
 
         // const { success } = await getResults(sessionId);

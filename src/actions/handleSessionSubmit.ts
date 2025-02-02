@@ -3,16 +3,31 @@ import { updateQuestions } from "@/actions/firebase/update/updateQuestions"
 import { QuestionProps, SelectedOption } from "@/types";
 import {handleLevelUp} from "@/actions/handleLevelUp";
 
+type SessionTimingInfo = {
+    sessionStartTime: string,
+    sessionFinishedTime: string,
+    sessionDuration: {
+        minutes: number,
+        seconds: number
+    },
+    sessionRemainingTime: {
+        minutes: number,
+        seconds: number
+    }
+}
+
 export async function handleSessionSubmit({
     sessionId,
     questions,
     selectedChoices,
+    sessionTimingInfo
 } : {
     sessionId: string,
     questions: QuestionProps[],
     selectedChoices: SelectedOption[],
+    sessionTimingInfo: SessionTimingInfo
 }) {
-    const res = await updateQuestions(sessionId, questions, selectedChoices);
+    const res = await updateQuestions(sessionId, questions, selectedChoices, sessionTimingInfo);
 
     if (res?.success) {
         const { success, message } = await updateResults(sessionId);

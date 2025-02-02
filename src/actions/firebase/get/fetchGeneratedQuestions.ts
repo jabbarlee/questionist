@@ -1,8 +1,7 @@
 import { SessionData, QuestionProps } from "@/types";
 
-export const fetchQuestions = async ({ sessionData, setQuestions }: {
+export const fetchQuestions = async ({ sessionData }: {
     sessionData: SessionData,
-    setQuestions: React.Dispatch<React.SetStateAction<QuestionProps[]>>
 }) => {
     try {
         const response = await fetch("/api/questions/generate", {
@@ -19,12 +18,17 @@ export const fetchQuestions = async ({ sessionData, setQuestions }: {
 
         if (response.ok) {
             const data = await response.json();
-            setQuestions(data.generatedQuestions);
+
+            return { questions: data.generatedQuestions };
         } else {
             const errorData = await response.json();
             console.error("Error:", errorData.error);
+
+            return { questions: [], error: errorData.error };
         }
     } catch (error) {
         console.error("Request failed:", error);
+
+        return { questions: [], error: error };
     }
 };
