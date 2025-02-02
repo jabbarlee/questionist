@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { Typography } from "@mui/material";
 import { Pagination, Button, Alert, Tag } from "antd";
-import { PauseOutlined, CheckOutlined } from "@ant-design/icons";
+import { PauseOutlined, CheckOutlined, PlayCircleOutlined } from "@ant-design/icons";
 import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
 import { Question } from "@/components/ui/PracticeSession/Question";
@@ -18,10 +18,14 @@ export default function Index() {
     const [message, setMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [timerRunning, setTimerRunning] = useState<boolean>(false);
+    const [isPaused, setIsPaused] = useState<boolean>(false);
+    const [setStartTimestamp, setSetStarTimestamp] = useState(new Date());
+    const [setFinishTimestamp, setSetFinishTimestamp] = useState(new Date());
     
-    // Timer States
+    // Timer states
     const [expiryTimestamp, setExpiryTimestamp] = useState<number | null>(null);
-    const [minutesLeft, setMinutesLeft] = useState<number>(10); // Set exact 10 min
+    const [remainingTime, setRemainingTime] = useState<number>(10 * 60 * 1000);
+    const [minutesLeft, setMinutesLeft] = useState<number>(10);
     const [secondsLeft, setSecondsLeft] = useState<number>(0);
 
     const [questions, setQuestions] = useState<
@@ -57,17 +61,20 @@ export default function Index() {
             ];
 
             setQuestions(fetchedQuestions);
-            setLoading(false); // Mark questions as loaded
+            setLoading(false); 
 
-            // Set the timer to start from exactly 10 minutes after loading completes
+            // Set timer to start from exactly 10 minutes
             const now = Date.now();
-            setExpiryTimestamp(now + 10 * 60 * 1000); // 10 minutes from now
+            const nowTime = new Date();
+
+            setExpiryTimestamp(now + remainingTime);
+            setSetStarTimestamp(nowTime);
             setTimerRunning(true);
         }, 2000);
     }, []);
 
     useEffect(() => {
-        if (!timerRunning || !expiryTimestamp) return;
+        if (!timerRunning || !expiryTimestamp || isPaused) return;
 
         const interval = setInterval(() => {
             const now = Date.now();
@@ -83,10 +90,24 @@ export default function Index() {
 
             setMinutesLeft(Math.floor(timeDifference / 60000));
             setSecondsLeft(Math.floor((timeDifference % 60000) / 1000));
+            setRemainingTime(timeDifference); // Update remaining time
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [timerRunning, expiryTimestamp]);
+    }, [timerRunning, expiryTimestamp, isPaused]);
+
+    const handlePauseResume = () => {
+        if (timerRunning) {
+            setIsPaused(true);
+            setTimerRunning(false); // Pause the timer
+            setExpiryTimestamp(null);
+        } else {
+            setIsPaused(false);
+            const now = Date.now();
+            setExpiryTimestamp(now + remainingTime); // Resume from remaining time
+            setTimerRunning(true);
+        }
+    };
 
     const handleOptionChange = (questionId: string, optionId: string) => {
         setSelectedOptions((prev) => ({
@@ -100,20 +121,43 @@ export default function Index() {
     };
 
     const handleSubmit = async () => {
-        const selectedChoices: SelectedOption[] = questions.map((question) => {
-            const selectedOptionId = selectedOptions[question.id];
-            const selectedOptionText = question.choices.find((opt) => opt.id === selectedOptionId)?.text || "";
-
-            return {
-                questionText: question.id, 
-                selectedOptionText,
-            };
-        });
-
+        const now = new Date();  // Capture exact finish time
+        setSetFinishTimestamp(now);
+    
+        const formattedSessionStartTime = setStartTimestamp.toISOString();
+        const formattedSessionFinishedTimestamp = now.toISOString();
+    
+        const { minutesTaken, secondsTaken } = formatSetFinishTime();
+    
         setMessage("Quiz results saved successfully!");
         setAlertType("success");
         setSuccessAlertVisible(true);
-        console.log(minutesLeft, ':', secondsLeft)
+    
+        const data = {
+            sessionStartTime: formattedSessionStartTime,
+            sessionFinishedTime: formattedSessionFinishedTimestamp,
+            sessionDuration: {
+                minutes: minutesTaken,
+                seconds: secondsTaken,
+            },
+            sessionRemainingTime: {
+                minutes: minutesLeft,
+                seconds: secondsLeft
+            },
+        };
+    
+        console.log(data);
+    };
+    
+
+    const formatSetFinishTime = () => {
+        const now = new Date();
+
+        const timeTaken = now.getTime() - setStartTimestamp.getTime();
+        const minutesTaken = Math.floor(timeTaken / 60000);
+        const secondsTaken = Math.floor((timeTaken % 60000) / 1000);
+
+        return { minutesTaken, secondsTaken };
     };
 
     return (
@@ -137,18 +181,18 @@ export default function Index() {
                     <Typography className={styles.headerText}>TEST SESSION</Typography>
                 </div>
                 <div>
-                    {!loading && expiryTimestamp && (
-                        <Tag bordered={true} style={{ fontSize: '1rem', padding: '5px 15px', margin: '0' }}> 
-                            {minutesLeft < 10 ? '0' : ''}{minutesLeft}
+                    {!loading && (
+                        <Tag style={{ padding: '5px 15px', fontSize: '16px' }} color={"default"}>
+                            {minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft}
                             :
-                            {secondsLeft < 10 ? '0' : ''}{secondsLeft}
+                            {secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft}
                         </Tag>
                     )}
                 </div>
                 <div className={styles.buttonsContainer}>
-                    <Button variant={"outlined"} color={"default"}>
-                        <PauseOutlined />
-                        Pause
+                    <Button variant={"outlined"} color={"default"} onClick={handlePauseResume}>
+                        {isPaused ? <PlayCircleOutlined /> : <PauseOutlined />}
+                        {isPaused ? " Resume" : " Pause"}
                     </Button>
                     <Button variant={"solid"} color={"primary"} onClick={handleSubmit}>
                         <CheckOutlined />
