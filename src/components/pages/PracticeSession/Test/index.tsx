@@ -8,16 +8,10 @@ import { PauseOutlined, CheckOutlined, PlayCircleOutlined } from "@ant-design/ic
 import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
 import { Question } from "@/components/ui/PracticeSession/Question";
-import { getSessionData } from '@/actions/firebase/get/getSessionData';
-import { fetchQuestions } from "@/actions/firebase/get/fetchGeneratedQuestions";
-import { SessionData, QuestionProps, SelectedOption } from "@/types";
-import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
-import { useRouter } from "next/navigation";
+import { SelectedOption } from "@/types";
 
-export default function Index({ sessionId }: { sessionId: string }) {
+export default function Index() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [sessionData, setSessionData] = useState<SessionData | null>(null);
-    const [questions, setQuestions] = useState<QuestionProps[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
     const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
     const [alertType, setAlertType] = useState<"error" | "info" | "success" | "warning" | undefined>("info");
@@ -27,36 +21,57 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const [isPaused, setIsPaused] = useState<boolean>(false);
     const [setStartTimestamp, setSetStarTimestamp] = useState(new Date());
     const [setFinishTimestamp, setSetFinishTimestamp] = useState(new Date());
+    
+    // Timer states
     const [expiryTimestamp, setExpiryTimestamp] = useState<number | null>(null);
     const [remainingTime, setRemainingTime] = useState<number>(10 * 60 * 1000);
     const [minutesLeft, setMinutesLeft] = useState<number>(10);
     const [secondsLeft, setSecondsLeft] = useState<number>(0);
 
-    const router = useRouter();
+    const [questions, setQuestions] = useState<
+        { id: string; question: string; correctAnswer: string; choices: { id: string; text: string }[] }[]
+    >([]);
 
     useEffect(() => {
-        getSessionData({ sessionId, setSessionData });
-    }, [sessionId]);
+        // Simulate fetching questions with a delay
+        setTimeout(() => {
+            const fetchedQuestions = [
+                {
+                    id: 'abb2eca4-c5ec-4633-874b-3081bad69363',
+                    question: 'If 5x - 3 = 2x + 9, what is the value of x?',
+                    correctAnswer: '4',
+                    choices: [
+                        { id: 'a', text: '2' },
+                        { id: 'b', text: '4' },
+                        { id: 'c', text: '3' },
+                        { id: 'd', text: '1' }
+                    ]
+                },
+                {
+                    id: '9d63c71c-933c-491a-8092-8775ae13fcf6',
+                    question: 'If 3x + 5 = 20, what is the value of x?',
+                    correctAnswer: '5',
+                    choices: [
+                        { id: 'a', text: '2' },
+                        { id: 'b', text: '4' },
+                        { id: 'c', text: '3' },
+                        { id: 'd', text: '1' }
+                    ]
+                }
+            ];
 
-    useEffect(() => {
-        if (!sessionData) return;
+            setQuestions(fetchedQuestions);
+            setLoading(false); 
 
-        const fetchData = async () => {
-            setLoading(true);
-            const { questions } = await fetchQuestions({ sessionData });
-            setQuestions(questions);
-            setLoading(false);
-
+            // Set timer to start from exactly 10 minutes
             const now = Date.now();
             const nowTime = new Date();
 
             setExpiryTimestamp(now + remainingTime);
             setSetStarTimestamp(nowTime);
             setTimerRunning(true);
-        };
-
-        fetchData();
-    }, [sessionData]);
+        }, 2000);
+    }, []);
 
     useEffect(() => {
         if (!timerRunning || !expiryTimestamp || isPaused) return;
@@ -75,7 +90,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
 
             setMinutesLeft(Math.floor(timeDifference / 60000));
             setSecondsLeft(Math.floor((timeDifference % 60000) / 1000));
-            setRemainingTime(timeDifference);
+            setRemainingTime(timeDifference); // Update remaining time
         }, 1000);
 
         return () => clearInterval(interval);
@@ -84,12 +99,12 @@ export default function Index({ sessionId }: { sessionId: string }) {
     const handlePauseResume = () => {
         if (timerRunning) {
             setIsPaused(true);
-            setTimerRunning(false);
+            setTimerRunning(false); // Pause the timer
             setExpiryTimestamp(null);
         } else {
             setIsPaused(false);
             const now = Date.now();
-            setExpiryTimestamp(now + remainingTime);
+            setExpiryTimestamp(now + remainingTime); // Resume from remaining time
             setTimerRunning(true);
         }
     };
@@ -105,33 +120,19 @@ export default function Index({ sessionId }: { sessionId: string }) {
         setCurrentPage(page);
     };
 
-    const formatSetFinishTime = () => {
-        const now = new Date();
-        const timeTaken = now.getTime() - setStartTimestamp.getTime();
-        const minutesTaken = Math.floor(timeTaken / 60000);
-        const secondsTaken = Math.floor((timeTaken % 60000) / 1000);
-
-        return { minutesTaken, secondsTaken };
-    };
-
     const handleSubmit = async () => {
-        const selectedChoices: SelectedOption[] = questions.map((question) => {
-            const selectedOptionId = selectedOptions[question.id];
-            const selectedOptionText = question.choices.find((opt) => opt.id === selectedOptionId)?.text || "";
-
-            return {
-                questionText: question.id,
-                selectedOptionText,
-            };
-        });
-
-        const now = new Date();
+        const now = new Date();  // Capture exact finish time
         setSetFinishTimestamp(now);
-
+    
         const formattedSessionStartTime = setStartTimestamp.toISOString();
         const formattedSessionFinishedTimestamp = now.toISOString();
+    
         const { minutesTaken, secondsTaken } = formatSetFinishTime();
-
+    
+        setMessage("Quiz results saved successfully!");
+        setAlertType("success");
+        setSuccessAlertVisible(true);
+    
         const data = {
             sessionStartTime: formattedSessionStartTime,
             sessionFinishedTime: formattedSessionFinishedTimestamp,
@@ -141,27 +142,22 @@ export default function Index({ sessionId }: { sessionId: string }) {
             },
             sessionRemainingTime: {
                 minutes: minutesLeft,
-                seconds: secondsLeft,
+                seconds: secondsLeft
             },
         };
+    
+        console.log(data);
+    };
+    
 
-        const { success, errorMessage } = await handleSessionSubmit({
-            sessionId,
-            questions,
-            selectedChoices,
-            sessionTimingInfo: data,
-        });
+    const formatSetFinishTime = () => {
+        const now = new Date();
 
-        if (success) {
-            setSuccessAlertVisible(true);
-            setAlertType("success");
-            setMessage("Session submitted successfully! Redirecting to results page...");
-            router.push("/results/" + sessionId);
-        } else {
-            setSuccessAlertVisible(true);
-            setAlertType("error");
-            setMessage("Error submitting session");
-        }
+        const timeTaken = now.getTime() - setStartTimestamp.getTime();
+        const minutesTaken = Math.floor(timeTaken / 60000);
+        const secondsTaken = Math.floor((timeTaken % 60000) / 1000);
+
+        return { minutesTaken, secondsTaken };
     };
 
     return (
@@ -172,22 +168,35 @@ export default function Index({ sessionId }: { sessionId: string }) {
                     type={alertType}
                     banner
                     showIcon
-                    style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 1000 }}
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        right: "20px",
+                        zIndex: 1000,
+                    }}
                 />
             )}
             <div className={styles.header}>
-                <Typography className={styles.headerText}>{sessionData?.sessionName}</Typography>
-                {!loading && (
-                    <Tag style={{ padding: "5px 15px", fontSize: "16px" }} color={"default"}>
-                        {minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft}:{secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft}
-                    </Tag>
-                )}
+                <div>
+                    <Typography className={styles.headerText}>TEST SESSION</Typography>
+                </div>
+                <div>
+                    {!loading && (
+                        <Tag style={{ padding: '5px 15px', fontSize: '16px' }} color={"default"}>
+                            {minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft}
+                            :
+                            {secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft}
+                        </Tag>
+                    )}
+                </div>
                 <div className={styles.buttonsContainer}>
                     <Button variant={"outlined"} color={"default"} onClick={handlePauseResume}>
-                        {isPaused ? <PlayCircleOutlined /> : <PauseOutlined />} {isPaused ? "Resume" : "Pause"}
+                        {isPaused ? <PlayCircleOutlined /> : <PauseOutlined />}
+                        {isPaused ? " Resume" : " Pause"}
                     </Button>
                     <Button variant={"solid"} color={"primary"} onClick={handleSubmit}>
-                        <CheckOutlined /> Finish
+                        <CheckOutlined />
+                        Finish
                     </Button>
                 </div>
             </div>
@@ -201,7 +210,7 @@ export default function Index({ sessionId }: { sessionId: string }) {
                             index={currentPage - 1}
                             questionText={questions[currentPage - 1]?.question}
                             options={questions[currentPage - 1]?.choices}
-                            selectedOption={selectedOptions[questions[currentPage - 1]?.id] || null}
+                            selectedOption={selectedOptions[questions[currentPage - 1].id] || null}
                             onOptionChange={(questionIndex, optionId) =>
                                 handleOptionChange(questions[questionIndex].id, optionId)
                             }
@@ -210,13 +219,14 @@ export default function Index({ sessionId }: { sessionId: string }) {
                 </div>
             </Main>
             <Footer>
-                <Pagination
-                    current={currentPage}
-                    onChange={handlePageChange}
-                    total={questions.length}
-                    pageSize={1}
-                    hideOnSinglePage={true}
-                />
+                <div className={styles.paginationContainer}>
+                    <Pagination
+                        current={currentPage}
+                        onChange={handlePageChange}
+                        total={questions?.length}
+                        pageSize={1}
+                    />
+                </div>
             </Footer>
         </div>
     );
