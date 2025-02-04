@@ -1,23 +1,15 @@
 import { openai } from "@/config/openaiConfig";
+import { v4 as uuidv4 } from 'uuid';
 
 export async function generateQuestion({
-  topic,
+  topics,
   difficulty,
+  numberOfQuestions,
 }: {
-  topic: string;
+  topics: string[];
   difficulty: string;
+  numberOfQuestions: number;
 }) {
-  const questions = [];
-
-  const prompt = `Generate a ${difficulty} SAT math question on the topic of ${topic}. Specify if it's a "multiple-choice" question or an "open" question. Provide the correct answer to the question generated. 
-    Format the response in JSON as follows:
-    {
-      "type": "multiple-choice" | "open",
-      "question": "The generated question text.",
-      "choices": ["Option A", "Option B", "Option C", "Option D"], // Include choices only if type is "multiple-choice"
-      "correctAnswer": "The correct answer to the question."
-    }`;
-
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -25,26 +17,71 @@ export async function generateQuestion({
         {
           role: "system",
           content:
-              "You are an expert SAT math question generator. Only generate the question based on the criteria provided, without answers or explanations. The question should be unique and not copied from any existing source. " +
-              "Do not repeat the same question. " ,
+            "You are an expert SAT math question generator. Ensure uniqueness, avoid repetition, maintain consistent difficulty, and respond strictly in JSON format using structured outputs.",
         },
         {
           role: "user",
-          content: prompt,
+          content: `Generate ${numberOfQuestions} unique, non-repetitive SAT math questions on the following topics: ${topics.join(", ")}. Each question should vary in structure and complexity but maintain a ${difficulty} difficulty level.`,
         },
       ],
-      max_tokens: 200,
+      functions: [
+        {
+          name: "generate_sat_questions",
+          description: "Generates SAT math questions with multiple-choice answers.",
+          parameters: {
+            type: "object",
+            properties: {
+              questions: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    type: { type: "string" },
+                    question: { type: "string" },
+                    choices: {
+                      type: "array",
+                      items: { type: "string" }
+                    },
+                    correctAnswer: { type: "string" }
+                  },
+                  required: ["type", "question", "choices", "correctAnswer"]
+                }
+              }
+            },
+            required: ["questions"]
+          }
+        }
+      ],
+      function_call: { name: "generate_sat_questions" },
+      max_tokens: 1000,
       temperature: 0.7,
     });
 
-    const questionData = JSON.parse(response.choices[0]?.message?.content?.trim() ?? "");
+    const rawQuestions = response.choices[0]?.message?.function_call?.arguments;
 
-    if (questionData) {
-      questions.push(questionData);
+    if (!rawQuestions) {
+      throw new Error("Invalid structured response received from OpenAI API.");
     }
-  } catch (error) {
-    console.error(`Error generating question for topic: ${topic}, error: ${error}`);
-  }
 
-  return questions;
-}
+    const parsedQuestions = JSON.parse(rawQuestions).questions;
+
+    const formattedQuestions = parsedQuestions.map((questionData: any) => {
+      const { question, choices, correctAnswer } = questionData;
+
+      return {
+        id: uuidv4(),
+        question,
+        correctAnswer,
+        choices: choices.map((choice: string, index: number) => ({
+          id: String.fromCharCode(97 + index), // 'a', 'b', 'c', 'd'
+          text: choice,
+        })),
+      };
+    });
+
+    return formattedQuestions;
+  } catch (error) {
+    console.error("Error generating questions:", error);
+    return [];
+  }
+} 

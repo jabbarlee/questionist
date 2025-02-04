@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchAllGeneratedQuestions } from '@/utils/openai/fetchQuestion';
+import { fetchAllGeneratedQuestions } from '@/utils/openai/fetchAllGeneratedQuestions';
 
 export async function POST(req: NextRequest) {
   const { topics, difficulty, numberOfQuestions } = await req.json();
