@@ -9,7 +9,7 @@ import Main from "@/components/ui/_wrappers/Main";
 import Footer from "@/components/ui/_wrappers/Footer";
 import { Question } from "@/components/ui/PracticeSession/Question";
 import { getSessionData } from '@/actions/firebase/get/getSessionData';
-import { fetchQuestions } from "@/actions/firebase/get/fetchGeneratedQuestions";
+import { fetchQuestions } from "@/actions/firebase/get/fetchQuestions";
 import { SessionData, QuestionProps, SelectedOption } from "@/types";
 import { handleSessionSubmit } from "@/actions/handleSessionSubmit";
 import { useRouter } from "next/navigation";
