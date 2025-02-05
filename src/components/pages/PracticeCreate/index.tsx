@@ -10,6 +10,7 @@ import QuestionNumSelect from "@/components/ui/PracticeCreate/QuestionNumSelect"
 import TestName from "@/components/ui/PracticeCreate/TestName";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
+import Footer from "@/components/ui/_wrappers/Footer";
 import Page from "@/components/ui/_wrappers/Page";
 import { Potion, Bolt, Fire } from "@/data/icons/practice";
 import { storePracticeSession } from "@/actions/firebase/set/storePracticeSession";
@@ -69,11 +70,11 @@ export default function PracticeCreate() {
 
 
     const handleDefinedSetStart = async({
-                                            topics,
-                                            difficulty,
-                                            sessionName,
-                                            numberOfQuestions
-                                        }: PracticeStartProps) => {
+        topics,
+        difficulty,
+        sessionName,
+        numberOfQuestions
+    }: PracticeStartProps) => {
         try{
             const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
 
@@ -106,135 +107,68 @@ export default function PracticeCreate() {
             </Header>
             <Main>
                 <div className={styles.container}>
-                    <div className={styles.left}>
-                        <div className={styles.card}>
-                            <TestName
-                                testName={testName}
-                                setTestName={setTestName}
-                            />
-                            <DifficultySelect
-                                difficulty={difficulty}
-                                setDifficulty={setDifficulty}
-                            />
-                            <QuestionTypeSelect
-                                questionType={questionType}
-                                setQuestionType={setQuestionType}
-                            />
-                            <TopicsSelect topics={topics} setTopics={setTopics} />
-                            <QuestionNumSelect
-                                numberOfQuestions={numberOfQuestions}
-                                setNumberOfQuestions={setNumberOfQuestions}
-                            />
-                        </div>
-                        {alertVisible && (
-                            <Alert
-                                message="Please complete all fields before creating a practice set."
-                                type="error"
-                                showIcon
-                                closable
-                                onClose={() => setAlertVisible(false)}
-                                className={styles.alert}
-                            />
-                        )}
-                    </div>
-
-                    <div className={styles.right}>
-                        <div className={styles.card}>
-                            <div className={styles.progressCardTextWrapper}>
-                                <Progress
-                                    type="circle"
-                                    percent={progress}
-                                    strokeColor={progress === 100 ? "#52c41a" : "#1890ff"}
-                                />
-                                <div className={styles.subHeadingTextWrapper}>
-                                    <p className={styles.subHeading}>
-                                        {progress === 100 ?
-                                            "Ready to create practice set"
-                                            :
-                                            "Complete all fields to create practice set"
+                    <div className={styles.card}>
+                        <TestName
+                            testName={testName}
+                            setTestName={setTestName}
+                        />
+                        <DifficultySelect
+                            difficulty={difficulty}
+                            setDifficulty={setDifficulty}
+                        />
+                        <QuestionTypeSelect
+                            questionType={questionType}
+                            setQuestionType={setQuestionType}
+                        />
+                        <TopicsSelect topics={topics} setTopics={setTopics} />
+                        <QuestionNumSelect
+                            numberOfQuestions={numberOfQuestions}
+                            setNumberOfQuestions={setNumberOfQuestions}
+                        />
+                        <div className={styles.createSetFooter}>
+                            <div className={styles.progressContainer}>
+                                <div className={styles.progress}>
+                                    <Progress percent={progress} percentPosition={{ align: 'center', type: 'inner' }} size={[500, 20]} />
+                                </div>
+                                <div className={styles.progressText}>
+                                    <Typography variant="h6">
+                                        {progress === 100 ? "Ready to create!" : "Complete the form to create a practice set."}
+                                    </Typography>
+                                </div>
+                            </div>
+                            <div className={styles.button}>
+                                <Button
+                                    type="primary"
+                                    size="large"
+                                    onClick={() => {
+                                        if (
+                                            testName &&
+                                            difficulty &&
+                                            questionType &&
+                                            topics &&
+                                            numberOfQuestions
+                                        ) {
+                                            handleCreate();
+                                        } else {
+                                            setAlertVisible(true);
                                         }
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={styles.buttonsContainer}>
-                                <Button
-                                    variant="solid"
-                                    color="primary"
-                                    size="large"
-                                    className={styles.createButton}
-                                    onClick={handleCreate}
-                                    {...(progress !== 100 && {disabled: true})}
-                                    icon={<Bolt/>}
+                                    }}
                                 >
-                                    Create
+                                    Create Practice Set
                                 </Button>
-                                <Button
-                                    variant="filled"
-                                    color="primary"
-                                    size="large"
-                                    className={styles.createButton}
-                                    onClick={handleCreate}
-                                    icon={<Potion/>}
-                                >
-                                    Randomize
-                                </Button>
-                            </div>
-                        </div>
-                        <div className={styles.definedSetsContainer}>
-                            <div>
-                                <Typography className={styles.setHeading}>
-                                    <div className={styles.buttonTextWrapper}>
-                                        <Fire/>
-                                        Popular Sets
-                                    </div>
-                                </Typography>
-                            </div>
-                            <div className={styles.definedSetsWrapper}>
-                                <div className={styles.card}>
-                                    <Typography className={styles.setTitle}>Geometry Guru</Typography>
-                                    <Typography className={styles.setDetails}>
-                                        <Tag color={'volcano'}>Hard</Tag>
-                                        <Tag>15 questions</Tag>
-                                    </Typography>
-                                    <Button
-                                        color="primary"
-                                        variant='filled'
-                                        style={{textDecoration: 'none', width: '100%'}}
-                                        size="large"
-                                        onClick={() => handleDefinedSetStart({
-                                            topics: ['geometry'],
-                                            difficulty: ['hard'],
-                                            sessionName: 'Geometry Guru',
-                                            numberOfQuestions: 15
-                                        })}
-                                    >
-                                        Start Now
-                                    </Button>
-                                </div>
-                                <div className={styles.card}>
-                                    <Typography className={styles.setTitle}>Triggster</Typography>
-                                    <Typography className={styles.setDetails}>
-                                        <Tag color={'magenta'}>Medium</Tag>
-                                        <Tag>10 questions</Tag>
-                                    </Typography>
-                                    <Button
-                                        color="primary"
-                                        variant='filled'
-                                        style={{textDecoration: 'none', width: '100%'}}
-                                        size="large"
-                                        onClick={() => handleDefinedSetStart({
-                                            topics: ['trigonometry'],
-                                            difficulty: ['medium'],
-                                            sessionName: 'Triggster',
-                                            numberOfQuestions: 10
-                                        })}
-                                    >
-                                        Start Now
-                                    </Button>
-                                </div>
                             </div>
                         </div>
                     </div>
+                    {alertVisible && (
+                        <Alert
+                            message="Please complete all fields before creating a practice set."
+                            type="error"
+                            showIcon
+                            closable
+                            onClose={() => setAlertVisible(false)}
+                            className={styles.alert}
+                        />
+                    )}
                 </div>
             </Main>
         </Page>

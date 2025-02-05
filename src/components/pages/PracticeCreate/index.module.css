@@ -1,28 +1,11 @@
 .container {
     display: flex;
+    flex-direction: column;
     gap: 15px;
-    width: 100%;
+    width: 80%;
     height: 100%;
     box-sizing: border-box;
     overflow-y: hidden;
-}
-
-.left {
-    width: 60%;
-    height: calc(100vh - 90px);
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    overflow-y: scroll;
-    gap: 20px;
-}
-
-.right {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
 .card {
@@ -34,6 +17,25 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.createSetFooter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 7px;
+    background-color: #fbfbfb;
+    border: 1px solid #e5e5e5;
+}
+
+.progressContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 5px;
 }
 
 .alert {
