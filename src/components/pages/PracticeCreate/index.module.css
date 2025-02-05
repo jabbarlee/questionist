@@ -1,28 +1,10 @@
 .container {
     display: flex;
     gap: 15px;
-    width: 100%;
+    width: 80%;
     height: 100%;
     box-sizing: border-box;
     overflow-y: hidden;
-}
-
-.left {
-    width: 60%;
-    height: calc(100vh - 90px);
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    overflow-y: scroll;
-    gap: 20px;
-}
-
-.right {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
 .card {
