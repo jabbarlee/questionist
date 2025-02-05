@@ -10,6 +10,7 @@ import QuestionNumSelect from "@/components/ui/PracticeCreate/QuestionNumSelect"
 import TestName from "@/components/ui/PracticeCreate/TestName";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
+import Footer from "@/components/ui/_wrappers/Footer";
 import Page from "@/components/ui/_wrappers/Page";
 import { Potion, Bolt, Fire } from "@/data/icons/practice";
 import { storePracticeSession } from "@/actions/firebase/set/storePracticeSession";
@@ -69,11 +70,11 @@ export default function PracticeCreate() {
 
 
     const handleDefinedSetStart = async({
-                                            topics,
-                                            difficulty,
-                                            sessionName,
-                                            numberOfQuestions
-                                        }: PracticeStartProps) => {
+        topics,
+        difficulty,
+        sessionName,
+        numberOfQuestions
+    }: PracticeStartProps) => {
         try{
             const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
 
@@ -124,38 +125,38 @@ export default function PracticeCreate() {
                             numberOfQuestions={numberOfQuestions}
                             setNumberOfQuestions={setNumberOfQuestions}
                         />
-                    </div>
-                    <div className={styles.createSetFooter}>
-                        <div className={styles.progressContainer}>
-                            <div className={styles.progress}>
-                                <Progress percent={progress} percentPosition={{ align: 'center', type: 'inner' }} size={[500, 20]} />
+                        <div className={styles.createSetFooter}>
+                            <div className={styles.progressContainer}>
+                                <div className={styles.progress}>
+                                    <Progress percent={progress} percentPosition={{ align: 'center', type: 'inner' }} size={[500, 20]} />
+                                </div>
+                                <div className={styles.progressText}>
+                                    <Typography variant="h6">
+                                        {progress === 100 ? "Ready to create!" : "Complete the form to create a practice set."}
+                                    </Typography>
+                                </div>
                             </div>
-                            <div className={styles.progressText}>
-                                <Typography variant="h6">
-                                    {progress === 100 ? "Ready to create!" : "Complete the form to create a practice set."}
-                                </Typography>
+                            <div className={styles.button}>
+                                <Button
+                                    type="primary"
+                                    size="large"
+                                    onClick={() => {
+                                        if (
+                                            testName &&
+                                            difficulty &&
+                                            questionType &&
+                                            topics &&
+                                            numberOfQuestions
+                                        ) {
+                                            handleCreate();
+                                        } else {
+                                            setAlertVisible(true);
+                                        }
+                                    }}
+                                >
+                                    Create Practice Set
+                                </Button>
                             </div>
-                        </div>
-                        <div className={styles.button}>
-                            <Button
-                                type="primary"
-                                size="large"
-                                onClick={() => {
-                                    if (
-                                        testName &&
-                                        difficulty &&
-                                        questionType &&
-                                        topics &&
-                                        numberOfQuestions
-                                    ) {
-                                        handleCreate();
-                                    } else {
-                                        setAlertVisible(true);
-                                    }
-                                }}
-                            >
-                                Create Practice Set
-                            </Button>
                         </div>
                     </div>
                     {alertVisible && (
