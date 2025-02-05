@@ -125,6 +125,39 @@ export default function PracticeCreate() {
                             setNumberOfQuestions={setNumberOfQuestions}
                         />
                     </div>
+                    <div className={styles.createSetFooter}>
+                        <div className={styles.progressContainer}>
+                            <div className={styles.progress}>
+                                <Progress percent={progress} percentPosition={{ align: 'center', type: 'inner' }} size={[500, 20]} />
+                            </div>
+                            <div className={styles.progressText}>
+                                <Typography variant="h6">
+                                    {progress === 100 ? "Ready to create!" : "Complete the form to create a practice set."}
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className={styles.button}>
+                            <Button
+                                type="primary"
+                                size="large"
+                                onClick={() => {
+                                    if (
+                                        testName &&
+                                        difficulty &&
+                                        questionType &&
+                                        topics &&
+                                        numberOfQuestions
+                                    ) {
+                                        handleCreate();
+                                    } else {
+                                        setAlertVisible(true);
+                                    }
+                                }}
+                            >
+                                Create Practice Set
+                            </Button>
+                        </div>
+                    </div>
                     {alertVisible && (
                         <Alert
                             message="Please complete all fields before creating a practice set."

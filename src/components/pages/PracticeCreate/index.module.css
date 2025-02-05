@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-direction: column;
     gap: 15px;
     width: 80%;
     height: 100%;
@@ -16,6 +17,25 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.createSetFooter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 7px;
+    background-color: #fbfbfb;
+    border: 1px solid #e5e5e5;
+}
+
+.progressContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 .alert {
