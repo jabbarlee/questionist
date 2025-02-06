@@ -5,19 +5,17 @@ import Header from '@/components/ui/_wrappers/Header'
 import Main from '@/components/ui/_wrappers/Main'
 import Page from '@/components/ui/_wrappers/Page'
 import Dashboard from '@/components/pages/Dashboard'
-import { Timer } from '@/components/ui/Timer'
+import { Button } from 'antd'
+import { storeContracts } from '@/actions/firebase/set/storeContracts'
 
-export default async function page() {
-
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 180);
+export default function page() {
 
   return (
     <Page>
         <Header>Dashboard</Header>
         <Main>
             <Dashboard />
-            <Timer expiryTimestamp={time} />
+            <Button onClick={() => storeContracts()}>Push challenges to DB</Button>
         </Main>
     </Page>
   )
