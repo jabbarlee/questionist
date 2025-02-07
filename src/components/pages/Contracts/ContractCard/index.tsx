@@ -2,22 +2,10 @@ import React from 'react';
 import { Button } from 'antd';
 import Typography from '@mui/material/Typography';
 import styles from './index.module.css';
+import { ContractProps } from '@/types';
 
 export const ContractCard = ({ contract }: {
-    contract: {
-      title: string;
-      description: string;
-      type: string;
-      difficulty: string;
-      topics: string[];
-      totalTasks: number;
-      timeLimit: number;
-      rewards: {
-        axp: number;
-        brilliants: number;
-        badge: string;
-      };
-    };
+    contract: ContractProps;
   }) => {
     return (
       <div className={styles.contractContainer}>
