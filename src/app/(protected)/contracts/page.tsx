@@ -9,7 +9,7 @@ import {ContractCard} from '@/components/pages/Contracts/ContractCard';
 export default function page() {
   return (
     <Page>
-      <Header>Dashboard</Header>
+      <Header>Contracts</Header>
       <Main>
         <ContractCard contract={contract} />
       </Main>
