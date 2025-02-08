@@ -5,6 +5,7 @@ import Header from '@/components/ui/_wrappers/Header';
 import Main from '@/components/ui/_wrappers/Main';
 import Page from '@/components/ui/_wrappers/Page';
 import {ContractCard} from '@/components/pages/Contracts/ContractCard';
+import { SearchHeader } from '@/components/pages/Contracts/SearchHeader';
 import styles from './index.module.css';
 
 export default function page() {
@@ -12,6 +13,7 @@ export default function page() {
     <Page>
       <Header>Contracts</Header>
       <Main>
+        <SearchHeader />
         <div className={styles.contractsContainer}>
           <ContractCard contract={contract} />
           <ContractCard contract={contract2} />
