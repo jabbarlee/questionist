@@ -1,44 +1,37 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Tag } from 'antd';
 import Typography from '@mui/material/Typography';
 import styles from './index.module.css';
 import { ContractProps } from '@/types';
 
-export const ContractCard = ({ contract }: {
-    contract: ContractProps;
-  }) => {
-    return (
-      <div className={styles.contractContainer}>
-        <div className={styles.contractContent}>
-          <Typography variant="h6" className={styles.contractTitle}>
-            {contract.title}
-          </Typography>
-          <Typography variant="body1" className={styles.contractDescription}>
-            {contract.description}
-          </Typography>
-          <div className={styles.contractDetails}>
-            <div className={styles.detailsSection}>
-              <Typography variant="body2"><strong>Type:</strong> {contract.type}</Typography>
-              <Typography variant="body2"><strong>Difficulty:</strong> {contract.difficulty}</Typography>
-              <Typography variant="body2"><strong>Topics:</strong> {contract.topics.join(', ')}</Typography>
-              <Typography variant="body2"><strong>Total Tasks:</strong> {contract.totalTasks}</Typography>
-              <Typography variant="body2"><strong>Time Limit:</strong> {contract.timeLimit / 86400} days</Typography>
+export const ContractCard = ({ contract }: { contract: ContractProps }) => {
+  return (
+    <div className={styles.contractContainer}>
+      <div className={styles.contractContent}>
+        <div className={styles.contractHeader}> 
+          <Typography className={styles.contractTitle} fontSize={'20px'}>{contract.title}</Typography>
+          <Typography className={styles.contractDescription} fontSize={'14px'}>{contract.description}</Typography>
+        </div>
+        <div className={styles.contractFooter}>
+          <div className={styles.contractFooterLeft}>
+            <div className={styles.rewardItem}>
+              {/* <Bolt className={styles.icon} /> */}
+              <Typography className={styles.contractAxp}>+{contract.rewards.axp}</Typography>
+            </div>
+            <div className={styles.rewardItem}>
+              {/* <Star className={styles.icon} /> */}
+              <Typography className={styles.contractBrilliants}>+{contract.rewards.brilliants}</Typography>
             </div>
           </div>
-          <Button type="primary" className={styles.activateButton}>
-            Activate Contract
-          </Button>
-        </div>
-        <div className={styles.rewardsSection}>
-          <Typography variant="h6" className={styles.rewardsTitle}>
-            Rewards
-          </Typography>
-          <div className={styles.rewardsDetails}>
-            <Typography variant="body2">AXP: {contract.rewards.axp}</Typography>
-            <Typography variant="body2">Brilliants: {contract.rewards.brilliants}</Typography>
-            <Typography variant="body2">Badge: {contract.rewards.badge}</Typography>
+          <div className={styles.contractFooterRight}>
+            <Tag className={styles.difficultyTag} color={
+              contract.difficulty === 'Easy' ? 'green' : 
+              contract.difficulty === 'Medium' ? 'orange' : 
+              'red'
+            }>{contract.difficulty}</Tag>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};

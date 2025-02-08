@@ -1,0 +1,7 @@
+.contractsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    justify-content: center; /* Centers the cards in the row */
+}

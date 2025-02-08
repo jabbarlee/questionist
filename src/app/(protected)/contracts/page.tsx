@@ -5,29 +5,35 @@ import Header from '@/components/ui/_wrappers/Header';
 import Main from '@/components/ui/_wrappers/Main';
 import Page from '@/components/ui/_wrappers/Page';
 import {ContractCard} from '@/components/pages/Contracts/ContractCard';
+import styles from './index.module.css';
 
 export default function page() {
   return (
     <Page>
       <Header>Contracts</Header>
       <Main>
-        <ContractCard contract={contract} />
+        <div className={styles.contractsContainer}>
+          <ContractCard contract={contract} />
+          <ContractCard contract={contract} />
+          <ContractCard contract={contract} />
+          <ContractCard contract={contract} />
+        </div>
       </Main>
     </Page>
   );
 }
 
 const contract = {
-  title: "Test Contract",
-  description: "This is a test contract",
-  type: "Test",
-  difficulty: "Test",
-  topics: ["Test"],
-  totalTasks: 1,
+  title: "Algebra Guru",
+  description: "Solve 100 algebra task",
+  type: "long-term",
+  difficulty: "Hard",
+  topics: ["Algebra, Linear Functions", "Quadratic Functions"],
+  totalTasks: 100,
   timeLimit: 86400,
   rewards: {
-    axp: 100,
-    brilliants: 100,
+    axp: 120,
+    brilliants: 5,
     badge: "Test"
   }
 };
