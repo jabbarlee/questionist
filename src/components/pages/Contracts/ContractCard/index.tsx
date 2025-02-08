@@ -8,19 +8,21 @@ export const ContractCard = ({ contract }: { contract: ContractProps }) => {
   return (
     <div className={styles.contractContainer}>
       <div className={styles.contractContent}>
-        <div className={styles.contractHeader}> 
-          <Typography className={styles.contractTitle} fontSize={'20px'}>{contract.title}</Typography>
+        <div className={styles.contractHeader} onClick={() => console.log('sdjfhs')}> 
+          <Typography className={styles.contractTitle} fontSize={'20px'}>
+            {contract.title}
+          </Typography>
           <Typography className={styles.contractDescription} fontSize={'14px'}>{contract.description}</Typography>
         </div>
         <div className={styles.contractFooter}>
           <div className={styles.contractFooterLeft}>
             <div className={styles.rewardItem}>
               {/* <Bolt className={styles.icon} /> */}
-              <Typography className={styles.contractAxp}>+{contract.rewards.axp}</Typography>
+              <Typography className={styles.contractAxp}>+{contract.rewards.axp} AXP</Typography>
             </div>
             <div className={styles.rewardItem}>
               {/* <Star className={styles.icon} /> */}
-              <Typography className={styles.contractBrilliants}>+{contract.rewards.brilliants}</Typography>
+              <Typography className={styles.contractBrilliants}>+{contract.rewards.brilliants} Brilliants</Typography>
             </div>
           </div>
           <div className={styles.contractFooterRight}>

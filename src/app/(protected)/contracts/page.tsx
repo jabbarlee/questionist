@@ -14,8 +14,8 @@ export default function page() {
       <Main>
         <div className={styles.contractsContainer}>
           <ContractCard contract={contract} />
-          <ContractCard contract={contract} />
-          <ContractCard contract={contract} />
+          <ContractCard contract={contract2} />
+          <ContractCard contract={contract2} />
           <ContractCard contract={contract} />
         </div>
       </Main>
@@ -37,3 +37,18 @@ const contract = {
     badge: "Test"
   }
 };
+
+const contract2 = {
+  title: "Geometry Master",
+  description: "Complete 50 geometry problems",
+  type: "short-term",
+  difficulty: "Medium",
+  topics: ["Triangles", "Circles", "Polygons"],
+  totalTasks: 50,
+  timeLimit: 43200,
+  rewards: {
+    axp: 80,
+    brilliants: 3,
+    badge: "Geometry Expert"
+  }
+}
