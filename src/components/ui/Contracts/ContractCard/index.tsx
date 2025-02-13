@@ -18,11 +18,21 @@ export const ContractCard = ({ contract }: { contract: ContractProps }) => {
           <div className={styles.contractFooterLeft}>
             <div className={styles.rewardItem}>
               {/* <Bolt className={styles.icon} /> */}
-              <Typography className={styles.contractAxp}>+{contract.rewards.axp} AXP</Typography>
+              <Tag 
+                color='cyan-inverse' 
+                style={{ margin: '0' }}
+              >
+                +{contract.rewards.axp} AXP
+              </Tag>
             </div>
             <div className={styles.rewardItem}>
               {/* <Star className={styles.icon} /> */}
-              <Typography className={styles.contractBrilliants}>+{contract.rewards.brilliants} Brilliants</Typography>
+              <Tag 
+                color='gold-inverse'
+                style={{ margin: '0' }}
+              >
+                +{contract.rewards.brilliants} Brilliants
+              </Tag>
             </div>
           </div>
           <div className={styles.contractFooterRight}>

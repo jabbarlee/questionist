@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import { ContractCard } from '@/components/ui/Contracts/ContractCard';
-import { SearchHeader } from '@/components/ui/Contracts/SearchHeader';
 import { ContractProps } from '@/types';
 
 export const ContractPage = () => {
@@ -14,7 +13,6 @@ export const ContractPage = () => {
     }, [])
   return (
     <div className={styles.contractContainer}>
-        <SearchHeader />
         <div className={styles.contractsContainer}>
             <ContractCard contract={contract} />
             <ContractCard contract={contract2} />
