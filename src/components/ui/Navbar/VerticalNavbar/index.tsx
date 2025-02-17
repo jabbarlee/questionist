@@ -53,11 +53,11 @@ export default function Navbar() {
                             </Link>
                         </div>
                         <div className={styles.linkWrapper}>
-                            <Link href="/challenges" style={{textDecoration: "none"}}>
+                            <Link href="/contracts" style={{textDecoration: "none"}}>
                                 <div
-                                    className={`${styles.textWrapper} ${pathname === '/challenges' ? styles.active : ''}`}>
-                                    <Arrow className={pathname === '/challenges' ? styles.iconActive : styles.icon}/>
-                                    <p className={`${styles.linkText} ${pathname === '/challenges' ? styles.activeText : ''}`}>Challenges</p>
+                                    className={`${styles.textWrapper} ${pathname === '/contracts' ? styles.active : ''}`}>
+                                    <Arrow className={pathname === '/contracts' ? styles.iconActive : styles.icon}/>
+                                    <p className={`${styles.linkText} ${pathname === '/contracts' ? styles.activeText : ''}`}>Contracts</p>
                                 </div>
                             </Link>
                         </div>

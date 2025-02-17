@@ -1,0 +1,153 @@
+[
+    {
+      "contractID": "CTR-001",
+      "title": "Algebra Mastery",
+      "description": "Solve 50 Algebra problems in 10 days to strengthen your foundation.",
+      "type": "long-term",
+      "difficulty": "medium",
+      "topics": ["algebra"],
+      "totalTasks": 50,
+      "timeLimit": 864000,
+      "rewards": {
+        "axp": 300,
+        "brilliants": 5,
+        "badge": "Algebra Expert"
+      }
+    },
+    {
+      "contractID": "CTR-002",
+      "title": "Geometry Challenger",
+      "description": "Complete 30 geometry-based questions over the next 7 days.",
+      "type": "long-term",
+      "difficulty": "hard",
+      "topics": ["geometry"],
+      "totalTasks": 30,
+      "timeLimit": 604800,
+      "rewards": {
+        "axp": 400,
+        "brilliants": 6,
+        "badge": "Geometry Guru"
+      }
+    },
+    {
+      "contractID": "CTR-003",
+      "title": "Daily Problem Solver",
+      "description": "Solve at least 5 problems every day for 10 days in a row.",
+      "type": "streak",
+      "difficulty": "easy",
+      "topics": ["mixed"],
+      "totalTasks": 50,
+      "timeLimit": 864000,
+      "rewards": {
+        "axp": 200,
+        "brilliants": 4,
+        "badge": "Consistency Champion"
+      }
+    },
+    {
+      "contractID": "CTR-004",
+      "title": "Trigonometry Specialist",
+      "description": "Master trigonometry by completing 40 trigonometry-based problems.",
+      "type": "long-term",
+      "difficulty": "hard",
+      "topics": ["trigonometry"],
+      "totalTasks": 40,
+      "timeLimit": 1209600,
+      "rewards": {
+        "axp": 500,
+        "brilliants": 8,
+        "badge": "Trigonometry Master"
+      }
+    },
+    {
+      "contractID": "CTR-005",
+      "title": "Speed Solver",
+      "description": "Solve 15 questions within a 5-minute time limit.",
+      "type": "timed",
+      "difficulty": "medium",
+      "topics": ["mixed"],
+      "totalTasks": 15,
+      "timeLimit": 300,
+      "rewards": {
+        "axp": 250,
+        "brilliants": 5,
+        "badge": "Speed Genius"
+      }
+    },
+    {
+      "contractID": "CTR-006",
+      "title": "Equation Mastery",
+      "description": "Solve 25 complex equations over a span of a week.",
+      "type": "long-term",
+      "difficulty": "hard",
+      "topics": ["equations"],
+      "totalTasks": 25,
+      "timeLimit": 604800,
+      "rewards": {
+        "axp": 450,
+        "brilliants": 7,
+        "badge": "Equation Solver"
+      }
+    },
+    {
+      "contractID": "CTR-007",
+      "title": "Percentage Pro",
+      "description": "Solve 30 percentage-based problems in 10 days.",
+      "type": "long-term",
+      "difficulty": "medium",
+      "topics": ["percentages"],
+      "totalTasks": 30,
+      "timeLimit": 864000,
+      "rewards": {
+        "axp": 320,
+        "brilliants": 6,
+        "badge": "Percentage Master"
+      }
+    },
+    {
+      "contractID": "CTR-008",
+      "title": "Graph & Functions Expert",
+      "description": "Complete 35 questions on graphing and functions.",
+      "type": "long-term",
+      "difficulty": "hard",
+      "topics": ["graphs", "functions"],
+      "totalTasks": 35,
+      "timeLimit": 1209600,
+      "rewards": {
+        "axp": 550,
+        "brilliants": 10,
+        "badge": "Graphing Guru"
+      }
+    },
+    {
+      "contractID": "CTR-009",
+      "title": "Word Problem Wizard",
+      "description": "Solve 25 word problems covering various math concepts.",
+      "type": "long-term",
+      "difficulty": "medium",
+      "topics": ["word problems"],
+      "totalTasks": 25,
+      "timeLimit": 864000,
+      "rewards": {
+        "axp": 350,
+        "brilliants": 6,
+        "badge": "Word Problem Solver"
+      }
+    },
+    {
+      "contractID": "CTR-010",
+      "title": "SAT Math Prep Contract",
+      "description": "Complete 75 SAT-style questions over 2 weeks to prepare for the SAT.",
+      "type": "long-term",
+      "difficulty": "hard",
+      "topics": ["SAT Math"],
+      "totalTasks": 75,
+      "timeLimit": 1209600,
+      "rewards": {
+        "axp": 800,
+        "brilliants": 12,
+        "badge": "SAT Math Master"
+      }
+    }
+  ]
+  

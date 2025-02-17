@@ -67,3 +67,18 @@ export type UserData = {
     role: "student" | "admin" | "teacher";
     uid: string;
 };
+
+export type ContractProps = {
+    title: string;
+    description: string;
+    type: string;
+    difficulty: string;
+    topics: string[];
+    totalTasks: number;
+    timeLimit: number;
+    rewards: {
+        axp: number;
+        brilliants: number;
+        badge: string;
+    };
+}
