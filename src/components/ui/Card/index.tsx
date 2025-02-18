@@ -4,12 +4,14 @@ import Typography from "@mui/material/Typography";
 import Image, { StaticImageData } from 'next/image';
 
 export const Card = ({
+    title,
     heading,
     subHeading,
     image,
     isLarge,
     children
 }: {
+    title?: string;
     heading: string;
     subHeading?: string;
     image?: StaticImageData;
@@ -22,6 +24,7 @@ export const Card = ({
         <div className={styles.card + (isLarge ? ' ' + styles.large : '')}>
             <div className={styles.contentWrapper}>
                 <div className={styles.textWrapper}>
+                    {title && <Typography className={styles.title} fontSize={'16px'}>{title}</Typography>}
                     <Typography className={styles.heading} fontSize={isLarge ? '28px' : '24px'}>{heading}</Typography>
                     {subHeading && <Typography className={styles.subHeading} fontSize={'16px'}>{subHeading}</Typography>}
                 </div>
@@ -29,9 +32,11 @@ export const Card = ({
                     {children}
                 </div>
             </div>
-            <div className={styles.imageWrapper}>
-                {image && <Image src={image} alt={heading} width={isLarge ? 400 : 200} height={isLarge ? 400 : 200} />}
-            </div>
+            {image && (
+                <div className={styles.imageWrapper}>
+                    {image && <Image src={image} alt={heading} width={isLarge ? 400 : 200} height={isLarge ? 400 : 200} />}
+                </div>
+            )}
         </div>
     </div>
   );
