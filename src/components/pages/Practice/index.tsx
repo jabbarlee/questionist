@@ -128,26 +128,6 @@ export default function index() {
                         </div>
                     </Card>
                 </div>
-                <Card
-                    heading={'Premium practice sets'}
-                    subHeading={'Start practicing with premium sets'}
-                >
-                    <Button
-                        size="large"
-                        type="primary"
-                        href="/practice/create"
-                        style={{ textDecoration: 'none', width: '50%' }}
-                    >
-                        See pricing
-                    </Button>
-                    <Button
-                        size="large"
-                        type="default"
-                        style={{ width: '50%' }}
-                    >
-                        Why premium?
-                    </Button>
-                </Card>
             </Main>
         </Page>
     )
