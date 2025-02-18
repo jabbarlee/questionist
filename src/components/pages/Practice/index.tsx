@@ -13,7 +13,7 @@ import { Button } from 'antd';
 import { useRouter } from 'next/navigation'
 import { PracticeStartProps } from '@/types';
 import { storePracticeSession } from '@/actions/firebase/set/storePracticeSession';
-import { insertLevelBadges } from "@/utils/insertLevelBadges";
+import { Card } from '@/components/ui/Card';
 
 export default function index() {
     const router = useRouter()
@@ -44,8 +44,10 @@ export default function index() {
                 <div className={styles.wrapper}>
                     <div className={styles.customSetWrapper}>
                         <CustomSet/>
-                        <div className={styles.popularSetsWrapper}>
-                            <Typography className={styles.stepHeadingText} fontSize={'24px'}>Popular Practice Sets</Typography>
+                        <Card 
+                            heading={'Popular Sets'}
+                            subHeading={'Start practicing with popular sets'}
+                        >
                             <div className={styles.popularSets}>
                                 <div className={styles.setCard}>
                                     <Typography className={styles.setTitle} fontSize={'18px'}>Algebra Essentials</Typography>
@@ -90,42 +92,41 @@ export default function index() {
                                     </Button>
                                 </div>
                             </div>
-                        </div>
-
+                        </Card>
                     </div>
-                    <div className={styles.howToUseWrapper}>
-                        <div className={styles.stepsWrapper}>
-                            <Typography className={styles.stepHeadingText} fontSize={'24px'}>Learn. Practice. Excel.</Typography>
-                            <div className={styles.stepsContainer}>
-                                <div className={styles.step}>
-                                    <Tag color="blue" className={styles.stepTag}>
-                                        Earn rewards
-                                    </Tag>
-                                    <div className={styles.stepContent}>
-                                        <Typography className={styles.subHeading} fontSize={'16px'}>
-                                            As you progress you will gain more points which you can use later
-                                        </Typography>
-                                    </div>
+                    <Card 
+                        heading={'How it works'}
+                        subHeading={'Start practicing with popular sets'}
+                    >
+                        <div className={styles.stepsContainer}>
+                            <div className={styles.step}>
+                                <Tag color="blue" className={styles.stepTag}>
+                                    Earn rewards
+                                </Tag>
+                                <div className={styles.stepContent}>
+                                    <Typography className={styles.subHeading} fontSize={'16px'}>
+                                        As you progress you will gain more points which you can use later
+                                    </Typography>
                                 </div>
-                                <div className={styles.step}>
-                                    <Tag color="green" className={styles.stepTag}>
-                                        AI-Powered Questions
-                                    </Tag>
-                                    <div className={styles.stepContent}>
-                                        <Typography className={styles.subHeading} fontSize={'16px'}>Each set is customized for your own needs</Typography>
-                                    </div>
+                            </div>
+                            <div className={styles.step}>
+                                <Tag color="green" className={styles.stepTag}>
+                                    AI-Powered Questions
+                                </Tag>
+                                <div className={styles.stepContent}>
+                                    <Typography className={styles.subHeading} fontSize={'16px'}>Each set is customized for your own needs</Typography>
                                 </div>
-                                <div className={styles.step}>
-                                    <Tag color="purple" className={styles.stepTag}>
-                                        Track Progress
-                                    </Tag>
-                                    <div className={styles.stepContent}>
-                                        <Typography className={styles.subHeading} fontSize={'16px'}>See detailed analytics and performance trends over time.</Typography>
-                                    </div>
+                            </div>
+                            <div className={styles.step}>
+                                <Tag color="purple" className={styles.stepTag}>
+                                    Track Progress
+                                </Tag>
+                                <div className={styles.stepContent}>
+                                    <Typography className={styles.subHeading} fontSize={'16px'}>See detailed analytics and performance trends over time.</Typography>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Card>
                 </div>
             </Main>
         </Page>
