@@ -20,14 +20,16 @@ export const Card = ({
   return (
     <div className={styles.cardWrapper}>
         <div className={styles.card + (isLarge ? ' ' + styles.large : '')}>
-            <div>
+            <div className={styles.contentWrapper}>
                 <div className={styles.textWrapper}>
                     <Typography className={styles.heading} fontSize={isLarge ? '28px' : '24px'}>{heading}</Typography>
-                    {subHeading && <Typography className={styles.subHeading} fontSize={isLarge ? '20px' : '16px'}>{subHeading}</Typography>}
+                    {subHeading && <Typography className={styles.subHeading} fontSize={'16px'}>{subHeading}</Typography>}
                 </div>
-                <>
+                <div>
                     {children}
-                </> 
+                </div>
+            </div>
+            <div className={styles.imageWrapper}>
                 {image && <Image src={image} alt={heading} width={isLarge ? 400 : 200} height={isLarge ? 400 : 200} />}
             </div>
         </div>
