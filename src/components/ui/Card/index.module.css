@@ -33,10 +33,27 @@
     margin: 0;
 }
 
+.premium{
+    background-color: #fffcec;
+    border: 1px solid #ffc300;
+    color: #201000;
+}
+
+.premiumText{
+    color: #ffc300;
+}
+
 .heading {
     font-weight: 500;
     color: #1f1f1f;
     margin: 0;
+}
+
+.headingWrapper{
+    display: flex;
+    justify-content: row;
+    gap: 8px;
+    align-items: center;
 }
 
 .subHeading {
