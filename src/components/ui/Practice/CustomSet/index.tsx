@@ -4,18 +4,18 @@ import Typography from "@mui/material/Typography";
 import { Button } from "antd";
 import headerImage from '@/data/images/customSetImage.png';
 import Image from "next/image";
+import { Card } from '@/components/ui/Card';
 
 export default function CustomSet() {
     return (
-        <div className={styles.customSetWrapper}>
-            <div className={styles.contentWrapper}>
-                <div className={styles.textWrapper}>
-                    <Typography className={styles.heading} fontSize={'28px'}>Experience the power of crafting</Typography>
-                    <Typography className={styles.subHeading} fontSize={'16px'}>
-                        Everything is easy with Questionist, so is the customization.
-                        Build the perfect practice set to boost your skills.
-                    </Typography>
-                </div>
+        <div>
+            <Card
+                heading="Experience the power of crafting"
+                subHeading="Everything is easy with Questionist, so is the customization.
+                        Build the perfect practice set to boost your skills."
+                image={headerImage}
+                isLarge
+            >
                 <div className={styles.buttonsWrapper}>
                     <Button
                         size="large"
@@ -33,15 +33,7 @@ export default function CustomSet() {
                         How does it work?
                     </Button>
                 </div>
-            </div>
-            <div className={styles.imageWrapper}>
-                <Image
-                    alt="Illustration"
-                    src={headerImage}
-                    className={styles.image}
-                    priority
-                />
-            </div>
+            </Card>
         </div>
     );
 }

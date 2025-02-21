@@ -69,6 +69,7 @@ export type UserData = {
 };
 
 export type ContractProps = {
+    contractID: string;
     title: string;
     description: string;
     type: string;

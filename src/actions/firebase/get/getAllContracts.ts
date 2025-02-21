@@ -13,7 +13,6 @@ export const getAllContracts = async (): Promise<ContractProps[]> => {
     }
 
     const contracts: ContractProps[] = querySnapshot.docs.map((doc) => ({
-        id: doc.id, // Ensure Firestore document ID is included
         ...(doc.data() as ContractProps), // Type assertion to enforce structure
     }));
 
