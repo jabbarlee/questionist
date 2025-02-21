@@ -4,11 +4,17 @@ import Typography from '@mui/material/Typography';
 import styles from './index.module.css';
 import { ContractProps } from '@/types';
 
-export const ContractCard = ({ contract }: { contract: ContractProps }) => {
+export const ContractCard = ({ 
+  contract, 
+  openModal
+ }: { 
+  contract: ContractProps, 
+  openModal: React.MouseEventHandler<HTMLDivElement> 
+}) => {
   return (
     <div className={styles.contractContainer}>
       <div className={styles.contractContent}>
-        <div className={styles.contractHeader} onClick={() => console.log('sdjfhs')}> 
+        <div className={styles.contractHeader} onClick={(e) => openModal(e)} > 
           <Typography className={styles.contractTitle} fontSize={'20px'}>
             {contract.title}
           </Typography>
@@ -17,7 +23,6 @@ export const ContractCard = ({ contract }: { contract: ContractProps }) => {
         <div className={styles.contractFooter}>
           <div className={styles.contractFooterLeft}>
             <div className={styles.rewardItem}>
-              {/* <Bolt className={styles.icon} /> */}
               <Tag 
                 color='cyan-inverse' 
                 style={{ margin: '0' }}
@@ -26,7 +31,6 @@ export const ContractCard = ({ contract }: { contract: ContractProps }) => {
               </Tag>
             </div>
             <div className={styles.rewardItem}>
-              {/* <Star className={styles.icon} /> */}
               <Tag 
                 color='gold-inverse'
                 style={{ margin: '0' }}
