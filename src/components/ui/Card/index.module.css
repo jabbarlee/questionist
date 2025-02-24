@@ -1,3 +1,5 @@
+
+
 .card{
     display: flex;
     justify-content: space-between;
@@ -20,6 +22,13 @@
     gap: 15px;
 }
 
+.titleWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
 .imageWrapper {
     flex: 1;
     display: flex;
@@ -28,18 +37,18 @@
 }
 
 .title{
-    font-weight: 400;
+    font-weight: 100;
     color: #757575;
     margin: 0;
 }
 
 .premium{
-    background-color: #fffcec;
-    border: 1px solid #ffc300;
+    background-color: #fbfbf7;
+    border: 1px solid #ffeaa4;
     color: #201000;
 }
 
-.premiumText{
+.premium .heading .icon{
     color: #ffc300;
 }
 

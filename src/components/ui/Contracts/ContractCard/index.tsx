@@ -1,53 +1,63 @@
 import React from 'react';
 import { Tag } from 'antd';
 import Typography from '@mui/material/Typography';
+import { Stopwatch } from '@/data/icons/contracts';
 import styles from './index.module.css';
 import { ContractProps } from '@/types';
+import { Card } from "@/components/ui/Card"
 
 export const ContractCard = ({ 
   contract, 
+  special,
   openModal
  }: { 
   contract: ContractProps, 
+  special?: boolean
   openModal: React.MouseEventHandler<HTMLDivElement> 
 }) => {
+
+  const formatTimeLimit = (timeLimit: number): string => {
+    if (!timeLimit || timeLimit <= 0) return "No time limit";
+  
+    const minutes = Math.floor(timeLimit / 60);
+    const days = Math.floor(minutes / 1440); // 1 day = 1440 minutes
+    const hours = Math.floor((minutes % 1440) / 60);
+    const remainingMinutes = minutes % 60;
+  
+    let formattedTime = "";
+    if (days > 0) formattedTime += `${days} day${days > 1 ? "s" : ""} `;
+    if (hours > 0) formattedTime += `${hours} hour${hours > 1 ? "s" : ""} `;
+    if (remainingMinutes > 0 && days === 0) formattedTime += `${remainingMinutes} min`;
+  
+    return formattedTime.trim();
+  };
+
+  const formattedTimeLimit = formatTimeLimit(contract.timeLimit);
+
   return (
     <div className={styles.contractContainer}>
-      <div className={styles.contractContent}>
-        <div className={styles.contractHeader} onClick={(e) => openModal(e)} > 
-          <Typography className={styles.contractTitle} fontSize={'20px'}>
-            {contract.title}
-          </Typography>
-          <Typography className={styles.contractDescription} fontSize={'14px'}>{contract.description}</Typography>
-        </div>
-        <div className={styles.contractFooter}>
-          <div className={styles.contractFooterLeft}>
-            <div className={styles.rewardItem}>
-              <Tag 
-                color='cyan-inverse' 
-                style={{ margin: '0' }}
-              >
-                +{contract.rewards.axp} AXP
-              </Tag>
-            </div>
-            <div className={styles.rewardItem}>
-              <Tag 
-                color='gold-inverse'
-                style={{ margin: '0' }}
-              >
-                +{contract.rewards.brilliants} Brilliants
-              </Tag>
-            </div>
+      <Card
+        specialTitle={special ? 'Special' : undefined}
+        variant={special ? 'premium' : undefined}
+        heading={contract.title}
+        subHeading={contract.description}
+        
+      >
+        <div className={styles.cardContentWrapper}>
+          <div>
+            <Tag>
+              <div className={styles.timeLimitWrapper}>
+                <Stopwatch/>
+                {formattedTimeLimit}
+              </div>
+            </Tag>
           </div>
-          <div className={styles.contractFooterRight}>
-            <Tag className={styles.difficultyTag} color={
-              contract.difficulty === 'Easy' ? 'green' : 
-              contract.difficulty === 'Medium' ? 'orange' : 
-              'red'
-            }>{contract.difficulty}</Tag>
+          <div>
+            <Tag color='cyan-inverse'>+ {contract.rewards.axp} AXP</Tag>
+            <Tag color='gold-inverse'>+ {contract.rewards.brilliants} Brilliants</Tag>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

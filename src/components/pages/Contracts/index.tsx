@@ -5,7 +5,8 @@ import styles from "./index.module.css";
 import { ContractCard } from "@/components/ui/Contracts/ContractCard";
 import { ContractProps } from "@/types";
 import { getAllContracts } from "@/actions/firebase/get/getAllContracts";
-import { Modal, Typography, Tag } from "antd";
+import { Modal, Tag, Divider } from "antd";
+import { Typography } from "@mui/material";
 
 export const ContractPage = () => {
   const [contracts, setContracts] = useState<ContractProps[] | null>(null);
@@ -43,9 +44,21 @@ export const ContractPage = () => {
 
   return (
     <div className={styles.contractContainer}>
+      <div className={styles.featuredContracts}>
+        <Typography fontSize={'24px'}>⭐️ Featured contracts</Typography>
+        <div className={styles.contractsContainer}>
+          {contracts && (
+            <>
+              <ContractCard contract={contracts[0]} openModal={() => openModal(contracts[0].contractID)} special/>
+              <ContractCard contract={contracts[1]} openModal={() => openModal(contracts[1].contractID)} special/>
+            </>
+          )}
+        </div>
+      </div>
+      <Divider/>
       <div className={styles.contractsContainer}>
-        {contracts.map((contract, index) => (
-          <ContractCard key={index} contract={contract} openModal={() => openModal(contract.contractID)} />
+        {contracts.slice(2).map((contract, index) => (
+          <ContractCard key={index + 2} contract={contract} openModal={() => openModal(contract.contractID)} />
         ))}
       </div>
       {selectedContract && (
@@ -60,6 +73,7 @@ export const ContractPage = () => {
           <Tag>{selectedContract.difficulty}</Tag>
           <Typography>Time limit: {selectedContract.timeLimit}</Typography>
           <Typography>Topics to practice: {selectedContract.topics}</Typography>
+          <Typography>Topics to practice: {selectedContract.type}</Typography>
         </Modal>
       )}
     </div>

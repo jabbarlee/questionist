@@ -5,3 +5,9 @@
     width: 100%;
     justify-content: center; /* Centers the cards in the row */
 }
+
+.featuredContracts{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
