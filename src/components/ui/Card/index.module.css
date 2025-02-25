@@ -42,6 +42,14 @@
     margin: 0;
 }
 
+.titleUnderline{
+    text-decoration: underline;
+}
+
+.titleUnderline:hover{
+    text-decoration: none;
+}
+
 .premium{
     background-color: #fbfbf7;
     border: 1px solid #ffeaa4;
@@ -63,6 +71,10 @@
     justify-content: row;
     gap: 8px;
     align-items: center;
+}
+
+.headingWrapper:hover{
+    cursor: pointer;
 }
 
 .subHeading {

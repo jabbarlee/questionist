@@ -24,7 +24,7 @@ export const Card = ({
     image?: StaticImageData;
     variant?: "premium" | "secondary";
     isLarge?: boolean;
-    onClick?: () => {};
+    onClick?: React.MouseEventHandler<HTMLDivElement> ;
     children: React.ReactNode;
 }) => {
 
@@ -42,7 +42,7 @@ export const Card = ({
                         {title && <Typography className={styles.title} fontSize={'14px'}>{title}</Typography>}
                     </div>
                 )}
-                <div className={styles.headingWrapper}>
+                <div className={styles.headingWrapper} onClick={onClick}>
                     {icon && <div className={styles.icon}>{icon}</div>}
                     <Typography className={styles.heading} fontSize={isLarge ? '28px' : '24px'}>
                         {heading}
