@@ -41,7 +41,7 @@ export const ContractCard = ({
         variant={special ? 'premium' : undefined}
         heading={contract.title}
         subHeading={contract.description}
-        
+        onClick={(e) => openModal(e)}
       >
         <div className={styles.cardContentWrapper}>
           <div>
