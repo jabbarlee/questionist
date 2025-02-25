@@ -10,7 +10,6 @@ export const TrendingContract = () => {
                 heading='Trending Contract'
                 icon={<Fire/>}
                 subHeading='Gain more AXP than ever before with a contract'
-                premium={true}
             >
                 <div>
                     <p>Contract is this and you can press the activate button to activate it anytime!</p>
