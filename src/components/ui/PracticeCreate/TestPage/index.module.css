@@ -10,6 +10,8 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    height: 100%;
+    gap: 15px;
 }
 
 .rightSideWrapper{
@@ -21,4 +23,9 @@
 .createYourOwnWrapper{
     width: 100%;
     height: 50%;
+}
+
+.buttonWrapper{
+    display: flex;
+    gap: 5px;
 }

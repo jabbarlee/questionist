@@ -36,7 +36,28 @@ export default function PracticeCreate() {
                             </Card>
                         </div>
                         <div className={styles.progressWrapper}>
-
+                            <Card 
+                                heading="Real-time exam mode"
+                                subHeading="Why not practice it like it is the exam day? Try a practice set for free"
+                                variant="secondary"
+                            >
+                                <div className={styles.buttonWrapper}>
+                                    <Button
+                                        variant="solid"
+                                        color="primary"
+                                        block
+                                    >
+                                        Try for free
+                                    </Button>
+                                    <Button
+                                        variant="outlined"
+                                        color="default"
+                                        block
+                                    >
+                                        See pricing
+                                    </Button>
+                                </div>
+                            </Card>
                         </div>
                     </div>
                     <div className={styles.rightSideWrapper}>
