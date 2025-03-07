@@ -1,0 +1,24 @@
+.pageWrapper{
+    display: flex;
+    flex-direction: space-between;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.leftSideWrapper{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.rightSideWrapper{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.createYourOwnWrapper{
+    width: 100%;
+    height: 50%;
+}
