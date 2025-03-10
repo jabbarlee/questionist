@@ -1,0 +1,41 @@
+.mathCardsWrapper {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch; /* Ensures all cards stretch to the same height */
+}
+
+.mathCard {
+    flex: 1; /* Makes all cards equal width */
+    min-width: 220px; /* Ensures responsiveness */
+    max-width: 24%; /* Ensures they fit in one row */
+    height: auto; /* Adapts to content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Keeps content balanced */
+}
+
+.coverImage {
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.metaText {
+    min-height: 60px; /* Ensures text does not overflow */
+    text-align: center;
+}
+
+/* Responsive: Adjust layout for smaller screens */
+@media (max-width: 1024px) {
+    .mathCard {
+        max-width: 48%; /* 2 cards per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .mathCard {
+        max-width: 100%; /* 1 card per row on mobile */
+    }
+}

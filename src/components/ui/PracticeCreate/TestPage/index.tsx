@@ -8,13 +8,14 @@ import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
 import { Card } from "@/components/ui/Card"
+import { MathCard } from './MathCard'  
 
 export default function PracticeCreate() {
 
     return (
         <Page>
             <Header>
-                Create Practice Set
+                Practice
             </Header>
             <Main>
                 <div className={styles.pageWrapper}>
@@ -69,6 +70,7 @@ export default function PracticeCreate() {
                     <div className={styles.footerWrapper}>
                         <Typography className={styles.heading} fontSize={'28px'}>Essential Math Concepts for SAT Success</Typography>
                     </div>
+                        <MathCard/>
                 </div>
             </Main>
         </Page>

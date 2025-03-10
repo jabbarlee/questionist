@@ -1,0 +1,10 @@
+[
+    {
+        "title": "Algebra",
+        "difficulty": "Advanced",
+        "config": {
+            "subTopics": ["Linear Equations", "Systems of Linear Equations", "Operations", "Equivalent Expressions", "Word Problems", "Inequalities"],
+            "timeLimit": 15
+        }
+    }
+]
