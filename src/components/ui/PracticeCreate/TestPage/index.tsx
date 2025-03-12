@@ -9,7 +9,6 @@ import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
 import { Card } from "@/components/ui/Card";
 import { MathCards } from "./MathCards";
-import { describe } from "node:test";
 
 export default function PracticeCreate() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -39,7 +38,7 @@ export default function PracticeCreate() {
                                 isLarge
                                 variant="secondary"
                             >
-                                <Button variant="solid" color="primary" block size="large" href="/practice/create">
+                                <Button variant="solid" color="primary" block size="large" href="/practice/create" style={{ textDecoration: 'none' }}>
                                     Start configuring
                                 </Button>
                             </Card>
