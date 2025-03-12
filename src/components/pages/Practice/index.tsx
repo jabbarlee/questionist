@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation'
 import styles from "./index.module.css";
-import { Button, Divider, Modal, Tag } from "antd";
+import { Button, Divider, Modal, Tag, Radio } from "antd";
 import { Typography } from "@mui/material";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
@@ -11,57 +11,33 @@ import Page from "@/components/ui/_wrappers/Page";
 import { Card } from "@/components/ui/Card";
 import { MathCards } from "./MathCards";
 import { storePracticeSession } from "@/actions/firebase/set/storePracticeSession";
+import { PracticeStartProps } from "@/types";
 
 export default function PracticePage() {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalText, setModalText] = useState<string>("");
     const [modalDescription, setModalDescription] = useState("");
     const [modalSetTimeLimit, setModalSetTimeLimit] = useState<number>();
-    const [modalSubTopics, setModalSubTopics] = useState<string[]>();
+    const [modalSubTopics, setModalSubTopics] = useState<string[]>([]);
     const [modalQuestionNumber, setModalQuestionNumber] = useState<number>();
-    const [alertVisible, setAlertVisible] = useState<boolean>(false);
-    const [successAlertVisible, setSuccessAlertVisible] = useState<boolean>(false);
-    const [alertMessage, setAlertMessage] = useState<string>('');
-    const [alertType, setAlertType] = useState<"info" | "error" | "success" | "warning" | undefined>();
-
+    const [selectedDifficulty, setSelectedDifficulty] = useState("Beginner");
 
     const router = useRouter();
 
-    const handleCreate = async ({
+    const handleDefinedSetStart = async({
         topics,
         difficulty,
-        testName,
-        numberOfQuestions,
-    }: {
-        topics: string[],
-        difficulty: string[] | null,
-        testName: string,
-        numberOfQuestions: number
-    }) => {
-        try {
-            setAlertType('info');
-            setSuccessAlertVisible(true);
-            setAlertMessage('Creating session...');
+        sessionName,
+        numberOfQuestions
+    }: PracticeStartProps) => {
+        try{
+            const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
 
-            const res = await storePracticeSession({
-                topics: topics || [],
-                difficulty: difficulty || [],
-                sessionName: testName || '',
-                numberOfQuestions: numberOfQuestions || 0,
-            });
-
-            if (res.success) {
-                setSuccessAlertVisible(true);
-                setAlertType('success');
-                setAlertMessage('Session created successfully! Redirecting...');
-                router.push(`/practice/session/${res.sessionId}`);
-            } else {
-                setSuccessAlertVisible(true);
-                setAlertType('error');
-
+            if(success && sessionId){
+                router.push(`/practice/session/${sessionId}`)
             }
-        } catch (error) {
-            console.error('Error creating practice session', error);
+        }catch(error){
+            console.error('Error starting popular set: ', error)
         }
     }
 
@@ -80,7 +56,16 @@ export default function PracticePage() {
                             <Button variant="outlined" color="default" onClick={() => setModalOpen(false)}>
                               Cancel
                             </Button>,
-                            <Button variant="solid" color="primary">
+                            <Button 
+                                variant="solid" 
+                                color="primary" 
+                                onClick={() => handleDefinedSetStart({
+                                    topics: modalSubTopics,
+                                    difficulty: [selectedDifficulty],
+                                    sessionName: modalText,
+                                    numberOfQuestions: modalQuestionNumber ?? 5
+                                })}
+                            >
                               Practice
                             </Button>,
                         ]}
@@ -106,7 +91,7 @@ export default function PracticePage() {
                             </div>
                             <div className={styles.dataWrapper}>
                                 <Typography variant="h5">Configuration</Typography>
-                                <div className={styles.configDataWrapper}>
+                                <div>
                                     <Tag 
                                         style={{ padding: '5px 10px', fontSize: '16px' }}
                                         color="geekblue"
@@ -121,6 +106,21 @@ export default function PracticePage() {
                                     </Tag>
                                 </div>
                             </div>
+                            <div className={styles.dataWrapper}>
+                                <Typography variant="h5">Difficulty</Typography>
+                                <div className={styles.configDataWrapper}>
+                                    <Radio.Group 
+                                        defaultValue={selectedDifficulty} 
+                                        size="large"
+                                        onChange={(e) => setSelectedDifficulty(e.target.value)}
+                                    >
+                                        <Radio.Button value="Beginner">Beginner</Radio.Button>
+                                        <Radio.Button value="Elementary">Elementary</Radio.Button>
+                                        <Radio.Button value="Advanced">Advanced</Radio.Button>
+                                    </Radio.Group>
+                                </div>
+                            </div>
+                            <Divider style={{ margin: 0 }} />
                         </div>
                     </Modal>
 
