@@ -1,19 +1,29 @@
 .mathCardsWrapper {
-    display: flex;
+    display: grid;
     gap: 15px;
     width: 100%;
-    justify-content: space-between;
-    align-items: stretch; /* Ensures all cards stretch to the same height */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-adjusting grid */
+    justify-content: center;
 }
 
 .mathCard {
-    flex: 1; /* Makes all cards equal width */
-    min-width: 220px; /* Ensures responsiveness */
-    max-width: 24%; /* Ensures they fit in one row */
-    height: auto; /* Adapts to content */
+    height: 100%; /* Ensures all cards have equal height */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Keeps content balanced */
+    justify-content: space-between;
+}
+
+.metaDataWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.tagsWrapper{
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .coverImage {
@@ -23,19 +33,8 @@
 }
 
 .metaText {
-    min-height: 60px; /* Ensures text does not overflow */
+    min-height: 60px; /* Prevents text overflow */
     text-align: center;
 }
 
-/* Responsive: Adjust layout for smaller screens */
-@media (max-width: 1024px) {
-    .mathCard {
-        max-width: 48%; /* 2 cards per row on tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    .mathCard {
-        max-width: 100%; /* 1 card per row on mobile */
-    }
-}
+/* Ensures the grid adapts well to different screen sizes */

@@ -1,18 +1,18 @@
-import React from 'react';
-import { Card } from 'antd';
-import styles from './index.module.css';
+import React from "react";
+import { Card, Tag } from "antd";
+import styles from "./index.module.css";
+import practiceSetsData from "@/data/practiceSetsData.json";
 
 const { Meta } = Card;
 
-export const MathCard = () => {
+interface MathCardsProps {
+    onCardClick: (title: string, description: string) => void; // Ensure it takes only a string (title)
+}
+
+export const MathCards: React.FC<MathCardsProps> = ({ onCardClick }) => {
     return (
         <div className={styles.mathCardsWrapper}>
-            {[
-                { title: "Algebra", description: "A practice set that targets algebra" },
-                { title: "Geometry and Trigonometry", description: "A practice set that covers geometry and trigonometry concepts" },
-                { title: "Problem Solving and Data Analysis", description: "A practice set that targets problem-solving skills and data analysis" },
-                { title: "Advanced Math", description: "A practice set that challenges you with advanced mathematical concepts" }
-            ].map((set, index) => (
+            {practiceSetsData.map((set, index) => (
                 <Card
                     key={index}
                     className={styles.mathCard}
@@ -24,12 +24,15 @@ export const MathCard = () => {
                             className={styles.coverImage}
                         />
                     }
+                    onClick={() => onCardClick(set.title, set.description)} // Pass only title to avoid the error
                 >
-                    <Meta
-                        title={set.title}
-                        description={set.description}
-                        className={styles.metaText}
-                    />
+                    <div className={styles.metaDataWrapper}>
+                        <Meta title={set.title} description={set.description} className={styles.metaText} />
+                        <div className={styles.tagsWrapper}>
+                            <Tag color="geekblue">{set.config?.questions || 0} questions</Tag>
+                            <Tag color="purple">{set.config?.timeLimit || 0} minutes</Tag>
+                        </div>
+                    </div>
                 </Card>
             ))}
         </div>

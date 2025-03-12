@@ -2,43 +2,50 @@
 
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import {Button, Progress, Alert, Tag, Divider } from "antd";
-import { Typography } from "@mui/material"
+import { Button, Divider, Modal } from "antd";
+import { Typography } from "@mui/material";
 import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
-import { Card } from "@/components/ui/Card"
-import { MathCard } from './MathCard'  
+import { Card } from "@/components/ui/Card";
+import { MathCards } from "./MathCard";
+import { describe } from "node:test";
 
 export default function PracticeCreate() {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalText, setModalText] = useState<string>("");
+    const [modalDescription, setModalDescription] = useState("")
 
     return (
         <Page>
-            <Header>
-                Practice
-            </Header>
+            <Header>Practice</Header>
             <Main>
                 <div className={styles.pageWrapper}>
+                    <Modal
+                        title={modalText} 
+                        centered
+                        open={modalOpen}
+                        onOk={() => setModalOpen(false)}
+                        onCancel={() => setModalOpen(false)}
+                    >
+                        <Typography>{modalDescription}</Typography>
+                    </Modal>
+
                     <div className={styles.headerSideWrapper}>
                         <div className={styles.createYourOwnWrapper}>
-                            <Card 
+                            <Card
                                 heading="Customize practice set"
                                 subHeading="Configure only the topics you want to practice"
                                 isLarge
                                 variant="secondary"
                             >
-                                <Button
-                                    variant="solid"
-                                    color="primary"
-                                    block
-                                    size="large"
-                                >
+                                <Button variant="solid" color="primary" block size="large">
                                     Start configuring
                                 </Button>
                             </Card>
                         </div>
                         <div className={styles.createYourOwnWrapper}>
-                            <Card 
+                            <Card
                                 heading="Real-time exam mode"
                                 subHeading="Practice it like it is the exam day? Try one for free"
                                 isLarge
@@ -54,23 +61,28 @@ export default function PracticeCreate() {
                                     >
                                         Try for free
                                     </Button>
-                                    <Button
-                                        variant="outlined"
-                                        color="default"
-                                        block
-                                        size="large"
-                                    >
+                                    <Button variant="outlined" color="default" block size="large">
                                         See pricing
                                     </Button>
                                 </div>
                             </Card>
                         </div>
                     </div>
-                    <Divider style={{ margin: 0 }}/>
+
+                    <Divider style={{ margin: 0 }} />
                     <div className={styles.footerWrapper}>
-                        <Typography className={styles.heading} fontSize={'28px'}>Essential Math Concepts for SAT Success</Typography>
+                        <Typography className={styles.heading} fontSize={"28px"}>
+                            Core Sections
+                        </Typography>
                     </div>
-                        <MathCard/>
+
+                    <MathCards
+                        onCardClick={(title: string, description: string) => {
+                            setModalOpen(true);
+                            setModalText(title);
+                            setModalDescription(description);
+                        }}
+                    />
                 </div>
             </Main>
         </Page>
