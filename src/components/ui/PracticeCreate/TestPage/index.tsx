@@ -8,7 +8,7 @@ import Header from "@/components/ui/_wrappers/Header";
 import Main from "@/components/ui/_wrappers/Main";
 import Page from "@/components/ui/_wrappers/Page";
 import { Card } from "@/components/ui/Card";
-import { MathCards } from "./MathCard";
+import { MathCards } from "./MathCards";
 import { describe } from "node:test";
 
 export default function PracticeCreate() {
