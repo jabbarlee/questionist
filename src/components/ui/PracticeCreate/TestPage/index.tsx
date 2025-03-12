@@ -39,7 +39,7 @@ export default function PracticeCreate() {
                                 isLarge
                                 variant="secondary"
                             >
-                                <Button variant="solid" color="primary" block size="large">
+                                <Button variant="solid" color="primary" block size="large" href="/practice/create">
                                     Start configuring
                                 </Button>
                             </Card>
