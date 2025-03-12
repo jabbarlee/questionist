@@ -6,7 +6,7 @@ import practiceSetsData from "@/data/practiceSetsData.json";
 const { Meta } = Card;
 
 interface MathCardsProps {
-    onCardClick: (title: string, description: string) => void; // Ensure it takes only a string (title)
+    onCardClick: (title: string, description: string, subTopics: string[], timeLimit: number, questions: number) => void; // Ensure it takes only a string (title)
 }
 
 export const MathCards: React.FC<MathCardsProps> = ({ onCardClick }) => {
@@ -24,7 +24,7 @@ export const MathCards: React.FC<MathCardsProps> = ({ onCardClick }) => {
                             className={styles.coverImage}
                         />
                     }
-                    onClick={() => onCardClick(set.title, set.description)} // Pass only title to avoid the error
+                    onClick={() => onCardClick(set.title, set.description, set.config.subTopics, set.config.timeLimit, set.config.questions)} // Pass only title to avoid the error
                 >
                     <div className={styles.metaDataWrapper}>
                         <Meta title={set.title} description={set.description} className={styles.metaText} />
