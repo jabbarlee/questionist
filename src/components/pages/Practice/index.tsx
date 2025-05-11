@@ -1,29 +1,35 @@
-"use client"
+"use client";
 
-import React from 'react'
-import styles from './index.module.css'
-import Main from "@/components/ui/_wrappers/Main";
-import { Tag } from 'antd';
-import SloganBanner from '@/components/ui/Practice/SloganBanner'
-import CustomSet from '@/components/ui/Practice/CustomSet'
-import Header from "@/components/ui/_wrappers/Header";
-import Page from "@/components/ui/_wrappers/Page";
-import Typography from "@mui/material/Typography";
-import { Button } from 'antd';
+import React, { useState } from "react";
 import { useRouter } from 'next/navigation'
-import { PracticeStartProps } from '@/types';
-import { storePracticeSession } from '@/actions/firebase/set/storePracticeSession';
-import { Card } from '@/components/ui/Card';
+import styles from "./index.module.css";
+import { Button, Divider, Modal, Tag, Radio } from "antd";
+import { Typography } from "@mui/material";
+import Header from "@/components/ui/_wrappers/Header";
+import Main from "@/components/ui/_wrappers/Main";
+import Page from "@/components/ui/_wrappers/Page";
+import { Card } from "@/components/ui/Card";
+import { MathCards } from "./MathCards";
+import { storePracticeSession } from "@/actions/firebase/set/storePracticeSession";
+import { PracticeStartProps } from "@/types";
 
-export default function index() {
-    const router = useRouter()
+export default function PracticePage() {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalText, setModalText] = useState<string>("");
+    const [modalDescription, setModalDescription] = useState("");
+    const [modalSetTimeLimit, setModalSetTimeLimit] = useState<number>();
+    const [modalSubTopics, setModalSubTopics] = useState<string[]>([]);
+    const [modalQuestionNumber, setModalQuestionNumber] = useState<number>();
+    const [selectedDifficulty, setSelectedDifficulty] = useState("Beginner");
 
-    const handlePopularSetStart = async({
-                                            topics,
-                                            difficulty,
-                                            sessionName,
-                                            numberOfQuestions
-                                        }: PracticeStartProps) => {
+    const router = useRouter();
+
+    const handleDefinedSetStart = async({
+        topics,
+        difficulty,
+        sessionName,
+        numberOfQuestions
+    }: PracticeStartProps) => {
         try{
             const { success, sessionId } = await storePracticeSession({ topics, difficulty, sessionName, numberOfQuestions });
 
@@ -37,98 +43,150 @@ export default function index() {
 
     return (
         <Page>
-            <Header>
-                Practice
-            </Header>
+            <Header>Practice</Header>
             <Main>
-                <div className={styles.wrapper}>
-                    <div className={styles.customSetWrapper}>
-                        <CustomSet/>
-                        <Card 
-                            heading={'Popular Sets'}
-                            subHeading={'Start practicing with popular sets'}
-                        >
-                            <div className={styles.popularSets}>
-                                <div className={styles.setCard}>
-                                    <Typography className={styles.setTitle} fontSize={'18px'}>Algebra Essentials</Typography>
-                                    <Typography className={styles.setDetails} fontSize={'14px'}>
-                                        <Tag color={'magenta'}>Medium</Tag>
-                                        <Tag>10 questions</Tag>
-                                    </Typography>
-                                    <Button
-                                        color="primary"
-                                        size="large"
-                                        variant='filled'
-                                        style={{ textDecoration: 'none', width: '100%' }}
-                                        onClick={() => handlePopularSetStart({
-                                            topics: ['algebra'],
-                                            difficulty: ['medium'],
-                                            sessionName: 'Algebra Essentials',
-                                            numberOfQuestions: 10
-                                        })}
-                                    >
-                                        Start Now
-                                    </Button>
-                                </div>
-                                <div className={styles.setCard}>
-                                    <Typography className={styles.setTitle} fontSize={'18px'}>Geometry Basics</Typography>
-                                    <Typography className={styles.setDetails} fontSize={'14px'}>
-                                        <Tag color={'green'}>Easy</Tag>
-                                        <Tag>15 questions</Tag>
-                                    </Typography>
-                                    <Button
-                                        color="primary"
-                                        variant='filled'
-                                        style={{ textDecoration: 'none', width: '100%' }}
-                                        size="large"
-                                        onClick={() => handlePopularSetStart({
-                                            topics: ['geometry'],
-                                            difficulty: ['easy'],
-                                            sessionName: 'Geometry Basic',
-                                            numberOfQuestions: 15
-                                        })}
-                                    >
-                                        Start Now
-                                    </Button>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                    <Card 
-                        heading={'How it works'}
-                        subHeading={'Start practicing with popular sets'}
+                <div className={styles.pageWrapper}>
+                    <Modal 
+                        centered
+                        open={modalOpen}
+                        onOk={() => setModalOpen(false)}
+                        onCancel={() => setModalOpen(false)}
+                        style={{ minWidth: '7ß00px' }}
+                        footer={[
+                            <Button variant="outlined" color="default" onClick={() => setModalOpen(false)}>
+                              Cancel
+                            </Button>,
+                            <Button 
+                                variant="solid" 
+                                color="primary" 
+                                onClick={() => handleDefinedSetStart({
+                                    topics: modalSubTopics,
+                                    difficulty: [selectedDifficulty],
+                                    sessionName: modalText,
+                                    numberOfQuestions: modalQuestionNumber ?? 5
+                                })}
+                            >
+                              Practice
+                            </Button>,
+                        ]}
                     >
-                        <div className={styles.stepsContainer}>
-                            <div className={styles.step}>
-                                <Tag color="blue" className={styles.stepTag}>
-                                    Earn rewards
-                                </Tag>
-                                <div className={styles.stepContent}>
-                                    <Typography className={styles.subHeading} fontSize={'16px'}>
-                                        As you progress you will gain more points which you can use later
-                                    </Typography>
+                        <div className={styles.modalWrapper}>
+                            <div className={styles.modalTitleText}>
+                                <Typography variant="h4">{modalText}</Typography>
+                            </div>
+                            <Divider style={{ margin: 0 }} />
+                            <div className={styles.dataWrapper}>
+                                <Typography variant="h5">Topics</Typography>
+                                <div className={styles.tagsWrapper}>
+                                    {modalSubTopics?.map((subtopic, index) => {
+                                        return(
+                                            <Tag
+                                                style={{ padding: '5px 10px', fontSize: '16px' }}
+                                            >
+                                                {subtopic}
+                                            </Tag>
+                                        )
+                                    })}
                                 </div>
                             </div>
-                            <div className={styles.step}>
-                                <Tag color="green" className={styles.stepTag}>
-                                    AI-Powered Questions
-                                </Tag>
-                                <div className={styles.stepContent}>
-                                    <Typography className={styles.subHeading} fontSize={'16px'}>Each set is customized for your own needs</Typography>
+                            <div className={styles.dataWrapper}>
+                                <Typography variant="h5">Configuration</Typography>
+                                <div>
+                                    <Tag 
+                                        style={{ padding: '5px 10px', fontSize: '16px' }}
+                                        color="geekblue"
+                                    >
+                                        {modalQuestionNumber} questions
+                                    </Tag>
+                                    <Tag
+                                        style={{ padding: '5px 10px', fontSize: '16px' }}
+                                        color="purple"
+                                    >
+                                        {modalSetTimeLimit} minutes
+                                    </Tag>
                                 </div>
                             </div>
-                            <div className={styles.step}>
-                                <Tag color="purple" className={styles.stepTag}>
-                                    Track Progress
-                                </Tag>
-                                <div className={styles.stepContent}>
-                                    <Typography className={styles.subHeading} fontSize={'16px'}>See detailed analytics and performance trends over time.</Typography>
+                            <div className={styles.dataWrapper}>
+                                <Typography variant="h5">Difficulty</Typography>
+                                <div className={styles.configDataWrapper}>
+                                    <Radio.Group 
+                                        defaultValue={selectedDifficulty} 
+                                        size="large"
+                                        onChange={(e) => setSelectedDifficulty(e.target.value)}
+                                    >
+                                        <Radio.Button value="Beginner">Beginner</Radio.Button>
+                                        <Radio.Button value="Elementary">Elementary</Radio.Button>
+                                        <Radio.Button value="Advanced">Advanced</Radio.Button>
+                                    </Radio.Group>
                                 </div>
                             </div>
+                            <Divider style={{ margin: 0 }} />
                         </div>
-                    </Card>
+                    </Modal>
+
+                    <div className={styles.headerSideWrapper}>
+                        <div className={styles.createYourOwnWrapper}>
+                            <Card
+                                heading="Customize practice set"
+                                subHeading="Configure only the topics you want to practice"
+                                isLarge
+                                variant="secondary"
+                            >
+                                <Button variant="solid" color="primary" block size="large" href="/practice/create" style={{ textDecoration: 'none' }}>
+                                    Start configuring
+                                </Button>
+                            </Card>
+                        </div>
+                        <div className={styles.createYourOwnWrapper}>
+                            <Card
+                                heading="Real-time exam mode"
+                                subHeading="Practice it like it is the exam day? Try one for free"
+                                isLarge
+                                variant="premium"
+                            >
+                                <div className={styles.buttonWrapper}>
+                                    <Button
+                                        variant="solid"
+                                        color="primary"
+                                        block
+                                        size="large"
+                                        className={styles.premiumButton}
+                                    >
+                                        Try for free
+                                    </Button>
+                                    <Button variant="outlined" color="default" block size="large">
+                                        See pricing
+                                    </Button>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+
+                    <Divider style={{ margin: 0 }} />
+                    <div className={styles.footerWrapper}>
+                        <Typography className={styles.heading} fontSize={"28px"}>
+                            Core Sections
+                        </Typography>
+                    </div>
+
+                    <MathCards
+                        onCardClick={(
+                            title: string, 
+                            description: string, 
+                            subTopics: string[], 
+                            timeLimit: number, 
+                            questions: number
+                        ) => {
+                            setModalOpen(true);
+                            setModalText(title);
+                            setModalDescription(description);
+                            setModalSetTimeLimit(timeLimit);
+                            setModalSubTopics(subTopics);
+                            setModalQuestionNumber(questions);
+                        }}
+                    />
                 </div>
             </Main>
         </Page>
-    )
+    );
 }

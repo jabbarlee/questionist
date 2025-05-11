@@ -1,133 +1,72 @@
-.wrapper{
+.pageWrapper{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 15px;
     width: 100%;
-    box-sizing: border-box;
+    height: 100%;
 }
 
-.step{
+.headerSideWrapper{
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    box-sizing: border-box;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    gap: 15px;
 }
 
-.stepTag{
-    width: fit-content;
-    padding: 6px 8px;
-    font-size: 16px;
+.createYourOwnWrapper{
+    width: 50%;
 }
 
-.stepSubText{
+.footerWrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.heading {
+    color: #1f1f1f;
     margin: 0;
-    color: #757575;
 }
 
-.stepHeadingText{
-    font-weight: 400;
-}
-
-.stepsContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    box-sizing: border-box;
-}
-
-.stepsWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-sizing: border-box;
-    transition: 0.2s ease;
-    background-color: #fbfbfb;
-    border: 1px solid #e5e5e5;
-    padding: 20px;
-    border-radius: 7px;
-    height: fit-content;
-}
-
-.subtitleText{
-    color: #757575;
-    font-weight: lighter;
-}
-
-.checkboxWrapper{
+.practiceSetsWrapper{
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 7px;
 }
 
-.customSetWrapper{
-    width: 80%;
+/* BUTTON STYLING */
+
+.buttonWrapper{
+    display: flex;
+    gap: 5px;
+}
+
+.premiumButton{
+    background-color: #d48806;
+}
+
+/* MODAL STYLING */
+
+.modalWrapper{
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.howToUseWrapper{
-    width: 30%;
-}
-
-
-.popularSetsWrapper {
+.dataWrapper{
     display: flex;
     flex-direction: column;
+    gap: 8px;
+}
+
+.configDataWrapper{
+    display: flex;
     gap: 10px;
-    margin-top: 15px;
-    padding: 20px;
-    background-color: #fbfbfb;
-    border: 1px solid #e5e5e5;
-    border-radius: 7px;
 }
 
-.popularSetsHeading {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.popularSets {
+.tagsWrapper{   
     display: flex;
-    gap: 15px;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.setCard {
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 7px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 50%;
-    transition: transform 0.2s ease;
-}
-
-.setTitle {
-    font-weight: 500;
-    color: #1f1f1f;
-}
-
-.setDetails {
-    color: #757575;
-}
-
-.subHeading {
-    font-weight: 300;
-    color: #757575;
+    flex-wrap: wrap;
+    gap: 5px;
     margin: 0;
-}
-
-.setCard button {
-    align-self: flex-start;
 }

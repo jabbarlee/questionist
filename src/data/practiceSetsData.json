@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Algebra",
+        "description": "Sharpen your algebraic skills by solving equations, inequalities, and word problems that challenge your understanding of expressions and operations.",
+        "config": {
+            "subTopics": ["Linear Equations", "Systems of Linear Equations", "Operations", "Equivalent Expressions", "Word Problems", "Inequalities"],
+            "timeLimit": 15,
+            "questions": 12
+        }
+    },
+    {
+        "title": "Geometry and Trigonometry",
+        "description": "Explore the properties of shapes, angles, and trigonometric functions. Develop spatial reasoning and problem-solving techniques.",
+        "config": {
+            "subTopics": ["Angles", "Triangles", "Circles", "Polygons", "Trigonometry"],
+            "timeLimit": 18,
+            "questions": 14
+        }
+    },
+    {
+        "title": "Problem Solving and Data Analysis",
+        "description": "Master real-world applications of mathematics, including data interpretation, probability, and quantitative reasoning for statistical analysis.",
+        "config": {
+            "subTopics": ["Percentages", "Ratios", "Probabilities", "Statistics", "Quantitative Data", "Proportions Units"],
+            "timeLimit": 20,
+            "questions": 15
+        }
+    },
+    {
+        "title": "Advanced Math",
+        "description": "Tackle complex mathematical concepts, including quadratic equations, exponential functions, and rational expressions, to develop higher-order problem-solving skills.",
+        "config": {
+            "subTopics": ["Quadratic Equations Functions", "Function Notations", "Exponential Functions", "Absolute Values", "Radical Expressions", "Rational Expressions"],
+            "timeLimit": 25,
+            "questions": 20
+        }
+    }
+]

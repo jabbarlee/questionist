@@ -44,11 +44,11 @@ export const Card = ({
                 )}
                 <div className={styles.headingWrapper} onClick={onClick}>
                     {icon && <div className={styles.icon}>{icon}</div>}
-                    <Typography className={styles.heading} fontSize={isLarge ? '28px' : '24px'}>
+                    <Typography className={`${styles.heading} ${variant ? styles[variant + 'Text'] : ''}`} fontSize={isLarge ? '28px' : '24px'}>
                         {heading}
                     </Typography>
                 </div>
-                {subHeading && <Typography className={styles.subHeading} fontSize={'16px'}>{subHeading}</Typography>}
+                {subHeading && <Typography className={`${styles.subHeading} ${variant ? styles[variant + 'SubHeadingText'] : ''}`} fontSize={'16px'}>{subHeading}</Typography>}
             </div>
             <div>
                 {children}
