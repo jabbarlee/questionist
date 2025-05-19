@@ -1,68 +1,73 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Input, Button, Alert } from 'antd';
-import styles from './index.module.css';
-import { handleSignUp } from '@/actions/firebase/auth';
-import { useRouter } from 'next/navigation';
+import React, { useState } from "react";
+import { Input, Button, Alert } from "antd";
+import { useRouter } from "next/navigation";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/config/firebase";
 
-export default function SignUp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-    const [alertMessage, setAlertMessage] = useState('')
-    const [alertType, setAlertType] = useState<"info" | "error" | "success" | "warning" | undefined>('info')
-    const [loading, setLoading] = useState(false)
-    const [passwordVisible, setPasswordVisible] = useState(false);
+export default function SignUpPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState<
+    "success" | "error" | "info" | "warning"
+  >("info");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async () => {
-    setAlertMessage('')
+  const handleSignUp = async () => {
     setLoading(true);
-    setLoading(true);
+    setAlertMessage("");
 
-    const res = await handleSignUp({ email, password, fullName });
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-      if (res?.success) {
-          setLoading(false)
-          setAlertMessage('Logged in successfully')
-          setAlertType('success')
-          router.push('/dashboard')
-      } else {
-          setLoading(false)
-          setAlertMessage(res?.error || 'Something went wrong')
-          setAlertType('error')
-      }
+      const idToken = await user.getIdToken(true);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/session`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ idToken }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Session cookie creation failed");
+
+      setAlertMessage("Account created successfully!");
+      setAlertType("success");
+      router.push("/dashboard");
+    } catch (err: any) {
+      setAlertMessage(err?.message || "Something went wrong during sign-up.");
+      setAlertType("error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className={styles.inputWrapper}>
+    <div>
       {alertMessage && <Alert message={alertMessage} type={alertType} />}
-      <Input 
-        placeholder="Full name" 
-        value={fullName} 
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFullName(e.target.value)}
+      <Input
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <Input.Password
-        placeholder="Email" 
-        value={email} 
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-        visibilityToggle={{ visible: passwordVisible, onVisibleChange: setPasswordVisible }}
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <Input.Password
-        placeholder="Password" 
-        value={password} 
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-        visibilityToggle={{ visible: passwordVisible, onVisibleChange: setPasswordVisible }}
-      />
-        <Button
-            color='primary'
-            variant='solid'
-            onClick={handleSubmit}
-            loading={loading}
-        >
-            Sign up
-        </Button>
+      <Button loading={loading} onClick={handleSignUp}>
+        Sign Up
+      </Button>
     </div>
   );
 }
