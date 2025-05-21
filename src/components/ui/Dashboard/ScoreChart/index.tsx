@@ -14,16 +14,18 @@ import {
 } from "chart.js";
 import { fetchScoresDates } from "@/actions/firebase/get/fetchScoresDates";
 import dayjs from "dayjs";
+import { useCurrentUser } from "@/lib/context/UserContext";
 
 // Register Chart.js components
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 const ScoreChart: React.FC = () => {
+    const { uid } = useCurrentUser();
     const [sessions, setSessions] = useState<{ date: string; score: number }[]>([]);
 
     useEffect(() => {
         const fetchSessions = async () => {
-            const data = await fetchScoresDates();
+            const data = await fetchScoresDates({ uid });
             setSessions(data);
         };
 

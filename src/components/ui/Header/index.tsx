@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './index.module.css';
-import Link from 'next/link';
-import Button from '../Button';
+import React from "react";
+import styles from "./index.module.css";
+import Link from "next/link";
+import Button from "../Button";
 
 const Header = () => {
   return (
@@ -10,19 +10,19 @@ const Header = () => {
         <p className={styles.title}>Questionist</p>
         <p className={styles.subtitle}>Ask your questions, in a style.</p>
         <div className={styles.buttonGroup}>
-          <Button 
+          <Button
             // redirect="/explore"
-            buttonType="primary" 
+            buttonType="primary"
           >
             How it works
           </Button>
 
-          <Button 
+          <Button
             // redirect="/explore"
-            buttonType="secondary" 
+            buttonType="secondary"
           >
             Explore
-          </Button> 
+          </Button>
         </div>
       </div>
     </div>
