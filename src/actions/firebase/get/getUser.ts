@@ -23,20 +23,3 @@ export const getUser = async ({ uid }: { uid: string }) => {
     return null;
   }
 };
-
-export const getUserUid = async () => {
-  try {
-    const response = await fetch("/api/firebase/get/user");
-    const { uid } = await response.json();
-
-    if (!uid) {
-      console.error("User ID is missing");
-      return null;
-    }
-
-    return uid;
-  } catch (error) {
-    console.error("Error fetching user data: ", error);
-    return null;
-  }
-};
