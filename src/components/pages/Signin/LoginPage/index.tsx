@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./index.module.css";
-import { Button, Input, Alert } from "antd";
+import { Button, Input, Alert, Typography } from "antd";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { useRouter } from "next/navigation";
+import styles from "./index.module.css";
+
+const { Title } = Typography;
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -26,15 +28,12 @@ export default function LoginPage() {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       const idToken = await user.getIdToken(true);
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/session`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ idToken }),
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ idToken }),
+      });
 
       if (!res.ok) {
         throw new Error(await res.text());
@@ -52,13 +51,25 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={styles.inputWrapper}>
-      {alertMessage && <Alert message={alertMessage} type={alertType} />}
+    <div className={styles.wrapper}>
+      <Title level={3} className={styles.title}>Log in to your account</Title>
+
+      {alertMessage && (
+        <Alert
+          message={alertMessage}
+          type={alertType}
+          showIcon
+          className={styles.alert}
+        />
+      )}
+
       <Input
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className={styles.input}
       />
+
       <Input.Password
         placeholder="Password"
         value={password}
@@ -67,12 +78,14 @@ export default function LoginPage() {
           visible: passwordVisible,
           onVisibleChange: setPasswordVisible,
         }}
+        className={styles.input}
       />
+
       <Button
-        onClick={handleSubmit}
+        type="primary"
         loading={loading}
-        color="primary"
-        variant="solid"
+        onClick={handleSubmit}
+        className={styles.button}
       >
         Log in
       </Button>

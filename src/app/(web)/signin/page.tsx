@@ -1,10 +1,10 @@
-import React from 'react'
-import SignInPage from '@/components/pages/Signin/SignInPage'
+import React from "react";
+import LoginPage from "@/components/pages/Signin/LoginPage";
 
 export default function page() {
   return (
     <div>
-        <SignInPage />
+      <LoginPage />
     </div>
-  )
+  );
 }
