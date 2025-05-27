@@ -25,20 +25,18 @@ export default async function RootLayout({
   const session = cookies().get("session")?.value;
   if (!session) redirect("/signin");
 
-  const uid = await fetch(
-    `${process.env.NEXT_PUBLIC_FRONTEND_URL ?? ""}/api/firebase/get/user`,
-    {
-      headers: { cookie: `session=${session}` },
-      cache: "force-cache",
-    }
-  )
-    .then((r) => (r.ok ? r.json() : redirect("/signin")))
-    .then(({ uid }) => uid as string);
+  // Fetch full user profile from backend
+  const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/profile`, {
+    headers: { cookie: `session=${session}` },
+    cache: "no-store", // or "force-cache" depending on your need
+  }).then((res) => (res.ok ? res.json() : redirect("/signin")));
+
+  console.log("User data fetched in layout:", user);
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserRootProvider user={{ uid }}>
+        <UserRootProvider user={user}>
           <div className={styles.pageWrapper}>
             <aside className={styles.sidebar}>
               <VerticalNavbar />

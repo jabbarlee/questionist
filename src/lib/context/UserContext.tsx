@@ -2,7 +2,11 @@
 
 import { createContext, useContext } from "react";
 
-export type CurrentUser = { uid: string }; // extend later if needed
+export type CurrentUser = {
+  uid: string;
+  name: string;
+  email: string;
+};
 
 export const UserContext = createContext<CurrentUser | null>(null);
 export const UserProvider = UserContext.Provider;

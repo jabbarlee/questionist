@@ -7,13 +7,13 @@ import styles from "./index.module.css";
 import { useCurrentUser } from "@/lib/context/UserContext";
 
 export default function MessageContainer() {
-  const { uid } = useCurrentUser();
+  const { uid, name, email } = useCurrentUser();
 
   const [user, setUser] = useState<any>(null);
 
   const fetchUserData = async () => {
     try {
-      console.log("Fetching user data for UID:", uid);
+      console.log("Fetching user data for UID:", name);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/user/profile`,
         {
