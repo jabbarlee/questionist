@@ -1,80 +1,70 @@
-
-.subtitleText{
-    color: #757575;
-    font-weight: lighter;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
-.configWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+.title {
+  font-size: 22px;
+  font-weight: 450;
+}
+
+.cardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  width: calc(50% - 8px);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: #4096ff;
+  background-color: #f5faff;
+}
+
+.selected {
+  border-color: #1677ff;
+  background-color: #e6f4ff;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f1f1f;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.radio {
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .card {
     width: 100%;
-}
-
-.titleText{
-    font-size: 22px;
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-
-.radioButtonsWrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.radioText{
-    font-size: 15px;
-    font-weight: 420;
-}
-
-.radioSubText{
-    font-size: 12px;
-    font-weight: 300;
-    color: #757575;
-}
-
-.radioWrapper{
-    background-color: #f5f5f5;
-    border: 0.5px solid #002766;
-    border-radius: 7px;
-    padding: 10px 20px;
-}
-
-.checkboxContainer{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
-
-.categoriesContainer{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.categoryWrapper{
-    background-color: #f5f5f5;
-    border: 0.5px solid #002766;
-    border-radius: 7px;
-    padding: 8px 10px;
-}
-
-.questionTypeWrapper{
-    background-color: #f5f5f5;
-    border: 0.5px solid #002766;
-    border-radius: 7px;
-    padding: 10px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    box-sizing: border-box;
+  }
 }

@@ -1,51 +1,47 @@
-import React from 'react'
-import styles from './index.module.css'
-import { Divider, Radio} from "antd";
-import Typography from "@mui/material/Typography";
+"use client";
 
-export default function index({
+import React from "react";
+import styles from "./index.module.css";
+import { Radio, Typography } from "antd";
+
+type QuestionNumSelectProps = {
+  numberOfQuestions: number | null;
+  setNumberOfQuestions: React.Dispatch<React.SetStateAction<number | null>>;
+};
+
+export default function QuestionNumSelect({
   numberOfQuestions,
-  setNumberOfQuestions
-}: {
-    numberOfQuestions: number | null,
-    setNumberOfQuestions: React.Dispatch<React.SetStateAction<number | null>>
-}) {
+  setNumberOfQuestions,
+}: QuestionNumSelectProps) {
+  const options = [
+    { label: "Classic", value: 10, description: "10 questions" },
+    { label: "Miniset", value: 5, description: "5 questions" },
+  ];
 
-    return (
-        <>
-            <Typography className={styles.titleText}>Number of Questions</Typography>
-            <div className={styles.radioButtonsWrapper}>
-                <div className={styles.radioWrapper}>
-                    <Radio
-                        value={10}
-                        className={styles.radio}
-                        checked={numberOfQuestions === 10}
-                        onChange={() => setNumberOfQuestions(10)}
-                    >
-                        <Typography className={styles.radioText}>
-                            Classic
-                        </Typography>
-                        <Typography className={styles.radioSubText}>
-                            10 questions
-                        </Typography>
-                    </Radio>
-                </div>
-                <div className={styles.radioWrapper}>
-                    <Radio
-                        value={5}
-                        className={styles.radio}
-                        checked={numberOfQuestions === 5}
-                        onChange={() => setNumberOfQuestions(5)}
-                    >
-                        <Typography className={styles.radioText}>
-                            Miniset
-                        </Typography>
-                        <Typography className={styles.radioSubText}>
-                            5 questions
-                        </Typography>
-                    </Radio>
-                </div>
+  return (
+    <div className={styles.wrapper}>
+      <Typography className={styles.title}>Number of Questions</Typography>
+      <div className={styles.cardGrid}>
+        {options.map((opt) => (
+          <label
+            key={opt.value}
+            className={`${styles.card} ${
+              numberOfQuestions === opt.value ? styles.selected : ""
+            }`}
+            onClick={() => setNumberOfQuestions(opt.value)}
+          >
+            <Radio
+              checked={numberOfQuestions === opt.value}
+              value={opt.value}
+              className={styles.radio}
+            />
+            <div className={styles.textContent}>
+              <div className={styles.label}>{opt.label}</div>
+              <div className={styles.description}>{opt.description}</div>
             </div>
-        </>
-    )
+          </label>
+        ))}
+      </div>
+    </div>
+  );
 }

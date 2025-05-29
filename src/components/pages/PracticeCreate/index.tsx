@@ -105,7 +105,7 @@ export default function PracticeCreate() {
     {
       title: "Session Setup",
       content: (
-        <div className={styles.stepContent}>
+        <>
           <QuestionNumSelect
             numberOfQuestions={numberOfQuestions}
             setNumberOfQuestions={setNumberOfQuestions}
@@ -115,20 +115,17 @@ export default function PracticeCreate() {
             difficulty={difficulty}
             setDifficulty={setDifficulty}
           />
-        </div>
+        </>
       ),
     },
     {
       title: "Details",
       content: (
-        <div className={styles.stepContent}>
-          <TopicsSelect
-            topics={topics}
-            setTopics={setTopics}
-          />
+        <>
+          <TopicsSelect topics={topics} setTopics={setTopics} />
           <Divider />
           <TestName testName={testName} setTestName={setTestName} />
-        </div>
+        </>
       ),
     },
   ];
@@ -138,6 +135,14 @@ export default function PracticeCreate() {
       <Header>Create Practice Set</Header>
       <Main>
         <div className={styles.container}>
+          {alert.visible && (
+            <Alert
+              message={alert.message}
+              type={alert.type}
+              showIcon
+              style={{ marginTop: 20 }}
+            />
+          )}
           <Steps current={current}>
             {steps.map((item, index) => (
               <Step key={index} title={item.title} />
@@ -157,14 +162,6 @@ export default function PracticeCreate() {
               </Button>
             )}
           </div>
-          {alert.visible && (
-            <Alert
-              message={alert.message}
-              type={alert.type}
-              showIcon
-              style={{ marginTop: 20 }}
-            />
-          )}
         </div>
       </Main>
     </Page>

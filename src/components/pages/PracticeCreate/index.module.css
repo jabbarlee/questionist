@@ -1,114 +1,116 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 80%;
-    height: 100%;
-    box-sizing: border-box;
-    overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  margin: 0 auto;
+  width: 80%;
+  padding: 30px;
 }
 
 .card {
-    flex: 1;
-    padding: 20px;
-    border-radius: 7px;
-    background-color: #fbfbfb;
-    border: 1px solid #e5e5e5;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  flex: 1;
+  padding: 20px;
+  border-radius: 7px;
+  background-color: #fbfbfb;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.createSetFooter{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    padding: 20px;
-    border-radius: 7px;
-    background-color: #fbfbfb;
-    border: 1px solid #e5e5e5;
+.createSetFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 7px;
+  background-color: #fbfbfb;
+  border: 1px solid #e5e5e5;
 }
 
-.progressContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    gap: 5px;
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 5px;
 }
 
 .alert {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .progressCardTextWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
 }
 
 .subHeading {
-    font-size: 18px;
-    font-weight: 300;
-    color: #757575;
-    margin: 0;
+  font-size: 18px;
+  font-weight: 300;
+  color: #757575;
+  margin: 0;
 }
 
-.buttonsContainer{
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    width: 100%;
-    justify-content: space-between;
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.createButton{
-    width: 100%;
+.createButton {
+  width: 100%;
 }
 
-.buttonTextWrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 7px;
-    align-items: center;
+.buttonTextWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
 }
 
-
-.definedSetsWrapper{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
+.definedSetsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.definedSetsContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.definedSetsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .setTitle {
-    font-size: 18px;
-    font-weight: 500;
-    color: #1f1f1f;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1f1f1f;
 }
 
 .setHeading {
-    font-size: 22px;
-    font-weight: 500;
-    color: #d46b08;
-    margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  color: #d46b08;
+  margin: 0;
 }
 
 .setDetails {
-    font-size: 14px;
-    color: #757575;
+  font-size: 14px;
+  color: #757575;
 }
 
 .setCard button {
-    align-self: flex-start;
+  align-self: flex-start;
 }
