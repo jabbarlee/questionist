@@ -1,54 +1,53 @@
-import React from 'react'
-import styles from './index.module.css'
-import {Checkbox, Collapse, Divider} from "antd";
-import Typography from "@mui/material/Typography";
+"use client";
+
+import React from "react";
+import { Collapse, Checkbox, Typography } from "antd";
 import { categories } from "@/data/configData";
+import styles from "./index.module.css";
 
-export default function index({
-    topics,
-    setTopics
-}: {
-    topics: string[] | null,
-    setTopics:  React.Dispatch<React.SetStateAction<string[] | null>>
-}) {
+const { Panel } = Collapse;
 
-    const collapseItems = categories.map((category, index) => ({
-        key: index.toString(),
-        label: (
-            <Typography className={styles.categoryHeaderText}>
-                {category.category}
-            </Typography>
-        ),
-        children: (
-            <div className={styles.categoriesContainer}>
-                {category.topics.map((topic, topicIndex) => (
-                    <Checkbox
-                        key={topicIndex}
-                        className={styles.categoryWrapper}
-                        onChange={(e) => {
-                            if (e.target.checked) {
-                                setTopics([...(topics || []), topic]);
-                            } else {
-                                setTopics(topics?.filter((t) => t !== topic) || []);
-                            }
-                        }}
-                    >
-                        <Typography className={styles.radioText}>{topic}</Typography>
-                    </Checkbox>
-                ))}
+type TopicsSelectProps = {
+  topics: string[] | null;
+  setTopics: React.Dispatch<React.SetStateAction<string[] | null>>;
+};
+
+export default function TopicsSelect({ topics, setTopics }: TopicsSelectProps) {
+  const handleChange = (checkedValue: string, checked: boolean) => {
+    if (checked) {
+      setTopics([...(topics || []), checkedValue]);
+    } else {
+      setTopics((topics || []).filter((t) => t !== checkedValue));
+    }
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <Typography className={styles.title}>Topics</Typography>
+      <Collapse
+        defaultActiveKey={categories.map((_, i) => i.toString())}
+        ghost
+        className={styles.collapse}
+      >
+        {categories.map((category, idx) => (
+          <Panel header={category.category} key={idx}>
+            <div className={styles.topicContainer}>
+              {category.topics.map((topic, i) => (
+                <Checkbox
+                  key={i}
+                  checked={topics?.includes(topic)}
+                  onChange={(e) => handleChange(topic, e.target.checked)}
+                  className={`${styles.checkbox} ${
+                    topics?.includes(topic) ? styles.checked : ""
+                  }`}
+                >
+                  {topic}
+                </Checkbox>
+              ))}
             </div>
-        ),
-    }));
-
-
-    return (
-        <>
-            <Typography className={styles.titleText}>Categories</Typography>
-            <Collapse
-                size="large"
-                defaultActiveKey={['0', '1', '2', '3']}
-                items={collapseItems}
-            />
-        </>
-    )
+          </Panel>
+        ))}
+      </Collapse>
+    </div>
+  );
 }
