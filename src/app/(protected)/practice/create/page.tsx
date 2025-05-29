@@ -1,5 +1,5 @@
 import React from "react";
-import PracticeCreate from "../../../../components/pages/PracticeCreate";
+import PracticeCreate from "@/components/pages/PracticeCreate";
 
 export default function page() {
   return (
